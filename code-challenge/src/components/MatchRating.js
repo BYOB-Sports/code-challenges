@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
 import { submitRating } from '../api/ratingApi';
 
+
+// Changed the import to include the locally stored rating state 
 const MatchRating = ({ players, setPlayers, ratingState, setRatingState }) => {
   const [selectedPlayer, setSelectedPlayer] = useState('');
   const [rating, setRating] = useState(4.0);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [message, setMessage] = useState('');
 
-  
-
-
-  const handleSubmit = async (e) => {
+    const handleSubmit = async (e) => {
     e.preventDefault();
     
     if (!selectedPlayer) {
@@ -22,36 +21,32 @@ const MatchRating = ({ players, setPlayers, ratingState, setRatingState }) => {
     setMessage('Submitting rating...');
     
     try {
-    const playerIndex = players.findIndex(p => p.id === selectedPlayer);
-    if (playerIndex === -1) throw new Error('Player not found');
 
-    // Clone player data before calling the API (this ensures that the data displayed will always be correct)
-    const { total, count } = ratingState[playerIndex] ?? { total: 0, count: 1 };
-    const newTotal = total + rating;
-    const newCount = count + 1;
-    const newAverage = newTotal / newCount;
+      // Load the values directly
+      const id = selectedPlayer;
+      const prev = ratingState[id] ?? { total: 0, count: 0 };
+    
+      const newTotal = prev.total + rating;
+      const newCount = prev.count + 1;
+      const newAverage = newTotal / newCount;
 
-    await submitRating(selectedPlayer, rating, players);
+   
+      // Do update the API, but this will not be accessed again (only able to store the last rating average with no running weights)
+      await submitRating(id, rating, players);
 
-    const updatedPlayers = players.map((p, i) => {
-      if (i === playerIndex) {
-        return {
-          ...p,
-          averageRating: newAverage,
-        };
-      }
-      return p;
-    });
+      // Update local value that is stored in UI
+      setPlayers(
+        players.map(p =>
+          p.id === id ? { ...p, averageRating: newAverage } : p
+        )
+      );
 
-    setPlayers(updatedPlayers);
+      // Update the rating state and save it in localStorage 
+      setRatingState((prevState) => ({
+        ...prevState,
+        [id]: { total: newTotal, count: newCount },
+      }));
 
-
-      //Store individual player rating counts
-    setRatingState(prev => {
-      const next = [...prev];
-      next[playerIndex] = { total: newTotal, count: newCount };
-      return next;
-    });
       
       setMessage('Rating submitted successfully!');
     } catch (error) {
