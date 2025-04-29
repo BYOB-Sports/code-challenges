@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import { submitRating } from '../api/ratingApi';
 
-const MatchRating = ({ players, setPlayers }) => {
+const MatchRating = ({ players, setPlayers, ratingState, setRatingState }) => {
   const [selectedPlayer, setSelectedPlayer] = useState('');
   const [rating, setRating] = useState(4.0);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [message, setMessage] = useState('');
+
+  
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,24 +22,37 @@ const MatchRating = ({ players, setPlayers }) => {
     setMessage('Submitting rating...');
     
     try {
-      await submitRating(selectedPlayer, rating, players);
+    const playerIndex = players.findIndex(p => p.id === selectedPlayer);
+    if (playerIndex === -1) throw new Error('Player not found');
 
-      const updatedPlayers = players.map(player => {
-        if (player.id === selectedPlayer) {
+    // Clone player data before calling the API (this ensures that the data displayed will always be correct)
+    const { total, count } = ratingState[playerIndex] ?? { total: 0, count: 1 };
+    const newTotal = total + rating;
+    const newCount = count + 1;
+    const newAverage = newTotal / newCount;
 
-          //Instead of just updating directly to the newer rating, take the new rating into consideration. If there is no other rating, just initialize the current rating
-          const oldAverage = player.averageRating || rating;
-          const newAverage = (oldAverage + rating) / 2;
-          
-          return {
-            ...player,
-            averageRating: newAverage,
-          };
-        }
-        return player;
-      });
+    await submitRating(selectedPlayer, rating, players);
 
-      setPlayers(updatedPlayers);
+    const updatedPlayers = players.map((p, i) => {
+      if (i === playerIndex) {
+        return {
+          ...p,
+          averageRating: newAverage,
+        };
+      }
+      return p;
+    });
+
+    setPlayers(updatedPlayers);
+
+
+      //Store individual player rating counts
+    setRatingState(prev => {
+      const next = [...prev];
+      next[playerIndex] = { total: newTotal, count: newCount };
+      return next;
+    });
+      
       setMessage('Rating submitted successfully!');
     } catch (error) {
       setMessage(`Error: ${error.message}`);

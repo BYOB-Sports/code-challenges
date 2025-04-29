@@ -8,12 +8,25 @@ function App() {
   const [activeTab, setActiveTab] = useState('players');
   const [players, setPlayers] = useState([]);
 
+  //Added ratingState calculator for ease of local calculation
+  const [ratingState, setRatingState] = useState([]);
+
   useEffect(() => {
     // Load initial player data
     const loadPlayers = async () => {
       const loadedPlayers = await fetchPlayers();
       setPlayers(loadedPlayers);
+
+      // Initialize player ratings once players are loaded
+      setRatingState(
+        loadedPlayers.map(p => ({
+          total: p.averageRating ?? 0,
+          count: 1,
+        }))
+      );
     };
+
+
     
     loadPlayers();
   }, []);
@@ -39,9 +52,11 @@ function App() {
       </header>
       <main>
         {activeTab === 'players' ? (
-          <PlayersList players={players} />
+          <PlayersList players={players}
+                      ratingState={ratingState}
+          />
         ) : (
-          <MatchRating players={players} setPlayers={setPlayers} />
+          <MatchRating players={players} setPlayers={setPlayers} ratingState={ratingState} setRatingState={setRatingState} />
         )}
       </main>
     </div>
