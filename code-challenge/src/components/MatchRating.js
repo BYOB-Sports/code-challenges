@@ -19,7 +19,23 @@ const MatchRating = ({ players, setPlayers }) => {
     setMessage('Submitting rating...');
     
     try {
-      const updatedPlayers = await submitRating(selectedPlayer, rating, players);
+      await submitRating(selectedPlayer, rating, players);
+
+      const updatedPlayers = players.map(player => {
+        if (player.id === selectedPlayer) {
+
+          //Instead of just updating directly to the newer rating, take the new rating into consideration. If there is no other rating, just initialize the current rating
+          const oldAverage = player.averageRating || rating;
+          const newAverage = (oldAverage + rating) / 2;
+          
+          return {
+            ...player,
+            averageRating: newAverage,
+          };
+        }
+        return player;
+      });
+
       setPlayers(updatedPlayers);
       setMessage('Rating submitted successfully!');
     } catch (error) {
