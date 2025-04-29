@@ -5,44 +5,30 @@ import MatchRating from './components/MatchRating';
 import { fetchPlayers } from './api/playerApi';
 
 function App() {
-  const [activeTab, setActiveTab] = useState('players');
   const [players, setPlayers] = useState([]);
 
   useEffect(() => {
-    // Load initial player data
     const loadPlayers = async () => {
       const loadedPlayers = await fetchPlayers();
       setPlayers(loadedPlayers);
     };
-    
     loadPlayers();
   }, []);
 
   return (
     <div className="App">
       <header className="App-header">
-        <h1>USTA Player Rating System</h1>
-        <div className="tabs">
-          <button 
-            className={activeTab === 'players' ? 'active' : ''} 
-            onClick={() => setActiveTab('players')}
-          >
-            Players
-          </button>
-          <button 
-            className={activeTab === 'matches' ? 'active' : ''} 
-            onClick={() => setActiveTab('matches')}
-          >
-            Match Ratings
-          </button>
-        </div>
+        <h1>🎾 USTA Player Rating System</h1>
+        <p>Rate and view tennis players in one place.</p>
       </header>
-      <main>
-        {activeTab === 'players' ? (
+
+      <main className="grid-layout">
+        <section className="grid-card">
           <PlayersList players={players} />
-        ) : (
+        </section>
+        <section className="grid-card">
           <MatchRating players={players} setPlayers={setPlayers} />
-        )}
+        </section>
       </main>
     </div>
   );
