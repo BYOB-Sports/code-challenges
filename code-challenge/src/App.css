@@ -118,3 +118,9 @@ button[type="submit"]:disabled {
   background-color: #f8f9fa;
   border-radius: 4px;
 }
+.average-message {
+  font-weight: bold;
+  color: #2e7d32; /* green tone */
+  margin-top: 1rem;
+}
+

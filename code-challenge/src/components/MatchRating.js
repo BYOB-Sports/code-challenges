@@ -6,6 +6,9 @@ const MatchRating = ({ players, setPlayers }) => {
   const [rating, setRating] = useState(4.0);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [message, setMessage] = useState('');
+  const [updatedAverage, setUpdatedAverage] = useState(null);
+  const [updatedPlayerName, setUpdatedPlayerName] = useState('');
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,8 +22,35 @@ const MatchRating = ({ players, setPlayers }) => {
     setMessage('Submitting rating...');
     
     try {
-      const updatedPlayers = await submitRating(selectedPlayer, rating, players);
+      const updatedPlayers = players.map(player => {
+        const newPlayer = { ...player };
+      
+        if (newPlayer.id === selectedPlayer) {
+          // Initialize if missing
+          if (newPlayer.numRatings === undefined) {
+            newPlayer.numRatings = 1;
+            newPlayer.totalRating = newPlayer.averageRating;
+          }
+      
+          newPlayer.totalRating += rating;
+          newPlayer.numRatings += 1;
+      
+          newPlayer.averageRating = parseFloat((newPlayer.totalRating / newPlayer.numRatings).toFixed(1));
+        }
+      
+        return newPlayer;
+      });
+      
+    
+      // Submit to mock API (no real processing, just returns what we send)
+      await submitRating(selectedPlayer, rating, updatedPlayers);
+    
+      // Update the players state with locally updated data
       setPlayers(updatedPlayers);
+      const updatedPlayer = updatedPlayers.find(p => p.id === selectedPlayer);
+      setUpdatedAverage(updatedPlayer.averageRating);
+      setUpdatedPlayerName(updatedPlayer.name);
+
       setMessage('Rating submitted successfully!');
     } catch (error) {
       setMessage(`Error: ${error.message}`);
@@ -67,9 +97,14 @@ const MatchRating = ({ players, setPlayers }) => {
         </button>
         
         {message && <p className="message">{message}</p>}
+        {updatedAverage !== null && (
+          <p className="average-message">
+            {updatedPlayerName}’s new average: {updatedAverage}
+          </p>
+        )}
       </form>
     </div>
   );
 };
 
-export default MatchRating; 
+export default MatchRating;
