@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { submitRating } from '../api/ratingApi';
 
-const MatchRating = ({ players, setPlayers }) => {
+const MatchRating = ({ players, setPlayers, changeTab }) => {
   const [selectedPlayer, setSelectedPlayer] = useState('');
   const [rating, setRating] = useState(4.0);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -21,7 +21,8 @@ const MatchRating = ({ players, setPlayers }) => {
     try {
       const updatedPlayers = await submitRating(selectedPlayer, rating, players);
       setPlayers(updatedPlayers);
-      setMessage('Rating submitted successfully!');
+      //setMessage('Rating submitted successfully!');
+      changeTab('players'); 
     } catch (error) {
       setMessage(`Error: ${error.message}`);
     } finally {
