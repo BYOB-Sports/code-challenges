@@ -22,7 +22,7 @@ const MatchRating = ({ players, setPlayers, changeTab }) => {
       const updatedPlayers = players.map(player => {
         if(player.id === selectedPlayer){
           if(!player.ratingCount) {
-            player.ratingCount = 1; //use the 4.0 baseline as the initial average and keep track of the number of ratings
+            player.ratingCount = 1; //keep track of the number of ratings and use the intial average as the first rating
           }
 
           const newAverageRating = calculateNewAverage(player, rating); 
