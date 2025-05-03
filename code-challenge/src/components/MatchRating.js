@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { submitRating } from '../api/ratingApi';
+import { storeRating, submitRating } from '../api/ratingApi';
 
 const MatchRating = ({ players, setPlayers }) => {
   const [selectedPlayer, setSelectedPlayer] = useState('');
@@ -9,15 +9,15 @@ const MatchRating = ({ players, setPlayers }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!selectedPlayer) {
       setMessage('Please select a player');
       return;
     }
-    
+
     setIsSubmitting(true);
-    setMessage('Submitting rating...');
-    
+    setMessage('Please wait while we submit your rating...');
+
     try {
       const updatedPlayers = await submitRating(selectedPlayer, rating, players);
       setPlayers(updatedPlayers);
@@ -30,46 +30,55 @@ const MatchRating = ({ players, setPlayers }) => {
   };
 
   return (
-    <div className="match-rating">
-      <h2>Rate a Player</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="player-select">Select Player:</label>
-          <select 
-            id="player-select"
-            value={selectedPlayer}
-            onChange={(e) => setSelectedPlayer(e.target.value)}
-            disabled={isSubmitting}
-          >
-            <option value="">-- Select a player --</option>
-            {players.map(player => (
-              <option key={player.id} value={player.id}>{player.name}</option>
-            ))}
-          </select>
+    <>
+      {/* Overlay for submission state */}
+      {isSubmitting && (
+        <div className="submission-overlay">
+          <div className="submission-message">{message}</div>
         </div>
-        
-        <div className="form-group">
-          <label htmlFor="rating-slider">Rating: {rating.toFixed(1)}</label>
-          <input 
-            type="range" 
-            id="rating-slider"
-            min="1.0" 
-            max="7.0" 
-            step="0.1" 
-            value={rating}
-            onChange={(e) => setRating(parseFloat(e.target.value))}
-            disabled={isSubmitting}
-          />
-        </div>
-        
-        <button type="submit" disabled={isSubmitting}>
-          {isSubmitting ? 'Submitting...' : 'Submit Rating'}
-        </button>
-        
-        {message && <p className="message">{message}</p>}
-      </form>
-    </div>
+      )}
+      <div className={`match-rating ${isSubmitting ? 'submitting' : ''}`}>
+        <h2>Rate a Player</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="player-select">Select Player:</label>
+            <select
+              id="player-select"
+              value={selectedPlayer}
+              onChange={(e) => setSelectedPlayer(e.target.value)}
+              disabled={isSubmitting}
+            >
+              <option value="">-- Select a player --</option>
+              {players.map(player => (
+                <option key={player.id} value={player.id}>{player.name}</option>
+              ))}
+            </select>
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="rating-slider">Rating: {rating.toFixed(1)}</label>
+            <input
+              type="range"
+              id="rating-slider"
+              min="1.0"
+              max="7.0"
+              step="0.1"
+              value={rating}
+              onChange={(e) => setRating(parseFloat(e.target.value))}
+              disabled={isSubmitting}
+            />
+          </div>
+
+          <button type="submit" disabled={isSubmitting}>
+            {isSubmitting ? 'Submitting...' : 'Submit Rating'}
+          </button>
+
+          {message && !isSubmitting && <p className="message">{message}</p>}
+        </form>
+      </div>
+    </>
   );
 };
 
-export default MatchRating; 
+
+export default MatchRating;
