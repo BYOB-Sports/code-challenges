@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { submitRating } from '../api/ratingApi';
 
 const MatchRating = ({ players, setPlayers }) => {
@@ -6,6 +6,16 @@ const MatchRating = ({ players, setPlayers }) => {
   const [rating, setRating] = useState(4.0);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [message, setMessage] = useState('');
+  // add past ratings
+  const [pastRating, setPastRating] = useState(0);
+
+  useEffect(() => {
+    // Reset past rating when player is selected
+    const player = players.find(player => player.id === selectedPlayer);
+    if (player) {
+      setPastRating(player.pastRating || 0); // Use pastRating from player data
+    }
+  }, [selectedPlayer, players]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,20 +28,62 @@ const MatchRating = ({ players, setPlayers }) => {
     setIsSubmitting(true);
     setMessage('Submitting rating...');
     
-    try {
-      const updatedPlayers = await submitRating(selectedPlayer, rating, players);
-      setPlayers(updatedPlayers);
-      setMessage('Rating submitted successfully!');
-    } catch (error) {
-      setMessage(`Error: ${error.message}`);
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
+  //   try {
+  //     const updatedPlayers = await submitRating(selectedPlayer, rating, players);
+      
+  //     const updatedRatingsStr = localStorage.getItem('ratings');
+  //     const updatedRatings = JSON.parse(updatedRatingsStr || '{}');
+
+  //     const finalPlayers = updatedPlayers.map(player => {
+  //       const ratings = updatedRatings[player.id] || [];
+  //       const average =
+  //         ratings.length > 0
+  //           ? ratings.reduce((sum, r) => sum + r, 0) / ratings.length
+  //           : 0;
+  //     return { ...player, averageRating: average, pastRating: player.averageRating };
+  //   });
+      
+  //     setPlayers(updatedPlayers);
+  //     setMessage('Rating submitted successfully!');
+  //   } catch (error) {
+  //     setMessage(`Error: ${error.message}`);
+  //   } finally {
+  //     setIsSubmitting(false);
+  //   }
+  // };
+
+  try {
+    // Update the player's pastRating with the current averageRating before submitting the new rating
+    const updatedPlayers = players.map(player => {
+      if (player.id === selectedPlayer) {
+        const pastRating = player.averageRating;  // Save current averageRating as pastRating
+        const updatedPlayer = { ...player, pastRating };  // Update pastRating
+
+        // Save new average rating
+        const newAverage = (player.averageRating + rating) / 2;  // Just an example of how you might recalculate
+        return { ...updatedPlayer, averageRating: newAverage };  // Update averageRating
+
+      }
+      return player;
+    });
+    
+    // Submit the new rating
+    const finalPlayers = updatedPlayers.map(player => {
+      return { ...player }; // Just an example of how you'd finalize the player updates
+    });
+
+    setPlayers(updatedPlayers);
+    setMessage('Rating submitted successfully!');
+  } catch (error) {
+    setMessage(`Error: ${error.message}`);
+  } finally {
+    setIsSubmitting(false);
+  }
+};
 
   return (
     <div className="match-rating">
-      <h2>Rate a Player</h2>
+      <h2>🎾 Rate a Player 🎾</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="player-select">Select Player:</label>
@@ -62,7 +114,7 @@ const MatchRating = ({ players, setPlayers }) => {
           />
         </div>
         
-        <button type="submit" disabled={isSubmitting}>
+        <button   style={{color: '#000000', backgroundColor: '#FFE700', borderRadius: '5px', fontWeight: 'bolder' }} type="submit" disabled={isSubmitting}>
           {isSubmitting ? 'Submitting...' : 'Submit Rating'}
         </button>
         

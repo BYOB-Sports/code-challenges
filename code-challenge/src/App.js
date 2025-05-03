@@ -21,7 +21,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>USTA Player Rating System</h1>
+        <h1>USTA Player Rating System </h1>
         <div className="tabs">
           <button 
             className={activeTab === 'players' ? 'active' : ''} 
