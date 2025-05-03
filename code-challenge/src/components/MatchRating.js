@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { submitRating } from '../api/ratingApi';
+import { updatePlayers } from '../api/playerApi';
 
 const MatchRating = ({ players, setPlayers, changeTab }) => {
   const [selectedPlayer, setSelectedPlayer] = useState('');
@@ -19,8 +19,28 @@ const MatchRating = ({ players, setPlayers, changeTab }) => {
     setMessage('Submitting rating...');
     
     try {
-      const updatedPlayers = await submitRating(selectedPlayer, rating, players);
+      const updatedPlayers = players.map(player => {
+        if(player.id === selectedPlayer){
+          if(!player.ratingCount) {
+            player.ratingCount = 1; //assume the 4.0 rating is the first one and store the number of ratings
+          }
+          
+          const currentTotalRating = player.averageRating * player.ratingCount;
+          const newTotalRating = currentTotalRating + rating;
+          const newCount = player.ratingCount + 1;
+          const newAverageRating = newTotalRating / newCount;
+          player.averageRating = newAverageRating;
+
+          return {
+            ...player,
+            ratingCount: newCount,
+            averageRating: newAverageRating,
+          };
+        }
+        return player;
+      });
       setPlayers(updatedPlayers);
+      await updatePlayers(updatedPlayers);
       //setMessage('Rating submitted successfully!');
       changeTab('players'); 
     } catch (error) {
