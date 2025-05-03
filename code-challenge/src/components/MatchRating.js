@@ -53,23 +53,23 @@ const MatchRating = ({ players, setPlayers }) => {
   // };
 
   try {
-    // Update the player's pastRating with the current averageRating before submitting the new rating
+    // update the player's pastRating with the current averageRating 
     const updatedPlayers = players.map(player => {
       if (player.id === selectedPlayer) {
-        const pastRating = player.averageRating;  // Save current averageRating as pastRating
-        const updatedPlayer = { ...player, pastRating };  // Update pastRating
+        const pastRating = player.averageRating;  // save averageRating as pastRating
+        const updatedPlayer = { ...player, pastRating };  // update pastRating
 
         // Save new average rating
-        const newAverage = (player.averageRating + rating) / 2;  // Just an example of how you might recalculate
-        return { ...updatedPlayer, averageRating: newAverage };  // Update averageRating
+        const newAverage = (player.averageRating + rating) / 2; 
+        return { ...updatedPlayer, averageRating: newAverage };  // update averageRating
 
       }
       return player;
     });
     
-    // Submit the new rating
+    // submit the new rating
     const finalPlayers = updatedPlayers.map(player => {
-      return { ...player }; // Just an example of how you'd finalize the player updates
+      return { ...player }; 
     });
 
     setPlayers(updatedPlayers);
