@@ -22,33 +22,36 @@ const MatchRating = ({ players, setPlayers, changeTab }) => {
       const updatedPlayers = players.map(player => {
         if(player.id === selectedPlayer){
           if(!player.ratingCount) {
-            player.ratingCount = 1; //assume the 4.0 rating is the first one and store the number of ratings
+            player.ratingCount = 1; //use the 4.0 baseline as the initial average and keep track of the number of ratings
           }
-          
-          const currentTotalRating = player.averageRating * player.ratingCount;
-          const newTotalRating = currentTotalRating + rating;
-          const newCount = player.ratingCount + 1;
-          const newAverageRating = newTotalRating / newCount;
-          player.averageRating = newAverageRating;
+
+          const newAverageRating = calculateNewAverage(player, rating); 
 
           return {
             ...player,
-            ratingCount: newCount,
+            ratingCount: player.ratingCount + 1,
             averageRating: newAverageRating,
           };
         }
         return player;
       });
-      setPlayers(updatedPlayers);
-      await updatePlayers(updatedPlayers);
-      //setMessage('Rating submitted successfully!');
-      changeTab('players'); 
+      setPlayers(updatedPlayers); //update the players state
+      await updatePlayers(updatedPlayers); //store the updated players in local storage
+      changeTab('players'); //redirect to players tab after rating submission
     } catch (error) {
       setMessage(`Error: ${error.message}`);
     } finally {
       setIsSubmitting(false);
     }
   };
+
+  function calculateNewAverage(player, rating) {
+    const currentTotalRating = player.averageRating * player.ratingCount;
+    const newTotalRating = currentTotalRating + rating;
+    const newCount = player.ratingCount + 1;
+    const newAverageRating = newTotalRating / newCount;
+    return newAverageRating;
+  }
 
   return (
     <div className="match-rating">
