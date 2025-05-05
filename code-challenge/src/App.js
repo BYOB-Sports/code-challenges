@@ -3,6 +3,9 @@ import './App.css';
 import PlayersList from './components/PlayersList';
 import MatchRating from './components/MatchRating';
 import { fetchPlayers } from './api/playerApi';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function App() {
   const [activeTab, setActiveTab] = useState('players');
@@ -37,6 +40,7 @@ function App() {
           </button>
         </div>
       </header>
+      <ToastContainer />
       <main>
         {activeTab === 'players' ? (
           <PlayersList players={players} />
