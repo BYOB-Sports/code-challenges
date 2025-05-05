@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { submitRating } from '../api/ratingApi';
+import { updatePlayers } from '../api/playerApi';
+import { storeRating } from '../api/ratingApi';
 
 const MatchRating = ({ players, setPlayers }) => {
   const [selectedPlayer, setSelectedPlayer] = useState('');
@@ -17,11 +18,28 @@ const MatchRating = ({ players, setPlayers }) => {
 
     setIsSubmitting(true);
 
-    setMessage(`Submitting rating... This may take up to 10 seconds.`);
+    setMessage(`Submitting rating...`);
 
     try {
-      const updatedPlayers = await submitRating(selectedPlayer, rating, players);
+      // we do storeRating first to ensure the rating is stored in the player's ratings list
+      const playerRatings = await storeRating(selectedPlayer, rating);
+      //we calculate the average rating locally in the "frontend" instead of the api
+      let newAverage = 0;
+      if (playerRatings.length > 0) {
+        const sum = playerRatings.reduce((acc, r) => acc + r, 0);
+        newAverage = sum / playerRatings.length;
+      } else {
+        newAverage = rating; //this is simply error handling in our case, if the player has no ratings yet, we set the average to the rating we just submitted
+      }
+
+      const updatedPlayers = players.map(player =>
+        player.id === selectedPlayer //change for the selected player
+          ? { ...player, averageRating: newAverage }
+          : player
+      );
       setPlayers(updatedPlayers);
+
+      await updatePlayers(updatedPlayers);
       setMessage('Rating submitted successfully!');
     } catch (error) {
       setMessage(`Error: ${error.message}`);
