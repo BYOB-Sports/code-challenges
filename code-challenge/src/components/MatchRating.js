@@ -28,6 +28,7 @@ const MatchRating = ({ players, setPlayers }) => {
     setIsSubmitting(true);
     setMessage('Submitting rating...');
     
+  // ORIGINAL
   //   try {
   //     const updatedPlayers = await submitRating(selectedPlayer, rating, players);
       
@@ -52,33 +53,57 @@ const MatchRating = ({ players, setPlayers }) => {
   //   }
   // };
 
-  try {
-    // update the player's pastRating with the current averageRating 
-    const updatedPlayers = players.map(player => {
-      if (player.id === selectedPlayer) {
-        const pastRating = player.averageRating;  // save averageRating as pastRating
-        const updatedPlayer = { ...player, pastRating };  // update pastRating
+  //1ST ATTEMPT
+//   try {
+//     // update the player's pastRating with the current averageRating 
+//     const updatedPlayers = players.map(player => {
+//       if (player.id === selectedPlayer) {
+//         const pastRating = player.averageRating;  // save averageRating as pastRating
+//         const updatedPlayer = { ...player, pastRating };  // update pastRating
 
-        // Save new average rating
-        const newAverage = (player.averageRating + rating) / 2; 
-        return { ...updatedPlayer, averageRating: newAverage };  // update averageRating
+//         // Save new average rating
+//         const newAverage = (player.averageRating + rating) / 2; 
+//         return { ...updatedPlayer, averageRating: newAverage };  // update averageRating
 
-      }
-      return player;
-    });
+//       }
+//       return player;
+//     });
     
-    // submit the new rating
-    const finalPlayers = updatedPlayers.map(player => {
-      return { ...player }; 
-    });
+//     // submit the new rating
+//     const finalPlayers = updatedPlayers.map(player => {
+//       return { ...player }; 
+//     });
 
-    setPlayers(updatedPlayers);
-    setMessage('Rating submitted successfully!');
-  } catch (error) {
-    setMessage(`Error: ${error.message}`);
-  } finally {
-    setIsSubmitting(false);
-  }
+//     setPlayers(updatedPlayers);
+//     setMessage('Rating submitted successfully!');
+//   } catch (error) {
+//     setMessage(`Error: ${error.message}`);
+//   } finally {
+//     setIsSubmitting(false);
+//   }
+// };
+
+//2ND ATTEMPT
+try {
+  // save current average rating and pastRating 
+  const playersWithPast = players.map(player => {
+    if (player.id === selectedPlayer) {
+      return { ...player, pastRating: player.averageRating };
+    }
+    return player;
+  });
+
+  // submit the new rating
+  const updatedPlayers = await submitRating(selectedPlayer, rating, players);
+
+
+  setPlayers(updatedPlayers);
+  setMessage('Rating submitted successfully!');
+} catch (error) {
+  setMessage(`Error: ${error.message}`);
+} finally {
+  setIsSubmitting(false);
+}
 };
 
   return (
