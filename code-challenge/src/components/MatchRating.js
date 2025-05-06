@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { submitRating } from '../api/ratingApi';
 
-const MatchRating = ({ players, setPlayers }) => {
+const MatchRating = ({ players, setPlayers, isSubmitting, setIsSubmitting }) => {
   const [selectedPlayer, setSelectedPlayer] = useState('');
   const [rating, setRating] = useState(4.0);
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  //const [isSubmitting, setIsSubmitting] = useState(false);
   const [message, setMessage] = useState('');
 
   const handleSubmit = async (e) => {

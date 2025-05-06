@@ -9,6 +9,7 @@ function App() {
   const [activeTab, setActiveTab] = useState('players');
   const [players, setPlayers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     // Load initial player data
@@ -51,23 +52,31 @@ function App() {
 
     loadPlayers();
   }, []);
+
   if (isLoading){
     return <div className="app-loading">Loading Players ...</div>;
   }
   return (
     <div className="App">
+      {isSubmitting && (
+          <div className="submission-overlay">
+            <p>Submitting Rating...</p>
+          </div>
+      )}
       <header className="App-header">
         <h1>USTA Player Rating System</h1>
         <div className="tabs">
           <button 
             className={activeTab === 'players' ? 'active' : ''} 
-            onClick={() => setActiveTab('players')}
+            onClick={() => !isSubmitting && setActiveTab('players')}
+            disabled={isSubmitting} // Disabled tabs if the user is submitting.
           >
             Players
           </button>
           <button 
             className={activeTab === 'matches' ? 'active' : ''} 
             onClick={() => setActiveTab('matches')}
+            disabled={isSubmitting}
           >
             Match Ratings
           </button>
@@ -77,7 +86,11 @@ function App() {
         {activeTab === 'players' ? (
           <PlayersList players={players} />
         ) : (
-          <MatchRating players={players} setPlayers={setPlayers} />
+          <MatchRating
+              players={players}
+              setPlayers={setPlayers}
+              isSubmitting={isSubmitting}
+              setIsSubmitting={setIsSubmitting}/>
         )}
       </main>
     </div>
