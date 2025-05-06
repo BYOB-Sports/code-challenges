@@ -9,7 +9,10 @@ const MatchRating = ({ players, setPlayers }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
+    // Rest a message.
+    setMessage('');
+
     if (!selectedPlayer) {
       setMessage('Please select a player');
       return;
@@ -22,6 +25,12 @@ const MatchRating = ({ players, setPlayers }) => {
       const updatedPlayers = await submitRating(selectedPlayer, rating, players);
       setPlayers(updatedPlayers);
       setMessage('Rating submitted successfully!');
+
+      // Resetting the player and rating to default.
+      // So the User won't keep clicking submitting unintentionally.
+      setSelectedPlayer('');
+      setRating(4.0);
+
     } catch (error) {
       setMessage(`Error: ${error.message}`);
     } finally {
