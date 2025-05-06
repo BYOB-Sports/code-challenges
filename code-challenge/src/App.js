@@ -3,7 +3,7 @@ import './App.css';
 import PlayersList from './components/PlayersList';
 import MatchRating from './components/MatchRating';
 import { fetchPlayers } from './api/playerApi';
-
+import { Toaster } from 'react-hot-toast';
 
 function App() {
   const [activeTab, setActiveTab] = useState('players');
@@ -58,6 +58,10 @@ function App() {
   }
   return (
     <div className="App">
+      <Toaster
+          position="top-center"
+          reverseOrder={false}
+      />
       {isSubmitting && (
           <div className="submission-overlay">
             <p>Submitting Rating...</p>

@@ -1,30 +1,31 @@
 import React, { useState } from 'react';
 import { submitRating } from '../api/ratingApi';
+import toast from 'react-hot-toast';
 
 const MatchRating = ({ players, setPlayers, isSubmitting, setIsSubmitting }) => {
   const [selectedPlayer, setSelectedPlayer] = useState('');
   const [rating, setRating] = useState(4.0);
   //const [isSubmitting, setIsSubmitting] = useState(false);
-  const [message, setMessage] = useState('');
+  // const [message, setMessage] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     // Rest a message.
-    setMessage('');
+    //setMessage('');
 
     if (!selectedPlayer) {
-      setMessage('Please select a player');
+      toast.error('Please select a player');
       return;
     }
     
     setIsSubmitting(true);
-    setMessage('Submitting rating...');
+    //setMessage('Submitting rating...');
     
     try {
       const updatedPlayers = await submitRating(selectedPlayer, rating, players);
       setPlayers(updatedPlayers);
-      setMessage('Rating submitted successfully!');
+      toast.success('Rating submitted successfully!');
 
       // Resetting the player and rating to default.
       // So the User won't keep clicking submitting unintentionally.
@@ -32,7 +33,7 @@ const MatchRating = ({ players, setPlayers, isSubmitting, setIsSubmitting }) => 
       setRating(4.0);
 
     } catch (error) {
-      setMessage(`Error: ${error.message}`);
+      toast.error(`Error: ${error.message}`);
     } finally {
       setIsSubmitting(false);
     }
@@ -74,8 +75,8 @@ const MatchRating = ({ players, setPlayers, isSubmitting, setIsSubmitting }) => 
         <button type="submit" disabled={isSubmitting}>
           {isSubmitting ? 'Submitting...' : 'Submit Rating'}
         </button>
-        
-        {message && <p className="message">{message}</p>}
+
+        {/* {message && <p className="message">{message}</p>}*/}
       </form>
     </div>
   );
