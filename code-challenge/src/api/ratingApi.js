@@ -21,7 +21,7 @@ export const calculateAverageRating = async (playerId) => {
   const ratings = JSON.parse(ratingsStr);
   const playerRatings = ratings[playerId] || [];
   
-  await new Promise(resolve => setTimeout(resolve, 10000));
+  // await new Promise(resolve => setTimeout(resolve, 10000));
   
   if (playerRatings.length === 0) return 0;
   
