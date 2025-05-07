@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
-import { submitRating } from '../api/ratingApi';
+// Changed the submitRating import to make more API calls directly
+import { storeRating, calculateAverageRating } from '../api/ratingApi';
+import { updatePlayers } from '../api/playerApi';
 
 
-// Changed the import to include the locally stored rating state 
-const MatchRating = ({ players, setPlayers, ratingState, setRatingState }) => {
+// Changed the imports back. This only uses API calls to change the users ratings. This way, there is less storage needed on the client's side.
+// One down side to this approach is that this would use more network data on the user's side to make more API calls. In a mobile setting, we would
+// ideally do this calculation on the cloud to save the user's network data and use less computing power (wasting less battery power)
+const MatchRating = ({ players, setPlayers }) => {
   const [selectedPlayer, setSelectedPlayer] = useState('');
   const [rating, setRating] = useState(4.0);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -24,28 +28,36 @@ const MatchRating = ({ players, setPlayers, ratingState, setRatingState }) => {
 
       // Load the values directly
       const id = selectedPlayer;
-      const prev = ratingState[id] ?? { total: 0, count: 0 };
-    
-      const newTotal = prev.total + rating;
-      const newCount = prev.count + 1;
-      const newAverage = newTotal / newCount;
+      const player = players.find(p => p.id === id);
 
-   
-      // Do update the API, but this will not be accessed again (only able to store the last rating average with no running weights)
-      await submitRating(id, rating, players);
+      // Call calculate first to see if this is the first rating
+      const currentAverage = await calculateAverageRating(id);
 
-      // Update local value that is stored in UI
-      setPlayers(
-        players.map(p =>
-          p.id === id ? { ...p, averageRating: newAverage } : p
-        )
+      // If this IS the first rating, we send an API call to store that player's averageRating in the API (since it isn't stored at first)
+      if (currentAverage === 0 && player?.averageRating !== undefined) {
+        // Inject initial average via the API
+        await storeRating(id, player.averageRating);
+      }
+      
+      // Changed the logic behind the API, trying out new logic; Make more API calls from the frontend, and do not rely on localStorage directly (only through the API)
+
+      // Store new rating
+      await storeRating(id, rating);
+
+      // Calculate accurate average
+      const updatedAverage = await calculateAverageRating(id);
+
+      // Update player in local list
+      const updatedPlayers = players.map(p =>
+        p.id === id ? { ...p, averageRating: updatedAverage } : p
       );
 
-      // Update the rating state and save it in localStorage 
-      setRatingState((prevState) => ({
-        ...prevState,
-        [id]: { total: newTotal, count: newCount },
-      }));
+      // Save updated list
+      await updatePlayers(updatedPlayers);
+
+
+      // Update local value that is stored in UI
+      setPlayers(updatedPlayers);
 
       
       setMessage('Rating submitted successfully!');

@@ -1,7 +1,7 @@
 import React from 'react';
 
-// Changed the import to include the locally stored rating state
-const PlayersList = ({ players, ratingState }) => {
+// Removed the ratingState imports, completely unnecessary
+const PlayersList = ({ players }) => {
   return (
     <div className="players-list">
       <h2>Players and Ratings</h2>
@@ -17,8 +17,9 @@ const PlayersList = ({ players, ratingState }) => {
             return (
             <tr key={player.id}>
               <td>{player.name}</td>
-              <td>{ratingState[player.id]
-                  ? (ratingState[player.id].total / ratingState[player.id].count).toFixed(1)
+              <td>
+                {player.averageRating !== undefined
+                  ? player.averageRating.toFixed(1)
                   : "N/A"}
               </td>
             </tr>
