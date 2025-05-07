@@ -62,11 +62,15 @@ const MatchRating = ({ players, setPlayers }) => {
           />
         </div>
         
-        <button type="submit" disabled={isSubmitting}>
-          {isSubmitting ? 'Submitting...' : 'Submit Rating'}
+        <button type="submit" disabled={!selectedPlayer || isSubmitting}>
+        {isSubmitting ? 'Submitting...' : 'Submit Rating'}
         </button>
-        
-        {message && <p className="message">{message}</p>}
+
+        {message && (
+        <p className={`message ${message.toLowerCase().includes('error') ? 'error' : 'success'}`}>
+        {message}
+        </p>
+        )}
       </form>
     </div>
   );
