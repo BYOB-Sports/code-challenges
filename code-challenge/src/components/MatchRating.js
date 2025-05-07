@@ -53,9 +53,7 @@ const MatchRating = ({ players, setPlayers }) => {
         setRating(4.0); // fallback
       }
 
-      // ❗ Leave selectedPlayer as-is to keep dropdown on current player
-      // Comment this out if you want to reset dropdown:
-      // setSelectedPlayer('');
+      
     }
   };
 
