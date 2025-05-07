@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { submitRating } from '../api/ratingApi';
+import { updatePlayers } from '../api/playerApi';
 
 const MatchRating = ({ players, setPlayers }) => {
   const [selectedPlayer, setSelectedPlayer] = useState('');
@@ -9,23 +9,63 @@ const MatchRating = ({ players, setPlayers }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!selectedPlayer) {
       setMessage('Please select a player');
       return;
     }
-    
+
     setIsSubmitting(true);
     setMessage('Submitting rating...');
-    
+
+    let updatedPlayers = [];
+
     try {
-      const updatedPlayers = await submitRating(selectedPlayer, rating, players);
+      updatedPlayers = players.map(player => {
+        if (player.id === selectedPlayer) {
+          const numRatings = player.numRatings || 1;
+          const totalRating = player.averageRating * numRatings;
+          const newAverage = (totalRating + rating) / (numRatings + 1);
+
+          return {
+            ...player,
+            averageRating: newAverage,
+            numRatings: numRatings + 1
+          };
+        }
+        return player;
+      });
+
       setPlayers(updatedPlayers);
+      await updatePlayers(updatedPlayers);
+
       setMessage('Rating submitted successfully!');
     } catch (error) {
       setMessage(`Error: ${error.message}`);
     } finally {
       setIsSubmitting(false);
+
+      // Get the updated player’s new average
+      const updatedPlayer = updatedPlayers.find(p => p.id === selectedPlayer);
+      if (updatedPlayer) {
+        setRating(updatedPlayer.averageRating);
+      } else {
+        setRating(4.0); // fallback
+      }
+
+      // ❗ Leave selectedPlayer as-is to keep dropdown on current player
+      // Comment this out if you want to reset dropdown:
+      // setSelectedPlayer('');
+    }
+  };
+
+  const handlePlayerChange = (e) => {
+    const selectedId = e.target.value;
+    setSelectedPlayer(selectedId);
+
+    const selectedPlayerObj = players.find(p => p.id === selectedId);
+    if (selectedPlayerObj) {
+      setRating(selectedPlayerObj.averageRating);
     }
   };
 
@@ -33,47 +73,41 @@ const MatchRating = ({ players, setPlayers }) => {
     <div className="match-rating">
       <h2>Rate a Player</h2>
       <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="player-select">Select Player:</label>
-          <select 
-            id="player-select"
-            value={selectedPlayer}
-            onChange={(e) => setSelectedPlayer(e.target.value)}
-            disabled={isSubmitting}
-          >
+        <label>
+          Select Player:
+          <select value={selectedPlayer} onChange={handlePlayerChange}>
             <option value="">-- Select a player --</option>
             {players.map(player => (
-              <option key={player.id} value={player.id}>{player.name}</option>
+              <option key={player.id} value={player.id}>
+                {player.name}
+              </option>
             ))}
           </select>
-        </div>
-        
-        <div className="form-group">
-          <label htmlFor="rating-slider">Rating: {rating.toFixed(1)}</label>
-          <input 
-            type="range" 
-            id="rating-slider"
-            min="1.0" 
-            max="7.0" 
-            step="0.1" 
+        </label>
+        <br />
+        <label>
+          Rating: {rating.toFixed(1)}
+          <input
+            type="range"
+            min="1"
+            max="7"
+            step="0.1"
             value={rating}
             onChange={(e) => setRating(parseFloat(e.target.value))}
-            disabled={isSubmitting}
           />
-        </div>
-        
-        <button type="submit" disabled={!selectedPlayer || isSubmitting}>
-        {isSubmitting ? 'Submitting...' : 'Submit Rating'}
+        </label>
+        <br />
+        <button type="submit" disabled={isSubmitting}>
+          {isSubmitting ? 'Submitting...' : 'Submit Rating'}
         </button>
-
         {message && (
-        <p className={`message ${message.toLowerCase().includes('error') ? 'error' : 'success'}`}>
-        {message}
-        </p>
+          <p className={`message ${message.toLowerCase().includes('error') ? 'error' : 'success'}`}>
+            {message}
+          </p>
         )}
       </form>
     </div>
   );
 };
 
-export default MatchRating; 
+export default MatchRating;
