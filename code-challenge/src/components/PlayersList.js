@@ -12,13 +12,19 @@ const PlayersList = ({ players }) => {
           </tr>
         </thead>
         <tbody>
-          {players.map(player => (
-            <tr key={player.id}>
-              <td>{player.name}</td>
-              <td>{player.averageRating.toFixed(1)}</td>
-            </tr>
-          ))}
-        </tbody>
+  {players.length === 0 ? (
+    <tr><td colSpan="2">No players available</td></tr>
+  ) : (
+    players
+      .sort((a, b) => b.averageRating - a.averageRating)
+      .map(player => (
+        <tr key={player.id}>
+          <td>{player.name}</td>
+          <td>{player.averageRating.toFixed(1)}</td>
+        </tr>
+      ))
+  )}
+  </tbody>
       </table>
     </div>
   );
