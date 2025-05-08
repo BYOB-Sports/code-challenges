@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { submitRating } from '../api/ratingApi';
 import { updatePlayers } from '../api/playerApi';
 
 const MatchRating = ({ players, setPlayers }) => {
@@ -18,10 +19,12 @@ const MatchRating = ({ players, setPlayers }) => {
     setIsSubmitting(true);
     setMessage('Submitting rating...');
 
-    let updatedPlayers = [];
-
     try {
-      updatedPlayers = players.map(player => {
+      // Call the API but ignore its returned data
+      await submitRating(selectedPlayer, rating, players);
+
+      // Manually update players in React
+      const updatedPlayers = players.map(player => {
         if (player.id === selectedPlayer) {
           const numRatings = player.numRatings || 1;
           const totalRating = player.averageRating * numRatings;
@@ -30,30 +33,28 @@ const MatchRating = ({ players, setPlayers }) => {
           return {
             ...player,
             averageRating: newAverage,
-            numRatings: numRatings + 1
+            numRatings: numRatings + 1,
           };
         }
         return player;
       });
 
+      // Update React state + localStorage
       setPlayers(updatedPlayers);
       await updatePlayers(updatedPlayers);
 
       setMessage('Rating submitted successfully!');
+
+      // Update slider to reflect new average
+      const updatedPlayer = updatedPlayers.find(p => p.id === selectedPlayer);
+      if (updatedPlayer) {
+        setRating(updatedPlayer.averageRating);
+      }
     } catch (error) {
       setMessage(`Error: ${error.message}`);
     } finally {
       setIsSubmitting(false);
-
-      // Get the updated player’s new average
-      const updatedPlayer = updatedPlayers.find(p => p.id === selectedPlayer);
-      if (updatedPlayer) {
-        setRating(updatedPlayer.averageRating);
-      } else {
-        setRating(4.0); // fallback
-      }
-
-      
+ 
     }
   };
 
@@ -95,7 +96,7 @@ const MatchRating = ({ players, setPlayers }) => {
           />
         </label>
         <br />
-        <button type="submit" disabled={isSubmitting}>
+        <button type="submit" disabled={!selectedPlayer || isSubmitting}>
           {isSubmitting ? 'Submitting...' : 'Submit Rating'}
         </button>
         {message && (
