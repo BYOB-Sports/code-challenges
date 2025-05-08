@@ -18,7 +18,7 @@ const PlayersList = ({ players }) => {
             <tr key={player.id}>
               <td>{player.name}</td>
               <td>
-                {player.averageRating !== undefined
+                {typeof player.averageRating === "number" && !isNaN(player.averageRating)
                   ? player.averageRating.toFixed(1)
                   : "N/A"}
               </td>
