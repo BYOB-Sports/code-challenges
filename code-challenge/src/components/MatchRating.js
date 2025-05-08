@@ -26,12 +26,10 @@ const MatchRating = ({ players, setPlayers, isSubmitting, setIsSubmitting }) => 
       const updatedPlayers = await submitRating(selectedPlayer, rating, players);
       setPlayers(updatedPlayers);
       toast.success('Rating submitted successfully!');
-
-      // Resetting the player and rating to default.
-      // So the User won't keep clicking submitting unintentionally.
+      
+      // Reset form only after successful submission
       setSelectedPlayer('');
       setRating(4.0);
-
     } catch (error) {
       toast.error(`Error: ${error.message}`);
     } finally {
@@ -42,7 +40,7 @@ const MatchRating = ({ players, setPlayers, isSubmitting, setIsSubmitting }) => 
   return (
     <div className="match-rating">
       <h2>Rate a Player</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className={isSubmitting ? 'submitting' : ''}>
         <div className="form-group">
           <label htmlFor="player-select">Select Player:</label>
           <select 
@@ -50,6 +48,7 @@ const MatchRating = ({ players, setPlayers, isSubmitting, setIsSubmitting }) => 
             value={selectedPlayer}
             onChange={(e) => setSelectedPlayer(e.target.value)}
             disabled={isSubmitting}
+            className={isSubmitting ? 'disabled' : ''}
           >
             <option value="">-- Select a player --</option>
             {players.map(player => (
@@ -69,11 +68,23 @@ const MatchRating = ({ players, setPlayers, isSubmitting, setIsSubmitting }) => 
             value={rating}
             onChange={(e) => setRating(parseFloat(e.target.value))}
             disabled={isSubmitting}
+            className={isSubmitting ? 'disabled' : ''}
           />
         </div>
         
-        <button type="submit" disabled={isSubmitting}>
-          {isSubmitting ? 'Submitting...' : 'Submit Rating'}
+        <button 
+          type="submit" 
+          disabled={isSubmitting}
+          className={isSubmitting ? 'submitting' : ''}
+        >
+          {isSubmitting ? (
+            <span className="loading-state">
+              <span className="spinner"></span>
+              Submitting...
+            </span>
+          ) : (
+            'Submit Rating'
+          )}
         </button>
 
         {/* {message && <p className="message">{message}</p>}*/}
