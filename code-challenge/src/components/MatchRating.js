@@ -23,11 +23,20 @@ const MatchRating = ({ players, setPlayers, isSubmitting, setIsSubmitting }) => 
     //setMessage('Submitting rating...');
     
     try {
+      // 1. Submit the rating
       const updatedPlayers = await submitRating(selectedPlayer, rating, players);
-      setPlayers(updatedPlayers);
+      
+      // 2.Show success message first
       toast.success('Rating submitted successfully!');
       
-      // Reset form only after successful submission
+      // 3.Update the list.
+      setPlayers(updatedPlayers);
+      
+      // 4.Wait a brief moment. We can later use backend or
+      // Our api can let us know that everything has been submitted.
+      await new Promise(resolve => setTimeout(resolve, 500));
+      
+      // 5. Rest the form
       setSelectedPlayer('');
       setRating(4.0);
     } catch (error) {
@@ -87,7 +96,6 @@ const MatchRating = ({ players, setPlayers, isSubmitting, setIsSubmitting }) => 
           )}
         </button>
 
-        {/* {message && <p className="message">{message}</p>}*/}
       </form>
     </div>
   );
