@@ -7,7 +7,7 @@ import { updatePlayers } from '../api/playerApi';
 // Changed the imports back. This only uses API calls to change the users ratings. This way, there is less storage needed on the client's side.
 // One down side to this approach is that this would use more network data on the user's side to make more API calls. In a mobile setting, we would
 // ideally do this calculation on the cloud to save the user's network data and use less computing power (wasting less battery power)
-const MatchRating = ({ players, setPlayers }) => {
+const MatchRating = ({ players, setPlayers, loadingAverages, setLoadingAverages }) => {
   const [selectedPlayer, setSelectedPlayer] = useState('');
   const [rating, setRating] = useState(4.0);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -45,19 +45,26 @@ const MatchRating = ({ players, setPlayers }) => {
       await storeRating(id, rating);
 
       // Calculate accurate average
-      const updatedAverage = await calculateAverageRating(id);
-
-      // Update player in local list
-      const updatedPlayers = players.map(p =>
-        p.id === id ? { ...p, averageRating: updatedAverage } : p
-      );
-
-      // Save updated list
-      await updatePlayers(updatedPlayers);
+      setLoadingAverages(prev => ({ ...prev, [id]: true }));
 
 
-      // Update local value that is stored in UI
-      setPlayers(updatedPlayers);
+      // I added a behavior to the calculation of a new average that makes the UI render an ellipsis while this is still running.
+      // This makes it so the UI is still usable while the player's average is still being calculated. I thought about just keeping the 
+      // old average, but I wanted to make a visual indicator that the new average is still being calculated.
+      calculateAverageRating(id).then(updatedAverage => {
+        const updatedPlayers = players.map(p =>
+          p.id === id ? { ...p, averageRating: updatedAverage } : p
+        );
+
+        setPlayers(updatedPlayers);
+        updatePlayers(updatedPlayers);
+
+        setLoadingAverages(prev => {
+          const copy = { ...prev };
+          delete copy[id];
+          return copy;
+        });
+      });
 
       
       setMessage('Rating submitted successfully!');

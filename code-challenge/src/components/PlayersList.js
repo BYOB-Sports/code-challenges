@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Removed the ratingState imports, completely unnecessary
-const PlayersList = ({ players }) => {
+const PlayersList = ({ players, loadingAverages }) => {
   return (
     <div className="players-list">
       <h2>Players and Ratings</h2>
@@ -17,8 +17,9 @@ const PlayersList = ({ players }) => {
             return (
             <tr key={player.id}>
               <td>{player.name}</td>
-              <td>
-                {typeof player.averageRating === "number" && !isNaN(player.averageRating)
+              <td>{loadingAverages[player.id]
+                ? "..."
+                : typeof player.averageRating === "number"
                   ? player.averageRating.toFixed(1)
                   : "N/A"}
               </td>
