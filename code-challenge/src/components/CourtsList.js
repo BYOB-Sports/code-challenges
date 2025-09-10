@@ -1,10 +1,12 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import courts from '../data/courts';
 
 const CourtsList = () => {
   const [query, setQuery] = useState('');
   const [surface, setSurface] = useState('');
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -17,23 +19,106 @@ const CourtsList = () => {
 
   const uniqueSurfaces = useMemo(() => Array.from(new Set(courts.map(c => c.surface))), []);
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
   return (
     <div className="courts-list" style={{ padding: '16px' }}>
       <h2 style={{ marginBottom: 12 }}>Courts</h2>
-      <div style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginBottom: 12, width: '100%', maxWidth: '100vw', padding: '0 4px' }}>
         <input
           type="text"
           placeholder="Search by name or city"
           value={query}
           onChange={e => setQuery(e.target.value)}
-          style={{ flex: 1, padding: 10, borderRadius: 8, border: '1px solid #ccc' }}
+          style={{ width: '100%', maxWidth: 'calc(100vw - 32px)', padding: 10, borderRadius: 8, border: '1px solid #ccc', boxSizing: 'border-box', fontSize: '16px' }}
         />
-        <select value={surface} onChange={e => setSurface(e.target.value)} style={{ padding: 10, borderRadius: 8, border: '1px solid #ccc' }}>
-          <option value="">All</option>
-          {uniqueSurfaces.map(s => (
-            <option key={s} value={s}>{s}</option>
-          ))}
-        </select>
+        <div ref={dropdownRef} style={{ position: 'relative', width: '100%', maxWidth: 'calc(100vw - 32px)' }}>
+          <button
+            type="button"
+            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+            style={{
+              width: '100%',
+              padding: 10,
+              borderRadius: 8,
+              border: '1px solid #ccc',
+              boxSizing: 'border-box',
+              fontSize: '16px',
+              textAlign: 'left',
+              backgroundColor: 'white',
+              cursor: 'pointer',
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center'
+            }}
+          >
+            <span>{surface || 'All surfaces'}</span>
+            <span style={{ fontSize: '12px' }}>{isDropdownOpen ? '▲' : '▼'}</span>
+          </button>
+          {isDropdownOpen && (
+            <div style={{
+              position: 'absolute',
+              top: '100%',
+              left: 0,
+              right: 0,
+              backgroundColor: 'white',
+              border: '1px solid #ccc',
+              borderRadius: 8,
+              boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+              zIndex: 1000,
+              maxHeight: '200px',
+              overflowY: 'auto'
+            }}>
+              <button
+                type="button"
+                onClick={() => {
+                  setSurface('');
+                  setIsDropdownOpen(false);
+                }}
+                style={{
+                  width: '100%',
+                  padding: 10,
+                  border: 'none',
+                  backgroundColor: surface === '' ? '#f3f4f6' : 'white',
+                  textAlign: 'left',
+                  cursor: 'pointer',
+                  fontSize: '16px'
+                }}
+              >
+                All surfaces
+              </button>
+              {uniqueSurfaces.map(s => (
+                <button
+                  key={s}
+                  type="button"
+                  onClick={() => {
+                    setSurface(s);
+                    setIsDropdownOpen(false);
+                  }}
+                  style={{
+                    width: '100%',
+                    padding: 10,
+                    border: 'none',
+                    backgroundColor: surface === s ? '#f3f4f6' : 'white',
+                    textAlign: 'left',
+                    cursor: 'pointer',
+                    fontSize: '16px',
+                    borderTop: '1px solid #e5e7eb'
+                  }}
+                >
+                  {s}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
 
       <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'grid', gap: 12, gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))' }}>
