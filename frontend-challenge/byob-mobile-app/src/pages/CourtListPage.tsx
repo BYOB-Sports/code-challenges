@@ -1,18 +1,21 @@
 import { useMemo, useState } from "react";
 import { courts } from "../data/courts";
 import { CourtCard } from "../components/CourtCard";
-import styles from "./CourtListPage.module.css";
 import { getAverageRating } from "../utils/storage";
+import type { SurfaceType } from "../types/court";
+import styles from "./CourtListPage.module.css";
+
+type SurfaceSort = SurfaceType | "none";
+type LocationSort = "none" | "az" | "za";
+type PopularitySort = "none" | "high" | "low";
 
 export default function CourtListPage() {
   const [query, setQuery] = useState("");
-  const [surfaceSort, setSurfaceSort] = useState<
-    "none" | "hard" | "clay" | "grass" | "indoor"
-  >("none");
-  const [locationSort, setLocationSort] = useState<"none" | "az" | "za">(
+  const [surfaceSort, setSurfaceSort] = useState<SurfaceSort>("none");
+  const [locationSort, setLocationSort] = useState<LocationSort>(
     "none"
   );
-  const [popularitySort, setPopularitySort] = useState<"none" | "high" | "low">(
+  const [popularitySort, setPopularitySort] = useState<PopularitySort>(
     "none"
   );
 
@@ -64,7 +67,7 @@ export default function CourtListPage() {
         <select
           className={styles.select}
           value={surfaceSort}
-          onChange={(e) => setSurfaceSort(e.target.value as any)}
+          onChange={(e) => setSurfaceSort(e.target.value as SurfaceSort)}
         >
           <option value="none">All surfaces</option>
           <option value="hard">Hard</option>
@@ -75,7 +78,7 @@ export default function CourtListPage() {
         <select
           className={styles.select}
           value={locationSort}
-          onChange={(e) => setLocationSort(e.target.value as any)}
+          onChange={(e) => setLocationSort(e.target.value as LocationSort)}
         >
           <option value="none">Location: none</option>
           <option value="az">Location: A → Z</option>
@@ -84,7 +87,7 @@ export default function CourtListPage() {
         <select
           className={styles.select}
           value={popularitySort}
-          onChange={(e) => setPopularitySort(e.target.value as any)}
+          onChange={(e) => setPopularitySort(e.target.value as PopularitySort)}
         >
           <option value="none">Popularity: none</option>
           <option value="high">Popularity: High → Low</option>
