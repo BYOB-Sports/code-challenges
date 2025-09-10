@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
 import CourtCard from "../components/CourtCard";
 import CourtContext from "../context/CourtContext";
+import { motion, AnimatePresence } from "framer-motion";
 
 const CourtList = () => {
   const [query, setQuery] = useState("");
@@ -10,7 +11,10 @@ const CourtList = () => {
   const filter = (e) => {
     const text = e.target.value;
     setQuery(text);
-    if (text.length < 4) return;
+    if (text.length < 4) {
+      setFilteredCourts(courts);
+      return;
+    }
     const filtered = courts.filter((c) => c.name.toLowerCase().includes(text.toLowerCase()));
     setFilteredCourts(filtered);
   };
@@ -32,9 +36,19 @@ const CourtList = () => {
       </form>
 
       <div className="py-6 grid grid-cols-1 md:grid-cols-3 gap-6">
-        {filteredCourts.map((c) => (
-          <CourtCard key={c.id} court={c} />
-        ))}
+        <AnimatePresence>
+          {filteredCourts.map((c) => (
+            <motion.div
+              key={c.id}
+              layout
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.2 }}>
+              <CourtCard court={c} />
+            </motion.div>
+          ))}
+        </AnimatePresence>
       </div>
     </div>
   );
