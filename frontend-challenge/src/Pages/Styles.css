@@ -1,0 +1,165 @@
+.page-wrap {
+    position: relative;
+    z-index: 1;
+}
+
+.sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    background: #fff;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+    color: #333;
+}
+
+.sticky-header h1 {
+    margin: 0;
+}
+
+.search-bar {
+    padding: 0.5rem;
+    display: grid;
+    gap: 0.5rem;
+    width: 100%;
+}
+
+.search-input,
+.search-select {
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    border: 1px solid #555;
+    background: #fff;
+    color: #333;
+}
+
+.court-list {
+    display: grid;
+    padding: 1rem;
+    gap: 0.75rem;
+}
+
+.detail-back {
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+    background-color: rgba(255, 255, 255, 0.7);
+    border: none;
+    padding: 0.75rem;
+    border-radius: 3rem;
+    text-align: center;
+}
+
+.detail {
+    padding: 0.5rem 1rem;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1rem 0 0;
+    padding: 0;
+}
+
+.detail h2 {
+    color: #333;
+    margin: 0 0 0.5rem;
+}
+
+.detail-photo img {
+    width: 100%;
+}
+
+.detail-summary {
+    color: #555;
+    display: grid;
+    gap: 0.5rem;
+}
+
+.detail-summary strong {
+    display: inline-block;
+    width: 45%;
+}
+
+.reviews {
+    padding: 0.5rem 1rem;
+    display: grid;
+    gap: 0.5rem;
+}
+
+.reviews h2 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.review-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 10px;
+}
+
+.review-list li {
+    color: #333;
+    background: #fff;
+    padding: 0.5rem 0;
+}
+
+.review-list .stars {
+    font-size: 0.9rem;
+}
+
+.review-list .review-date {
+    color: #999;
+}
+
+.review-list .comment {
+    font-size: 0.9rem;
+}
+
+.review-form {
+    display: grid;
+    gap: 0.5rem;
+    color: #333;
+}
+
+.review-form label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.review-form textarea {
+    width: 100%;
+    background: #fff;
+    color: #333;
+    border: 1px solid #555;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+}
+
+.review-form .stars {
+    font-size: 2rem;
+}
+
+.review-submit {
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    border: 0;
+    background: orange;
+    color: white;
+    font-weight: 600;
+}
+
+.fa-star.checked {
+    color: orange;
+}
