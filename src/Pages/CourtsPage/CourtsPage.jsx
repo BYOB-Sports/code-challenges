@@ -54,7 +54,7 @@ export const CourtsPage = () => {
 
       <div className="d-flex justify-content-center">
         <nav aria-label="Page navigation example">
-          <ul className="pagination">
+          <ul className="pagination d-flex flex-wrap">
             <li className="page-item">
               <Link className="page-link" to={`/?page=${prevPage}`}>
                 Previous

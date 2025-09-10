@@ -6,7 +6,7 @@ export const CourtPage = () => {
   const { address, description, hours, numCourts, title, type } = courtData;
 
   return (
-    <div className="h-100 w-100 d-flex flex-column px-3 overflow-hidden">
+    <div className="h-100 w-100 d-flex flex-column px-3 overflow-scroll">
       <div className="header mb-3 mt-2 text-decoration-underline d-flex align-items-center flex-wrap">
         <Link to={"/"} className="btn btn-dark me-2">
           back to courts page
