@@ -2,6 +2,11 @@ import type { CourtReview } from "../types/court";
 
 const REVIEWS_KEY = "court-reviews"; // map courtId -> CourtReview[]
 
+// Generate a simple unique ID that works on all browsers
+function generateId(): string {
+  return Date.now().toString(36) + Math.random().toString(36).substring(2);
+}
+
 function readAll(): Record<string, CourtReview[]> {
   try {
     const raw = localStorage.getItem(REVIEWS_KEY);
@@ -27,7 +32,7 @@ export function addReview(
 ): CourtReview {
   const map = readAll();
   const newReview: CourtReview = {
-    id: crypto.randomUUID(),
+    id: generateId(),
     rating,
     comment,
     createdAt: new Date().toISOString(),
