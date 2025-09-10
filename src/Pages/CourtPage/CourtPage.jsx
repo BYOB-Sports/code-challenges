@@ -1,9 +1,9 @@
 import { useLoaderData, Link, Form } from "react-router-dom";
 
 export const CourtPage = () => {
-  const { courtData } = useLoaderData();
+  const { courtData, reviews = [] } = useLoaderData();
 
-  const { id, address, description, hours, numCourts, title, type } = courtData;
+  const { address, description, hours, numCourts, title, type } = courtData;
 
   return (
     <div className="h-100 w-100 d-flex flex-column px-3 overflow-hidden">
@@ -21,15 +21,31 @@ export const CourtPage = () => {
         <p className="mb-1">{address}</p>
         <p>{hours}</p>
 
-        <Form method="post" className="border rounded p-2">
+        <Form id="reveiwForm" method="post" className="border rounded p-2 mb-3">
           <label htmlFor="name">Name</label>
           <input type="text" name="name" className="form-control mb-2" />
-          <label htmlFor="review">Review</label>
+          <label htmlFor="content">Review</label>
 
-          <textarea type="text" name="review" className="form-control mb-2" />
+          <textarea type="text" name="content" className="form-control mb-2" />
 
-          <button className="btn btn-dark">leave Review</button>
+          <button className="btn btn-dark">Leave Review</button>
         </Form>
+
+        <h5>Reveiws:</h5>
+        <div className="reviews">
+          {reviews.map((reviewData) => {
+            const { content, name, showDate } = reviewData;
+
+            return (
+              <div className="border rounded p-1 mb-2">
+                <p className="fw-bold mb-1">"{content}"</p>
+
+                <p className="mb-1">by: {name}</p>
+                <p className="mb-0">{showDate}</p>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

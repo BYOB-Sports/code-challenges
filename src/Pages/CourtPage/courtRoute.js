@@ -1,4 +1,5 @@
 import { getCourt } from "../../apis/courtApi";
+import { getReviews, postReview } from "../../apis/reviewApi";
 import { CourtPage } from "./CourtPage";
 import { redirect } from "react-router-dom";
 
@@ -8,7 +9,10 @@ export const courtLoader = async ({ request, params }) => {
   try {
     const courtData = getCourt(courtId);
 
-    return { courtData };
+    const reviews = await getReviews(courtId);
+    console.log("🚀 ~ courtLoader ~ reviews:", reviews);
+
+    return { courtData, reviews };
   } catch (error) {
     console.log("🚀 ~ courtLoader ~ error:", error);
     return {};
@@ -22,8 +26,16 @@ export const courtAction = async ({ request, params }) => {
     const formData = await request.formData();
 
     const name = formData.get("name");
-    const review = formData.get("review");
+    const content = formData.get("content");
 
+    const date = new Date();
+
+    const stamp = date.valueOf();
+
+    const showDate = date.toLocaleString();
+    await postReview({ name, content, courtId, stamp, showDate });
+    document.getElementById("reveiwForm").reset();
+    alert("Thank you for leaving a review");
     return redirect(`/court/${courtId}`);
   } catch (error) {
     console.log("🚀 ~ courtAction ~ error:", error);
