@@ -1,0 +1,130 @@
+.court-card {
+  background: var(--card);
+  margin: 1rem 0;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.6);
+  cursor: pointer;
+  transition: transform 0.1s ease-in-out, box-shadow 0.2s ease;
+  font-family: 'Lato', Arial, sans-serif;
+  font-size: 0.95rem;
+}
+
+.court-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.7);
+}
+
+.court-card h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  margin-bottom: 0.3rem;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.court-card p {
+  margin: 0.2rem 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.4;
+  word-wrap: break-word;
+}
+
+.detail-page {
+  padding: 1rem;
+}
+
+.back-btn {
+  margin-bottom: 1rem;
+  background: none;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  font-family: 'Lato', Arial, sans-serif;
+  transition: background 0.2s ease;
+}
+
+.back-btn:hover {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+.reviews-container {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.review-card {
+  background: var(--card);
+  padding: 0.8rem 1rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+  font-size: 0.9rem;
+  font-family: 'Lato', Arial, sans-serif;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeIn 0.3s forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.3rem;
+  color: var(--accent);
+  font-weight: 500;
+  font-family: 'Playfair Display', serif;
+}
+
+.rating-stars {
+  display: flex;
+  gap: 0.3rem;
+}
+
+.add-review-form {
+  margin-top: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.add-review-form button {
+  width: 50%;
+  max-width: 200px;
+  align-self: flex-end;
+}
+
+@media (max-width: 480px) {
+  .court-card {
+    margin: 0.8rem 0;
+    padding: 0.8rem;
+  }
+
+  .court-card h2 {
+    font-size: 1.2rem;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+  }
+
+  .add-review-form button {
+    width: 70%;
+  }
+}
