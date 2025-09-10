@@ -1,9 +1,9 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, Link } from "react-router-dom";
 import { CourtLine } from "./CourtLine";
-import { useEffect, useMemo, useState } from "react";
+import {  useMemo, useState } from "react";
 
 export const CourtsPage = () => {
-  const { courts = [] } = useLoaderData();
+  const { courts = [], page, pageLinks = [] } = useLoaderData();
 
   const [courtFilter, setCourtFilter] = useState("");
 
@@ -20,6 +20,13 @@ export const CourtsPage = () => {
 
     return courts;
   }, [courts, courtFilter]);
+
+  const { nextPage, prevPage } = useMemo(() => {
+    const nextPage = page < 10 ? page + 1 : page;
+    const prevPage = page > 1 ? page - 1 : page;
+
+    return { nextPage, prevPage };
+  }, [page]);
 
   return (
     <div className="h-100 w-100 d-flex flex-column px-3 overflow-hidden">
@@ -40,10 +47,42 @@ export const CourtsPage = () => {
       </div>
       <div className="flex-grow-1  overflow-scroll">
         {filtered.map((courtData) => {
-
-          const {id} = courtData
+          const { id } = courtData;
           return <CourtLine key={id} courtData={courtData} />;
         })}
+      </div>
+
+      <div className="d-flex justify-content-center">
+        <nav aria-label="Page navigation example">
+          <ul className="pagination">
+            <li className="page-item">
+              <Link className="page-link" to={`/?page=${prevPage}`}>
+                Previous
+              </Link>
+            </li>
+
+            {pageLinks.map((pageLink, i) => {
+              const { link, selected } = pageLink;
+
+              return (
+                <li
+                  key={link}
+                  className={`page-item ${selected ? "active" : ""}`}
+                >
+                  <Link active={selected} className="page-link" to={link}>
+                    {i + 1}
+                  </Link>
+                </li>
+              );
+            })}
+
+            <li className="page-item">
+              <Link className="page-link" to={`/?page=${nextPage}`}>
+                Next
+              </Link>
+            </li>
+          </ul>
+        </nav>
       </div>
     </div>
   );
