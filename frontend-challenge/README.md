@@ -1,10 +1,10 @@
 # UI Code Challenge!
 
-This small assignment will hep evaluate your front end development capabilities.  You will be evaluated on design choices (friction, scalability, etc), efficient and effective coding, and style.
+This small assignment will hep evaluate your front end development capabilities. You will be evaluated on design choices (friction, scalability, etc), efficient and effective coding, and style.
 
 ## Challenge
 
-Create a mobile first, two page app for reviewing tennis courts.  A user should be able to see a display of courts, search for a specific court, select a court detail view, and leave a review.
+Create a mobile first, two page app for reviewing tennis courts. A user should be able to see a display of courts, search for a specific court, select a court detail view, and leave a review.
 
 ## Rules
 
@@ -15,7 +15,7 @@ Create a mobile first, two page app for reviewing tennis courts.  A user should 
 5. You do not need to write tests for this exercise given the time limit
 6. When you are done, submit a PR to this repo.
 
-## Hints 
+## Hints
 
 - Do not use frameworks outside of the JavaScript/Typescript ecosystem
 - Bonus points if you mock > 50 courts as this will let you show off your scalable design skills
