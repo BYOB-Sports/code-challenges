@@ -91,11 +91,20 @@ export default function CourtListPage() {
           <option value="low">Popularity: Low → High</option>
         </select>
       </div>
-      <div className={styles.grid}>
-        {sorted.map((court) => (
-          <CourtCard key={court.id} court={court} />
-        ))}
-      </div>
+      {sorted.length === 0 ? (
+        <div className={styles.empty}>
+          <div>
+            <h3>No courts found</h3>
+            <p>Try adjusting your search or filters.</p>
+          </div>
+        </div>
+      ) : (
+        <div className={styles.grid}>
+          {sorted.map((court) => (
+            <CourtCard key={court.id} court={court} />
+          ))}
+        </div>
+      )}
     </div>
   );
 }
