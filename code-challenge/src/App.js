@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import './App.css';
 import PlayersList from './components/PlayersList';
+import CourtsList from './components/CourtsList';
 import MatchRating from './components/MatchRating';
 import { fetchPlayers } from './api/playerApi';
 
 function App() {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('players');
   const [players, setPlayers] = useState([]);
 
@@ -35,14 +38,20 @@ function App() {
           >
             Match Ratings
           </button>
+          <button onClick={() => navigate('/courts')}>
+            Courts
+          </button>
         </div>
       </header>
       <main>
-        {activeTab === 'players' ? (
-          <PlayersList players={players} />
-        ) : (
-          <MatchRating players={players} setPlayers={setPlayers} />
-        )}
+        <Routes>
+          <Route path="/" element={activeTab === 'players' ? (
+            <PlayersList players={players} />
+          ) : (
+            <MatchRating players={players} setPlayers={setPlayers} />
+          )} />
+          <Route path="/courts" element={<CourtsList />} />
+        </Routes>
       </main>
     </div>
   );
