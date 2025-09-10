@@ -69,7 +69,7 @@ export const CourtsPage = () => {
                   key={link}
                   className={`page-item ${selected ? "active" : ""}`}
                 >
-                  <Link active={selected} className="page-link" to={link}>
+                  <Link className="page-link" to={link}>
                     {i + 1}
                   </Link>
                 </li>

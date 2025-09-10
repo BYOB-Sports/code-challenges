@@ -6,7 +6,19 @@ const parsePageNum = (raw) => {
   try {
     const page = raw && raw !== null ? raw : "1";
 
-    return parseInt(page);
+
+
+    const num = parseInt(page);
+    
+
+    if(num<1 || num >10){
+
+
+      return 1
+    }
+
+
+    return num
   } catch (error) {
     return 1;
   }
