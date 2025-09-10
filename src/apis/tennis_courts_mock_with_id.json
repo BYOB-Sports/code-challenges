@@ -1,0 +1,902 @@
+[
+  {
+    "id": 1,
+    "title": "Silver Lake Tennis Center",
+    "address": "6805 Lakeview Dr, City0, ST 10000",
+    "description": "Spacious facility with locker rooms and snack bar.",
+    "numCourts": 4,
+    "hours": "5:30 AM - 11:00 PM",
+    "type": "Hard"
+  },
+  {
+    "id": 2,
+    "title": "Meadowbrook Tennis Club",
+    "address": "398 Maple St, City1, ST 10001",
+    "description": "Beginner-friendly courts with free clinics on weekends.",
+    "numCourts": 2,
+    "hours": "5:00 AM - 11:00 PM",
+    "type": "Synthetic"
+  },
+  {
+    "id": 3,
+    "title": "Highpoint Tennis Center",
+    "address": "4740 Park Ave, City2, ST 10002",
+    "description": "Historic tennis club with over 50 years of tradition.",
+    "numCourts": 7,
+    "hours": "5:00 AM - 11:00 PM",
+    "type": "Synthetic"
+  },
+  {
+    "id": 4,
+    "title": "Stonebridge Tennis Center",
+    "address": "5327 Ridge Rd, City3, ST 10003",
+    "description": "A friendly community club with lessons and weekend tournaments.",
+    "numCourts": 5,
+    "hours": "6:00 AM - 8:00 PM",
+    "type": "Hard"
+  },
+  {
+    "id": 5,
+    "title": "Parkside Tennis Center",
+    "address": "3039 Cedar Rd, City4, ST 10004",
+    "description": "Beautiful courts with evening lights for night play.",
+    "numCourts": 12,
+    "hours": "5:00 AM - 11:00 PM",
+    "type": "Synthetic"
+  },
+  {
+    "id": 6,
+    "title": "Lakeside Tennis Club",
+    "address": "7855 Park Ave, City5, ST 10005",
+    "description": "Premium fitness and tennis facility with scenic views.",
+    "numCourts": 16,
+    "hours": "6:00 AM - 10:00 PM",
+    "type": "Carpet"
+  },
+  {
+    "id": 7,
+    "title": "Cedar Grove Tennis Park",
+    "address": "7070 Birch Way, City6, ST 10006",
+    "description": "Beginner-friendly courts with free clinics on weekends.",
+    "numCourts": 2,
+    "hours": "7:00 AM - 9:00 PM",
+    "type": "Clay"
+  },
+  {
+    "id": 8,
+    "title": "Willow Springs Tennis Courts",
+    "address": "4016 Birch Way, City7, ST 10007",
+    "description": "Beginner-friendly courts with free clinics on weekends.",
+    "numCourts": 8,
+    "hours": "6:00 AM - 10:00 PM",
+    "type": "Carpet"
+  },
+  {
+    "id": 9,
+    "title": "Blue Horizon Tennis Park",
+    "address": "5088 Pine Ave, City8, ST 10008",
+    "description": "Quiet neighborhood courts with a relaxed atmosphere.",
+    "numCourts": 9,
+    "hours": "5:30 AM - 11:00 PM",
+    "type": "Hard"
+  },
+  {
+    "id": 10,
+    "title": "Willow Springs Tennis Courts",
+    "address": "2278 Ridge Rd, City9, ST 10009",
+    "description": "Spacious facility with locker rooms and snack bar.",
+    "numCourts": 6,
+    "hours": "7:00 AM - 9:00 PM",
+    "type": "Grass"
+  },
+  {
+    "id": 11,
+    "title": "Parkside Tennis Park",
+    "address": "6767 Pine Ave, City10, ST 10010",
+    "description": "A friendly community club with lessons and weekend tournaments.",
+    "numCourts": 2,
+    "hours": "5:30 AM - 11:00 PM",
+    "type": "Grass"
+  },
+  {
+    "id": 12,
+    "title": "Blue Horizon Tennis Center",
+    "address": "9677 Maple St, City11, ST 10011",
+    "description": "Quiet neighborhood courts with a relaxed atmosphere.",
+    "numCourts": 16,
+    "hours": "5:30 AM - 11:00 PM",
+    "type": "Clay"
+  },
+  {
+    "id": 13,
+    "title": "Brookstone Tennis Club",
+    "address": "2575 River Rd, City12, ST 10012",
+    "description": "A friendly community club with lessons and weekend tournaments.",
+    "numCourts": 12,
+    "hours": "5:00 AM - 11:00 PM",
+    "type": "Synthetic"
+  },
+  {
+    "id": 14,
+    "title": "Willow Springs Tennis Park",
+    "address": "9821 Ridge Rd, City13, ST 10013",
+    "description": "Family-friendly park with shaded seating and youth programs.",
+    "numCourts": 10,
+    "hours": "5:00 AM - 11:00 PM",
+    "type": "Hard"
+  },
+  {
+    "id": 15,
+    "title": "Hillcrest Tennis Club",
+    "address": "7167 River Rd, City14, ST 10014",
+    "description": "Quiet neighborhood courts with a relaxed atmosphere.",
+    "numCourts": 15,
+    "hours": "6:00 AM - 8:00 PM",
+    "type": "Clay"
+  },
+  {
+    "id": 16,
+    "title": "Silver Lake Tennis Courts",
+    "address": "6469 Pine Ave, City15, ST 10015",
+    "description": "Family-friendly park with shaded seating and youth programs.",
+    "numCourts": 13,
+    "hours": "6:00 AM - 8:00 PM",
+    "type": "Clay"
+  },
+  {
+    "id": 17,
+    "title": "Sunny Hills Tennis Center",
+    "address": "821 River Rd, City16, ST 10016",
+    "description": "Historic tennis club with over 50 years of tradition.",
+    "numCourts": 11,
+    "hours": "6:00 AM - 8:00 PM",
+    "type": "Synthetic"
+  },
+  {
+    "id": 18,
+    "title": "Meadowbrook Tennis Courts",
+    "address": "4007 Maple St, City17, ST 10017",
+    "description": "Indoor and outdoor options for year-round tennis.",
+    "numCourts": 13,
+    "hours": "6:00 AM - 8:00 PM",
+    "type": "Grass"
+  },
+  {
+    "id": 19,
+    "title": "Redwood Tennis Club",
+    "address": "5185 Spring St, City18, ST 10018",
+    "description": "A friendly community club with lessons and weekend tournaments.",
+    "numCourts": 8,
+    "hours": "5:30 AM - 11:00 PM",
+    "type": "Synthetic"
+  },
+  {
+    "id": 20,
+    "title": "Brookstone Tennis Center",
+    "address": "8276 Cedar Rd, City19, ST 10019",
+    "description": "Spacious facility with locker rooms and snack bar.",
+    "numCourts": 9,
+    "hours": "5:30 AM - 11:00 PM",
+    "type": "Carpet"
+  },
+  {
+    "id": 21,
+    "title": "Meadowbrook Tennis Club",
+    "address": "1150 Ridge Rd, City20, ST 10020",
+    "description": "Premium fitness and tennis facility with scenic views.",
+    "numCourts": 5,
+    "hours": "7:00 AM - 9:00 PM",
+    "type": "Carpet"
+  },
+  {
+    "id": 22,
+    "title": "Green Valley Tennis Club",
+    "address": "6865 Oak Blvd, City21, ST 10021",
+    "description": "Family-friendly park with shaded seating and youth programs.",
+    "numCourts": 15,
+    "hours": "6:00 AM - 8:00 PM",
+    "type": "Hard"
+  },
+  {
+    "id": 23,
+    "title": "Riverbend Tennis Club",
+    "address": "5473 Pine Ave, City22, ST 10022",
+    "description": "Quiet neighborhood courts with a relaxed atmosphere.",
+    "numCourts": 7,
+    "hours": "7:00 AM - 9:00 PM",
+    "type": "Grass"
+  },
+  {
+    "id": 24,
+    "title": "Hillcrest Tennis Club",
+    "address": "5762 Oak Blvd, City23, ST 10023",
+    "description": "Premium fitness and tennis facility with scenic views.",
+    "numCourts": 9,
+    "hours": "6:00 AM - 10:00 PM",
+    "type": "Carpet"
+  },
+  {
+    "id": 25,
+    "title": "Hillcrest Tennis Courts",
+    "address": "9903 Ridge Rd, City24, ST 10024",
+    "description": "Premium fitness and tennis facility with scenic views.",
+    "numCourts": 16,
+    "hours": "5:00 AM - 11:00 PM",
+    "type": "Grass"
+  },
+  {
+    "id": 26,
+    "title": "Pinecrest Tennis Club",
+    "address": "9151 Birch Way, City25, ST 10025",
+    "description": "Beginner-friendly courts with free clinics on weekends.",
+    "numCourts": 15,
+    "hours": "6:00 AM - 10:00 PM",
+    "type": "Clay"
+  },
+  {
+    "id": 27,
+    "title": "Cedar Grove Tennis Courts",
+    "address": "9062 Forest St, City26, ST 10026",
+    "description": "Indoor and outdoor options for year-round tennis.",
+    "numCourts": 9,
+    "hours": "5:00 AM - 11:00 PM",
+    "type": "Hard"
+  },
+  {
+    "id": 28,
+    "title": "Blue Horizon Tennis Park",
+    "address": "1491 Ridge Rd, City27, ST 10027",
+    "description": "Professional-grade courts often used for local tournaments.",
+    "numCourts": 2,
+    "hours": "6:00 AM - 8:00 PM",
+    "type": "Clay"
+  },
+  {
+    "id": 29,
+    "title": "Hillcrest Tennis Club",
+    "address": "8886 Lakeview Dr, City28, ST 10028",
+    "description": "Family-friendly park with shaded seating and youth programs.",
+    "numCourts": 8,
+    "hours": "7:00 AM - 9:00 PM",
+    "type": "Clay"
+  },
+  {
+    "id": 30,
+    "title": "Blue Horizon Tennis Courts",
+    "address": "2918 River Rd, City29, ST 10029",
+    "description": "Family-friendly park with shaded seating and youth programs.",
+    "numCourts": 12,
+    "hours": "7:00 AM - 9:00 PM",
+    "type": "Hard"
+  },
+  {
+    "id": 31,
+    "title": "Highpoint Tennis Club",
+    "address": "4475 River Rd, City30, ST 10030",
+    "description": "Historic tennis club with over 50 years of tradition.",
+    "numCourts": 10,
+    "hours": "6:00 AM - 10:00 PM",
+    "type": "Hard"
+  },
+  {
+    "id": 32,
+    "title": "Golden Fields Tennis Courts",
+    "address": "4677 Pine Ave, City31, ST 10031",
+    "description": "Quiet neighborhood courts with a relaxed atmosphere.",
+    "numCourts": 5,
+    "hours": "7:00 AM - 9:00 PM",
+    "type": "Synthetic"
+  },
+  {
+    "id": 33,
+    "title": "Stonebridge Tennis Club",
+    "address": "8484 Oak Blvd, City32, ST 10032",
+    "description": "Professional-grade courts often used for local tournaments.",
+    "numCourts": 6,
+    "hours": "6:00 AM - 10:00 PM",
+    "type": "Clay"
+  },
+  {
+    "id": 34,
+    "title": "Stonebridge Tennis Courts",
+    "address": "2697 Spring St, City33, ST 10033",
+    "description": "Quiet neighborhood courts with a relaxed atmosphere.",
+    "numCourts": 14,
+    "hours": "6:00 AM - 8:00 PM",
+    "type": "Clay"
+  },
+  {
+    "id": 35,
+    "title": "Parkside Tennis Courts",
+    "address": "1893 Cedar Rd, City34, ST 10034",
+    "description": "Historic tennis club with over 50 years of tradition.",
+    "numCourts": 9,
+    "hours": "6:00 AM - 8:00 PM",
+    "type": "Clay"
+  },
+  {
+    "id": 36,
+    "title": "Redwood Tennis Park",
+    "address": "4481 Oak Blvd, City35, ST 10035",
+    "description": "Quiet neighborhood courts with a relaxed atmosphere.",
+    "numCourts": 14,
+    "hours": "5:00 AM - 11:00 PM",
+    "type": "Clay"
+  },
+  {
+    "id": 37,
+    "title": "Blue Horizon Tennis Center",
+    "address": "9579 Park Ave, City36, ST 10036",
+    "description": "Historic tennis club with over 50 years of tradition.",
+    "numCourts": 7,
+    "hours": "5:30 AM - 11:00 PM",
+    "type": "Hard"
+  },
+  {
+    "id": 38,
+    "title": "Blue Horizon Tennis Center",
+    "address": "5834 Cedar Rd, City37, ST 10037",
+    "description": "Beautiful courts with evening lights for night play.",
+    "numCourts": 12,
+    "hours": "6:00 AM - 8:00 PM",
+    "type": "Grass"
+  },
+  {
+    "id": 39,
+    "title": "Brookstone Tennis Club",
+    "address": "1761 Oak Blvd, City38, ST 10038",
+    "description": "Beautiful courts with evening lights for night play.",
+    "numCourts": 6,
+    "hours": "7:00 AM - 9:00 PM",
+    "type": "Hard"
+  },
+  {
+    "id": 40,
+    "title": "Redwood Tennis Courts",
+    "address": "3651 Park Ave, City39, ST 10039",
+    "description": "Beginner-friendly courts with free clinics on weekends.",
+    "numCourts": 12,
+    "hours": "6:00 AM - 10:00 PM",
+    "type": "Hard"
+  },
+  {
+    "id": 41,
+    "title": "Cedar Grove Tennis Courts",
+    "address": "204 Birch Way, City40, ST 10040",
+    "description": "Beginner-friendly courts with free clinics on weekends.",
+    "numCourts": 2,
+    "hours": "6:00 AM - 10:00 PM",
+    "type": "Hard"
+  },
+  {
+    "id": 42,
+    "title": "Brookstone Tennis Courts",
+    "address": "6990 Oak Blvd, City41, ST 10041",
+    "description": "Beginner-friendly courts with free clinics on weekends.",
+    "numCourts": 7,
+    "hours": "6:00 AM - 10:00 PM",
+    "type": "Synthetic"
+  },
+  {
+    "id": 43,
+    "title": "Lakeside Tennis Park",
+    "address": "2088 Cedar Rd, City42, ST 10042",
+    "description": "Beautiful courts with evening lights for night play.",
+    "numCourts": 13,
+    "hours": "5:30 AM - 11:00 PM",
+    "type": "Grass"
+  },
+  {
+    "id": 44,
+    "title": "Blue Horizon Tennis Center",
+    "address": "2369 Oak Blvd, City43, ST 10043",
+    "description": "Beautiful courts with evening lights for night play.",
+    "numCourts": 7,
+    "hours": "5:30 AM - 11:00 PM",
+    "type": "Hard"
+  },
+  {
+    "id": 45,
+    "title": "Blue Horizon Tennis Courts",
+    "address": "8037 Hilltop Rd, City44, ST 10044",
+    "description": "Indoor and outdoor options for year-round tennis.",
+    "numCourts": 12,
+    "hours": "7:00 AM - 9:00 PM",
+    "type": "Carpet"
+  },
+  {
+    "id": 46,
+    "title": "Highpoint Tennis Club",
+    "address": "4137 Oak Blvd, City45, ST 10045",
+    "description": "Beautiful courts with evening lights for night play.",
+    "numCourts": 4,
+    "hours": "5:30 AM - 11:00 PM",
+    "type": "Carpet"
+  },
+  {
+    "id": 47,
+    "title": "Parkside Tennis Center",
+    "address": "1859 Ridge Rd, City46, ST 10046",
+    "description": "Quiet neighborhood courts with a relaxed atmosphere.",
+    "numCourts": 15,
+    "hours": "7:00 AM - 9:00 PM",
+    "type": "Synthetic"
+  },
+  {
+    "id": 48,
+    "title": "Meadowbrook Tennis Club",
+    "address": "8336 Maple St, City47, ST 10047",
+    "description": "Indoor and outdoor options for year-round tennis.",
+    "numCourts": 4,
+    "hours": "6:00 AM - 8:00 PM",
+    "type": "Carpet"
+  },
+  {
+    "id": 49,
+    "title": "Golden Fields Tennis Club",
+    "address": "162 Forest St, City48, ST 10048",
+    "description": "Historic tennis club with over 50 years of tradition.",
+    "numCourts": 10,
+    "hours": "7:00 AM - 9:00 PM",
+    "type": "Grass"
+  },
+  {
+    "id": 50,
+    "title": "Golden Fields Tennis Club",
+    "address": "5058 Sunset Blvd, City49, ST 10049",
+    "description": "Spacious facility with locker rooms and snack bar.",
+    "numCourts": 9,
+    "hours": "5:30 AM - 11:00 PM",
+    "type": "Clay"
+  },
+  {
+    "id": 51,
+    "title": "Redwood Tennis Club",
+    "address": "7791 Spring St, City0, ST 10050",
+    "description": "Premium fitness and tennis facility with scenic views.",
+    "numCourts": 9,
+    "hours": "5:30 AM - 11:00 PM",
+    "type": "Carpet"
+  },
+  {
+    "id": 52,
+    "title": "Oak Ridge Tennis Center",
+    "address": "1774 River Rd, City1, ST 10051",
+    "description": "A friendly community club with lessons and weekend tournaments.",
+    "numCourts": 10,
+    "hours": "6:00 AM - 10:00 PM",
+    "type": "Carpet"
+  },
+  {
+    "id": 53,
+    "title": "Blue Horizon Tennis Courts",
+    "address": "6458 Willow Ln, City2, ST 10052",
+    "description": "Indoor and outdoor options for year-round tennis.",
+    "numCourts": 15,
+    "hours": "7:00 AM - 9:00 PM",
+    "type": "Clay"
+  },
+  {
+    "id": 54,
+    "title": "Hillcrest Tennis Courts",
+    "address": "720 Sunset Blvd, City3, ST 10053",
+    "description": "Quiet neighborhood courts with a relaxed atmosphere.",
+    "numCourts": 11,
+    "hours": "6:00 AM - 10:00 PM",
+    "type": "Carpet"
+  },
+  {
+    "id": 55,
+    "title": "Green Valley Tennis Park",
+    "address": "9101 Birch Way, City4, ST 10054",
+    "description": "Premium fitness and tennis facility with scenic views.",
+    "numCourts": 10,
+    "hours": "6:00 AM - 8:00 PM",
+    "type": "Clay"
+  },
+  {
+    "id": 56,
+    "title": "Riverbend Tennis Park",
+    "address": "7853 Cedar Rd, City5, ST 10055",
+    "description": "Historic tennis club with over 50 years of tradition.",
+    "numCourts": 13,
+    "hours": "5:30 AM - 11:00 PM",
+    "type": "Synthetic"
+  },
+  {
+    "id": 57,
+    "title": "Brookstone Tennis Club",
+    "address": "3502 Spring St, City6, ST 10056",
+    "description": "Family-friendly park with shaded seating and youth programs.",
+    "numCourts": 11,
+    "hours": "6:00 AM - 8:00 PM",
+    "type": "Hard"
+  },
+  {
+    "id": 58,
+    "title": "Green Valley Tennis Club",
+    "address": "2950 Willow Ln, City7, ST 10057",
+    "description": "Family-friendly park with shaded seating and youth programs.",
+    "numCourts": 13,
+    "hours": "6:00 AM - 8:00 PM",
+    "type": "Carpet"
+  },
+  {
+    "id": 59,
+    "title": "Blue Horizon Tennis Park",
+    "address": "1622 Hilltop Rd, City8, ST 10058",
+    "description": "Beautiful courts with evening lights for night play.",
+    "numCourts": 6,
+    "hours": "6:00 AM - 8:00 PM",
+    "type": "Hard"
+  },
+  {
+    "id": 60,
+    "title": "Meadowbrook Tennis Park",
+    "address": "3923 Forest St, City9, ST 10059",
+    "description": "Premium fitness and tennis facility with scenic views.",
+    "numCourts": 14,
+    "hours": "5:30 AM - 11:00 PM",
+    "type": "Carpet"
+  },
+  {
+    "id": 61,
+    "title": "Blue Horizon Tennis Center",
+    "address": "9461 Sunset Blvd, City10, ST 10060",
+    "description": "Indoor and outdoor options for year-round tennis.",
+    "numCourts": 5,
+    "hours": "7:00 AM - 9:00 PM",
+    "type": "Carpet"
+  },
+  {
+    "id": 62,
+    "title": "Riverbend Tennis Park",
+    "address": "4142 Lakeview Dr, City11, ST 10061",
+    "description": "Beginner-friendly courts with free clinics on weekends.",
+    "numCourts": 8,
+    "hours": "5:30 AM - 11:00 PM",
+    "type": "Carpet"
+  },
+  {
+    "id": 63,
+    "title": "Lakeside Tennis Club",
+    "address": "1264 Elm St, City12, ST 10062",
+    "description": "Beginner-friendly courts with free clinics on weekends.",
+    "numCourts": 13,
+    "hours": "5:00 AM - 11:00 PM",
+    "type": "Hard"
+  },
+  {
+    "id": 64,
+    "title": "Meadowbrook Tennis Courts",
+    "address": "1714 Ridge Rd, City13, ST 10063",
+    "description": "Professional-grade courts often used for local tournaments.",
+    "numCourts": 9,
+    "hours": "5:00 AM - 11:00 PM",
+    "type": "Synthetic"
+  },
+  {
+    "id": 65,
+    "title": "Oak Ridge Tennis Club",
+    "address": "2458 Ridge Rd, City14, ST 10064",
+    "description": "Beautiful courts with evening lights for night play.",
+    "numCourts": 9,
+    "hours": "6:00 AM - 10:00 PM",
+    "type": "Clay"
+  },
+  {
+    "id": 66,
+    "title": "Sunny Hills Tennis Center",
+    "address": "9235 Maple St, City15, ST 10065",
+    "description": "Family-friendly park with shaded seating and youth programs.",
+    "numCourts": 6,
+    "hours": "5:30 AM - 11:00 PM",
+    "type": "Synthetic"
+  },
+  {
+    "id": 67,
+    "title": "Riverbend Tennis Courts",
+    "address": "5935 Sunset Blvd, City16, ST 10066",
+    "description": "Indoor and outdoor options for year-round tennis.",
+    "numCourts": 14,
+    "hours": "5:30 AM - 11:00 PM",
+    "type": "Hard"
+  },
+  {
+    "id": 68,
+    "title": "Sunny Hills Tennis Center",
+    "address": "1623 Hilltop Rd, City17, ST 10067",
+    "description": "Premium fitness and tennis facility with scenic views.",
+    "numCourts": 12,
+    "hours": "7:00 AM - 9:00 PM",
+    "type": "Grass"
+  },
+  {
+    "id": 69,
+    "title": "Maplewood Tennis Courts",
+    "address": "5955 Forest St, City18, ST 10068",
+    "description": "Professional-grade courts often used for local tournaments.",
+    "numCourts": 4,
+    "hours": "6:00 AM - 8:00 PM",
+    "type": "Carpet"
+  },
+  {
+    "id": 70,
+    "title": "Sunny Hills Tennis Park",
+    "address": "1004 Park Ave, City19, ST 10069",
+    "description": "Professional-grade courts often used for local tournaments.",
+    "numCourts": 16,
+    "hours": "6:00 AM - 10:00 PM",
+    "type": "Carpet"
+  },
+  {
+    "id": 71,
+    "title": "Riverside Tennis Club",
+    "address": "3681 Ridge Rd, City20, ST 10070",
+    "description": "Professional-grade courts often used for local tournaments.",
+    "numCourts": 14,
+    "hours": "5:30 AM - 11:00 PM",
+    "type": "Grass"
+  },
+  {
+    "id": 72,
+    "title": "Brookstone Tennis Courts",
+    "address": "6846 Maple St, City21, ST 10071",
+    "description": "Quiet neighborhood courts with a relaxed atmosphere.",
+    "numCourts": 14,
+    "hours": "5:30 AM - 11:00 PM",
+    "type": "Carpet"
+  },
+  {
+    "id": 73,
+    "title": "Silver Lake Tennis Club",
+    "address": "3541 Pine Ave, City22, ST 10072",
+    "description": "Indoor and outdoor options for year-round tennis.",
+    "numCourts": 16,
+    "hours": "6:00 AM - 8:00 PM",
+    "type": "Carpet"
+  },
+  {
+    "id": 74,
+    "title": "Hillcrest Tennis Club",
+    "address": "4162 Birch Way, City23, ST 10073",
+    "description": "A friendly community club with lessons and weekend tournaments.",
+    "numCourts": 5,
+    "hours": "6:00 AM - 10:00 PM",
+    "type": "Synthetic"
+  },
+  {
+    "id": 75,
+    "title": "Meadowbrook Tennis Courts",
+    "address": "6609 Lakeview Dr, City24, ST 10074",
+    "description": "Beautiful courts with evening lights for night play.",
+    "numCourts": 5,
+    "hours": "6:00 AM - 8:00 PM",
+    "type": "Carpet"
+  },
+  {
+    "id": 76,
+    "title": "Stonebridge Tennis Courts",
+    "address": "2096 Oak Blvd, City25, ST 10075",
+    "description": "A friendly community club with lessons and weekend tournaments.",
+    "numCourts": 3,
+    "hours": "6:00 AM - 8:00 PM",
+    "type": "Carpet"
+  },
+  {
+    "id": 77,
+    "title": "Maplewood Tennis Club",
+    "address": "5662 Sunset Blvd, City26, ST 10076",
+    "description": "Indoor and outdoor options for year-round tennis.",
+    "numCourts": 11,
+    "hours": "6:00 AM - 10:00 PM",
+    "type": "Hard"
+  },
+  {
+    "id": 78,
+    "title": "Stonebridge Tennis Park",
+    "address": "3125 Willow Ln, City27, ST 10077",
+    "description": "Indoor and outdoor options for year-round tennis.",
+    "numCourts": 5,
+    "hours": "6:00 AM - 8:00 PM",
+    "type": "Carpet"
+  },
+  {
+    "id": 79,
+    "title": "Parkside Tennis Courts",
+    "address": "3861 Ridge Rd, City28, ST 10078",
+    "description": "Historic tennis club with over 50 years of tradition.",
+    "numCourts": 16,
+    "hours": "5:30 AM - 11:00 PM",
+    "type": "Carpet"
+  },
+  {
+    "id": 80,
+    "title": "Parkside Tennis Courts",
+    "address": "4558 Pine Ave, City29, ST 10079",
+    "description": "Quiet neighborhood courts with a relaxed atmosphere.",
+    "numCourts": 4,
+    "hours": "5:30 AM - 11:00 PM",
+    "type": "Carpet"
+  },
+  {
+    "id": 81,
+    "title": "Green Valley Tennis Courts",
+    "address": "1328 Cedar Rd, City30, ST 10080",
+    "description": "Quiet neighborhood courts with a relaxed atmosphere.",
+    "numCourts": 15,
+    "hours": "6:00 AM - 10:00 PM",
+    "type": "Grass"
+  },
+  {
+    "id": 82,
+    "title": "Parkside Tennis Courts",
+    "address": "2451 Maple St, City31, ST 10081",
+    "description": "Quiet neighborhood courts with a relaxed atmosphere.",
+    "numCourts": 8,
+    "hours": "5:30 AM - 11:00 PM",
+    "type": "Synthetic"
+  },
+  {
+    "id": 83,
+    "title": "Riverside Tennis Center",
+    "address": "6345 Sunset Blvd, City32, ST 10082",
+    "description": "Family-friendly park with shaded seating and youth programs.",
+    "numCourts": 11,
+    "hours": "6:00 AM - 8:00 PM",
+    "type": "Grass"
+  },
+  {
+    "id": 84,
+    "title": "Green Valley Tennis Courts",
+    "address": "5080 Birch Way, City33, ST 10083",
+    "description": "Beautiful courts with evening lights for night play.",
+    "numCourts": 10,
+    "hours": "7:00 AM - 9:00 PM",
+    "type": "Synthetic"
+  },
+  {
+    "id": 85,
+    "title": "Willow Springs Tennis Center",
+    "address": "9167 Park Ave, City34, ST 10084",
+    "description": "Quiet neighborhood courts with a relaxed atmosphere.",
+    "numCourts": 2,
+    "hours": "7:00 AM - 9:00 PM",
+    "type": "Hard"
+  },
+  {
+    "id": 86,
+    "title": "Silver Lake Tennis Courts",
+    "address": "1914 Willow Ln, City35, ST 10085",
+    "description": "Indoor and outdoor options for year-round tennis.",
+    "numCourts": 3,
+    "hours": "5:30 AM - 11:00 PM",
+    "type": "Synthetic"
+  },
+  {
+    "id": 87,
+    "title": "Highpoint Tennis Courts",
+    "address": "2958 Willow Ln, City36, ST 10086",
+    "description": "Premium fitness and tennis facility with scenic views.",
+    "numCourts": 2,
+    "hours": "6:00 AM - 8:00 PM",
+    "type": "Carpet"
+  },
+  {
+    "id": 88,
+    "title": "Sunny Hills Tennis Club",
+    "address": "3774 Sunset Blvd, City37, ST 10087",
+    "description": "A friendly community club with lessons and weekend tournaments.",
+    "numCourts": 5,
+    "hours": "5:00 AM - 11:00 PM",
+    "type": "Grass"
+  },
+  {
+    "id": 89,
+    "title": "Willow Springs Tennis Center",
+    "address": "4376 Birch Way, City38, ST 10088",
+    "description": "Family-friendly park with shaded seating and youth programs.",
+    "numCourts": 8,
+    "hours": "6:00 AM - 8:00 PM",
+    "type": "Synthetic"
+  },
+  {
+    "id": 90,
+    "title": "Brookstone Tennis Park",
+    "address": "848 Hilltop Rd, City39, ST 10089",
+    "description": "Spacious facility with locker rooms and snack bar.",
+    "numCourts": 9,
+    "hours": "7:00 AM - 9:00 PM",
+    "type": "Synthetic"
+  },
+  {
+    "id": 91,
+    "title": "Stonebridge Tennis Club",
+    "address": "4573 Birch Way, City40, ST 10090",
+    "description": "Beginner-friendly courts with free clinics on weekends.",
+    "numCourts": 4,
+    "hours": "6:00 AM - 8:00 PM",
+    "type": "Clay"
+  },
+  {
+    "id": 92,
+    "title": "Oak Ridge Tennis Center",
+    "address": "2568 Spring St, City41, ST 10091",
+    "description": "Historic tennis club with over 50 years of tradition.",
+    "numCourts": 16,
+    "hours": "6:00 AM - 8:00 PM",
+    "type": "Synthetic"
+  },
+  {
+    "id": 93,
+    "title": "Cedar Grove Tennis Center",
+    "address": "8803 Birch Way, City42, ST 10092",
+    "description": "Historic tennis club with over 50 years of tradition.",
+    "numCourts": 4,
+    "hours": "6:00 AM - 8:00 PM",
+    "type": "Synthetic"
+  },
+  {
+    "id": 94,
+    "title": "Stonebridge Tennis Courts",
+    "address": "5687 Hilltop Rd, City43, ST 10093",
+    "description": "Beautiful courts with evening lights for night play.",
+    "numCourts": 3,
+    "hours": "5:00 AM - 11:00 PM",
+    "type": "Hard"
+  },
+  {
+    "id": 95,
+    "title": "Brookstone Tennis Courts",
+    "address": "7558 Pine Ave, City44, ST 10094",
+    "description": "Beautiful courts with evening lights for night play.",
+    "numCourts": 12,
+    "hours": "7:00 AM - 9:00 PM",
+    "type": "Hard"
+  },
+  {
+    "id": 96,
+    "title": "Hillcrest Tennis Club",
+    "address": "8404 Spring St, City45, ST 10095",
+    "description": "Family-friendly park with shaded seating and youth programs.",
+    "numCourts": 3,
+    "hours": "6:00 AM - 8:00 PM",
+    "type": "Clay"
+  },
+  {
+    "id": 97,
+    "title": "Redwood Tennis Park",
+    "address": "8285 Park Ave, City46, ST 10096",
+    "description": "Spacious facility with locker rooms and snack bar.",
+    "numCourts": 16,
+    "hours": "6:00 AM - 10:00 PM",
+    "type": "Synthetic"
+  },
+  {
+    "id": 98,
+    "title": "Sunny Hills Tennis Park",
+    "address": "8847 Maple St, City47, ST 10097",
+    "description": "Quiet neighborhood courts with a relaxed atmosphere.",
+    "numCourts": 9,
+    "hours": "7:00 AM - 9:00 PM",
+    "type": "Clay"
+  },
+  {
+    "id": 99,
+    "title": "Willow Springs Tennis Club",
+    "address": "6907 Oak Blvd, City48, ST 10098",
+    "description": "Beautiful courts with evening lights for night play.",
+    "numCourts": 13,
+    "hours": "6:00 AM - 10:00 PM",
+    "type": "Carpet"
+  },
+  {
+    "id": 100,
+    "title": "Silver Lake Tennis Center",
+    "address": "1884 River Rd, City49, ST 10099",
+    "description": "Premium fitness and tennis facility with scenic views.",
+    "numCourts": 2,
+    "hours": "6:00 AM - 8:00 PM",
+    "type": "Carpet"
+  }
+]

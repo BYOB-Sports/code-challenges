@@ -1,20 +1,16 @@
+import { getCourt } from "../../apis/courtApi";
 import { CourtPage } from "./CourtPage";
 import { redirect } from "react-router-dom";
 
 export const courtLoader = async ({ request, params }) => {
   const { courtId } = params;
 
-
-
   try {
+    const courtData = getCourt(courtId);
 
-
-    const courtData = {}
-
-    return {courtData}
+    return { courtData };
   } catch (error) {
     console.log("🚀 ~ courtLoader ~ error:", error);
-
     return {};
   }
 };
@@ -23,7 +19,12 @@ export const courtAction = async ({ request, params }) => {
   const { courtId } = params;
 
   try {
+    const formData = await request.formData();
 
+    const name = formData.get("name");
+    const review = formData.get("review");
+
+    return redirect(`/court/${courtId}`);
   } catch (error) {
     console.log("🚀 ~ courtAction ~ error:", error);
   }

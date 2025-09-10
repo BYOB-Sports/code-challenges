@@ -3,24 +3,23 @@ import { CourtLine } from "./CourtLine";
 import { useEffect, useMemo, useState } from "react";
 
 export const CourtsPage = () => {
-  const { cofilesResults = [] } = useLoaderData();
-
+  const { courts = [] } = useLoaderData();
 
   const [courtFilter, setCourtFilter] = useState("");
 
   const filtered = useMemo(() => {
     if (courtFilter) {
-      return cofilesResults.filter((result) => {
-        const { courtId, email, screenName } = result;
+      return courts.filter((result) => {
+        const { title } = result;
 
-        const emailMatch = email.toLowerCase().includes(courtFilter);
+        const titleMatch = title.toLowerCase().includes(courtFilter);
 
-        return emailMatch;
+        return titleMatch;
       });
     }
 
-    return cofilesResults;
-  }, [cofilesResults, courtFilter]);
+    return courts;
+  }, [courts, courtFilter]);
 
   return (
     <div className="h-100 w-100 d-flex flex-column px-3 overflow-hidden">
@@ -40,10 +39,10 @@ export const CourtsPage = () => {
         />
       </div>
       <div className="flex-grow-1  overflow-scroll">
-        {filtered.map((cofileData) => {
-          const { id } = cofileData;
+        {filtered.map((courtData) => {
 
-          return <CourtLine key={id} cofileData={cofileData} />;
+          const {id} = courtData
+          return <CourtLine key={id} courtData={courtData} />;
         })}
       </div>
     </div>

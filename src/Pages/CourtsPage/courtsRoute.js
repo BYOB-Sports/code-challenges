@@ -1,12 +1,12 @@
+import { getCourts } from "../../apis/courtApi";
 import { CourtsPage } from "./CourtsPage";
 import { redirect } from "react-router-dom";
 
 export const courtsLoader = async ({ request, params, }) => {
 
+  const courts = getCourts()
 
-
-
-  return {  };
+  return { courts };
 };
 
 
