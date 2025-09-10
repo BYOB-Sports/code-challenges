@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+.font_playfair{
+  font-family: var(--font-playfair);
+}
+
+.max_width{
+  max-width: 850px;
+}
