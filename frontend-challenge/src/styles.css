@@ -1,0 +1,112 @@
+:root{
+  /* BYOB palette */
+  --bg:#0B0D10;                  /* deep charcoal */
+  --panel:#12151A;               /* card background */
+  --panel-border:#1C2027;
+  --text:#F5F7FA;
+  --muted:#98A2B3;
+
+  /* Tennis-ball accents */
+  --ball:#C7F464;                /* tennis ball green */
+  --ball-2:#A8F040;
+
+  /* Actions */
+  --btn:#141922;
+  --btn-border:#222837;
+}
+
+*{box-sizing:border-box}
+html,body,#root{height:100%}
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(1200px 500px at 50% -200px, rgba(199,244,100,0.08), transparent 60%),
+    var(--bg);
+}
+
+/* Layout chrome */
+.app{min-height:100%;display:flex;flex-direction:column}
+.app-header{
+  position:sticky;top:0;z-index:10;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:12px;
+  padding:12px 14px;
+  background:linear-gradient(180deg, rgba(11,13,16,.9), rgba(11,13,16,.6), rgba(11,13,16,0));
+  border-bottom:1px solid rgba(255,255,255,.04);
+}
+.brand{display:flex;align-items:center;gap:10px;color:var(--text);text-decoration:none;font-weight:800;letter-spacing:.2px}
+.brand .dot{
+  width:20px;height:20px;border-radius:50%;
+  background: radial-gradient(circle at 30% 30%, #fff8 0 18%, transparent 19% 100%), /* highlight */
+              linear-gradient(160deg, var(--ball), var(--ball-2));
+  box-shadow:0 0 0 2px #0007, 0 0 24px rgba(199,244,100,.35);
+  display:inline-block;
+}
+.back{color:var(--muted);text-decoration:none;font-weight:600}
+
+.app-main{flex:1;max-width:720px;margin:0 auto;padding:12px}
+.app-footer{padding:24px 16px;text-align:center;color:var(--muted)}
+
+/* Controls */
+.controls{display:flex;gap:8px;flex-wrap:wrap}
+.input,.select{
+  flex:1;min-width:0;padding:12px 12px;border-radius:12px;
+  border:1px solid var(--panel-border);background:#0E1218;color:var(--text)
+}
+.input:focus,.select:focus{outline:2px solid var(--ball);outline-offset:2px}
+
+/* Cards */
+.card{
+  background:var(--panel);
+  border:1px solid var(--panel-border);
+  border-radius:16px;
+  padding:12px;
+  box-shadow: 0 10px 24px rgba(0,0,0,.25);
+}
+.card:not(:last-child){margin-bottom:10px}
+.row{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.h{margin:0}
+.meta{color:var(--muted);font-size:12px}
+.badge{
+  display:inline-block;padding:4px 8px;border-radius:999px;
+  border:1px solid #273043;color:var(--muted);font-size:12px
+}
+.badge.ball{border-color:transparent;background:linear-gradient(180deg,var(--ball),var(--ball-2));color:#0A0C0F;font-weight:700}
+
+/* List */
+.list{list-style:none;padding:0;margin:12px 0}
+.item{display:flex;gap:12px}
+.thumb{width:64px;height:64px;border-radius:10px;background:#0e0e11;border:1px solid #232329;flex-shrink:0}
+
+/* Stars */
+.stars{display:inline-flex;gap:2px;vertical-align:middle}
+
+/* Buttons */
+.button{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:12px 14px;border-radius:12px;border:1px solid var(--btn-border);
+  background:var(--btn);color:#fff;font-weight:700;cursor:pointer
+}
+.button.primary{
+  background:linear-gradient(180deg,var(--ball),var(--ball-2));color:#071008;border:0
+}
+.button[disabled]{opacity:.6;cursor:not-allowed}
+
+/* Hero tiles */
+.tiles{display:grid;grid-template-columns:1fr;gap:10px;margin:8px 0 12px}
+.tile{
+  display:flex;gap:12px;align-items:flex-start;
+  border-left:3px solid var(--ball);
+}
+.tile .icon{
+  width:36px;height:36px;border-radius:50%;
+  background:linear-gradient(180deg,var(--ball),var(--ball-2));
+  display:flex;align-items:center;justify-content:center;
+  color:#0B0D10;font-weight:900;
+  box-shadow:0 0 0 2px #0006;
+}
+
+/* Responsive nicety */
+@media (min-width:768px){ .app-main{padding:20px} }
