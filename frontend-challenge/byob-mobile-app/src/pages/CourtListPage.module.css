@@ -48,3 +48,9 @@
   color: #6b7280;
   text-align: center;
 }
+
+@media screen and (max-width: 480px) {
+  .title {
+    font-size: 2em;
+  }
+}
