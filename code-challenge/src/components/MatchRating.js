@@ -1,29 +1,46 @@
 import React, { useState } from 'react';
 import { submitRating } from '../api/ratingApi';
+import toast from 'react-hot-toast';
 
-const MatchRating = ({ players, setPlayers }) => {
+const MatchRating = ({ players, setPlayers, isSubmitting, setIsSubmitting }) => {
   const [selectedPlayer, setSelectedPlayer] = useState('');
   const [rating, setRating] = useState(4.0);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [message, setMessage] = useState('');
+  //const [isSubmitting, setIsSubmitting] = useState(false);
+  // const [message, setMessage] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
+    // Rest a message.
+    //setMessage('');
+
     if (!selectedPlayer) {
-      setMessage('Please select a player');
+      toast.error('Please select a player');
       return;
     }
     
     setIsSubmitting(true);
-    setMessage('Submitting rating...');
+    //setMessage('Submitting rating...');
     
     try {
+      // 1. Submit the rating
       const updatedPlayers = await submitRating(selectedPlayer, rating, players);
+      
+      // 2.Show success message first
+      toast.success('Rating submitted successfully!');
+      
+      // 3.Update the list.
       setPlayers(updatedPlayers);
-      setMessage('Rating submitted successfully!');
+      
+      // 4.Wait a brief moment. We can later use backend or
+      // Our api can let us know that everything has been submitted.
+      await new Promise(resolve => setTimeout(resolve, 500));
+      
+      // 5. Rest the form
+      setSelectedPlayer('');
+      setRating(4.0);
     } catch (error) {
-      setMessage(`Error: ${error.message}`);
+      toast.error(`Error: ${error.message}`);
     } finally {
       setIsSubmitting(false);
     }
@@ -32,7 +49,7 @@ const MatchRating = ({ players, setPlayers }) => {
   return (
     <div className="match-rating">
       <h2>Rate a Player</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className={isSubmitting ? 'submitting' : ''}>
         <div className="form-group">
           <label htmlFor="player-select">Select Player:</label>
           <select 
@@ -40,6 +57,7 @@ const MatchRating = ({ players, setPlayers }) => {
             value={selectedPlayer}
             onChange={(e) => setSelectedPlayer(e.target.value)}
             disabled={isSubmitting}
+            className={isSubmitting ? 'disabled' : ''}
           >
             <option value="">-- Select a player --</option>
             {players.map(player => (
@@ -59,14 +77,25 @@ const MatchRating = ({ players, setPlayers }) => {
             value={rating}
             onChange={(e) => setRating(parseFloat(e.target.value))}
             disabled={isSubmitting}
+            className={isSubmitting ? 'disabled' : ''}
           />
         </div>
         
-        <button type="submit" disabled={isSubmitting}>
-          {isSubmitting ? 'Submitting...' : 'Submit Rating'}
+        <button 
+          type="submit" 
+          disabled={isSubmitting}
+          className={isSubmitting ? 'submitting' : ''}
+        >
+          {isSubmitting ? (
+            <span className="loading-state">
+              <span className="spinner"></span>
+              Submitting...
+            </span>
+          ) : (
+            'Submit Rating'
+          )}
         </button>
-        
-        {message && <p className="message">{message}</p>}
+
       </form>
     </div>
   );
