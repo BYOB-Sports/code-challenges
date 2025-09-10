@@ -24,4 +24,4 @@ const PlayersList = ({ players }) => {
   );
 };
 
-export default PlayersList; 
+export default PlayersList;

@@ -1,120 +1,90 @@
 .App {
-  text-align: center;
-  max-width: 800px;
-  margin: 0 auto;
+  font-family: 'Segoe UI', sans-serif;
   padding: 20px;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+  background-color: #f4f9fc;
+  min-height: 100vh;
+  color: #333;
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  text-align: center;
+  background-color: #0077b6;
   color: white;
+  padding: 40px 20px;
+  border-radius: 12px;
   margin-bottom: 30px;
 }
 
-.App-link {
-  color: #61dafb;
+.grid-layout {
+  display: grid;
+  gap: 30px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+@media (min-width: 768px) {
+  .grid-layout {
+    grid-template-columns: 1fr 1fr;
   }
 }
 
-.tabs {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-}
-
-.tabs button {
-  background-color: #f0f0f0;
-  border: 1px solid #ccc;
-  padding: 10px 20px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s;
-}
-
-.tabs button.active {
-  background-color: #61dafb;
-  color: white;
+.grid-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  padding: 30px;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 20px;
+  margin-top: 15px;
 }
 
-table th, table td {
-  border: 1px solid #ddd;
+th, td {
   padding: 12px;
   text-align: left;
 }
 
-table th {
-  background-color: #f2f2f2;
+th {
+  background-color: #caf0f8;
+  color: #023e8a;
 }
 
-.form-group {
-  margin-bottom: 20px;
-  text-align: left;
-}
-
-label {
-  display: block;
-  margin-bottom: 8px;
+tr:nth-child(even) {
+  background-color: #f1f1f1;
 }
 
 select, input[type="range"] {
   width: 100%;
   padding: 8px;
-  box-sizing: border-box;
+  margin-bottom: 16px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
 }
 
 button[type="submit"] {
-  background-color: #61dafb;
+  background-color: #0077b6;
   color: white;
   border: none;
-  padding: 10px 20px;
+  padding: 12px 20px;
   font-size: 16px;
+  border-radius: 6px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s ease;
 }
 
 button[type="submit"]:hover {
-  background-color: #21a1cb;
-}
-
-button[type="submit"]:disabled {
-  background-color: #cccccc;
-  cursor: not-allowed;
+  background-color: #023e8a;
 }
 
 .message {
-  margin-top: 20px;
-  padding: 10px;
-  background-color: #f8f9fa;
-  border-radius: 4px;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.message.success {
+  color: #28a745;
+}
+
+.message.error {
+  color: #dc3545;
 }
