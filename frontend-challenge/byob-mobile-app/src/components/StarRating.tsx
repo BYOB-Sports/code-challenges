@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import styles from "./StarRating.module.css";
 
 type Props = {
   value: number;
@@ -15,7 +16,7 @@ export function StarRating({
 }: Props) {
   const stars = useMemo(() => [1, 2, 3, 4, 5], []);
   return (
-    <div style={{ display: "inline-flex", gap: 6 }} aria-label="star rating">
+    <div className={styles.root} aria-label="star rating">
       {stars.map((star) => {
         const filled = value >= star;
         const color = filled ? "#f59e0b" : "#e5e7eb";
@@ -24,12 +25,9 @@ export function StarRating({
             key={star}
             type="button"
             onClick={() => !readOnly && onChange?.(star)}
-            style={{
-              background: "transparent",
-              border: 0,
-              padding: 0,
-              cursor: readOnly ? "default" : "pointer",
-            }}
+            className={`${styles.button} ${
+              readOnly ? styles.readOnly : styles.interactive
+            }`}
             aria-label={`rate ${star}`}
           >
             <svg

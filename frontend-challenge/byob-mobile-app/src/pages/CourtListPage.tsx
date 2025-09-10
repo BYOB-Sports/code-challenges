@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { courts } from "../data/courts";
 import { CourtCard } from "../components/CourtCard";
+import styles from "./CourtListPage.module.css";
 
 export default function CourtListPage() {
   const [query, setQuery] = useState("");
@@ -15,28 +16,16 @@ export default function CourtListPage() {
   }, [query]);
 
   return (
-    <div style={{ maxWidth: 960, margin: "0 auto", padding: 16 }}>
-      <h1 style={{ marginTop: 0 }}>Tennis Courts</h1>
+    <div className={styles.container}>
+      <h1 className={styles.title}>Tennis Courts</h1>
       <input
         type="search"
+        className={styles.search}
         placeholder="Search by name, location, surface..."
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        style={{
-          width: "100%",
-          padding: 12,
-          borderRadius: 8,
-          border: "1px solid #e5e7eb",
-          marginBottom: 16,
-        }}
       />
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))",
-          gap: 16,
-        }}
-      >
+      <div className={styles.grid}>
         {filtered.map((court) => (
           <CourtCard key={court.id} court={court} />
         ))}
