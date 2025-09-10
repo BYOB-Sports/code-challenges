@@ -1,6 +1,7 @@
 import React from 'react';
 
-const PlayersList = ({ players }) => {
+// Removed the ratingState imports, completely unnecessary
+const PlayersList = ({ players, loadingAverages }) => {
   return (
     <div className="players-list">
       <h2>Players and Ratings</h2>
@@ -12,12 +13,20 @@ const PlayersList = ({ players }) => {
           </tr>
         </thead>
         <tbody>
-          {players.map(player => (
+          {players.map((player) => {
+            return (
             <tr key={player.id}>
               <td>{player.name}</td>
-              <td>{player.averageRating.toFixed(1)}</td>
+              <td>{loadingAverages[player.id]
+                ? "..."
+                : typeof player.averageRating === "number"
+                  ? player.averageRating.toFixed(1)
+                  : "N/A"}
+              </td>
             </tr>
-          ))}
+              );
+          }
+          )}
         </tbody>
       </table>
     </div>
