@@ -39,6 +39,7 @@ const dummyCourts = Array.from({ length: 50 }, (_, i) => ({
 
 dummyCourts[0].reviews.push({
   text: "This court was wonderful",
+  author: "John Doe",
 });
 
 export default dummyCourts;

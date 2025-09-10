@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
 import CourtCard from "../components/CourtCard";
 import CourtContext from "../context/CourtContext";
+// eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from "framer-motion";
 
 const CourtList = () => {
