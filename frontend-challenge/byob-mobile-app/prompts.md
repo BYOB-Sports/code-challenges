@@ -11,3 +11,6 @@ Let me know if you need me to clarify anything.
 
 ## Prompt 2
 Can you move all the inline styles to css modules?
+
+## Prompt 3
+Can you add three selects to sort the courts by surface, location and popularity?
