@@ -1,12 +1,13 @@
-const CourtCard = () => {
+const CourtCard = ({ court }) => {
+  const { id, name, address, info, image } = court;
   return (
     <div className="rounded-xl shadow p-3 space-x-3 items-center flex flex-col w-full bg-white">
-      <img src="https://picsum.photos/id/237/600/600" alt="court" className="w-full h-40 object-cover rounded-lg" />
+      <img src={image} alt="court" className="w-full h-40 object-cover rounded-lg" />
       <div className="flex-1 min-w-0">
-        <h2 className="font-semibold">Test Court</h2>
-        <p>location</p>
+        <h2 className="font-semibold">{name}</h2>
+        <p>{address}</p>
         <div className="flex items-center text-xs-text-gray-600">
-          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorem perferendis temporibus qui</p>
+          <p>{info}</p>
         </div>
       </div>
 
