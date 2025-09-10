@@ -14,3 +14,6 @@ Can you move all the inline styles to css modules?
 
 ## Prompt 3
 Can you add three selects to sort the courts by surface, location and popularity?
+
+## Prompt 4
+Can you add a user-friendly 404 page?
