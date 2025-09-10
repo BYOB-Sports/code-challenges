@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import courts from '../data/courts';
+import courts from '../api/courts';
 import useCourtReviews from '../hooks/useCourtReviews';
 
 const CourtDetail = () => {

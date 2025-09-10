@@ -1,6 +1,6 @@
 import React, { useMemo, useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import courts from '../data/courts';
+import courts from '../api/courts';
 
 const CourtsList = () => {
   const [query, setQuery] = useState('');
