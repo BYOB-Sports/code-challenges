@@ -36,9 +36,9 @@ const CourtsList = () => {
         </select>
       </div>
 
-      <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'grid', gap: 12 }}>
+      <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'grid', gap: 12, gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))' }}>
         {filtered.map(court => (
-          <li key={court.id} style={{ border: '1px solid #e5e7eb', borderRadius: 12, overflow: 'hidden' }}>
+          <li key={court.id} style={{ border: '1px solid #e5e7eb', borderRadius: 12, overflow: 'hidden', backgroundColor: 'white', boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1)' }}>
             <Link to={`/courts/${court.id}`} style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}>
               <div style={{ padding: 12 }}>
                 <div style={{ fontWeight: 600 }}>{court.name}</div>
