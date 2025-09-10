@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { submitRating } from '../api/ratingApi';
 
 const MatchRating = ({ players, setPlayers }) => {
@@ -6,6 +6,16 @@ const MatchRating = ({ players, setPlayers }) => {
   const [rating, setRating] = useState(4.0);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [message, setMessage] = useState('');
+  // add past ratings
+  const [pastRating, setPastRating] = useState(0);
+
+  useEffect(() => {
+    // Reset past rating when player is selected
+    const player = players.find(player => player.id === selectedPlayer);
+    if (player) {
+      setPastRating(player.pastRating || 0); // Use pastRating from player data
+    }
+  }, [selectedPlayer, players]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,20 +28,87 @@ const MatchRating = ({ players, setPlayers }) => {
     setIsSubmitting(true);
     setMessage('Submitting rating...');
     
-    try {
-      const updatedPlayers = await submitRating(selectedPlayer, rating, players);
-      setPlayers(updatedPlayers);
-      setMessage('Rating submitted successfully!');
-    } catch (error) {
-      setMessage(`Error: ${error.message}`);
-    } finally {
-      setIsSubmitting(false);
+  // ORIGINAL
+  //   try {
+  //     const updatedPlayers = await submitRating(selectedPlayer, rating, players);
+      
+  //     const updatedRatingsStr = localStorage.getItem('ratings');
+  //     const updatedRatings = JSON.parse(updatedRatingsStr || '{}');
+
+  //     const finalPlayers = updatedPlayers.map(player => {
+  //       const ratings = updatedRatings[player.id] || [];
+  //       const average =
+  //         ratings.length > 0
+  //           ? ratings.reduce((sum, r) => sum + r, 0) / ratings.length
+  //           : 0;
+  //     return { ...player, averageRating: average, pastRating: player.averageRating };
+  //   });
+      
+  //     setPlayers(updatedPlayers);
+  //     setMessage('Rating submitted successfully!');
+  //   } catch (error) {
+  //     setMessage(`Error: ${error.message}`);
+  //   } finally {
+  //     setIsSubmitting(false);
+  //   }
+  // };
+
+  //1ST ATTEMPT
+//   try {
+//     // update the player's pastRating with the current averageRating 
+//     const updatedPlayers = players.map(player => {
+//       if (player.id === selectedPlayer) {
+//         const pastRating = player.averageRating;  // save averageRating as pastRating
+//         const updatedPlayer = { ...player, pastRating };  // update pastRating
+
+//         // Save new average rating
+//         const newAverage = (player.averageRating + rating) / 2; 
+//         return { ...updatedPlayer, averageRating: newAverage };  // update averageRating
+
+//       }
+//       return player;
+//     });
+    
+//     // submit the new rating
+//     const finalPlayers = updatedPlayers.map(player => {
+//       return { ...player }; 
+//     });
+
+//     setPlayers(updatedPlayers);
+//     setMessage('Rating submitted successfully!');
+//   } catch (error) {
+//     setMessage(`Error: ${error.message}`);
+//   } finally {
+//     setIsSubmitting(false);
+//   }
+// };
+
+//2ND ATTEMPT
+try {
+  // save current average rating and pastRating 
+  const playersWithPast = players.map(player => {
+    if (player.id === selectedPlayer) {
+      return { ...player, pastRating: player.averageRating };
     }
-  };
+    return player;
+  });
+
+  // submit the new rating
+  const updatedPlayers = await submitRating(selectedPlayer, rating, players);
+
+
+  setPlayers(updatedPlayers);
+  setMessage('Rating submitted successfully!');
+} catch (error) {
+  setMessage(`Error: ${error.message}`);
+} finally {
+  setIsSubmitting(false);
+}
+};
 
   return (
     <div className="match-rating">
-      <h2>Rate a Player</h2>
+      <h2>🎾 Rate a Player 🎾</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="player-select">Select Player:</label>
@@ -62,7 +139,7 @@ const MatchRating = ({ players, setPlayers }) => {
           />
         </div>
         
-        <button type="submit" disabled={isSubmitting}>
+        <button   style={{color: '#000000', backgroundColor: '#FFE700', borderRadius: '5px', fontWeight: 'bolder' }} type="submit" disabled={isSubmitting}>
           {isSubmitting ? 'Submitting...' : 'Submit Rating'}
         </button>
         

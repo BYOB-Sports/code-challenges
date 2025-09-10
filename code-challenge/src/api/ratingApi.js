@@ -17,6 +17,10 @@ export const storeRating = async (playerId, rating) => {
 
 // Calculate average rating
 export const calculateAverageRating = async (playerId) => {
+  
+  //---POSSIBLE PROBLEM: The localStorage does not store past ratings. 
+  // So once the new rating is submitted, the new rating overrides the old one. 
+  // The new rating becomes the sum, and the current length is 1. Hence, the new rating becomes the average rating displayed.
   const ratingsStr = localStorage.getItem('ratings') || '{}';
   const ratings = JSON.parse(ratingsStr);
   const playerRatings = ratings[playerId] || [];
