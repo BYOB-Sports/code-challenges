@@ -1,0 +1,20 @@
+.clear-puts input,
+.clear-puts textarea{
+  background-color: transparent !important;
+  border:0;
+  outline: 0;
+  border-bottom: 1px solid black;
+  border-radius: 0;
+  box-shadow: none !important;
+}
+
+
+.white-puts input,
+.white-puts textarea{
+  background-color: white !important;
+  border:0;
+  outline: 0;
+  border-bottom: 1px solid grey;
+  border-radius: 0;
+  box-shadow: none !important;
+}
