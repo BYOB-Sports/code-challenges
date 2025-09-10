@@ -1,5 +1,8 @@
+import { useNavigate } from "react-router-dom";
+
 const CourtCard = ({ court }) => {
   const { id, name, address, info, image } = court;
+  const navigate = useNavigate();
   return (
     <div className="rounded-xl shadow p-3 space-x-3 items-center flex flex-col w-full bg-white">
       <img src={image} alt="court" className="w-full h-40 object-cover rounded-lg" />
@@ -11,7 +14,11 @@ const CourtCard = ({ court }) => {
         </div>
       </div>
 
-      <button className="bg-blue-400 shadow text-white rounded-lg hover:bg-blue-600 hover:cursor-pointer w-full mt-2 py-1">View</button>
+      <button
+        className="bg-blue-400 shadow text-white rounded-lg hover:bg-blue-600 hover:cursor-pointer w-full mt-2 py-1"
+        onClick={() => navigate(`/court/${id}`)}>
+        View
+      </button>
     </div>
   );
 };

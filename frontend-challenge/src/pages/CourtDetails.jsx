@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import ReviewForm from "../components/ReviewForm";
 import ReviewCard from "../components/ReviewCard";
 import CourtContext from "../context/CourtContext";
@@ -9,6 +10,7 @@ const CourtDetails = () => {
   const { getCourt, addReview } = useContext(CourtContext);
   const court = getCourt(Number(id));
   const { name, address, info, image, reviews } = court;
+  const navigate = useNavigate();
 
   const submitReview = (text) => {
     const review = {
@@ -29,7 +31,9 @@ const CourtDetails = () => {
         <div className="mt-2">
           <ReviewForm submitReview={submitReview} />
         </div>
-        <button className="bg-white shadow rounded-lg hover:bg-gray-200 hover:cursor-pointer w-full mt-2 py-1">Back</button>
+        <button className="bg-white shadow rounded-lg hover:bg-gray-200 hover:cursor-pointer w-full mt-2 py-1" onClick={() => navigate("/")}>
+          Back
+        </button>
         <h2 className="text-lg font-semibold text-center mt-2">Reviews from others</h2>
         <div>
           {reviews.map((r, i) => (
