@@ -1,0 +1,13 @@
+/* index.css — neutral baseline for Tennis Courts app */
+* {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* All actual colors, fonts, and layouts are handled
+   inside the <Styles /> component in App.jsx */
