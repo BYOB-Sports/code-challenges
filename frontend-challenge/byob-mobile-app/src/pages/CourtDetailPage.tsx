@@ -38,9 +38,6 @@ export default function CourtDetailPage() {
 
   return (
     <div key={version} className={styles.container}>
-      <Link to="/" className={styles.back}>
-        ← Back
-      </Link>
       <div className={styles.grid}>
         <div>
           <div className={styles.hero}>
@@ -50,6 +47,9 @@ export default function CourtDetailPage() {
               className={styles.image}
             />
           </div>
+          <Link to="/" className={styles.back}>
+            ← Back
+          </Link>
           <h1 className={styles.title}>{court!.name}</h1>
           <p className={styles.subtitle}>
             {court!.location} ·{" "}
