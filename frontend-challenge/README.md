@@ -1,25 +1,12 @@
-# UI Code Challenge!
+# React + Vite
 
-This small assignment will hep evaluate your front end development capabilities.  You will be evaluated on design choices (friction, scalability, etc), efficient and effective coding, and style.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## Challenge
+Currently, two official plugins are available:
 
-Create a mobile first, two page app for reviewing tennis courts.  A user should be able to see a display of courts, search for a specific court, select a court detail view, and leave a review.
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Rules
+## Expanding the ESLint configuration
 
-1. Pull this repo locally and work on your own branch
-2. Maximum time is 4 hours
-3. You will only be evaluated on how it looks on mobile device sizes
-4. No backend, all data will be mocked
-5. You do not need to write tests for this exercise given the time limit
-6. When you are done, submit a PR to this repo.
-
-## Hints 
-
-- Do not use frameworks outside of the JavaScript/Typescript ecosystem
-- Bonus points if you mock > 50 courts as this will let you show off your scalable design skills
-- You can use coding assitants, but include every promopt you used in your PR
-- Your job is to delight users
-
-Good luck!
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
