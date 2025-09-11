@@ -74,9 +74,9 @@ const CourtList = ({ courts, searchTerm, onSearchChange, onCourtSelect }) => {
             onChange={(e) => onSearchChange(e.target.value)}
             className="search-input"
           />
-          <button className="p-2 bg-[#004225] text-white rounded-full hover:bg-[#FF8C42]">
+          <div className="search-icon">
             <Search size={20} />
-          </button>
+          </div>
         </div>
         <div className="results-count">
           {filteredAndSortedCourts.length} court{filteredAndSortedCourts.length !== 1 ? 's' : ''} found
