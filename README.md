@@ -1,5 +1,6 @@
 ## Tennis Court List / Preview page
-
+#### Installation
+``npm install`` / ``npm run dev``
 ### List View with Table
 <img width="922" height="744" alt="image" src="https://github.com/user-attachments/assets/b11023a9-baf2-4aab-bcd5-2305f2eae063" />
 
