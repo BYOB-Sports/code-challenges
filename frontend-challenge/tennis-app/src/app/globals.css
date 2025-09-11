@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+@plugin "daisyui" {
+  themes: light --default
+}
+
+main {
+  margin: 0 1rem;
+}
+
+header {
+  margin: 0 2rem;
+  text-align: center;
+}
