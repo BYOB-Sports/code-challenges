@@ -9,6 +9,8 @@ const CourtDetail = ({ court, reviews, onBack, onReviewSubmit }) => {
     comment: ''
   });
   const [userVotes, setUserVotes] = useState({}); // Track user votes for each review
+  const [showContact, setShowContact] = useState(false);
+  const [showHours, setShowHours] = useState(false);
 
   const handleReviewSubmit = (e) => {
     e.preventDefault();
@@ -128,47 +130,65 @@ const CourtDetail = ({ court, reviews, onBack, onReviewSubmit }) => {
 
           {court.contact && (
             <div className="contact-section">
-              <h3>Contact Information</h3>
-              <div className="contact-info">
-                <div className="contact-item">
-                  <strong>Phone:</strong> {court.contact.phone}
+              <button 
+                className="dropdown-header"
+                onClick={() => setShowContact(!showContact)}
+                aria-expanded={showContact}
+              >
+                <h3>Contact Information</h3>
+                <span className={`dropdown-arrow ${showContact ? 'open' : ''}`}>▼</span>
+              </button>
+              {showContact && (
+                <div className="contact-info">
+                  <div className="contact-item">
+                    <strong>Phone:</strong> {court.contact.phone}
+                  </div>
+                  <div className="contact-item">
+                    <strong>Email:</strong> {court.contact.email}
+                  </div>
+                  <div className="contact-item">
+                    <strong>Website:</strong> {court.contact.website}
+                  </div>
                 </div>
-                <div className="contact-item">
-                  <strong>Email:</strong> {court.contact.email}
-                </div>
-                <div className="contact-item">
-                  <strong>Website:</strong> {court.contact.website}
-                </div>
-              </div>
+              )}
             </div>
           )}
 
           {court.hours && (
             <div className="hours-section">
-              <h3>Operating Hours</h3>
-              <div className="hours-info">
-                <div className="hours-item">
-                  <strong>Monday:</strong> {court.hours.monday}
+              <button 
+                className="dropdown-header"
+                onClick={() => setShowHours(!showHours)}
+                aria-expanded={showHours}
+              >
+                <h3>Operating Hours</h3>
+                <span className={`dropdown-arrow ${showHours ? 'open' : ''}`}>▼</span>
+              </button>
+              {showHours && (
+                <div className="hours-info">
+                  <div className="hours-item">
+                    <strong>Monday:</strong> {court.hours.monday}
+                  </div>
+                  <div className="hours-item">
+                    <strong>Tuesday:</strong> {court.hours.tuesday}
+                  </div>
+                  <div className="hours-item">
+                    <strong>Wednesday:</strong> {court.hours.wednesday}
+                  </div>
+                  <div className="hours-item">
+                    <strong>Thursday:</strong> {court.hours.thursday}
+                  </div>
+                  <div className="hours-item">
+                    <strong>Friday:</strong> {court.hours.friday}
+                  </div>
+                  <div className="hours-item">
+                    <strong>Saturday:</strong> {court.hours.saturday}
+                  </div>
+                  <div className="hours-item">
+                    <strong>Sunday:</strong> {court.hours.sunday}
+                  </div>
                 </div>
-                <div className="hours-item">
-                  <strong>Tuesday:</strong> {court.hours.tuesday}
-                </div>
-                <div className="hours-item">
-                  <strong>Wednesday:</strong> {court.hours.wednesday}
-                </div>
-                <div className="hours-item">
-                  <strong>Thursday:</strong> {court.hours.thursday}
-                </div>
-                <div className="hours-item">
-                  <strong>Friday:</strong> {court.hours.friday}
-                </div>
-                <div className="hours-item">
-                  <strong>Saturday:</strong> {court.hours.saturday}
-                </div>
-                <div className="hours-item">
-                  <strong>Sunday:</strong> {court.hours.sunday}
-                </div>
-              </div>
+              )}
             </div>
           )}
         </div>

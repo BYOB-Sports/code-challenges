@@ -491,18 +491,49 @@
 .contact-section,
 .hours-section {
   margin: 1.5rem 0;
-  padding: 1.5rem;
   background: #f8f9fa;
   border-radius: 12px;
   border-left: 4px solid #004225;
+  overflow: hidden;
 }
 
-.contact-section h3,
-.hours-section h3 {
+.dropdown-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  background: #f8f9fa;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.dropdown-header:hover {
+  background: #e9ecef;
+}
+
+.dropdown-header:focus {
+  outline: 2px solid #004225;
+  outline-offset: 2px;
+}
+
+.dropdown-header h3 {
   color: #004225;
-  margin-bottom: 1rem;
+  margin: 0;
   font-size: 1.2rem;
   font-weight: 600;
+  text-align: left;
+}
+
+.dropdown-arrow {
+  color: #004225;
+  font-size: 1rem;
+  transition: transform 0.2s ease;
+}
+
+.dropdown-arrow.open {
+  transform: rotate(180deg);
 }
 
 .contact-info,
@@ -510,19 +541,24 @@
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+  padding: 0 1.5rem 1.5rem 1.5rem;
+  background: white;
+  border-top: 1px solid #e9ecef;
 }
 
 .contact-item,
 .hours-item {
   display: flex;
   align-items: center;
-  padding: 0.5rem 0;
-  border-bottom: 1px solid #e9ecef;
+  padding: 0.75rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
 }
 
 .contact-item:last-child,
 .hours-item:last-child {
-  border-bottom: none;
+  border-bottom: 1px solid #e9ecef;
 }
 
 .contact-item strong,
@@ -544,11 +580,15 @@
   .contact-section,
   .hours-section {
     margin: 2rem 0;
+  }
+  
+  .dropdown-header {
     padding: 2rem;
   }
   
   .contact-info,
   .hours-info {
+    padding: 0 2rem 2rem 2rem;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
@@ -558,10 +598,7 @@
   .hours-item {
     flex-direction: column;
     align-items: flex-start;
-    padding: 0.75rem;
-    background: white;
-    border-radius: 8px;
-    border: 1px solid #e9ecef;
+    padding: 1rem;
   }
   
   .contact-item strong,
