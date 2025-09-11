@@ -9,8 +9,8 @@
 }
 
 .back-button {
-  background: #667eea;
-  color: white;
+  background: #F7F76D;
+  color: #004225;
   padding: 0.75rem 1.5rem;
   border-radius: 8px;
   font-size: 0.9rem;
@@ -23,7 +23,7 @@
 }
 
 .back-button:hover {
-  background: #5a6fd8;
+  background: #e6e65a;
   transform: translateY(-1px);
 }
 
@@ -123,13 +123,13 @@
 }
 
 .amenity-item {
-  background: #f0f4ff;
-  color: #667eea;
+  background: #e8f5e8;
+  color: #004225;
   padding: 0.5rem 1rem;
   border-radius: 20px;
   font-size: 0.85rem;
   font-weight: 600;
-  border: 1px solid #e1e5e9;
+  border: 1px solid #c8e6c8;
 }
 
 .description {
@@ -175,8 +175,8 @@
 }
 
 .add-review-btn {
-  background: #28a745;
-  color: white;
+  background: #F7F76D;
+  color: #004225;
   padding: 0.75rem 1.5rem;
   border-radius: 8px;
   font-size: 0.9rem;
@@ -185,7 +185,7 @@
 }
 
 .add-review-btn:hover {
-  background: #218838;
+  background: #e6e65a;
   transform: translateY(-1px);
 }
 
@@ -196,6 +196,32 @@
   padding: 1.5rem;
   margin-bottom: 1.5rem;
   border: 1px solid #e1e5e9;
+  position: relative;
+}
+
+.close-form-btn {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #666;
+  cursor: pointer;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.close-form-btn:hover {
+  background: #e9ecef;
+  color: #333;
+  transform: scale(1.1);
 }
 
 .form-group {
@@ -250,8 +276,8 @@
 }
 
 .submit-review-btn {
-  background: #667eea;
-  color: white;
+  background: #F7F76D;
+  color: #004225;
   padding: 0.75rem 2rem;
   border-radius: 8px;
   font-size: 0.9rem;
@@ -261,7 +287,7 @@
 }
 
 .submit-review-btn:hover {
-  background: #5a6fd8;
+  background: #e6e65a;
   transform: translateY(-1px);
 }
 
@@ -439,10 +465,18 @@
 }
 
 /* Accessibility improvements */
-.back-button:focus-visible,
-.add-review-btn:focus-visible,
+.back-button:focus-visible {
+  outline: 2px solid #004225;
+  outline-offset: 2px;
+}
+
+.add-review-btn:focus-visible {
+  outline: 2px solid #004225;
+  outline-offset: 2px;
+}
+
 .submit-review-btn:focus-visible {
-  outline: 2px solid #667eea;
+  outline: 2px solid #004225;
   outline-offset: 2px;
 }
 

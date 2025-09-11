@@ -130,16 +130,26 @@ const CourtDetail = ({ court, reviews, onBack, onReviewSubmit }) => {
         <div className="reviews-section">
           <div className="reviews-header">
             <h3>Reviews ({reviews.length})</h3>
-            <button 
-              className="add-review-btn"
-              onClick={() => setShowReviewForm(!showReviewForm)}
-            >
-              {showReviewForm ? 'Cancel' : 'Add Review'}
-            </button>
+            {!showReviewForm && (
+              <button 
+                className="add-review-btn"
+                onClick={() => setShowReviewForm(true)}
+              >
+                Add Review
+              </button>
+            )}
           </div>
 
           {showReviewForm && (
             <form className="review-form" onSubmit={handleReviewSubmit}>
+              <button 
+                type="button"
+                className="close-form-btn"
+                onClick={() => setShowReviewForm(false)}
+                aria-label="Close review form"
+              >
+                ×
+              </button>
               <div className="form-group">
                 <label htmlFor="userName">Your Name</label>
                 <input
