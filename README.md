@@ -214,6 +214,28 @@ frontend-challenge/
 }
 ```
 
+### AI Agent (Cursor) Prompts used ###
+- Hello, can you explain the project folder to me. I need to build a 2 page frontend without using frameworks outside of the JavaScript/Typescript ecosystem. I will be evaluated on design choices (friction, scalability, etc), efficient and effective coding, and style. I need to create a mobile first, two page app for reviewing tennis courts. A user should be able to see a display of courts, search for a specific court, select a court detail view, and leave a review. what should i expect going into this assignment?
+- Great. we will implement improvements now. First, let's improve CourtList page. Implement a filter and sort option below the search bar. Sort by prices. Filter by surface, indoor/outdoor(implement this in the mockdata).
+- Great. Second improvement will be the page name. BYOB Sports should be the app title displayed on the left side of the navbar. In the middle have "Tennis Courts" displayed. Update the tennis courts location to be from around the US. Update the tennis court photos to  photos on unsplash  under "tennis court". this is the link for the search on unsplash: @https://unsplash.com/s/photos/tennis-court 
+- update the court images to be populated from /static/court_images folder. only use the ones in that folder.
+- Great. Now 
+Cursor, create a responsive navbar in React with Tailwind CSS. The navbar should have a yellow background (#F7F76D). On the left side, place the logo stored in public folder called "byob_logo.avif". On the right side, include three nav links: "Our Community", "What We Do", and "Contact Us" in bold dark green (#004225).On hover, each nav link should turn bold orange (#FF8C42). "What We Do" should show a dropdown menu on hover (desktop) with two options: "Get Rated by a Pro" and "Have a Partner to Practice". "Contact Us" should show a dropdown menu on hover (desktop) with two options: "Contact Us" and "Coach Registration". The links should be horizontally aligned with spacing, and vertically centered. Add Tailwind transitions so hover effects and dropdown menus feel smooth. The navbar should have padding and look professional and minimal. Make it mobile-friendly: on smaller screens collapse into a hamburger menu that opens a dropdown list, with "What We Do" and "Contact Us" expandable to show their submenu options.
+- It looks like you're trying to use `tailwindcss` directly as a PostCSS plugin. The PostCSS plugin has moved to a separate package, so to continue using Tailwind CSS with PostCSS you'll need to install `@tailwindcss/postcss` and update your PostCSS configuration.
+- Let's improve the second page of court detail view now. First let's fix some bugs. When a review is left, the helpful button coun't doesn't get increased and by deafult looks "helpful()". make the default "helpful (0)"  Allow for choosing and unchoosing the button. Allow for an unhelpful button as well.
+- Make sure to add a router to a court specific page route so when the user refreshes th epage, they will stay in the same court detail view and not be taken to the main page.
+- Great. Now make the "back to courts" button #F7F76D and "add review" button #004225
+- now remove the cancel-review button and replace with an "x" inside the review-form box by the right top corner. Make sure to not display add review button when review-form is active.
+- great. also make sure to change the amenities objecst boxes text color to #004225 and make the box color in a simlar lighter tone.
+- Use a different search icon. import { Search } from "lucide-react"; <button className="p-2 bg-[#004225] text-white rounded-full hover:bg-[#FF8C42]">
+  <Search size={20} />
+</button>
+- add contact information and work hours section for the courts. populate the mock data and update the court detail view. Also update so a court can have both an indoor and outdoor court
+- make the contact information and operating hours clickable dropdowns so they don't take space on the screen when not needed
+- Fix the css so that the information in contact information and operating hours are more compact, have better spacing and display correctly even on small/tight screens
+- create a README.md in coding-challenges stating how we met the challenge requirements and summarizing the design practices and features.
+
+
 ## 🎉 Conclusion
 
 This tennis court review application successfully meets all challenge requirements while implementing modern web development best practices. The mobile-first design ensures excellent user experience across all devices, while the component-based architecture provides a solid foundation for future enhancements.
