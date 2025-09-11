@@ -2,7 +2,7 @@
 module.exports = {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
-    "./public/index.html",
+    "./public/index.html"
   ],
   theme: {
     extend: {
@@ -15,3 +15,4 @@ module.exports = {
   },
   plugins: [],
 }
+
