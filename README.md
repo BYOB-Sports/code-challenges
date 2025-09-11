@@ -3,7 +3,7 @@
 A mobile-first, two-page React application for reviewing tennis courts, built with React, JavaScript, Tailwind, CSS, HTML.
 
 Challenge start time: 6:50 pm September 10th 2025
-Challenge finish time: 10:32 pm September 10th 2025
+Challenge finish time: 10:40 pm September 10th 2025
 
 ## 🎯 Challenge Requirements Met
 
@@ -23,6 +23,34 @@ Challenge finish time: 10:32 pm September 10th 2025
 - ✅ **Operating Hours**: Daily schedules with collapsible dropdown interface
 - ✅ **Mixed Court Types**: Support for indoor, outdoor, and indoor/outdoor facilities
 - ✅ **Professional Branding**: BYOB Sports branding with custom colors and logo
+
+### Future Features I'd Implement ###
+- Have picture slide show in detailed view page
+- Tennis court inspired background
+- Have spinner/loader be an animated tennis ball
+
+### Visuals ###
+<img width="329" height="586" alt="Screenshot 2025-09-10 at 10 38 11 PM" src="https://github.com/user-attachments/assets/c287c1c0-b9fd-481b-89ef-74468cdaa7eb" />
+<img width="325" height="580" alt="Screenshot 2025-09-10 at 10 37 56 PM" src="https://github.com/user-attachments/assets/5d16e250-fc12-40cc-8cd0-ae91f3eac836" />
+<img width="320" height="584" alt="Screenshot 2025-09-10 at 10 37 23 PM" src="https://github.com/user-attachments/assets/be739b03-6246-4860-b9d2-78962107222e" />
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js 14+ and npm
+- Modern web browser
+
+### Installation
+```bash
+cd frontend-challenge
+npm install
+npm start
+```
+
+### Available Scripts
+- `npm start`: Development server on http://localhost:3000
+- `npm build`: Production build
+- `npm test`: Run test suite
 
 ## 🏗️ Technical Architecture
 
@@ -153,24 +181,6 @@ frontend-challenge/
 - **Image Optimization**: Compressed images with appropriate formats
 - **CSS Efficiency**: Utility-first approach with Tailwind CSS
 - **React Best Practices**: Efficient re-rendering and state management
-
-## 🚀 Getting Started
-
-### Prerequisites
-- Node.js 14+ and npm
-- Modern web browser
-
-### Installation
-```bash
-cd frontend-challenge
-npm install
-npm start
-```
-
-### Available Scripts
-- `npm start`: Development server on http://localhost:3000
-- `npm build`: Production build
-- `npm test`: Run test suite
 
 ## 📊 Data Structure
 
