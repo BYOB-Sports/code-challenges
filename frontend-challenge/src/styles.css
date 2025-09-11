@@ -110,3 +110,18 @@ body{
 
 /* Responsive nicety */
 @media (min-width:768px){ .app-main{padding:20px} }
+
+/* Subtle feedback */
+.card:hover { transform: translateY(-1px); transition: transform .15s ease; }
+.button.primary:hover { filter: brightness(1.05); }
+
+/* Simple loader (used by <Loader/>) */
+.loader {
+  text-align: center;
+  padding: 40px 0;
+  color: var(--muted);
+}
+
+/* Optional: small paragraph reset inside tiles so text wraps nicely */
+.tile p { margin: 0; }
+
