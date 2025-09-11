@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* Reset and base styles */
 * {
   margin: 0;
@@ -32,19 +36,45 @@ code {
 .app-header {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
-  padding: 1rem;
-  text-align: center;
+  padding: 0;
   box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
-.app-header h1 {
-  font-size: 1.5rem;
-  font-weight: 700;
-  margin-bottom: 0.25rem;
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.app-header p {
-  font-size: 0.9rem;
+.navbar-left {
+  flex: 1;
+}
+
+.navbar-center {
+  flex: 2;
+  text-align: center;
+}
+
+.navbar-right {
+  flex: 1;
+  text-align: right;
+}
+
+.app-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+  color: white;
+}
+
+.page-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0;
+  color: white;
   opacity: 0.9;
 }
 
@@ -111,12 +141,16 @@ input:focus, textarea:focus {
 
 /* Responsive design */
 @media (min-width: 768px) {
-  .app-header h1 {
+  .navbar {
+    padding: 1.5rem 2rem;
+  }
+  
+  .app-title {
     font-size: 2rem;
   }
   
-  .app-header p {
-    font-size: 1rem;
+  .page-title {
+    font-size: 1.4rem;
   }
   
   .app-main {

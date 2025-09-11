@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
+import Navbar from './components/Navbar';
 import CourtList from './components/CourtList';
 import CourtDetail from './components/CourtDetail';
 import { mockCourts, mockReviews } from './data/mockCourts';
@@ -53,10 +54,7 @@ function App() {
 
   return (
     <div className="App">
-      <header className="app-header">
-        <h1>Tennis Court Reviewer</h1>
-        <p>Find and review the best tennis courts in NYC</p>
-      </header>
+      <Navbar />
       
       <main className="app-main">
         {currentPage === 'list' ? (
