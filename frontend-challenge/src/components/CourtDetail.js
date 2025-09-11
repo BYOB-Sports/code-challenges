@@ -125,6 +125,52 @@ const CourtDetail = ({ court, reviews, onBack, onReviewSubmit }) => {
             <h3>Description</h3>
             <p>{court.description}</p>
           </div>
+
+          {court.contact && (
+            <div className="contact-section">
+              <h3>Contact Information</h3>
+              <div className="contact-info">
+                <div className="contact-item">
+                  <strong>Phone:</strong> {court.contact.phone}
+                </div>
+                <div className="contact-item">
+                  <strong>Email:</strong> {court.contact.email}
+                </div>
+                <div className="contact-item">
+                  <strong>Website:</strong> {court.contact.website}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {court.hours && (
+            <div className="hours-section">
+              <h3>Operating Hours</h3>
+              <div className="hours-info">
+                <div className="hours-item">
+                  <strong>Monday:</strong> {court.hours.monday}
+                </div>
+                <div className="hours-item">
+                  <strong>Tuesday:</strong> {court.hours.tuesday}
+                </div>
+                <div className="hours-item">
+                  <strong>Wednesday:</strong> {court.hours.wednesday}
+                </div>
+                <div className="hours-item">
+                  <strong>Thursday:</strong> {court.hours.thursday}
+                </div>
+                <div className="hours-item">
+                  <strong>Friday:</strong> {court.hours.friday}
+                </div>
+                <div className="hours-item">
+                  <strong>Saturday:</strong> {court.hours.saturday}
+                </div>
+                <div className="hours-item">
+                  <strong>Sunday:</strong> {court.hours.sunday}
+                </div>
+              </div>
+            </div>
+          )}
         </div>
 
         <div className="reviews-section">

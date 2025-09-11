@@ -14,7 +14,21 @@ export const mockCourts = [
     amenities: ["Lighting", "Pro Shop", "Restrooms", "Parking"],
     description: "Beautiful courts in the heart of Central Park with professional lighting and well-maintained surfaces.",
     image: "/court_images/court1.avif",
-    coordinates: { lat: 40.7829, lng: -73.9654 }
+    coordinates: { lat: 40.7829, lng: -73.9654 },
+    contact: {
+      phone: "(212) 555-0123",
+      email: "info@centralparktennis.com",
+      website: "www.centralparktennis.com"
+    },
+    hours: {
+      monday: "6:00 AM - 10:00 PM",
+      tuesday: "6:00 AM - 10:00 PM",
+      wednesday: "6:00 AM - 10:00 PM",
+      thursday: "6:00 AM - 10:00 PM",
+      friday: "6:00 AM - 10:00 PM",
+      saturday: "7:00 AM - 9:00 PM",
+      sunday: "7:00 AM - 9:00 PM"
+    }
   },
   {
     id: 2,
@@ -30,7 +44,21 @@ export const mockCourts = [
     amenities: ["Lighting", "Restrooms", "Parking", "Locker Rooms"],
     description: "Premium clay courts with excellent drainage and professional maintenance.",
     image: "/court_images/court2.avif",
-    coordinates: { lat: 40.7831, lng: -73.9712 }
+    coordinates: { lat: 40.7831, lng: -73.9712 },
+    contact: {
+      phone: "(212) 555-0456",
+      email: "info@riversidetennis.com",
+      website: "www.riversidetennis.com"
+    },
+    hours: {
+      monday: "5:30 AM - 11:00 PM",
+      tuesday: "5:30 AM - 11:00 PM",
+      wednesday: "5:30 AM - 11:00 PM",
+      thursday: "5:30 AM - 11:00 PM",
+      friday: "5:30 AM - 11:00 PM",
+      saturday: "6:00 AM - 10:00 PM",
+      sunday: "6:00 AM - 10:00 PM"
+    }
   },
   {
     id: 3,
@@ -46,7 +74,21 @@ export const mockCourts = [
     amenities: ["Lighting", "Restrooms", "Water Fountain"],
     description: "Stunning waterfront location with views of Manhattan skyline and Brooklyn Bridge.",
     image: "/court_images/court3.avif",
-    coordinates: { lat: 40.6962, lng: -73.9969 }
+    coordinates: { lat: 40.6962, lng: -73.9969 },
+    contact: {
+      phone: "(718) 555-0789",
+      email: "info@brooklynbridgecourts.com",
+      website: "www.brooklynbridgecourts.com"
+    },
+    hours: {
+      monday: "6:00 AM - 9:00 PM",
+      tuesday: "6:00 AM - 9:00 PM",
+      wednesday: "6:00 AM - 9:00 PM",
+      thursday: "6:00 AM - 9:00 PM",
+      friday: "6:00 AM - 9:00 PM",
+      saturday: "7:00 AM - 8:00 PM",
+      sunday: "7:00 AM - 8:00 PM"
+    }
   },
   {
     id: 4,
@@ -58,11 +100,25 @@ export const mockCourts = [
     courts: 16,
     price: "$22/hour",
     priceValue: 22,
-    type: "Outdoor",
+    type: "Indoor/Outdoor",
     amenities: ["Lighting", "Pro Shop", "Restrooms", "Parking", "Locker Rooms"],
     description: "Large facility with multiple court types and professional coaching available.",
     image: "/court_images/court5.avif",
-    coordinates: { lat: 40.7505, lng: -73.8444 }
+    coordinates: { lat: 40.7505, lng: -73.8444 },
+    contact: {
+      phone: "(718) 555-0789",
+      email: "info@queenstennis.com",
+      website: "www.queenstennis.com"
+    },
+    hours: {
+      monday: "5:00 AM - 11:00 PM",
+      tuesday: "5:00 AM - 11:00 PM",
+      wednesday: "5:00 AM - 11:00 PM",
+      thursday: "5:00 AM - 11:00 PM",
+      friday: "5:00 AM - 11:00 PM",
+      saturday: "6:00 AM - 10:00 PM",
+      sunday: "6:00 AM - 10:00 PM"
+    }
   },
   {
     id: 5,
@@ -78,7 +134,21 @@ export const mockCourts = [
     amenities: ["Lighting", "Restrooms"],
     description: "Community courts with friendly atmosphere and reasonable rates.",
     image: "/court_images/court6.avif",
-    coordinates: { lat: 40.5784, lng: -73.9442 }
+    coordinates: { lat: 40.5784, lng: -73.9442 },
+    contact: {
+      phone: "(718) 555-0123",
+      email: "info@manhattanbeachtennis.com",
+      website: "www.manhattanbeachtennis.com"
+    },
+    hours: {
+      monday: "6:00 AM - 9:00 PM",
+      tuesday: "6:00 AM - 9:00 PM",
+      wednesday: "6:00 AM - 9:00 PM",
+      thursday: "6:00 AM - 9:00 PM",
+      friday: "6:00 AM - 9:00 PM",
+      saturday: "7:00 AM - 8:00 PM",
+      sunday: "7:00 AM - 8:00 PM"
+    }
   },
   {
     id: 6,

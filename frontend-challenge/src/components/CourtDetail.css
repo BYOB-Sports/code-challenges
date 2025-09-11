@@ -487,6 +487,90 @@
 }
 
 /* High contrast mode */
+/* Contact and Hours Sections */
+.contact-section,
+.hours-section {
+  margin: 1.5rem 0;
+  padding: 1.5rem;
+  background: #f8f9fa;
+  border-radius: 12px;
+  border-left: 4px solid #004225;
+}
+
+.contact-section h3,
+.hours-section h3 {
+  color: #004225;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.contact-info,
+.hours-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.contact-item,
+.hours-item {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.contact-item:last-child,
+.hours-item:last-child {
+  border-bottom: none;
+}
+
+.contact-item strong,
+.hours-item strong {
+  color: #004225;
+  min-width: 80px;
+  margin-right: 1rem;
+  font-weight: 600;
+}
+
+.contact-item span,
+.hours-item span {
+  color: #333;
+  flex: 1;
+}
+
+/* Responsive Design for Contact and Hours */
+@media (min-width: 768px) {
+  .contact-section,
+  .hours-section {
+    margin: 2rem 0;
+    padding: 2rem;
+  }
+  
+  .contact-info,
+  .hours-info {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  
+  .contact-item,
+  .hours-item {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0.75rem;
+    background: white;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+  }
+  
+  .contact-item strong,
+  .hours-item strong {
+    margin-bottom: 0.25rem;
+    margin-right: 0;
+  }
+}
+
 @media (prefers-contrast: high) {
   .amenity-item {
     border: 2px solid #000;
@@ -494,5 +578,15 @@
   
   .review-item {
     border-bottom: 2px solid #000;
+  }
+  
+  .contact-section,
+  .hours-section {
+    border-left: 4px solid #000;
+  }
+  
+  .contact-item,
+  .hours-item {
+    border: 2px solid #000;
   }
 }
