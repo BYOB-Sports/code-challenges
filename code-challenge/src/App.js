@@ -1,48 +1,25 @@
-import React, { useState, useEffect } from 'react';
-import './App.css';
-import PlayersList from './components/PlayersList';
-import MatchRating from './components/MatchRating';
-import { fetchPlayers } from './api/playerApi';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import CourtList from "./pages/CourtList";
+import CourtDetail from "./pages/CourtDetail";
+import "./App.css";
 
 function App() {
-  const [activeTab, setActiveTab] = useState('players');
-  const [players, setPlayers] = useState([]);
-
-  useEffect(() => {
-    // Load initial player data
-    const loadPlayers = async () => {
-      const loadedPlayers = await fetchPlayers();
-      setPlayers(loadedPlayers);
-    };
-    
-    loadPlayers();
-  }, []);
-
   return (
     <div className="App">
       <header className="App-header">
-        <h1>USTA Player Rating System</h1>
-        <div className="tabs">
-          <button 
-            className={activeTab === 'players' ? 'active' : ''} 
-            onClick={() => setActiveTab('players')}
-          >
-            Players
-          </button>
-          <button 
-            className={activeTab === 'matches' ? 'active' : ''} 
-            onClick={() => setActiveTab('matches')}
-          >
-            Match Ratings
-          </button>
-        </div>
+        <h1>Tennis Court Review App</h1>
       </header>
+
       <main>
-        {activeTab === 'players' ? (
-          <PlayersList players={players} />
-        ) : (
-          <MatchRating players={players} setPlayers={setPlayers} />
-        )}
+        <BrowserRouter>
+          <Routes>
+            {/* Home shows list of courts */}
+            <Route path="/" element={<CourtList />} />
+
+            {/* Detail view for a specific court */}
+            <Route path="/court/:id" element={<CourtDetail />} />
+          </Routes>
+        </BrowserRouter>
       </main>
     </div>
   );
