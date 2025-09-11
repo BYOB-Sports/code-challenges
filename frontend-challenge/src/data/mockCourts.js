@@ -164,7 +164,21 @@ export const mockCourts = [
     amenities: ["Lighting", "Restrooms", "Parking", "Pro Shop"],
     description: "Well-maintained courts in beautiful Prospect Park setting.",
     image: "/court_images/court7.avif",
-    coordinates: { lat: 40.6602, lng: -73.9690 }
+    coordinates: { lat: 40.6602, lng: -73.9690 },
+    contact: {
+      phone: "(718) 555-0456",
+      email: "info@prospectparktennis.com",
+      website: "www.prospectparktennis.com"
+    },
+    hours: {
+      monday: "6:00 AM - 9:00 PM",
+      tuesday: "6:00 AM - 9:00 PM",
+      wednesday: "6:00 AM - 9:00 PM",
+      thursday: "6:00 AM - 9:00 PM",
+      friday: "6:00 AM - 9:00 PM",
+      saturday: "7:00 AM - 8:00 PM",
+      sunday: "7:00 AM - 8:00 PM"
+    }
   },
   {
     id: 7,
@@ -180,7 +194,21 @@ export const mockCourts = [
     amenities: ["Lighting", "Restrooms", "Water Fountain"],
     description: "Unique island location with panoramic city views and peaceful atmosphere.",
     image: "/court_images/court1.avif",
-    coordinates: { lat: 40.7590, lng: -73.9535 }
+    coordinates: { lat: 40.7590, lng: -73.9535 },
+    contact: {
+      phone: "(212) 555-0789",
+      email: "info@rooseveltislandtennis.com",
+      website: "www.rooseveltislandtennis.com"
+    },
+    hours: {
+      monday: "6:00 AM - 10:00 PM",
+      tuesday: "6:00 AM - 10:00 PM",
+      wednesday: "6:00 AM - 10:00 PM",
+      thursday: "6:00 AM - 10:00 PM",
+      friday: "6:00 AM - 10:00 PM",
+      saturday: "7:00 AM - 9:00 PM",
+      sunday: "7:00 AM - 9:00 PM"
+    }
   },
   {
     id: 8,
@@ -196,7 +224,21 @@ export const mockCourts = [
     amenities: ["Lighting", "Restrooms"],
     description: "Affordable community courts with good lighting for evening play.",
     image: "/court_images/court2.avif",
-    coordinates: { lat: 40.7820, lng: -73.9212 }
+    coordinates: { lat: 40.7820, lng: -73.9212 },
+    contact: {
+      phone: "(718) 555-0123",
+      email: "info@astoriaparktennis.com",
+      website: "www.astoriaparktennis.com"
+    },
+    hours: {
+      monday: "6:00 AM - 9:00 PM",
+      tuesday: "6:00 AM - 9:00 PM",
+      wednesday: "6:00 AM - 9:00 PM",
+      thursday: "6:00 AM - 9:00 PM",
+      friday: "6:00 AM - 9:00 PM",
+      saturday: "7:00 AM - 8:00 PM",
+      sunday: "7:00 AM - 8:00 PM"
+    }
   },
   {
     id: 9,
