@@ -1,0 +1,111 @@
+.page-container {
+  padding: 0 16px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.search-bar-wrapper {
+  margin: 24px 0 32px 0;
+  width: 100%;
+}
+
+.search-bar-wrapper input {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.court-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.court-card {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  padding: 16px; /* Ensures equal left/right/top/bottom space */
+  /* width: 100%; */
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.court-image {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 14px;
+}
+
+.court-title {
+  font-size: 1.25rem;
+  color: #2196f3;
+  font-weight: 700;
+  margin-bottom: 4px;
+  letter-spacing: 1px;
+  text-align: left;
+}
+
+/* Location left, rating right */
+.court-location-rating-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 2px;
+}
+
+.court-location {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #2196f3;
+  font-size: 1.18rem;
+  font-weight: 700;
+}
+
+.court-rating {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #2196f3;
+  font-size: 1.13rem;
+  font-weight: 700;
+}
+
+/* Court count left (with emoji), icons right */
+.court-details-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: 5px;
+}
+
+.court-num {
+  color: #222;
+  font-weight: 700;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.court-icons {
+  display: flex;
+  gap: 8px;
+}
+
+.court-icon {
+  background: #e3eafc;
+  border-radius: 10px;
+  padding: 6px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 34px;
+  min-height: 34px;
+}
+
