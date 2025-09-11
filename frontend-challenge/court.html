@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Court Detail</title>
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <header class="header">
+    <div class="brand">
+      <a href="index.html" aria-label="Back to list">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M15 6l-6 6 6 6" stroke="#7cc7ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <h1 id="title">Court</h1>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <div class="detail-hero">
+        <div class="thumb" id="thumb"></div>
+        <div>
+          <h2 class="detail-title" id="name">Loading…</h2>
+          <div class="stars" id="stars"></div>
+          <div class="small" id="meta"></div>
+        </div>
+      </div>
+      <div class="badges" id="amenities"></div>
+      <div class="hr"></div>
+      <div class="small">Open hours</div>
+      <div id="hours" class="small">6:00 AM – 10:00 PM · Lights available</div>
+    </section>
+
+    <section class="card">
+      <h3 style="margin:0 0 8px">Reviews</h3>
+      <div id="reviews" class="review-list"></div>
+      <div class="hr"></div>
+      <form id="review-form" class="form" autocomplete="on">
+        <div class="note">Add your review</div>
+        <input required name="name" placeholder="Your name">
+        <select required name="rating" aria-label="Rating">
+          <option value="5">5 – Loved it</option>
+          <option value="4" selected>4 – Great</option>
+          <option value="3">3 – Okay</option>
+          <option value="2">2 – Meh</option>
+          <option value="1">1 – Avoid</option>
+        </select>
+        <textarea required name="text" rows="4" placeholder="Share details that help others (parking, nets, wait times)…"></textarea>
+        <button class="button" type="submit">Submit review</button>
+      </form>
+    </section>
+
+    <div class="footer"><div class="hint">Your review is stored locally on this device.</div></div>
+  </main>
+
+  <script type="module" src="assets/data.js"></script>
+  <script type="module" src="assets/court.js"></script>
+</body>
+</html>
