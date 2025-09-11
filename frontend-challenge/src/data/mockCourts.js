@@ -815,7 +815,8 @@ export const mockReviews = [
     rating: 5,
     comment: "Excellent courts with perfect lighting and well-maintained surfaces. Highly recommend!",
     date: "2024-01-15",
-    helpful: 12
+    helpful: 12,
+    unhelpful: 2
   },
   {
     id: 2,
@@ -824,7 +825,8 @@ export const mockReviews = [
     rating: 4,
     comment: "Great location and facilities. Only downside is it can get crowded on weekends.",
     date: "2024-01-10",
-    helpful: 8
+    helpful: 8,
+    unhelpful: 1
   },
   {
     id: 3,
@@ -833,7 +835,8 @@ export const mockReviews = [
     rating: 5,
     comment: "Love the clay courts here! Perfect for my playing style and the staff is very friendly.",
     date: "2024-01-12",
-    helpful: 15
+    helpful: 15,
+    unhelpful: 0
   },
   {
     id: 4,
@@ -842,6 +845,7 @@ export const mockReviews = [
     rating: 5,
     comment: "Amazing views of the Manhattan skyline while playing. Worth every penny!",
     date: "2024-01-08",
-    helpful: 20
+    helpful: 20,
+    unhelpful: 3
   }
 ];

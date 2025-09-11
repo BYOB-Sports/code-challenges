@@ -8,6 +8,7 @@ const CourtDetail = ({ court, reviews, onBack, onReviewSubmit }) => {
     rating: 5,
     comment: ''
   });
+  const [userVotes, setUserVotes] = useState({}); // Track user votes for each review
 
   const handleReviewSubmit = (e) => {
     e.preventDefault();
@@ -24,6 +25,43 @@ const CourtDetail = ({ court, reviews, onBack, onReviewSubmit }) => {
       ...prev,
       [name]: value
     }));
+  };
+
+  const handleVote = (reviewId, voteType) => {
+    setUserVotes(prev => {
+      const currentVote = prev[reviewId];
+      let newVote = null;
+      
+      if (currentVote === voteType) {
+        // If clicking the same vote type, remove the vote
+        newVote = null;
+      } else {
+        // Otherwise, set the new vote type
+        newVote = voteType;
+      }
+      
+      return {
+        ...prev,
+        [reviewId]: newVote
+      };
+    });
+  };
+
+  const getVoteCount = (review, voteType) => {
+    const currentVote = userVotes[review.id];
+    let count = review[voteType] || 0;
+    
+    if (currentVote === voteType) {
+      count += 1;
+    } else if (currentVote && currentVote !== voteType) {
+      // If user had voted for the other type, we need to adjust
+      const otherType = voteType === 'helpful' ? 'unhelpful' : 'helpful';
+      if (review[otherType] > 0) {
+        count = Math.max(0, count);
+      }
+    }
+    
+    return count;
   };
 
   const renderStars = (rating) => {
@@ -163,8 +201,17 @@ const CourtDetail = ({ court, reviews, onBack, onReviewSubmit }) => {
                 </div>
                 <p className="review-comment">{review.comment}</p>
                 <div className="review-actions">
-                  <button className="helpful-btn">
-                    👍 Helpful ({review.helpful})
+                  <button 
+                    className={`helpful-btn ${userVotes[review.id] === 'helpful' ? 'active' : ''}`}
+                    onClick={() => handleVote(review.id, 'helpful')}
+                  >
+                    👍 Helpful ({getVoteCount(review, 'helpful')})
+                  </button>
+                  <button 
+                    className={`unhelpful-btn ${userVotes[review.id] === 'unhelpful' ? 'active' : ''}`}
+                    onClick={() => handleVote(review.id, 'unhelpful')}
+                  >
+                    👎 Unhelpful ({getVoteCount(review, 'unhelpful')})
                   </button>
                 </div>
               </div>

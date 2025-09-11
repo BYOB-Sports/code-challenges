@@ -324,7 +324,7 @@
   gap: 1rem;
 }
 
-.helpful-btn {
+.helpful-btn, .unhelpful-btn {
   background: none;
   border: 1px solid #e1e5e9;
   color: #666;
@@ -332,12 +332,41 @@
   border-radius: 20px;
   font-size: 0.8rem;
   transition: all 0.2s ease;
+  cursor: pointer;
 }
 
-.helpful-btn:hover {
+.helpful-btn:hover:not(.active) {
   background: #f8f9fa;
-  border-color: #667eea;
-  color: #667eea;
+  border-color: #28a745;
+  color: #28a745;
+}
+
+.unhelpful-btn:hover:not(.active) {
+  background: #f8f9fa;
+  border-color: #dc3545;
+  color: #dc3545;
+}
+
+.helpful-btn.active {
+  background: #28a745;
+  border-color: #28a745;
+  color: white;
+}
+
+.unhelpful-btn.active {
+  background: #dc3545;
+  border-color: #dc3545;
+  color: white;
+}
+
+.helpful-btn:not(.active):not(:hover) {
+  border-color: #e1e5e9;
+  color: #666;
+}
+
+.unhelpful-btn:not(.active):not(:hover) {
+  border-color: #e1e5e9;
+  color: #666;
 }
 
 /* Responsive Design */
