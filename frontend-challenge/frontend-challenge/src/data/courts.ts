@@ -1,0 +1,280 @@
+import { Court, Review } from '../types/court';
+import court1 from '../assets/tennis-court-1.jpg';
+import court2 from '../assets/tennis-court-2.jpg';
+import court3 from '../assets/tennis-court-3.jpg';
+import court4 from '../assets/tennis-court-4.jpg';
+
+const courtImages = [court1, court2, court3, court4];
+
+export const courts: Court[] = [
+  {
+    id: '1',
+    name: 'Wimbledon Gardens Club',
+    location: 'London, UK',
+    surfaceType: 'grass',
+    rating: 4.9,
+    reviewCount: 127,
+    price: 45,
+    image: court4,
+    amenities: ['Pro Shop', 'Parking', 'Locker Rooms', 'Refreshments'],
+    description: 'Premier grass courts reminiscent of Wimbledon. Immaculately maintained with traditional charm.',
+    lighting: true,
+    covered: false,
+    bookingRequired: true,
+  },
+  {
+    id: '2',
+    name: 'Clay Court Championship',
+    location: 'Roland Garros District, Paris',
+    surfaceType: 'clay',
+    rating: 4.8,
+    reviewCount: 89,
+    price: 38,
+    image: court2,
+    amenities: ['Equipment Rental', 'Coaching', 'Parking', 'Showers'],
+    description: 'Authentic European clay courts perfect for developing your all-court game.',
+    lighting: true,
+    covered: false,
+    bookingRequired: true,
+  },
+  {
+    id: '3',
+    name: 'Metropolitan Tennis Center',
+    location: 'Manhattan, NY',
+    surfaceType: 'hard',
+    rating: 4.7,
+    reviewCount: 203,
+    price: 55,
+    image: court1,
+    amenities: ['Indoor Courts', 'Pro Shop', 'Fitness Center', 'Café'],
+    description: 'Modern facility in the heart of the city with both indoor and outdoor courts.',
+    lighting: true,
+    covered: true,
+    bookingRequired: true,
+  },
+  {
+    id: '4',
+    name: 'Elite Indoor Arena',
+    location: 'Downtown, Chicago',
+    surfaceType: 'indoor',
+    rating: 4.6,
+    reviewCount: 156,
+    price: 42,
+    image: court3,
+    amenities: ['Climate Control', 'Professional Lighting', 'Spectator Seating', 'Equipment Storage'],
+    description: 'Year-round climate-controlled courts with professional tournament lighting.',
+    lighting: true,
+    covered: true,
+    bookingRequired: true,
+  },
+  // Adding 46 more courts to reach 50+ for scalability testing
+  {
+    id: '5',
+    name: 'Sunset Valley Courts',
+    location: 'Austin, TX',
+    surfaceType: 'hard',
+    rating: 4.5,
+    reviewCount: 78,
+    price: 32,
+    image: court1,
+    amenities: ['Parking', 'Water Fountains', 'Benches'],
+    description: 'Community courts with beautiful sunset views over the valley.',
+    lighting: true,
+    covered: false,
+    bookingRequired: false,
+  },
+  {
+    id: '6',
+    name: 'Ocean Breeze Tennis Club',
+    location: 'Miami Beach, FL',
+    surfaceType: 'hard',
+    rating: 4.4,
+    reviewCount: 92,
+    price: 40,
+    image: court1,
+    amenities: ['Ocean View', 'Beach Access', 'Parking', 'Refreshments'],
+    description: 'Beachside courts with stunning ocean views and sea breeze.',
+    lighting: true,
+    covered: false,
+    bookingRequired: true,
+  },
+  {
+    id: '7',
+    name: 'Mountain Peak Tennis',
+    location: 'Denver, CO',
+    surfaceType: 'hard',
+    rating: 4.3,
+    reviewCount: 65,
+    price: 35,
+    image: court1,
+    amenities: ['Mountain Views', 'High Altitude Training', 'Parking'],
+    description: 'High-altitude training facility with breathtaking mountain views.',
+    lighting: true,
+    covered: false,
+    bookingRequired: false,
+  },
+  {
+    id: '8',
+    name: 'Royal Clay Courts',
+    location: 'San Diego, CA',
+    surfaceType: 'clay',
+    rating: 4.7,
+    reviewCount: 134,
+    price: 48,
+    image: court2,
+    amenities: ['Pro Shop', 'Coaching', 'Showers', 'Locker Rooms'],
+    description: 'Premium clay courts maintained to tournament standards.',
+    lighting: true,
+    covered: false,
+    bookingRequired: true,
+  },
+  {
+    id: '9',
+    name: 'City Center Courts',
+    location: 'Seattle, WA',
+    surfaceType: 'indoor',
+    rating: 4.2,
+    reviewCount: 87,
+    price: 38,
+    image: court3,
+    amenities: ['Climate Control', 'Downtown Location', 'Public Transport'],
+    description: 'Convenient downtown indoor courts perfect for year-round play.',
+    lighting: true,
+    covered: true,
+    bookingRequired: true,
+  },
+  {
+    id: '10',
+    name: 'Riverside Tennis Park',
+    location: 'Portland, OR',
+    surfaceType: 'hard',
+    rating: 4.1,
+    reviewCount: 56,
+    price: 28,
+    image: court1,
+    amenities: ['Riverside Views', 'Picnic Area', 'Parking', 'Family Friendly'],
+    description: 'Family-friendly courts alongside the beautiful riverside park.',
+    lighting: false,
+    covered: false,
+    bookingRequired: false,
+  },
+];
+
+// Generate additional courts to reach 50+
+const generateAdditionalCourts = (): Court[] => {
+  const locations = [
+    'Phoenix, AZ', 'Las Vegas, NV', 'Salt Lake City, UT', 'Albuquerque, NM',
+    'Oklahoma City, OK', 'Kansas City, MO', 'Nashville, TN', 'Atlanta, GA',
+    'Charlotte, NC', 'Raleigh, NC', 'Virginia Beach, VA', 'Baltimore, MD',
+    'Philadelphia, PA', 'Boston, MA', 'Providence, RI', 'Hartford, CT',
+    'Albany, NY', 'Buffalo, NY', 'Detroit, MI', 'Milwaukee, WI',
+    'Minneapolis, MN', 'Des Moines, IA', 'Omaha, NE', 'Topeka, KS',
+    'Little Rock, AR', 'Memphis, TN', 'Louisville, KY', 'Indianapolis, IN',
+    'Columbus, OH', 'Pittsburgh, PA', 'Richmond, VA', 'Charleston, SC',
+    'Savannah, GA', 'Jacksonville, FL', 'Tampa, FL', 'Orlando, FL',
+    'New Orleans, LA', 'Houston, TX', 'San Antonio, TX', 'Dallas, TX',
+  ];
+
+  const courtNames = [
+    'Tennis Excellence Center', 'Championship Courts', 'Premier Tennis Club',
+    'Athletic Performance Courts', 'Victory Tennis Academy', 'Grand Slam Courts',
+    'Professional Tennis Center', 'Elite Player Courts', 'Champion Sports Complex',
+    'Tennis Mastery Club', 'Court Legends Tennis', 'Tournament Ready Courts',
+    'All-Star Tennis Facility', 'Tennis Dynasty Courts', 'Performance Tennis Center',
+    'Excellence Tennis Academy', 'Champions League Courts', 'Pro Tennis Complex',
+    'Tennis Elite Center', 'Victory Lane Courts', 'Master Tennis Club',
+    'Tennis Champions Arena', 'Peak Performance Courts', 'Tennis Excellence Hub',
+    'Championship Tennis Center', 'Elite Training Courts', 'Tennis Masters Club',
+    'Professional Courts Complex', 'Tournament Tennis Center', 'Victory Tennis Complex',
+    'Tennis Performance Center', 'Championship Elite Courts', 'Pro Level Tennis',
+    'Tennis Excellence Arena', 'Master Class Courts', 'Tennis Victory Center',
+    'Elite Performance Tennis', 'Championship Ready Courts', 'Tennis Masters Arena',
+    'Professional Elite Courts'
+  ];
+
+  const surfaceTypes: Court['surfaceType'][] = ['hard', 'clay', 'grass', 'indoor'];
+  const amenitiesOptions = [
+    ['Parking', 'Water Fountains'],
+    ['Pro Shop', 'Coaching', 'Parking'],
+    ['Locker Rooms', 'Showers', 'Equipment Rental'],
+    ['Café', 'Fitness Center', 'Parking'],
+    ['Spectator Seating', 'Parking', 'Refreshments'],
+    ['Equipment Storage', 'Professional Lighting'],
+    ['Climate Control', 'Air Conditioning'],
+  ];
+
+  return Array.from({ length: 40 }, (_, index) => {
+    const id = (index + 11).toString();
+    const surfaceType = surfaceTypes[index % 4];
+    const imageIndex = index % 4;
+    
+    return {
+      id,
+      name: courtNames[index],
+      location: locations[index],
+      surfaceType,
+      rating: Number((3.8 + Math.random() * 1.2).toFixed(1)),
+      reviewCount: Math.floor(Math.random() * 150) + 20,
+      price: Math.floor(Math.random() * 40) + 25,
+      image: courtImages[imageIndex],
+      amenities: amenitiesOptions[index % amenitiesOptions.length],
+      description: `Quality ${surfaceType} tennis courts with excellent facilities and professional maintenance.`,
+      lighting: Math.random() > 0.3,
+      covered: surfaceType === 'indoor' || Math.random() > 0.7,
+      bookingRequired: Math.random() > 0.4,
+    };
+  });
+};
+
+export const allCourts = [...courts, ...generateAdditionalCourts()];
+
+export const reviews: Review[] = [
+  {
+    id: '1',
+    courtId: '1',
+    userName: 'Sarah Johnson',
+    rating: 5,
+    comment: 'Amazing grass courts! Feels like playing at Wimbledon. The maintenance is impeccable.',
+    date: '2024-01-15',
+  },
+  {
+    id: '2',
+    courtId: '1',
+    userName: 'Mike Chen',
+    rating: 5,
+    comment: 'Best grass courts in the city. Booking is essential but totally worth it.',
+    date: '2024-01-10',
+  },
+  {
+    id: '3',
+    courtId: '2',
+    userName: 'Emma Rodriguez',
+    rating: 4,
+    comment: 'Love the clay courts! Great for improving footwork and strategy.',
+    date: '2024-01-12',
+  },
+  {
+    id: '4',
+    courtId: '2',
+    userName: 'Alex Thompson',
+    rating: 5,
+    comment: 'Authentic European clay experience. The coaching here is top-notch.',
+    date: '2024-01-08',
+  },
+  {
+    id: '5',
+    courtId: '3',
+    userName: 'Jennifer Kim',
+    rating: 5,
+    comment: 'Perfect location in Manhattan. Indoor courts are great for winter training.',
+    date: '2024-01-14',
+  },
+  {
+    id: '6',
+    courtId: '4',
+    userName: 'David Wilson',
+    rating: 4,
+    comment: 'Excellent indoor facility. Climate control makes year-round play comfortable.',
+    date: '2024-01-11',
+  },
+];
