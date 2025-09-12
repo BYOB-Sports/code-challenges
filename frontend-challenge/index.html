@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tennis Court Reviews</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <!-- Courts List Page -->
+        <div id="courts-page" class="page active">
+            <header class="header">
+                <h1><i class="fas fa-tennis-ball"></i> Tennis Courts</h1>
+                <div class="search-container">
+                    <input type="text" id="search-input" placeholder="Search courts..." class="search-input">
+                    <i class="fas fa-search search-icon"></i>
+                </div>
+            </header>
+            
+            <div class="filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="outdoor">Outdoor</button>
+                <button class="filter-btn" data-filter="indoor">Indoor</button>
+                <button class="filter-btn" data-filter="clay">Clay</button>
+                <button class="filter-btn" data-filter="hard">Hard Court</button>
+            </div>
+            
+            <div id="courts-list" class="courts-list">
+                <!-- Courts will be dynamically loaded here -->
+            </div>
+        </div>
+
+        <!-- Court Detail Page -->
+        <div id="court-detail-page" class="page">
+            <header class="header">
+                <button id="back-btn" class="back-btn">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <h1 id="court-title">Court Details</h1>
+            </header>
+            
+            <div id="court-detail-content" class="court-detail">
+                <!-- Court details will be dynamically loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
