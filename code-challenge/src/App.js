@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import './App.css';
-import PlayersList from './components/PlayersList';
-import MatchRating from './components/MatchRating';
+import React, { useEffect, useState } from 'react';
 import { fetchPlayers } from './api/playerApi';
+import './App.css';
+import MatchRating from './components/MatchRating';
+import PlayersList from './components/PlayersList';
 
 function App() {
   const [activeTab, setActiveTab] = useState('players');
