@@ -1,0 +1,15 @@
+{
+  "short_name": "BYOB Sports",
+  "name": "BYOB Sports - Tennis Court Reviews",
+  "icons": [
+    {
+      "src": "byob_icon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#F7F76D",
+  "background_color": "#ffffff"
+}
