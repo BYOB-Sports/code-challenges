@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { 
   Container, 
@@ -30,7 +30,6 @@ import CourtCard from '../components/CourtCard';
 const Home = () => {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
-  const [filteredCourts, setFilteredCourts] = useState(courtsData);
   const [activeTab, setActiveTab] = useState('all');
   const [sortBy, setSortBy] = useState('recommended');
   const [filters, setFilters] = useState({
@@ -44,57 +43,11 @@ const Home = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
-  // Handle search input change
-  const handleSearchChange = (e) => {
-    const query = e.target.value;
-    setSearchQuery(query);
-    
-    if (query.trim() === '') {
-      setFilteredCourts(courtsData);
-    } else {
-      const results = searchCourts(query);
-      setFilteredCourts(results);
-    }
-  };
-
-  // Handle tab change
-  const handleTabChange = (event, newValue) => {
-    setActiveTab(newValue);
-    // In a real app, you would filter courts based on the tab
-    // For now, we'll just show all courts
-    setFilteredCourts(courtsData);
-  };
-
-  // Handle sort menu
-  const handleSortClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleSortClose = (value) => {
-    setAnchorEl(null);
-    if (value) {
-      setSortBy(value);
-      // In a real app, you would sort the courts based on the selected value
-      // For now, we'll just log the selected sort option
-      console.log('Sort by:', value);
-    }
-  };
-
-  // Toggle mobile filters
-  const toggleMobileFilters = () => {
-    setMobileFiltersOpen(!mobileFiltersOpen);
-  };
-
-  // Handle court click
-  const handleCourtClick = (courtId) => {
-    navigate(`/court/${courtId}`);
-  };
-
   // Get unique surfaces for filters
   const uniqueSurfaces = [...new Set(courtsData.map(court => court.surface))];
 
-  // Apply filters
-  useEffect(() => {
+  // Compute filtered courts directly using useMemo for performance
+  const filteredCourts = useMemo(() => {
     let results = [...courtsData];
 
     // Apply search query
@@ -146,8 +99,46 @@ const Home = () => {
       }
     });
 
-    setFilteredCourts(results);
+    return results;
   }, [searchQuery, filters, sortBy]);
+
+  // Handle search input change
+  const handleSearchChange = (e) => {
+    const query = e.target.value;
+    setSearchQuery(query);
+  };
+
+  // Handle tab change
+  const handleTabChange = (event, newValue) => {
+    setActiveTab(newValue);
+    // In a real app, you would filter courts based on the tab
+    // For now, we'll just show all courts
+  };
+
+  // Handle sort menu
+  const handleSortClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleSortClose = (value) => {
+    setAnchorEl(null);
+    if (value) {
+      setSortBy(value);
+      // In a real app, you would sort the courts based on the selected value
+      // For now, we'll just log the selected sort option
+      console.log('Sort by:', value);
+    }
+  };
+
+  // Toggle mobile filters
+  const toggleMobileFilters = () => {
+    setMobileFiltersOpen(!mobileFiltersOpen);
+  };
+
+  // Handle court click
+  const handleCourtClick = (courtId) => {
+    navigate(`/court/${courtId}`);
+  };
 
   // Clear all filters
   const clearAllFilters = () => {
@@ -194,10 +185,7 @@ const Home = () => {
                 <InputAdornment position="end">
                   <IconButton
                     edge="end"
-                    onClick={() => {
-                      setSearchQuery('');
-                      setFilteredCourts(courtsData);
-                    }}
+                    onClick={() => setSearchQuery('')}
                     size="small"
                   >
                     <Close fontSize="small" />
