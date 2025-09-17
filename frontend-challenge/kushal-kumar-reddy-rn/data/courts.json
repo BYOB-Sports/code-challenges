@@ -1,0 +1,1298 @@
+[
+  {
+    "id": "c-001",
+    "name": "Austin Court 1",
+    "city": "Austin",
+    "surface": "clay",
+    "indoor": false,
+    "lights": false,
+    "rating": 3.3,
+    "ratingsCount": 11,
+    "reviews": [
+      {
+        "id": "r-1-1",
+        "rating": 3,
+        "text": "Good surface and spacing.",
+        "createdAt": "2025-08-01T12:10:00Z"
+      }
+    ]
+  },
+  {
+    "id": "c-002",
+    "name": "Seattle Court 2",
+    "city": "Seattle",
+    "surface": "grass",
+    "indoor": false,
+    "lights": true,
+    "rating": 3.4,
+    "ratingsCount": 12,
+    "reviews": [
+      {
+        "id": "r-2-1",
+        "rating": 3,
+        "text": "Good surface and spacing.",
+        "createdAt": "2025-08-01T12:10:00Z"
+      }
+    ]
+  },
+  {
+    "id": "c-003",
+    "name": "Boston Court 3",
+    "city": "Boston",
+    "surface": "hard",
+    "indoor": true,
+    "lights": false,
+    "rating": 3.5,
+    "ratingsCount": 13,
+    "reviews": [
+      {
+        "id": "r-3-1",
+        "rating": 4,
+        "text": "Good surface and spacing.",
+        "createdAt": "2025-08-01T12:10:00Z"
+      }
+    ]
+  },
+  {
+    "id": "c-004",
+    "name": "Denver Court 4",
+    "city": "Denver",
+    "surface": "clay",
+    "indoor": false,
+    "lights": true,
+    "rating": 3.6,
+    "ratingsCount": 14,
+    "reviews": [
+      {
+        "id": "r-4-1",
+        "rating": 4,
+        "text": "Good surface and spacing.",
+        "createdAt": "2025-08-01T12:10:00Z"
+      }
+    ]
+  },
+  {
+    "id": "c-005",
+    "name": "Atlanta Court 5",
+    "city": "Atlanta",
+    "surface": "grass",
+    "indoor": false,
+    "lights": false,
+    "rating": 3.7,
+    "ratingsCount": 15,
+    "reviews": [
+      {
+        "id": "r-5-1",
+        "rating": 4,
+        "text": "Good surface and spacing.",
+        "createdAt": "2025-08-01T12:10:00Z"
+      }
+    ]
+  },
+  {
+    "id": "c-006",
+    "name": "Phoenix Court 6",
+    "city": "Phoenix",
+    "surface": "hard",
+    "indoor": true,
+    "lights": true,
+    "rating": 3.8,
+    "ratingsCount": 16,
+    "reviews": [
+      {
+        "id": "r-6-1",
+        "rating": 4,
+        "text": "Good surface and spacing.",
+        "createdAt": "2025-08-01T12:10:00Z"
+      }
+    ]
+  },
+  {
+    "id": "c-007",
+    "name": "Miami Court 7",
+    "city": "Miami",
+    "surface": "clay",
+    "indoor": false,
+    "lights": false,
+    "rating": 3.9,
+    "ratingsCount": 17,
+    "reviews": [
+      {
+        "id": "r-7-1",
+        "rating": 4,
+        "text": "Good surface and spacing.",
+        "createdAt": "2025-08-01T12:10:00Z"
+      }
+    ]
+  },
+  {
+    "id": "c-008",
+    "name": "Chicago Court 8",
+    "city": "Chicago",
+    "surface": "grass",
+    "indoor": false,
+    "lights": true,
+    "rating": 4,
+    "ratingsCount": 18,
+    "reviews": [
+      {
+        "id": "r-8-1",
+        "rating": 4,
+        "text": "Good surface and spacing.",
+        "createdAt": "2025-08-01T12:10:00Z"
+      }
+    ]
+  },
+  {
+    "id": "c-009",
+    "name": "New York Court 9",
+    "city": "New York",
+    "surface": "hard",
+    "indoor": true,
+    "lights": false,
+    "rating": 4.1,
+    "ratingsCount": 19,
+    "reviews": [
+      {
+        "id": "r-9-1",
+        "rating": 4,
+        "text": "Good surface and spacing.",
+        "createdAt": "2025-08-01T12:10:00Z"
+      }
+    ]
+  },
+  {
+    "id": "c-010",
+    "name": "Dallas Court 10",
+    "city": "Dallas",
+    "surface": "clay",
+    "indoor": false,
+    "lights": true,
+    "rating": 4.2,
+    "ratingsCount": 20,
+    "reviews": [
+      {
+        "id": "r-10-1",
+        "rating": 4,
+        "text": "Good surface and spacing.",
+        "createdAt": "2025-08-01T12:10:00Z"
+      }
+    ]
+  },
+  {
+    "id": "c-011",
+    "name": "Austin Court 11",
+    "city": "Austin",
+    "surface": "grass",
+    "indoor": false,
+    "lights": false,
+    "rating": 4.3,
+    "ratingsCount": 21,
+    "reviews": [
+      {
+        "id": "r-11-1",
+        "rating": 4,
+        "text": "Good surface and spacing.",
+        "createdAt": "2025-08-01T12:10:00Z"
+      }
+    ]
+  },
+  {
+    "id": "c-012",
+    "name": "Seattle Court 12",
+    "city": "Seattle",
+    "surface": "hard",
+    "indoor": true,
+    "lights": true,
+    "rating": 4.4,
+    "ratingsCount": 22,
+    "reviews": [
+      {
+        "id": "r-12-1",
+        "rating": 4,
+        "text": "Good surface and spacing.",
+        "createdAt": "2025-08-01T12:10:00Z"
+      }
+    ]
+  },
+  {
+    "id": "c-013",
+    "name": "Boston Court 13",
+    "city": "Boston",
+    "surface": "clay",
+    "indoor": false,
+    "lights": false,
+    "rating": 4.5,
+    "ratingsCount": 23,
+    "reviews": [
+      {
+        "id": "r-13-1",
+        "rating": 5,
+        "text": "Good surface and spacing.",
+        "createdAt": "2025-08-01T12:10:00Z"
+      }
+    ]
+  },
+  {
+    "id": "c-014",
+    "name": "Denver Court 14",
+    "city": "Denver",
+    "surface": "grass",
+    "indoor": false,
+    "lights": true,
+    "rating": 4.6,
+    "ratingsCount": 24,
+    "reviews": [
+      {
+        "id": "r-14-1",
+        "rating": 5,
+        "text": "Good surface and spacing.",
+        "createdAt": "2025-08-01T12:10:00Z"
+      }
+    ]
+  },
+  {
+    "id": "c-015",
+    "name": "Atlanta Court 15",
+    "city": "Atlanta",
+    "surface": "hard",
+    "indoor": true,
+    "lights": false,
+    "rating": 4.7,
+    "ratingsCount": 25,
+    "reviews": [
+      {
+        "id": "r-15-1",
+        "rating": 5,
+        "text": "Good surface and spacing.",
+        "createdAt": "2025-08-01T12:10:00Z"
+      }
+    ]
+  },
+  {
+    "id": "c-016",
+    "name": "Phoenix Court 16",
+    "city": "Phoenix",
+    "surface": "clay",
+    "indoor": false,
+    "lights": true,
+    "rating": 4.8,
+    "ratingsCount": 26,
+    "reviews": [
+      {
+        "id": "r-16-1",
+        "rating": 5,
+        "text": "Good surface and spacing.",
+        "createdAt": "2025-08-01T12:10:00Z"
+      }
+    ]
+  },
+  {
+    "id": "c-017",
+    "name": "Miami Court 17",
+    "city": "Miami",
+    "surface": "grass",
+    "indoor": false,
+    "lights": false,
+    "rating": 4.9,
+    "ratingsCount": 27,
+    "reviews": [
+      {
+        "id": "r-17-1",
+        "rating": 5,
+        "text": "Good surface and spacing.",
+        "createdAt": "2025-08-01T12:10:00Z"
+      }
+    ]
+  },
+  {
+    "id": "c-018",
+    "name": "Chicago Court 18",
+    "city": "Chicago",
+    "surface": "hard",
+    "indoor": true,
+    "lights": true,
+    "rating": 3.2,
+    "ratingsCount": 28,
+    "reviews": [
+      {
+        "id": "r-18-1",
+        "rating": 3,
+        "text": "Good surface and spacing.",
+        "createdAt": "2025-08-01T12:10:00Z"
+      }
+    ]
+  },
+  {
+    "id": "c-019",
+    "name": "New York Court 19",
+    "city": "New York",
+    "surface": "clay",
+    "indoor": false,
+    "lights": false,
+    "rating": 3.3,
+    "ratingsCount": 29,
+    "reviews": [
+      {
+        "id": "r-19-1",
+        "rating": 3,
+        "text": "Good surface and spacing.",
+        "createdAt": "2025-08-01T12:10:00Z"
+      }
+    ]
+  },
+  {
+    "id": "c-020",
+    "name": "Dallas Court 20",
+    "city": "Dallas",
+    "surface": "grass",
+    "indoor": false,
+    "lights": true,
+    "rating": 3.4,
+    "ratingsCount": 30,
+    "reviews": [
+      {
+        "id": "r-20-1",
+        "rating": 3,
+        "text": "Good surface and spacing.",
+        "createdAt": "2025-08-01T12:10:00Z"
+      }
+    ]
+  },
+  {
+    "id": "c-021",
+    "name": "Austin Court 21",
+    "city": "Austin",
+    "surface": "hard",
+    "indoor": true,
+    "lights": false,
+    "rating": 3.5,
+    "ratingsCount": 31,
+    "reviews": [
+      {
+        "id": "r-21-1",
+        "rating": 4,
+        "text": "Good surface and spacing.",
+        "createdAt": "2025-08-01T12:10:00Z"
+      }
+    ]
+  },
+  {
+    "id": "c-022",
+    "name": "Seattle Court 22",
+    "city": "Seattle",
+    "surface": "clay",
+    "indoor": false,
+    "lights": true,
+    "rating": 3.6,
+    "ratingsCount": 32,
+    "reviews": [
+      {
+        "id": "r-22-1",
+        "rating": 4,
+        "text": "Good surface and spacing.",
+        "createdAt": "2025-08-01T12:10:00Z"
+      }
+    ]
+  },
+  {
+    "id": "c-023",
+    "name": "Boston Court 23",
+    "city": "Boston",
+    "surface": "grass",
+    "indoor": false,
+    "lights": false,
+    "rating": 3.7,
+    "ratingsCount": 33,
+    "reviews": [
+      {
+        "id": "r-23-1",
+        "rating": 4,
+        "text": "Good surface and spacing.",
+        "createdAt": "2025-08-01T12:10:00Z"
+      }
+    ]
+  },
+  {
+    "id": "c-024",
+    "name": "Denver Court 24",
+    "city": "Denver",
+    "surface": "hard",
+    "indoor": true,
+    "lights": true,
+    "rating": 3.8,
+    "ratingsCount": 34,
+    "reviews": [
+      {
+        "id": "r-24-1",
+        "rating": 4,
+        "text": "Good surface and spacing.",
+        "createdAt": "2025-08-01T12:10:00Z"
+      }
+    ]
+  },
+  {
+    "id": "c-025",
+    "name": "Atlanta Court 25",
+    "city": "Atlanta",
+    "surface": "clay",
+    "indoor": false,
+    "lights": false,
+    "rating": 3.9,
+    "ratingsCount": 35,
+    "reviews": [
+      {
+        "id": "r-25-1",
+        "rating": 4,
+        "text": "Good surface and spacing.",
+        "createdAt": "2025-08-01T12:10:00Z"
+      }
+    ]
+  },
+  {
+    "id": "c-026",
+    "name": "Phoenix Court 26",
+    "city": "Phoenix",
+    "surface": "grass",
+    "indoor": false,
+    "lights": true,
+    "rating": 4,
+    "ratingsCount": 36,
+    "reviews": [
+      {
+        "id": "r-26-1",
+        "rating": 4,
+        "text": "Good surface and spacing.",
+        "createdAt": "2025-08-01T12:10:00Z"
+      }
+    ]
+  },
+  {
+    "id": "c-027",
+    "name": "Miami Court 27",
+    "city": "Miami",
+    "surface": "hard",
+    "indoor": true,
+    "lights": false,
+    "rating": 4.1,
+    "ratingsCount": 37,
+    "reviews": [
+      {
+        "id": "r-27-1",
+        "rating": 4,
+        "text": "Good surface and spacing.",
+        "createdAt": "2025-08-01T12:10:00Z"
+      }
+    ]
+  },
+  {
+    "id": "c-028",
+    "name": "Chicago Court 28",
+    "city": "Chicago",
+    "surface": "clay",
+    "indoor": false,
+    "lights": true,
+    "rating": 4.2,
+    "ratingsCount": 38,
+    "reviews": [
+      {
+        "id": "r-28-1",
+        "rating": 4,
+        "text": "Good surface and spacing.",
+        "createdAt": "2025-08-01T12:10:00Z"
+      }
+    ]
+  },
+  {
+    "id": "c-029",
+    "name": "New York Court 29",
+    "city": "New York",
+    "surface": "grass",
+    "indoor": false,
+    "lights": false,
+    "rating": 4.3,
+    "ratingsCount": 39,
+    "reviews": [
+      {
+        "id": "r-29-1",
+        "rating": 4,
+        "text": "Good surface and spacing.",
+        "createdAt": "2025-08-01T12:10:00Z"
+      }
+    ]
+  },
+  {
+    "id": "c-030",
+    "name": "Dallas Court 30",
+    "city": "Dallas",
+    "surface": "hard",
+    "indoor": true,
+    "lights": true,
+    "rating": 4.4,
+    "ratingsCount": 40,
+    "reviews": [
+      {
+        "id": "r-30-1",
+        "rating": 4,
+        "text": "Good surface and spacing.",
+        "createdAt": "2025-08-01T12:10:00Z"
+      }
+    ]
+  },
+  {
+    "id": "c-031",
+    "name": "Austin Court 31",
+    "city": "Austin",
+    "surface": "clay",
+    "indoor": false,
+    "lights": false,
+    "rating": 4.5,
+    "ratingsCount": 41,
+    "reviews": [
+      {
+        "id": "r-31-1",
+        "rating": 5,
+        "text": "Good surface and spacing.",
+        "createdAt": "2025-08-01T12:10:00Z"
+      }
+    ]
+  },
+  {
+    "id": "c-032",
+    "name": "Seattle Court 32",
+    "city": "Seattle",
+    "surface": "grass",
+    "indoor": false,
+    "lights": true,
+    "rating": 4.6,
+    "ratingsCount": 42,
+    "reviews": [
+      {
+        "id": "r-32-1",
+        "rating": 5,
+        "text": "Good surface and spacing.",
+        "createdAt": "2025-08-01T12:10:00Z"
+      }
+    ]
+  },
+  {
+    "id": "c-033",
+    "name": "Boston Court 33",
+    "city": "Boston",
+    "surface": "hard",
+    "indoor": true,
+    "lights": false,
+    "rating": 4.7,
+    "ratingsCount": 43,
+    "reviews": [
+      {
+        "id": "r-33-1",
+        "rating": 5,
+        "text": "Good surface and spacing.",
+        "createdAt": "2025-08-01T12:10:00Z"
+      }
+    ]
+  },
+  {
+    "id": "c-034",
+    "name": "Denver Court 34",
+    "city": "Denver",
+    "surface": "clay",
+    "indoor": false,
+    "lights": true,
+    "rating": 4.8,
+    "ratingsCount": 44,
+    "reviews": [
+      {
+        "id": "r-34-1",
+        "rating": 5,
+        "text": "Good surface and spacing.",
+        "createdAt": "2025-08-01T12:10:00Z"
+      }
+    ]
+  },
+  {
+    "id": "c-035",
+    "name": "Atlanta Court 35",
+    "city": "Atlanta",
+    "surface": "grass",
+    "indoor": false,
+    "lights": false,
+    "rating": 4.9,
+    "ratingsCount": 45,
+    "reviews": [
+      {
+        "id": "r-35-1",
+        "rating": 5,
+        "text": "Good surface and spacing.",
+        "createdAt": "2025-08-01T12:10:00Z"
+      }
+    ]
+  },
+  {
+    "id": "c-036",
+    "name": "Phoenix Court 36",
+    "city": "Phoenix",
+    "surface": "hard",
+    "indoor": true,
+    "lights": true,
+    "rating": 3.2,
+    "ratingsCount": 46,
+    "reviews": [
+      {
+        "id": "r-36-1",
+        "rating": 3,
+        "text": "Good surface and spacing.",
+        "createdAt": "2025-08-01T12:10:00Z"
+      }
+    ]
+  },
+  {
+    "id": "c-037",
+    "name": "Miami Court 37",
+    "city": "Miami",
+    "surface": "clay",
+    "indoor": false,
+    "lights": false,
+    "rating": 3.3,
+    "ratingsCount": 47,
+    "reviews": [
+      {
+        "id": "r-37-1",
+        "rating": 3,
+        "text": "Good surface and spacing.",
+        "createdAt": "2025-08-01T12:10:00Z"
+      }
+    ]
+  },
+  {
+    "id": "c-038",
+    "name": "Chicago Court 38",
+    "city": "Chicago",
+    "surface": "grass",
+    "indoor": false,
+    "lights": true,
+    "rating": 3.4,
+    "ratingsCount": 48,
+    "reviews": [
+      {
+        "id": "r-38-1",
+        "rating": 3,
+        "text": "Good surface and spacing.",
+        "createdAt": "2025-08-01T12:10:00Z"
+      }
+    ]
+  },
+  {
+    "id": "c-039",
+    "name": "New York Court 39",
+    "city": "New York",
+    "surface": "hard",
+    "indoor": true,
+    "lights": false,
+    "rating": 3.5,
+    "ratingsCount": 49,
+    "reviews": [
+      {
+        "id": "r-39-1",
+        "rating": 4,
+        "text": "Good surface and spacing.",
+        "createdAt": "2025-08-01T12:10:00Z"
+      }
+    ]
+  },
+  {
+    "id": "c-040",
+    "name": "Dallas Court 40",
+    "city": "Dallas",
+    "surface": "clay",
+    "indoor": false,
+    "lights": true,
+    "rating": 3.6,
+    "ratingsCount": 10,
+    "reviews": [
+      {
+        "id": "r-40-1",
+        "rating": 4,
+        "text": "Good surface and spacing.",
+        "createdAt": "2025-08-01T12:10:00Z"
+      }
+    ]
+  },
+  {
+    "id": "c-041",
+    "name": "Austin Court 41",
+    "city": "Austin",
+    "surface": "grass",
+    "indoor": false,
+    "lights": false,
+    "rating": 3.7,
+    "ratingsCount": 11,
+    "reviews": [
+      {
+        "id": "r-41-1",
+        "rating": 4,
+        "text": "Good surface and spacing.",
+        "createdAt": "2025-08-01T12:10:00Z"
+      }
+    ]
+  },
+  {
+    "id": "c-042",
+    "name": "Seattle Court 42",
+    "city": "Seattle",
+    "surface": "hard",
+    "indoor": true,
+    "lights": true,
+    "rating": 3.8,
+    "ratingsCount": 12,
+    "reviews": [
+      {
+        "id": "r-42-1",
+        "rating": 4,
+        "text": "Good surface and spacing.",
+        "createdAt": "2025-08-01T12:10:00Z"
+      }
+    ]
+  },
+  {
+    "id": "c-043",
+    "name": "Boston Court 43",
+    "city": "Boston",
+    "surface": "clay",
+    "indoor": false,
+    "lights": false,
+    "rating": 3.9,
+    "ratingsCount": 13,
+    "reviews": [
+      {
+        "id": "r-43-1",
+        "rating": 4,
+        "text": "Good surface and spacing.",
+        "createdAt": "2025-08-01T12:10:00Z"
+      }
+    ]
+  },
+  {
+    "id": "c-044",
+    "name": "Denver Court 44",
+    "city": "Denver",
+    "surface": "grass",
+    "indoor": false,
+    "lights": true,
+    "rating": 4,
+    "ratingsCount": 14,
+    "reviews": [
+      {
+        "id": "r-44-1",
+        "rating": 4,
+        "text": "Good surface and spacing.",
+        "createdAt": "2025-08-01T12:10:00Z"
+      }
+    ]
+  },
+  {
+    "id": "c-045",
+    "name": "Atlanta Court 45",
+    "city": "Atlanta",
+    "surface": "hard",
+    "indoor": true,
+    "lights": false,
+    "rating": 4.1,
+    "ratingsCount": 15,
+    "reviews": [
+      {
+        "id": "r-45-1",
+        "rating": 4,
+        "text": "Good surface and spacing.",
+        "createdAt": "2025-08-01T12:10:00Z"
+      }
+    ]
+  },
+  {
+    "id": "c-046",
+    "name": "Phoenix Court 46",
+    "city": "Phoenix",
+    "surface": "clay",
+    "indoor": false,
+    "lights": true,
+    "rating": 4.2,
+    "ratingsCount": 16,
+    "reviews": [
+      {
+        "id": "r-46-1",
+        "rating": 4,
+        "text": "Good surface and spacing.",
+        "createdAt": "2025-08-01T12:10:00Z"
+      }
+    ]
+  },
+  {
+    "id": "c-047",
+    "name": "Miami Court 47",
+    "city": "Miami",
+    "surface": "grass",
+    "indoor": false,
+    "lights": false,
+    "rating": 4.3,
+    "ratingsCount": 17,
+    "reviews": [
+      {
+        "id": "r-47-1",
+        "rating": 4,
+        "text": "Good surface and spacing.",
+        "createdAt": "2025-08-01T12:10:00Z"
+      }
+    ]
+  },
+  {
+    "id": "c-048",
+    "name": "Chicago Court 48",
+    "city": "Chicago",
+    "surface": "hard",
+    "indoor": true,
+    "lights": true,
+    "rating": 4.4,
+    "ratingsCount": 18,
+    "reviews": [
+      {
+        "id": "r-48-1",
+        "rating": 4,
+        "text": "Good surface and spacing.",
+        "createdAt": "2025-08-01T12:10:00Z"
+      }
+    ]
+  },
+  {
+    "id": "c-049",
+    "name": "New York Court 49",
+    "city": "New York",
+    "surface": "clay",
+    "indoor": false,
+    "lights": false,
+    "rating": 4.5,
+    "ratingsCount": 19,
+    "reviews": [
+      {
+        "id": "r-49-1",
+        "rating": 5,
+        "text": "Good surface and spacing.",
+        "createdAt": "2025-08-01T12:10:00Z"
+      }
+    ]
+  },
+  {
+    "id": "c-050",
+    "name": "Dallas Court 50",
+    "city": "Dallas",
+    "surface": "grass",
+    "indoor": false,
+    "lights": true,
+    "rating": 4.6,
+    "ratingsCount": 20,
+    "reviews": [
+      {
+        "id": "r-50-1",
+        "rating": 5,
+        "text": "Good surface and spacing.",
+        "createdAt": "2025-08-01T12:10:00Z"
+      }
+    ]
+  },
+  {
+    "id": "c-051",
+    "name": "Austin Court 51",
+    "city": "Austin",
+    "surface": "hard",
+    "indoor": true,
+    "lights": false,
+    "rating": 4.7,
+    "ratingsCount": 21,
+    "reviews": [
+      {
+        "id": "r-51-1",
+        "rating": 5,
+        "text": "Good surface and spacing.",
+        "createdAt": "2025-08-01T12:10:00Z"
+      }
+    ]
+  },
+  {
+    "id": "c-052",
+    "name": "Seattle Court 52",
+    "city": "Seattle",
+    "surface": "clay",
+    "indoor": false,
+    "lights": true,
+    "rating": 4.8,
+    "ratingsCount": 22,
+    "reviews": [
+      {
+        "id": "r-52-1",
+        "rating": 5,
+        "text": "Good surface and spacing.",
+        "createdAt": "2025-08-01T12:10:00Z"
+      }
+    ]
+  },
+  {
+    "id": "c-053",
+    "name": "Boston Court 53",
+    "city": "Boston",
+    "surface": "grass",
+    "indoor": false,
+    "lights": false,
+    "rating": 4.9,
+    "ratingsCount": 23,
+    "reviews": [
+      {
+        "id": "r-53-1",
+        "rating": 5,
+        "text": "Good surface and spacing.",
+        "createdAt": "2025-08-01T12:10:00Z"
+      }
+    ]
+  },
+  {
+    "id": "c-054",
+    "name": "Denver Court 54",
+    "city": "Denver",
+    "surface": "hard",
+    "indoor": true,
+    "lights": true,
+    "rating": 3.2,
+    "ratingsCount": 24,
+    "reviews": [
+      {
+        "id": "r-54-1",
+        "rating": 3,
+        "text": "Good surface and spacing.",
+        "createdAt": "2025-08-01T12:10:00Z"
+      }
+    ]
+  },
+  {
+    "id": "c-055",
+    "name": "Atlanta Court 55",
+    "city": "Atlanta",
+    "surface": "clay",
+    "indoor": false,
+    "lights": false,
+    "rating": 3.3,
+    "ratingsCount": 25,
+    "reviews": [
+      {
+        "id": "r-55-1",
+        "rating": 3,
+        "text": "Good surface and spacing.",
+        "createdAt": "2025-08-01T12:10:00Z"
+      }
+    ]
+  },
+  {
+    "id": "c-056",
+    "name": "Phoenix Court 56",
+    "city": "Phoenix",
+    "surface": "grass",
+    "indoor": false,
+    "lights": true,
+    "rating": 3.4,
+    "ratingsCount": 26,
+    "reviews": [
+      {
+        "id": "r-56-1",
+        "rating": 3,
+        "text": "Good surface and spacing.",
+        "createdAt": "2025-08-01T12:10:00Z"
+      }
+    ]
+  },
+  {
+    "id": "c-057",
+    "name": "Miami Court 57",
+    "city": "Miami",
+    "surface": "hard",
+    "indoor": true,
+    "lights": false,
+    "rating": 3.5,
+    "ratingsCount": 27,
+    "reviews": [
+      {
+        "id": "r-57-1",
+        "rating": 4,
+        "text": "Good surface and spacing.",
+        "createdAt": "2025-08-01T12:10:00Z"
+      }
+    ]
+  },
+  {
+    "id": "c-058",
+    "name": "Chicago Court 58",
+    "city": "Chicago",
+    "surface": "clay",
+    "indoor": false,
+    "lights": true,
+    "rating": 3.6,
+    "ratingsCount": 28,
+    "reviews": [
+      {
+        "id": "r-58-1",
+        "rating": 4,
+        "text": "Good surface and spacing.",
+        "createdAt": "2025-08-01T12:10:00Z"
+      }
+    ]
+  },
+  {
+    "id": "c-059",
+    "name": "New York Court 59",
+    "city": "New York",
+    "surface": "grass",
+    "indoor": false,
+    "lights": false,
+    "rating": 3.7,
+    "ratingsCount": 29,
+    "reviews": [
+      {
+        "id": "r-59-1",
+        "rating": 4,
+        "text": "Good surface and spacing.",
+        "createdAt": "2025-08-01T12:10:00Z"
+      }
+    ]
+  },
+  {
+    "id": "c-060",
+    "name": "Dallas Court 60",
+    "city": "Dallas",
+    "surface": "hard",
+    "indoor": true,
+    "lights": true,
+    "rating": 3.8,
+    "ratingsCount": 30,
+    "reviews": [
+      {
+        "id": "r-60-1",
+        "rating": 4,
+        "text": "Good surface and spacing.",
+        "createdAt": "2025-08-01T12:10:00Z"
+      }
+    ]
+  },
+  {
+    "id": "c-061",
+    "name": "Austin Court 61",
+    "city": "Austin",
+    "surface": "clay",
+    "indoor": false,
+    "lights": false,
+    "rating": 3.9,
+    "ratingsCount": 31,
+    "reviews": [
+      {
+        "id": "r-61-1",
+        "rating": 4,
+        "text": "Good surface and spacing.",
+        "createdAt": "2025-08-01T12:10:00Z"
+      }
+    ]
+  },
+  {
+    "id": "c-062",
+    "name": "Seattle Court 62",
+    "city": "Seattle",
+    "surface": "grass",
+    "indoor": false,
+    "lights": true,
+    "rating": 4,
+    "ratingsCount": 32,
+    "reviews": [
+      {
+        "id": "r-62-1",
+        "rating": 4,
+        "text": "Good surface and spacing.",
+        "createdAt": "2025-08-01T12:10:00Z"
+      }
+    ]
+  },
+  {
+    "id": "c-063",
+    "name": "Boston Court 63",
+    "city": "Boston",
+    "surface": "hard",
+    "indoor": true,
+    "lights": false,
+    "rating": 4.1,
+    "ratingsCount": 33,
+    "reviews": [
+      {
+        "id": "r-63-1",
+        "rating": 4,
+        "text": "Good surface and spacing.",
+        "createdAt": "2025-08-01T12:10:00Z"
+      }
+    ]
+  },
+  {
+    "id": "c-064",
+    "name": "Denver Court 64",
+    "city": "Denver",
+    "surface": "clay",
+    "indoor": false,
+    "lights": true,
+    "rating": 4.2,
+    "ratingsCount": 34,
+    "reviews": [
+      {
+        "id": "r-64-1",
+        "rating": 4,
+        "text": "Good surface and spacing.",
+        "createdAt": "2025-08-01T12:10:00Z"
+      }
+    ]
+  },
+  {
+    "id": "c-065",
+    "name": "Atlanta Court 65",
+    "city": "Atlanta",
+    "surface": "grass",
+    "indoor": false,
+    "lights": false,
+    "rating": 4.3,
+    "ratingsCount": 35,
+    "reviews": [
+      {
+        "id": "r-65-1",
+        "rating": 4,
+        "text": "Good surface and spacing.",
+        "createdAt": "2025-08-01T12:10:00Z"
+      }
+    ]
+  },
+  {
+    "id": "c-066",
+    "name": "Phoenix Court 66",
+    "city": "Phoenix",
+    "surface": "hard",
+    "indoor": true,
+    "lights": true,
+    "rating": 4.4,
+    "ratingsCount": 36,
+    "reviews": [
+      {
+        "id": "r-66-1",
+        "rating": 4,
+        "text": "Good surface and spacing.",
+        "createdAt": "2025-08-01T12:10:00Z"
+      }
+    ]
+  },
+  {
+    "id": "c-067",
+    "name": "Miami Court 67",
+    "city": "Miami",
+    "surface": "clay",
+    "indoor": false,
+    "lights": false,
+    "rating": 4.5,
+    "ratingsCount": 37,
+    "reviews": [
+      {
+        "id": "r-67-1",
+        "rating": 5,
+        "text": "Good surface and spacing.",
+        "createdAt": "2025-08-01T12:10:00Z"
+      }
+    ]
+  },
+  {
+    "id": "c-068",
+    "name": "Chicago Court 68",
+    "city": "Chicago",
+    "surface": "grass",
+    "indoor": false,
+    "lights": true,
+    "rating": 4.6,
+    "ratingsCount": 38,
+    "reviews": [
+      {
+        "id": "r-68-1",
+        "rating": 5,
+        "text": "Good surface and spacing.",
+        "createdAt": "2025-08-01T12:10:00Z"
+      }
+    ]
+  },
+  {
+    "id": "c-069",
+    "name": "New York Court 69",
+    "city": "New York",
+    "surface": "hard",
+    "indoor": true,
+    "lights": false,
+    "rating": 4.7,
+    "ratingsCount": 39,
+    "reviews": [
+      {
+        "id": "r-69-1",
+        "rating": 5,
+        "text": "Good surface and spacing.",
+        "createdAt": "2025-08-01T12:10:00Z"
+      }
+    ]
+  },
+  {
+    "id": "c-070",
+    "name": "Dallas Court 70",
+    "city": "Dallas",
+    "surface": "clay",
+    "indoor": false,
+    "lights": true,
+    "rating": 4.8,
+    "ratingsCount": 40,
+    "reviews": [
+      {
+        "id": "r-70-1",
+        "rating": 5,
+        "text": "Good surface and spacing.",
+        "createdAt": "2025-08-01T12:10:00Z"
+      }
+    ]
+  },
+  {
+    "id": "c-071",
+    "name": "Austin Court 71",
+    "city": "Austin",
+    "surface": "grass",
+    "indoor": false,
+    "lights": false,
+    "rating": 4.9,
+    "ratingsCount": 41,
+    "reviews": [
+      {
+        "id": "r-71-1",
+        "rating": 5,
+        "text": "Good surface and spacing.",
+        "createdAt": "2025-08-01T12:10:00Z"
+      }
+    ]
+  },
+  {
+    "id": "c-072",
+    "name": "Seattle Court 72",
+    "city": "Seattle",
+    "surface": "hard",
+    "indoor": true,
+    "lights": true,
+    "rating": 3.2,
+    "ratingsCount": 42,
+    "reviews": [
+      {
+        "id": "r-72-1",
+        "rating": 3,
+        "text": "Good surface and spacing.",
+        "createdAt": "2025-08-01T12:10:00Z"
+      }
+    ]
+  }
+]
