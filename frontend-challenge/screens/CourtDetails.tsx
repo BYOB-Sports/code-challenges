@@ -1,9 +1,17 @@
 import React, { useState } from "react";
-import { View, ScrollView, TextInput, TouchableOpacity, StyleSheet, Alert } from "react-native";
+import {
+  View,
+  ScrollView,
+  TextInput,
+  TouchableOpacity,
+  StyleSheet,
+  Alert,
+} from "react-native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../App";
 import courtsData from "../data/tennis_courts.json";
 import CustomText from "../components/CustomText";
+import { FontAwesome } from "@expo/vector-icons";
 import { bannedWords } from "../data/bannedWords";
 
 type Props = NativeStackScreenProps<RootStackParamList, "CourtDetails">;
@@ -20,7 +28,7 @@ export default function CourtDetails({ route }: Props) {
 
   const [reviews, setReviews] = useState<Review[]>([]);
   const [name, setName] = useState("");
-  const [rating, setRating] = useState("");
+  const [rating, setRating] = useState(0); // 0 = no rating yet
   const [text, setText] = useState("");
   const [error, setError] = useState("");
 
@@ -34,29 +42,31 @@ export default function CourtDetails({ route }: Props) {
 
   const containsBannedWords = (input: string) => {
     const lower = input.toLowerCase();
-    return bannedWords.some(word => lower.includes(word));
+    return bannedWords.some((word) => lower.includes(word));
   };
 
   const handleAddReview = () => {
-    const numericRating = parseInt(rating);
-    if (!numericRating || numericRating < 1 || numericRating > 5) {
-      setError("Rating is required and must be 1-5.");
+    if (!rating || rating < 1 || rating > 5) {
+      setError("Rating is required. Please select a star.");
       return;
     }
+
     if (text && containsBannedWords(text)) {
-      setError("Your review contains inappropriate language. Please remove it.");
+      setError(
+        "Your review contains inappropriate language. Please remove it before submitting."
+      );
       return;
     }
 
     const newReview: Review = {
       name: name.trim() || undefined,
-      rating: numericRating,
+      rating,
       text: text.trim() || undefined,
     };
 
     setReviews([newReview, ...reviews]);
     setName("");
-    setRating("");
+    setRating(0);
     setText("");
     setError("");
   };
@@ -71,7 +81,9 @@ export default function CourtDetails({ route }: Props) {
       <CustomText style={styles.label}>Status: {court.availability.status}</CustomText>
       <CustomText style={styles.label}>Booking Required: {court.availability.booking_required ? "Yes" : "No"}</CustomText>
       <CustomText style={styles.label}>Fee: {court.availability.fee}</CustomText>
-      <CustomText style={styles.updated}>Last Updated: {new Date(court.last_updated).toLocaleString()}</CustomText>
+      <CustomText style={styles.updated}>
+        Last Updated: {new Date(court.last_updated).toLocaleString()}
+      </CustomText>
 
       {/* Add Review Form */}
       <View style={{ marginTop: 20 }}>
@@ -85,13 +97,25 @@ export default function CourtDetails({ route }: Props) {
           value={name}
           onChangeText={setName}
         />
-        <TextInput
-          style={styles.input}
-          placeholder="Rating (1-5) *required"
-          keyboardType="numeric"
-          value={rating}
-          onChangeText={setRating}
-        />
+
+        {/* Star Rating */}
+        <View style={styles.starContainer}>
+          {Array.from({ length: 5 }, (_, i) => i + 1).map((star) => (
+            <TouchableOpacity
+              key={star}
+              onPress={() => setRating(star)}
+              activeOpacity={0.7} // press highlight
+            >
+              <FontAwesome
+                name={star <= rating ? "star" : "star-o"}
+                size={32}
+                color="#FFD700"
+                style={{ marginRight: 4 }}
+              />
+            </TouchableOpacity>
+          ))}
+        </View>
+
         <TextInput
           style={[styles.input, { height: 80 }]}
           placeholder="Your review (optional)"
@@ -99,6 +123,7 @@ export default function CourtDetails({ route }: Props) {
           onChangeText={setText}
           multiline
         />
+
         <TouchableOpacity style={styles.ctaButton} onPress={handleAddReview}>
           <CustomText style={styles.ctaText}>Submit Review</CustomText>
         </TouchableOpacity>
@@ -107,10 +132,12 @@ export default function CourtDetails({ route }: Props) {
       {/* Reviews List */}
       <View style={{ marginTop: 30 }}>
         <CustomText style={styles.sectionTitle}>Reviews ({reviews.length})</CustomText>
-        {reviews.length === 0 && <CustomText style={styles.noReviews}>No reviews yet.</CustomText>}
+        {reviews.length === 0 && (
+          <CustomText style={styles.noReviews}>No reviews yet.</CustomText>
+        )}
         {reviews.map((review, idx) => (
           <View key={idx} style={styles.reviewItem}>
-            {review.name && <CustomText style={styles.reviewName}>{review.name}</CustomText>}
+            {review.name && <CustomText style={styles.reviewName}>{review.name ?? "Anonymous"}</CustomText>}
             <CustomText style={styles.reviewRating}>Rating: {review.rating}/5</CustomText>
             {review.text && <CustomText style={styles.reviewText}>{review.text}</CustomText>}
           </View>
@@ -127,8 +154,21 @@ const styles = StyleSheet.create({
   label: { fontSize: 14, marginBottom: 2 },
   updated: { fontSize: 12, color: "#555", marginTop: 4 },
   sectionTitle: { fontSize: 18, fontWeight: "700", marginBottom: 8 },
-  input: { borderWidth: 1, borderColor: "#ccc", borderRadius: 8, padding: 8, marginBottom: 10 },
-  ctaButton: { backgroundColor: "#003619", padding: 12, borderRadius: 8, alignItems: "center" },
+  input: {
+    borderWidth: 1,
+    borderColor: "#ccc",
+    borderRadius: 8,
+    padding: 8,
+    marginBottom: 10,
+    backgroundColor: "white",
+  },
+  starContainer: { flexDirection: "row", marginBottom: 10 },
+  ctaButton: {
+    backgroundColor: "#003619",
+    padding: 12,
+    borderRadius: 8,
+    alignItems: "center",
+  },
   ctaText: { color: "white", fontWeight: "700" },
   error: { color: "red", marginBottom: 8 },
   noReviews: { color: "#555", fontStyle: "italic" },

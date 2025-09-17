@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
   address: { color: "#555", marginBottom: 4 },
   pagination: { flexDirection: "row", justifyContent: "center", marginTop: 12, flexWrap: "wrap", gap: 4 },
   pageButton: { padding: 8, borderWidth: 1, borderColor: "#ccc", borderRadius: 6, margin: 2 },
-  activePage: { backgroundColor: "#3b82f6", borderColor: "#3b82f6" },
+  activePage: { backgroundColor: "#003619", borderColor: "#3b82f6" },
   disabled: { opacity: 0.5 },
   pageInfo: { textAlign: "center", marginTop: 8, color: "#555" },
 });
