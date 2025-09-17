@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Mobile-first typography scaling */
+@layer base {
+  html { font-size: 16px; }
+  @media (min-width: 390px) { html { font-size: 17px; } }
+  @media (min-width: 768px) { html { font-size: 16px; } }
+  body { @apply bg-gray-50 text-slate-800 font-["Inter",_sans-serif]; }
+}
+
+/* Utilities for touch targets and safe padding */
+@layer components {
+  .mobile-container { @apply max-w-3xl mx-auto px-4 sm:px-6; }
+  .container-wide { @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8; }
+  .tap-target { @apply min-h-[44px] min-w-[44px]; }
+  .sticky-header { @apply sticky top-0 z-50 shadow-md; }
+}
+
+/* Subtle card hover for mobile (no big movement) */
+@layer utilities {
+  .hover-lift { @apply transition-transform duration-200; }
+  @media (min-width: 768px) { .hover-lift:hover { transform: translateY(-4px); } }
+
+  /* Line clamp utility for card descriptions */
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+/* Custom animations */
+@keyframes fadeIn {
+  from { 
+    opacity: 0; 
+    transform: translateY(10px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+@keyframes slideIn {
+  from { 
+    transform: translateX(-100%); 
+  }
+  to { 
+    transform: translateX(0); 
+  }
+}
+
+@keyframes cardLoad {
+  from { 
+    opacity: 0; 
+    transform: translateY(20px) scale(0.95); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0) scale(1); 
+  }
+}
+
+@keyframes starGlow {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+/* Animation classes */
+.fade-in {
+  animation: fadeIn 0.3s ease-in;
+}
+
+.slide-in {
+  animation: slideIn 0.3s ease-out;
+}
+
+.court-card {
+  animation: cardLoad 0.4s ease-out;
+}
+
+/* Enhanced hover effects */
+.court-card:hover .court-name {
+  color: #047940;
+  transition: color 0.2s ease;
+}
+
+.court-card:hover .view-details-btn {
+  transform: translateY(-1px) scale(1.02);
+  box-shadow: 0 4px 12px rgba(0, 175, 240, 0.3);
+}
+
+/* Smooth transitions */
+* {
+  transition: all 0.2s ease;
+}
+
+/* Enhanced button styles */
+.view-details-btn, .submit-review-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.view-details-btn::before, .submit-review-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s;
+}
+
+.view-details-btn:hover::before, .submit-review-btn:hover::before {
+  left: 100%;
+}
+
+/* Star rating hover effects */
+.star-input:hover {
+  transform: scale(1.1);
+}
+
+.star-input.active {
+  animation: starGlow 0.3s ease;
+}
+
+/* Enhanced search input */
+.search-input:focus {
+  transform: scale(1.02);
+}
+
+/* Enhanced card shadows with navy accent */
+.court-card, .court-hero, .reviews-section {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.court-card:hover, .court-hero:hover, .reviews-section:hover {
+  box-shadow: 0 8px 25px rgba(0, 40, 101, 0.15), 0 3px 10px rgba(0, 0, 0, 0.1);
+}
