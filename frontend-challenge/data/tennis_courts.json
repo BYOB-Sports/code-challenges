@@ -1,0 +1,952 @@
+[
+  {
+    "id": "1000",
+    "name": "Riverside Court",
+    "location": {
+      "address": "993 Main St, Hilltop, FL"
+    },
+    "details": {
+      "surface": "clay",
+      "indoor": true,
+      "lighting": false
+    },
+    "availability": {
+      "status": "maintenance",
+      "booking_required": false,
+      "fee": "Free"
+    },
+    "last_updated": "2025-09-01T15:37:40Z",
+    "reviews": []
+  },
+  {
+    "id": "1001",
+    "name": "Maple Grove Court",
+    "location": {
+      "address": "675 Oak St, Greenville, NY"
+    },
+    "details": {
+      "surface": "carpet",
+      "indoor": false,
+      "lighting": false
+    },
+    "availability": {
+      "status": "open",
+      "booking_required": true,
+      "fee": "$20/hour"
+    },
+    "last_updated": "2025-09-07T15:37:40Z",
+    "reviews": []
+  },
+  {
+    "id": "1002",
+    "name": "Sunset Court",
+    "location": {
+      "address": "414 Maple Rd, Fairview, CA"
+    },
+    "details": {
+      "surface": "grass",
+      "indoor": false,
+      "lighting": false
+    },
+    "availability": {
+      "status": "closed",
+      "booking_required": true,
+      "fee": "$15/hour"
+    },
+    "last_updated": "2025-09-14T15:37:40Z",
+    "reviews": []
+  },
+  {
+    "id": "1003",
+    "name": "Oakwood Court",
+    "location": {
+      "address": "611 Pine Ave, Riverside, CA"
+    },
+    "details": {
+      "surface": "carpet",
+      "indoor": false,
+      "lighting": false
+    },
+    "availability": {
+      "status": "open",
+      "booking_required": false,
+      "fee": "Free"
+    },
+    "last_updated": "2025-09-15T15:37:40Z",
+    "reviews": []
+  },
+  {
+    "id": "1004",
+    "name": "Cedar Hill Court",
+    "location": {
+      "address": "682 Pine Ave, Riverside, TX"
+    },
+    "details": {
+      "surface": "carpet",
+      "indoor": true,
+      "lighting": false
+    },
+    "availability": {
+      "status": "open",
+      "booking_required": true,
+      "fee": "Free"
+    },
+    "last_updated": "2025-08-24T15:37:40Z",
+    "reviews": []
+  },
+  {
+    "id": "1005",
+    "name": "Lakeside Court",
+    "location": {
+      "address": "881 Main St, Riverside, CA"
+    },
+    "details": {
+      "surface": "hard",
+      "indoor": false,
+      "lighting": true
+    },
+    "availability": {
+      "status": "open",
+      "booking_required": false,
+      "fee": "$5/hour"
+    },
+    "last_updated": "2025-09-06T15:37:40Z",
+    "reviews": []
+  },
+  {
+    "id": "1006",
+    "name": "Parkview Court",
+    "location": {
+      "address": "381 Cedar Blvd, Hilltop, FL"
+    },
+    "details": {
+      "surface": "hard",
+      "indoor": false,
+      "lighting": false
+    },
+    "availability": {
+      "status": "closed",
+      "booking_required": true,
+      "fee": "Free"
+    },
+    "last_updated": "2025-09-11T15:37:40Z",
+    "reviews": []
+  },
+  {
+    "id": "1007",
+    "name": "Highland Court",
+    "location": {
+      "address": "946 Maple Rd, Greenville, IL"
+    },
+    "details": {
+      "surface": "hard",
+      "indoor": false,
+      "lighting": true
+    },
+    "availability": {
+      "status": "closed",
+      "booking_required": false,
+      "fee": "$15/hour"
+    },
+    "last_updated": "2025-09-10T15:37:40Z",
+    "reviews": []
+  },
+  {
+    "id": "1008",
+    "name": "Brookside Court",
+    "location": {
+      "address": "314 Oak St, Riverside, IL"
+    },
+    "details": {
+      "surface": "clay",
+      "indoor": false,
+      "lighting": false
+    },
+    "availability": {
+      "status": "open",
+      "booking_required": true,
+      "fee": "$5/hour"
+    },
+    "last_updated": "2025-08-26T15:37:40Z",
+    "reviews": []
+  },
+  {
+    "id": "1009",
+    "name": "Valley Court",
+    "location": {
+      "address": "504 Cedar Blvd, Fairview, FL"
+    },
+    "details": {
+      "surface": "carpet",
+      "indoor": true,
+      "lighting": true
+    },
+    "availability": {
+      "status": "open",
+      "booking_required": true,
+      "fee": "Free"
+    },
+    "last_updated": "2025-08-19T15:37:40Z",
+    "reviews": []
+  },
+  {
+    "id": "1010",
+    "name": "Greenfield Court",
+    "location": {
+      "address": "857 Pine Ave, Greenville, TX"
+    },
+    "details": {
+      "surface": "clay",
+      "indoor": false,
+      "lighting": false
+    },
+    "availability": {
+      "status": "open",
+      "booking_required": false,
+      "fee": "$5/hour"
+    },
+    "last_updated": "2025-09-09T15:37:40Z",
+    "reviews": []
+  },
+  {
+    "id": "1011",
+    "name": "Elmwood Court",
+    "location": {
+      "address": "218 Cedar Blvd, Hilltop, TX"
+    },
+    "details": {
+      "surface": "hard",
+      "indoor": false,
+      "lighting": false
+    },
+    "availability": {
+      "status": "closed",
+      "booking_required": true,
+      "fee": "$0/hour"
+    },
+    "last_updated": "2025-08-19T15:37:40Z",
+    "reviews": []
+  },
+  {
+    "id": "1012",
+    "name": "Pinecrest Court",
+    "location": {
+      "address": "918 Maple Rd, Springfield, CA"
+    },
+    "details": {
+      "surface": "carpet",
+      "indoor": false,
+      "lighting": true
+    },
+    "availability": {
+      "status": "maintenance",
+      "booking_required": false,
+      "fee": "$5/hour"
+    },
+    "last_updated": "2025-09-11T15:37:40Z",
+    "reviews": []
+  },
+  {
+    "id": "1013",
+    "name": "Willow Court",
+    "location": {
+      "address": "297 Maple Rd, Hilltop, FL"
+    },
+    "details": {
+      "surface": "grass",
+      "indoor": true,
+      "lighting": true
+    },
+    "availability": {
+      "status": "closed",
+      "booking_required": false,
+      "fee": "$10/hour"
+    },
+    "last_updated": "2025-08-28T15:37:40Z",
+    "reviews": []
+  },
+  {
+    "id": "1014",
+    "name": "Stonebridge Court",
+    "location": {
+      "address": "876 Oak St, Greenville, TX"
+    },
+    "details": {
+      "surface": "hard",
+      "indoor": true,
+      "lighting": true
+    },
+    "availability": {
+      "status": "open",
+      "booking_required": false,
+      "fee": "$0/hour"
+    },
+    "last_updated": "2025-08-29T15:37:40Z",
+    "reviews": []
+  },
+  {
+    "id": "1015",
+    "name": "Fairview Court",
+    "location": {
+      "address": "874 Oak St, Hilltop, TX"
+    },
+    "details": {
+      "surface": "carpet",
+      "indoor": false,
+      "lighting": true
+    },
+    "availability": {
+      "status": "closed",
+      "booking_required": true,
+      "fee": "$0/hour"
+    },
+    "last_updated": "2025-08-31T15:37:40Z",
+    "reviews": []
+  },
+  {
+    "id": "1016",
+    "name": "Hilltop Court",
+    "location": {
+      "address": "801 Oak St, Springfield, IL"
+    },
+    "details": {
+      "surface": "hard",
+      "indoor": true,
+      "lighting": true
+    },
+    "availability": {
+      "status": "open",
+      "booking_required": true,
+      "fee": "Free"
+    },
+    "last_updated": "2025-09-05T15:37:40Z",
+    "reviews": []
+  },
+  {
+    "id": "1017",
+    "name": "Springfield Court",
+    "location": {
+      "address": "498 Cedar Blvd, Springfield, FL"
+    },
+    "details": {
+      "surface": "grass",
+      "indoor": true,
+      "lighting": true
+    },
+    "availability": {
+      "status": "open",
+      "booking_required": true,
+      "fee": "$10/hour"
+    },
+    "last_updated": "2025-09-09T15:37:40Z",
+    "reviews": []
+  },
+  {
+    "id": "1018",
+    "name": "Silverleaf Court",
+    "location": {
+      "address": "646 Maple Rd, Greenville, CA"
+    },
+    "details": {
+      "surface": "clay",
+      "indoor": false,
+      "lighting": false
+    },
+    "availability": {
+      "status": "closed",
+      "booking_required": false,
+      "fee": "Free"
+    },
+    "last_updated": "2025-08-28T15:37:40Z",
+    "reviews": []
+  },
+  {
+    "id": "1019",
+    "name": "Heritage Court",
+    "location": {
+      "address": "271 Oak St, Fairview, TX"
+    },
+    "details": {
+      "surface": "hard",
+      "indoor": true,
+      "lighting": true
+    },
+    "availability": {
+      "status": "maintenance",
+      "booking_required": false,
+      "fee": "$20/hour"
+    },
+    "last_updated": "2025-09-06T15:37:40Z",
+    "reviews": []
+  },
+  {
+    "id": "1020",
+    "name": "Fox Run Court",
+    "location": {
+      "address": "474 Pine Ave, Hilltop, TX"
+    },
+    "details": {
+      "surface": "carpet",
+      "indoor": true,
+      "lighting": false
+    },
+    "availability": {
+      "status": "closed",
+      "booking_required": false,
+      "fee": "$15/hour"
+    },
+    "last_updated": "2025-09-13T15:37:40Z",
+    "reviews": []
+  },
+  {
+    "id": "1021",
+    "name": "Sycamore Court",
+    "location": {
+      "address": "144 Maple Rd, Hilltop, IL"
+    },
+    "details": {
+      "surface": "grass",
+      "indoor": true,
+      "lighting": true
+    },
+    "availability": {
+      "status": "maintenance",
+      "booking_required": true,
+      "fee": "$15/hour"
+    },
+    "last_updated": "2025-09-09T15:37:40Z",
+    "reviews": []
+  },
+  {
+    "id": "1022",
+    "name": "Ashwood Court",
+    "location": {
+      "address": "456 Pine Ave, Fairview, FL"
+    },
+    "details": {
+      "surface": "grass",
+      "indoor": false,
+      "lighting": false
+    },
+    "availability": {
+      "status": "open",
+      "booking_required": true,
+      "fee": "$10/hour"
+    },
+    "last_updated": "2025-08-21T15:37:40Z",
+    "reviews": []
+  },
+  {
+    "id": "1023",
+    "name": "Birchwood Court",
+    "location": {
+      "address": "525 Oak St, Springfield, TX"
+    },
+    "details": {
+      "surface": "grass",
+      "indoor": true,
+      "lighting": true
+    },
+    "availability": {
+      "status": "closed",
+      "booking_required": true,
+      "fee": "$20/hour"
+    },
+    "last_updated": "2025-09-16T15:37:40Z",
+    "reviews": []
+  },
+  {
+    "id": "1024",
+    "name": "Hawthorne Court",
+    "location": {
+      "address": "745 Pine Ave, Fairview, CA"
+    },
+    "details": {
+      "surface": "clay",
+      "indoor": false,
+      "lighting": false
+    },
+    "availability": {
+      "status": "closed",
+      "booking_required": true,
+      "fee": "$0/hour"
+    },
+    "last_updated": "2025-09-01T15:37:40Z",
+    "reviews": []
+  },
+  {
+    "id": "1025",
+    "name": "Clearwater Court",
+    "location": {
+      "address": "619 Main St, Hilltop, TX"
+    },
+    "details": {
+      "surface": "hard",
+      "indoor": true,
+      "lighting": false
+    },
+    "availability": {
+      "status": "open",
+      "booking_required": true,
+      "fee": "$0/hour"
+    },
+    "last_updated": "2025-09-16T15:37:40Z",
+    "reviews": []
+  },
+  {
+    "id": "1026",
+    "name": "Meadowbrook Court",
+    "location": {
+      "address": "430 Maple Rd, Fairview, TX"
+    },
+    "details": {
+      "surface": "hard",
+      "indoor": false,
+      "lighting": true
+    },
+    "availability": {
+      "status": "maintenance",
+      "booking_required": false,
+      "fee": "$20/hour"
+    },
+    "last_updated": "2025-09-12T15:37:40Z",
+    "reviews": []
+  },
+  {
+    "id": "1027",
+    "name": "Grandview Court",
+    "location": {
+      "address": "133 Cedar Blvd, Riverside, NY"
+    },
+    "details": {
+      "surface": "carpet",
+      "indoor": true,
+      "lighting": false
+    },
+    "availability": {
+      "status": "open",
+      "booking_required": true,
+      "fee": "$0/hour"
+    },
+    "last_updated": "2025-08-20T15:37:40Z",
+    "reviews": []
+  },
+  {
+    "id": "1028",
+    "name": "Shady Lane Court",
+    "location": {
+      "address": "860 Pine Ave, Riverside, TX"
+    },
+    "details": {
+      "surface": "grass",
+      "indoor": true,
+      "lighting": false
+    },
+    "availability": {
+      "status": "maintenance",
+      "booking_required": true,
+      "fee": "$5/hour"
+    },
+    "last_updated": "2025-09-15T15:37:40Z",
+    "reviews": []
+  },
+  {
+    "id": "1029",
+    "name": "Redwood Court",
+    "location": {
+      "address": "729 Pine Ave, Greenville, CA"
+    },
+    "details": {
+      "surface": "carpet",
+      "indoor": true,
+      "lighting": false
+    },
+    "availability": {
+      "status": "maintenance",
+      "booking_required": false,
+      "fee": "$15/hour"
+    },
+    "last_updated": "2025-08-20T15:37:40Z",
+    "reviews": []
+  },
+  {
+    "id": "1030",
+    "name": "Bluebell Court",
+    "location": {
+      "address": "647 Maple Rd, Greenville, CA"
+    },
+    "details": {
+      "surface": "clay",
+      "indoor": false,
+      "lighting": true
+    },
+    "availability": {
+      "status": "maintenance",
+      "booking_required": true,
+      "fee": "$10/hour"
+    },
+    "last_updated": "2025-09-07T15:37:40Z",
+    "reviews": []
+  },
+  {
+    "id": "1031",
+    "name": "Golden Gate Court",
+    "location": {
+      "address": "597 Oak St, Springfield, CA"
+    },
+    "details": {
+      "surface": "carpet",
+      "indoor": false,
+      "lighting": true
+    },
+    "availability": {
+      "status": "open",
+      "booking_required": true,
+      "fee": "$0/hour"
+    },
+    "last_updated": "2025-09-16T15:37:40Z",
+    "reviews": []
+  },
+  {
+    "id": "1032",
+    "name": "Bayview Court",
+    "location": {
+      "address": "227 Maple Rd, Greenville, FL"
+    },
+    "details": {
+      "surface": "hard",
+      "indoor": false,
+      "lighting": false
+    },
+    "availability": {
+      "status": "open",
+      "booking_required": false,
+      "fee": "$0/hour"
+    },
+    "last_updated": "2025-08-29T15:37:40Z",
+    "reviews": []
+  },
+  {
+    "id": "1033",
+    "name": "Horizon Court",
+    "location": {
+      "address": "884 Pine Ave, Riverside, IL"
+    },
+    "details": {
+      "surface": "hard",
+      "indoor": true,
+      "lighting": true
+    },
+    "availability": {
+      "status": "open",
+      "booking_required": true,
+      "fee": "$5/hour"
+    },
+    "last_updated": "2025-09-05T15:37:40Z",
+    "reviews": []
+  },
+  {
+    "id": "1034",
+    "name": "Wildwood Court",
+    "location": {
+      "address": "574 Pine Ave, Greenville, CA"
+    },
+    "details": {
+      "surface": "carpet",
+      "indoor": true,
+      "lighting": true
+    },
+    "availability": {
+      "status": "open",
+      "booking_required": true,
+      "fee": "$5/hour"
+    },
+    "last_updated": "2025-09-11T15:37:40Z",
+    "reviews": []
+  },
+  {
+    "id": "1035",
+    "name": "Evergreen Court",
+    "location": {
+      "address": "643 Oak St, Riverside, FL"
+    },
+    "details": {
+      "surface": "hard",
+      "indoor": true,
+      "lighting": false
+    },
+    "availability": {
+      "status": "maintenance",
+      "booking_required": false,
+      "fee": "$10/hour"
+    },
+    "last_updated": "2025-08-25T15:37:40Z",
+    "reviews": []
+  },
+  {
+    "id": "1036",
+    "name": "Prairie Court",
+    "location": {
+      "address": "966 Maple Rd, Springfield, FL"
+    },
+    "details": {
+      "surface": "clay",
+      "indoor": false,
+      "lighting": false
+    },
+    "availability": {
+      "status": "closed",
+      "booking_required": true,
+      "fee": "Free"
+    },
+    "last_updated": "2025-08-29T15:37:40Z",
+    "reviews": []
+  },
+  {
+    "id": "1037",
+    "name": "Whispering Pines Court",
+    "location": {
+      "address": "632 Oak St, Hilltop, FL"
+    },
+    "details": {
+      "surface": "clay",
+      "indoor": true,
+      "lighting": true
+    },
+    "availability": {
+      "status": "maintenance",
+      "booking_required": true,
+      "fee": "$15/hour"
+    },
+    "last_updated": "2025-08-23T15:37:40Z",
+    "reviews": []
+  },
+  {
+    "id": "1038",
+    "name": "Summit Court",
+    "location": {
+      "address": "728 Oak St, Greenville, IL"
+    },
+    "details": {
+      "surface": "carpet",
+      "indoor": true,
+      "lighting": false
+    },
+    "availability": {
+      "status": "maintenance",
+      "booking_required": false,
+      "fee": "$0/hour"
+    },
+    "last_updated": "2025-09-12T15:37:40Z",
+    "reviews": []
+  },
+  {
+    "id": "1039",
+    "name": "Shadow Glen Court",
+    "location": {
+      "address": "162 Pine Ave, Riverside, IL"
+    },
+    "details": {
+      "surface": "clay",
+      "indoor": true,
+      "lighting": true
+    },
+    "availability": {
+      "status": "open",
+      "booking_required": false,
+      "fee": "$0/hour"
+    },
+    "last_updated": "2025-09-07T15:37:40Z",
+    "reviews": []
+  },
+  {
+    "id": "1040",
+    "name": "Harborview Court",
+    "location": {
+      "address": "535 Maple Rd, Springfield, IL"
+    },
+    "details": {
+      "surface": "grass",
+      "indoor": true,
+      "lighting": false
+    },
+    "availability": {
+      "status": "closed",
+      "booking_required": true,
+      "fee": "Free"
+    },
+    "last_updated": "2025-09-08T15:37:40Z",
+    "reviews": []
+  },
+  {
+    "id": "1041",
+    "name": "Sunnyvale Court",
+    "location": {
+      "address": "319 Cedar Blvd, Greenville, CA"
+    },
+    "details": {
+      "surface": "hard",
+      "indoor": true,
+      "lighting": true
+    },
+    "availability": {
+      "status": "closed",
+      "booking_required": true,
+      "fee": "$0/hour"
+    },
+    "last_updated": "2025-09-01T15:37:40Z",
+    "reviews": []
+  },
+  {
+    "id": "1042",
+    "name": "Rolling Hills Court",
+    "location": {
+      "address": "976 Cedar Blvd, Springfield, TX"
+    },
+    "details": {
+      "surface": "carpet",
+      "indoor": true,
+      "lighting": false
+    },
+    "availability": {
+      "status": "open",
+      "booking_required": true,
+      "fee": "$0/hour"
+    },
+    "last_updated": "2025-09-05T15:37:40Z",
+    "reviews": []
+  },
+  {
+    "id": "1043",
+    "name": "Windermere Court",
+    "location": {
+      "address": "208 Maple Rd, Greenville, FL"
+    },
+    "details": {
+      "surface": "carpet",
+      "indoor": true,
+      "lighting": true
+    },
+    "availability": {
+      "status": "open",
+      "booking_required": false,
+      "fee": "$5/hour"
+    },
+    "last_updated": "2025-09-14T15:37:40Z",
+    "reviews": []
+  },
+  {
+    "id": "1044",
+    "name": "Silver Springs Court",
+    "location": {
+      "address": "459 Pine Ave, Hilltop, CA"
+    },
+    "details": {
+      "surface": "carpet",
+      "indoor": false,
+      "lighting": false
+    },
+    "availability": {
+      "status": "open",
+      "booking_required": false,
+      "fee": "$0/hour"
+    },
+    "last_updated": "2025-09-07T15:37:40Z",
+    "reviews": []
+  },
+  {
+    "id": "1045",
+    "name": "Bridgewater Court",
+    "location": {
+      "address": "863 Cedar Blvd, Riverside, TX"
+    },
+    "details": {
+      "surface": "clay",
+      "indoor": false,
+      "lighting": true
+    },
+    "availability": {
+      "status": "closed",
+      "booking_required": true,
+      "fee": "$20/hour"
+    },
+    "last_updated": "2025-09-17T15:37:40Z",
+    "reviews": []
+  },
+  {
+    "id": "1046",
+    "name": "Stonehaven Court",
+    "location": {
+      "address": "941 Maple Rd, Riverside, FL"
+    },
+    "details": {
+      "surface": "hard",
+      "indoor": false,
+      "lighting": false
+    },
+    "availability": {
+      "status": "closed",
+      "booking_required": false,
+      "fee": "$20/hour"
+    },
+    "last_updated": "2025-09-13T15:37:40Z",
+    "reviews": []
+  },
+  {
+    "id": "1047",
+    "name": "Timberline Court",
+    "location": {
+      "address": "476 Oak St, Fairview, NY"
+    },
+    "details": {
+      "surface": "hard",
+      "indoor": true,
+      "lighting": true
+    },
+    "availability": {
+      "status": "maintenance",
+      "booking_required": true,
+      "fee": "$15/hour"
+    },
+    "last_updated": "2025-09-03T15:37:40Z",
+    "reviews": []
+  },
+  {
+    "id": "1048",
+    "name": "Crystal Lake Court",
+    "location": {
+      "address": "497 Pine Ave, Hilltop, FL"
+    },
+    "details": {
+      "surface": "grass",
+      "indoor": false,
+      "lighting": false
+    },
+    "availability": {
+      "status": "closed",
+      "booking_required": true,
+      "fee": "$20/hour"
+    },
+    "last_updated": "2025-08-25T15:37:40Z",
+    "reviews": []
+  },
+  {
+    "id": "1049",
+    "name": "Magnolia Court",
+    "location": {
+      "address": "324 Main St, Fairview, TX"
+    },
+    "details": {
+      "surface": "carpet",
+      "indoor": true,
+      "lighting": true
+    },
+    "availability": {
+      "status": "maintenance",
+      "booking_required": true,
+      "fee": "$10/hour"
+    },
+    "last_updated": "2025-09-09T15:37:40Z",
+    "reviews": []
+  }
+]
