@@ -1,9 +1,9 @@
-"use client";
 import React, { useState, useMemo } from "react";
-import { View, Text, TextInput, FlatList, TouchableOpacity, StyleSheet } from "react-native";
+import { View, TextInput, FlatList, TouchableOpacity, StyleSheet } from "react-native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../App";
 import courtsData from "../data/tennis_courts.json";
+import CustomText from "../components/CustomText";
 
 type Props = NativeStackScreenProps<RootStackParamList, "CourtsList">;
 const COURTS_PER_PAGE = 10;
@@ -38,10 +38,10 @@ export default function CourtsList({ navigation }: Props) {
             style={styles.item}
             onPress={() => navigation.navigate("CourtDetails", { courtId: item.id })}
           >
-            <Text style={styles.name}>{item.name}</Text>
-            <Text style={styles.address}>{item.location.address}</Text>
-            <Text>Surface: {item.details.surface}</Text>
-            <Text>Status: {item.availability.status}</Text>
+            <CustomText style={styles.name}>{item.name}</CustomText>
+            <CustomText style={styles.address}>{item.location.address}</CustomText>
+            <CustomText>Surface: {item.details.surface}</CustomText>
+            <CustomText>Status: {item.availability.status}</CustomText>
           </TouchableOpacity>
         )}
       />
@@ -53,7 +53,7 @@ export default function CourtsList({ navigation }: Props) {
           onPress={() => setCurrentPage(currentPage - 1)}
           style={[styles.pageButton, currentPage === 1 && styles.disabled]}
         >
-          <Text>←</Text>
+          <CustomText>←</CustomText>
         </TouchableOpacity>
 
         {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
@@ -62,7 +62,7 @@ export default function CourtsList({ navigation }: Props) {
             onPress={() => setCurrentPage(page)}
             style={[styles.pageButton, page === currentPage && styles.activePage]}
           >
-            <Text style={page === currentPage ? { color: "white" } : {}}>{page}</Text>
+            <CustomText style={page === currentPage ? { color: "white" } : {}}>{page}</CustomText>
           </TouchableOpacity>
         ))}
 
@@ -71,11 +71,11 @@ export default function CourtsList({ navigation }: Props) {
           onPress={() => setCurrentPage(currentPage + 1)}
           style={[styles.pageButton, currentPage === totalPages && styles.disabled]}
         >
-          <Text>→</Text>
+          <CustomText>→</CustomText>
         </TouchableOpacity>
       </View>
 
-      <Text style={styles.pageInfo}>Page {currentPage} of {totalPages}</Text>
+      <CustomText style={styles.pageInfo}>Page {currentPage} of {totalPages}</CustomText>
     </View>
   );
 }
@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
   container: { flex: 1, padding: 16, backgroundColor: "#f9fafb" },
   search: { borderWidth: 1, borderColor: "#ccc", borderRadius: 8, padding: 8, marginBottom: 12, backgroundColor: "white" },
   item: { backgroundColor: "white", padding: 12, marginBottom: 8, borderRadius: 8, shadowColor: "#000", shadowOpacity: 0.05, shadowOffset: { width: 0, height: 1 }, shadowRadius: 2, elevation: 2 },
-  name: { fontWeight: "bold", fontSize: 16 },
+  name: { fontWeight: "700", fontSize: 16 },
   address: { color: "#555", marginBottom: 4 },
   pagination: { flexDirection: "row", justifyContent: "center", marginTop: 12, flexWrap: "wrap", gap: 4 },
   pageButton: { padding: 8, borderWidth: 1, borderColor: "#ccc", borderRadius: 6, margin: 2 },
