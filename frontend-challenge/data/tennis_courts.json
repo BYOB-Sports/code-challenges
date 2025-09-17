@@ -13,7 +13,7 @@
     "availability": {
       "status": "maintenance",
       "booking_required": false,
-      "fee": "free"
+      "fee": "Free"
     },
     "last_updated": "2025-09-01T15:37:40Z",
     "reviews": []
@@ -32,7 +32,7 @@
     "availability": {
       "status": "open",
       "booking_required": true,
-      "fee": 20
+      "fee": "$20/hour"
     },
     "last_updated": "2025-09-07T15:37:40Z",
     "reviews": []
@@ -51,7 +51,7 @@
     "availability": {
       "status": "closed",
       "booking_required": true,
-      "fee": 15
+      "fee": "$15/hour"
     },
     "last_updated": "2025-09-14T15:37:40Z",
     "reviews": []
@@ -70,7 +70,7 @@
     "availability": {
       "status": "open",
       "booking_required": false,
-      "fee": "free"
+      "fee": "Free"
     },
     "last_updated": "2025-09-15T15:37:40Z",
     "reviews": []
@@ -89,7 +89,7 @@
     "availability": {
       "status": "open",
       "booking_required": true,
-      "fee": "free"
+      "fee": "Free"
     },
     "last_updated": "2025-08-24T15:37:40Z",
     "reviews": []
@@ -108,7 +108,7 @@
     "availability": {
       "status": "open",
       "booking_required": false,
-      "fee": 5
+      "fee": "$5/hour"
     },
     "last_updated": "2025-09-06T15:37:40Z",
     "reviews": []
@@ -127,7 +127,7 @@
     "availability": {
       "status": "closed",
       "booking_required": true,
-      "fee": "free"
+      "fee": "Free"
     },
     "last_updated": "2025-09-11T15:37:40Z",
     "reviews": []
@@ -146,7 +146,7 @@
     "availability": {
       "status": "closed",
       "booking_required": false,
-      "fee": 15
+      "fee": "$15/hour"
     },
     "last_updated": "2025-09-10T15:37:40Z",
     "reviews": []
@@ -165,7 +165,7 @@
     "availability": {
       "status": "open",
       "booking_required": true,
-      "fee": 5
+      "fee": "$5/hour"
     },
     "last_updated": "2025-08-26T15:37:40Z",
     "reviews": []
@@ -184,7 +184,7 @@
     "availability": {
       "status": "open",
       "booking_required": true,
-      "fee": "free"
+      "fee": "Free"
     },
     "last_updated": "2025-08-19T15:37:40Z",
     "reviews": []
@@ -203,7 +203,7 @@
     "availability": {
       "status": "open",
       "booking_required": false,
-      "fee": 5
+      "fee": "$5/hour"
     },
     "last_updated": "2025-09-09T15:37:40Z",
     "reviews": []
@@ -222,7 +222,7 @@
     "availability": {
       "status": "closed",
       "booking_required": true,
-      "fee": 0
+      "fee": "$0/hour"
     },
     "last_updated": "2025-08-19T15:37:40Z",
     "reviews": []
@@ -241,7 +241,7 @@
     "availability": {
       "status": "maintenance",
       "booking_required": false,
-      "fee": 5
+      "fee": "$5/hour"
     },
     "last_updated": "2025-09-11T15:37:40Z",
     "reviews": []
@@ -260,7 +260,7 @@
     "availability": {
       "status": "closed",
       "booking_required": false,
-      "fee": 10
+      "fee": "$10/hour"
     },
     "last_updated": "2025-08-28T15:37:40Z",
     "reviews": []
@@ -279,7 +279,7 @@
     "availability": {
       "status": "open",
       "booking_required": false,
-      "fee": 0
+      "fee": "$0/hour"
     },
     "last_updated": "2025-08-29T15:37:40Z",
     "reviews": []
@@ -298,7 +298,7 @@
     "availability": {
       "status": "closed",
       "booking_required": true,
-      "fee": 0
+      "fee": "$0/hour"
     },
     "last_updated": "2025-08-31T15:37:40Z",
     "reviews": []
@@ -317,7 +317,7 @@
     "availability": {
       "status": "open",
       "booking_required": true,
-      "fee": "free"
+      "fee": "Free"
     },
     "last_updated": "2025-09-05T15:37:40Z",
     "reviews": []
@@ -336,7 +336,7 @@
     "availability": {
       "status": "open",
       "booking_required": true,
-      "fee": 10
+      "fee": "$10/hour"
     },
     "last_updated": "2025-09-09T15:37:40Z",
     "reviews": []
@@ -355,7 +355,7 @@
     "availability": {
       "status": "closed",
       "booking_required": false,
-      "fee": "free"
+      "fee": "Free"
     },
     "last_updated": "2025-08-28T15:37:40Z",
     "reviews": []
@@ -374,7 +374,7 @@
     "availability": {
       "status": "maintenance",
       "booking_required": false,
-      "fee": 20
+      "fee": "$20/hour"
     },
     "last_updated": "2025-09-06T15:37:40Z",
     "reviews": []
@@ -393,7 +393,7 @@
     "availability": {
       "status": "closed",
       "booking_required": false,
-      "fee": 15
+      "fee": "$15/hour"
     },
     "last_updated": "2025-09-13T15:37:40Z",
     "reviews": []
@@ -412,7 +412,7 @@
     "availability": {
       "status": "maintenance",
       "booking_required": true,
-      "fee": 15
+      "fee": "$15/hour"
     },
     "last_updated": "2025-09-09T15:37:40Z",
     "reviews": []
@@ -431,7 +431,7 @@
     "availability": {
       "status": "open",
       "booking_required": true,
-      "fee": 10
+      "fee": "$10/hour"
     },
     "last_updated": "2025-08-21T15:37:40Z",
     "reviews": []
@@ -450,7 +450,7 @@
     "availability": {
       "status": "closed",
       "booking_required": true,
-      "fee": 20
+      "fee": "$20/hour"
     },
     "last_updated": "2025-09-16T15:37:40Z",
     "reviews": []
@@ -469,7 +469,7 @@
     "availability": {
       "status": "closed",
       "booking_required": true,
-      "fee": 0
+      "fee": "$0/hour"
     },
     "last_updated": "2025-09-01T15:37:40Z",
     "reviews": []
@@ -488,7 +488,7 @@
     "availability": {
       "status": "open",
       "booking_required": true,
-      "fee": 0
+      "fee": "$0/hour"
     },
     "last_updated": "2025-09-16T15:37:40Z",
     "reviews": []
@@ -507,7 +507,7 @@
     "availability": {
       "status": "maintenance",
       "booking_required": false,
-      "fee": 20
+      "fee": "$20/hour"
     },
     "last_updated": "2025-09-12T15:37:40Z",
     "reviews": []
@@ -526,7 +526,7 @@
     "availability": {
       "status": "open",
       "booking_required": true,
-      "fee": 0
+      "fee": "$0/hour"
     },
     "last_updated": "2025-08-20T15:37:40Z",
     "reviews": []
@@ -545,7 +545,7 @@
     "availability": {
       "status": "maintenance",
       "booking_required": true,
-      "fee": 5
+      "fee": "$5/hour"
     },
     "last_updated": "2025-09-15T15:37:40Z",
     "reviews": []
@@ -564,7 +564,7 @@
     "availability": {
       "status": "maintenance",
       "booking_required": false,
-      "fee": 15
+      "fee": "$15/hour"
     },
     "last_updated": "2025-08-20T15:37:40Z",
     "reviews": []
@@ -583,7 +583,7 @@
     "availability": {
       "status": "maintenance",
       "booking_required": true,
-      "fee": 10
+      "fee": "$10/hour"
     },
     "last_updated": "2025-09-07T15:37:40Z",
     "reviews": []
@@ -602,7 +602,7 @@
     "availability": {
       "status": "open",
       "booking_required": true,
-      "fee": 0
+      "fee": "$0/hour"
     },
     "last_updated": "2025-09-16T15:37:40Z",
     "reviews": []
@@ -621,7 +621,7 @@
     "availability": {
       "status": "open",
       "booking_required": false,
-      "fee": 0
+      "fee": "$0/hour"
     },
     "last_updated": "2025-08-29T15:37:40Z",
     "reviews": []
@@ -640,7 +640,7 @@
     "availability": {
       "status": "open",
       "booking_required": true,
-      "fee": 5
+      "fee": "$5/hour"
     },
     "last_updated": "2025-09-05T15:37:40Z",
     "reviews": []
@@ -659,7 +659,7 @@
     "availability": {
       "status": "open",
       "booking_required": true,
-      "fee": 5
+      "fee": "$5/hour"
     },
     "last_updated": "2025-09-11T15:37:40Z",
     "reviews": []
@@ -678,7 +678,7 @@
     "availability": {
       "status": "maintenance",
       "booking_required": false,
-      "fee": 10
+      "fee": "$10/hour"
     },
     "last_updated": "2025-08-25T15:37:40Z",
     "reviews": []
@@ -697,7 +697,7 @@
     "availability": {
       "status": "closed",
       "booking_required": true,
-      "fee": "free"
+      "fee": "Free"
     },
     "last_updated": "2025-08-29T15:37:40Z",
     "reviews": []
@@ -716,7 +716,7 @@
     "availability": {
       "status": "maintenance",
       "booking_required": true,
-      "fee": 15
+      "fee": "$15/hour"
     },
     "last_updated": "2025-08-23T15:37:40Z",
     "reviews": []
@@ -735,7 +735,7 @@
     "availability": {
       "status": "maintenance",
       "booking_required": false,
-      "fee": 0
+      "fee": "$0/hour"
     },
     "last_updated": "2025-09-12T15:37:40Z",
     "reviews": []
@@ -754,7 +754,7 @@
     "availability": {
       "status": "open",
       "booking_required": false,
-      "fee": 0
+      "fee": "$0/hour"
     },
     "last_updated": "2025-09-07T15:37:40Z",
     "reviews": []
@@ -773,7 +773,7 @@
     "availability": {
       "status": "closed",
       "booking_required": true,
-      "fee": "free"
+      "fee": "Free"
     },
     "last_updated": "2025-09-08T15:37:40Z",
     "reviews": []
@@ -792,7 +792,7 @@
     "availability": {
       "status": "closed",
       "booking_required": true,
-      "fee": 0
+      "fee": "$0/hour"
     },
     "last_updated": "2025-09-01T15:37:40Z",
     "reviews": []
@@ -811,7 +811,7 @@
     "availability": {
       "status": "open",
       "booking_required": true,
-      "fee": 0
+      "fee": "$0/hour"
     },
     "last_updated": "2025-09-05T15:37:40Z",
     "reviews": []
@@ -830,7 +830,7 @@
     "availability": {
       "status": "open",
       "booking_required": false,
-      "fee": 5
+      "fee": "$5/hour"
     },
     "last_updated": "2025-09-14T15:37:40Z",
     "reviews": []
@@ -849,7 +849,7 @@
     "availability": {
       "status": "open",
       "booking_required": false,
-      "fee": 0
+      "fee": "$0/hour"
     },
     "last_updated": "2025-09-07T15:37:40Z",
     "reviews": []
@@ -868,7 +868,7 @@
     "availability": {
       "status": "closed",
       "booking_required": true,
-      "fee": 20
+      "fee": "$20/hour"
     },
     "last_updated": "2025-09-17T15:37:40Z",
     "reviews": []
@@ -887,7 +887,7 @@
     "availability": {
       "status": "closed",
       "booking_required": false,
-      "fee": 20
+      "fee": "$20/hour"
     },
     "last_updated": "2025-09-13T15:37:40Z",
     "reviews": []
@@ -906,7 +906,7 @@
     "availability": {
       "status": "maintenance",
       "booking_required": true,
-      "fee": 15
+      "fee": "$15/hour"
     },
     "last_updated": "2025-09-03T15:37:40Z",
     "reviews": []
@@ -925,7 +925,7 @@
     "availability": {
       "status": "closed",
       "booking_required": true,
-      "fee": 20
+      "fee": "$20/hour"
     },
     "last_updated": "2025-08-25T15:37:40Z",
     "reviews": []
@@ -944,7 +944,7 @@
     "availability": {
       "status": "maintenance",
       "booking_required": true,
-      "fee": 10
+      "fee": "$10/hour"
     },
     "last_updated": "2025-09-09T15:37:40Z",
     "reviews": []
