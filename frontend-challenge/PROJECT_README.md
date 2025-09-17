@@ -1,5 +1,30 @@
 # Tennis Court Review App - React + TypeScript
 
+### Available Scripts
+
+```bash
+#Install dependencies:
+npm install
+
+# Development server with hot reload
+npm run dev
+
+# Build for production
+npm run build
+
+# Preview production build locally
+npm run preview
+
+# Run ESLint for code quality
+npm run lint
+```
+
+### Build for Production
+
+```bash
+npm run build
+```
+
 A modern, mobile-first tennis court review application built with React, TypeScript, and Tailwind CSS. This project demonstrates modern React development practices, component architecture, and responsive design principles.
 
 ## 🚀 Features
@@ -290,27 +315,6 @@ frontend-challenge/
    - Visit the URL shown in your terminal
    - The app will automatically reload when you make changes
 
-### Available Scripts
-
-```bash
-# Development server with hot reload
-npm run dev
-
-# Build for production
-npm run build
-
-# Preview production build locally
-npm run preview
-
-# Run ESLint for code quality
-npm run lint
-```
-
-### Build for Production
-
-```bash
-npm run build
-```
 
 This command will:
 
