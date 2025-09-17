@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675">
+  <rect width="100%" height="100%" fill="#22c55e"/>
+  <rect x="60" y="60" width="1080" height="555" fill="#14532d" stroke="#ecfeff" stroke-width="6"/>
+  <line x1="600" y1="60" x2="600" y2="615" stroke="#ecfeff" stroke-width="6"/>
+  <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="48" fill="#ecfeff">Golden Gate</text>
+</svg>
+
