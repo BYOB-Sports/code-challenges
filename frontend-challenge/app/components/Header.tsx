@@ -1,16 +1,10 @@
 "use client";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import { ChevronDown } from "lucide-react"; // or your icon library
 
 export default function Header() {
   const router = useRouter();
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
-
-  const handleScroll = () => {
-    const courtsSection = document.getElementById("courts");
-    if (courtsSection) courtsSection.scrollIntoView({ behavior: "smooth" });
-  };
 
   return (
     <header className="flex flex-col">
@@ -26,63 +20,48 @@ export default function Header() {
           />
         </h1>
 
+        {/* Desktop nav */}
         <nav className="hidden sm:flex gap-6 text-sm font-medium text-gray-700">
-          <a href="#courts" className="hover:text-black">
-            Courts
-          </a>
-          <a href="#reviews" className="hover:text-black">
-            Reviews
-          </a>
-          <a href="#about" className="hover:text-black">
-            About
-          </a>
-          <a href="#contact" className="hover:text-black">
-            Contact
-          </a>
+          <a href="#courts" className="hover:text-black">Courts</a>
+          <a href="#reviews" className="hover:text-black">Reviews</a>
+          <a href="#about" className="hover:text-black">About</a>
+          <a href="#contact" className="hover:text-black">Contact</a>
         </nav>
 
+        {/* Mobile hamburger */}
         <button
-          className="sm:hidden p-2 flex flex-col rounded-md "
+          className="sm:hidden p-2 flex flex-col rounded-md"
           onClick={() => setMobileNavOpen(true)}
         >
-          <span>_______</span>
-          <span className="-mt-2">_______</span>
+          <span className="block w-10 h-[1px] bg-black mb-2"></span>
+          <span className="block w-10 h-[1px] bg-black mb"></span>
         </button>
       </div>
 
-      {mobileNavOpen && (
-        <div className="fixed inset-0 bg-white z-50 flex flex-col animate-fade-in">
-          <div className="flex justify-end p-6">
-            <button
-              className="text-2xl font-bold"
-              onClick={() => setMobileNavOpen(false)}
-            >
-              ✕
-            </button>
-          </div>
-
-          <nav className="flex-1 flex flex-col items-center justify-center gap-8 text-xl font-semibold text-slate-800">
-            <a href="#courts" onClick={() => setMobileNavOpen(false)}>
-              Courts
-            </a>
-            <a href="#reviews" onClick={() => setMobileNavOpen(false)}>
-              Reviews
-            </a>
-            <a href="#about" onClick={() => setMobileNavOpen(false)}>
-              About
-            </a>
-            <a href="#contact" onClick={() => setMobileNavOpen(false)}>
-              Contact
-            </a>
-            <a href="#pricing" onClick={() => setMobileNavOpen(false)}>
-              Pricing
-            </a>
-            <a href="#faq" onClick={() => setMobileNavOpen(false)}>
-              FAQ
-            </a>
-          </nav>
+      {/* Mobile nav overlay */}
+      <div
+        className={`fixed inset-0 z-50 bg-white flex flex-col transform transition-transform duration-300 ease-in-out ${
+          mobileNavOpen ? "translate-x-0" : "translate-x-full"
+        }`}
+      >
+        <div className="flex justify-end p-6">
+          <button
+            className="text-2xl font-bold"
+            onClick={() => setMobileNavOpen(false)}
+          >
+            ✕
+          </button>
         </div>
-      )}
+
+        <nav className="flex-1 flex flex-col items-center justify-center gap-8 text-xl font-semibold text-slate-800">
+          <a href="#courts" onClick={() => setMobileNavOpen(false)}>Courts</a>
+          <a href="#reviews" onClick={() => setMobileNavOpen(false)}>Reviews</a>
+          <a href="#about" onClick={() => setMobileNavOpen(false)}>About</a>
+          <a href="#contact" onClick={() => setMobileNavOpen(false)}>Contact</a>
+          <a href="#pricing" onClick={() => setMobileNavOpen(false)}>Pricing</a>
+          <a href="#faq" onClick={() => setMobileNavOpen(false)}>FAQ</a>
+        </nav>
+      </div>
     </header>
   );
 }
