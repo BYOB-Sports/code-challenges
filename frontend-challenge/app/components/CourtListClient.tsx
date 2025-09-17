@@ -112,7 +112,7 @@ export default function CourtListClient(): JSX.Element {
             </div>
           </div>
 
-          <div className="flex  sm:items-center sm:justify-between gap-3">
+          <div className="hidden sm:flex  sm:items-center sm:justify-between gap-3">
             <div className="flex items-center gap-2">
               <input
                 id="reviews-only"
@@ -146,7 +146,7 @@ export default function CourtListClient(): JSX.Element {
                 ))}
               </ul>
 
-              <div className="flex justify-center items-center gap-3 mt-14">
+              <div className="flex justify-center items-center gap-3 mt-14 mb-20">
                 <button
                   onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
                   disabled={currentPage === 1}
