@@ -1,50 +1,66 @@
-import React, { useState, useEffect } from 'react';
-import './App.css';
-import PlayersList from './components/PlayersList';
-import MatchRating from './components/MatchRating';
-import { fetchPlayers } from './api/playerApi';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { ThemeProvider, createTheme, CssBaseline } from '@mui/material';
+import Home from './pages/Home';
+import CourtDetail from './components/CourtDetail';
+
+// Create a theme instance
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#1976d2',
+    },
+    secondary: {
+      main: '#dc004e',
+    },
+    background: {
+      default: '#f5f5f5',
+    },
+  },
+  typography: {
+    fontFamily: [
+      '-apple-system',
+      'BlinkMacSystemFont',
+      '"Segoe UI"',
+      'Roboto',
+      '"Helvetica Neue"',
+      'Arial',
+      'sans-serif',
+    ].join(','),
+    button: {
+      textTransform: 'none',
+    },
+  },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          borderRadius: 8,
+        },
+      },
+    },
+    MuiCard: {
+      styleOverrides: {
+        root: {
+          borderRadius: 12,
+        },
+      },
+    },
+  },
+});
 
 function App() {
-  const [activeTab, setActiveTab] = useState('players');
-  const [players, setPlayers] = useState([]);
-
-  useEffect(() => {
-    // Load initial player data
-    const loadPlayers = async () => {
-      const loadedPlayers = await fetchPlayers();
-      setPlayers(loadedPlayers);
-    };
-    
-    loadPlayers();
-  }, []);
-
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>USTA Player Rating System</h1>
-        <div className="tabs">
-          <button 
-            className={activeTab === 'players' ? 'active' : ''} 
-            onClick={() => setActiveTab('players')}
-          >
-            Players
-          </button>
-          <button 
-            className={activeTab === 'matches' ? 'active' : ''} 
-            onClick={() => setActiveTab('matches')}
-          >
-            Match Ratings
-          </button>
-        </div>
-      </header>
-      <main>
-        {activeTab === 'players' ? (
-          <PlayersList players={players} />
-        ) : (
-          <MatchRating players={players} setPlayers={setPlayers} />
-        )}
-      </main>
-    </div>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/court/:id" element={<CourtDetail />} />
+          <Route path="*" element={<Home />} />
+        </Routes>
+      </Router>
+    </ThemeProvider>
   );
 }
 
