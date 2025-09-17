@@ -48,7 +48,7 @@ export default function CourtDetailClient({ id }: { id: string }) {
     setTimeout(() => {
       setStorageMap(next);
       setSubmitting(false);
-      setCurrentPage(1); // jump to first page after adding
+      setCurrentPage(1); 
     }, 200);
   }
 

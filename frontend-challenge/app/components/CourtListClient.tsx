@@ -1,3 +1,4 @@
+'use client'
 import React, { JSX, useMemo, useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import CourtCard from "./CourtCard";
@@ -40,7 +41,6 @@ export default function CourtListClient(): JSX.Element {
     currentPage * COURTS_PER_PAGE
   );
 
-  // 👇 Scroll to the top of the list when page changes
   useEffect(() => {
     const courtsSection = document.getElementById("explore-section");
     if (courtsSection) {
@@ -51,7 +51,6 @@ export default function CourtListClient(): JSX.Element {
   return (
     <main className="flex flex-col min-h-screen bg-white">
       <Header />
-      {/* Hero Section */}
       <section
         className="relative w-full h-[60vh] sm:h-[75vh] flex items-center justify-center text-center text-white"
         style={{
@@ -82,13 +81,11 @@ export default function CourtListClient(): JSX.Element {
         </div>
       </section>
 
-      {/* Explore Section */}
       <div className="mt-10 flex-1 px-6 py-6 max-w-6xl w-full mx-auto">
         <section
           id="explore-section"
           className="mb-6 space-y-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3"
         >
-          {/* Search */}
           <div className="flex items-center gap-2 justify-center sm:justify-start">
             <div className="relative w-full sm:w-96">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 w-4 h-4 pointer-events-none" />
@@ -113,7 +110,6 @@ export default function CourtListClient(): JSX.Element {
             </div>
           </div>
 
-          {/* Filters */}
           <div className="hidden sm:flex sm:items-center sm:justify-between gap-3">
             <div className="flex items-center gap-2">
               <input
@@ -133,7 +129,6 @@ export default function CourtListClient(): JSX.Element {
           </div>
         </section>
 
-        {/* Courts Grid */}
         <section id="courts" aria-live="polite">
           {filtered.length === 0 ? (
             <div className="bg-white p-4 rounded-xl shadow-sm text-sm text-slate-600">
@@ -149,7 +144,6 @@ export default function CourtListClient(): JSX.Element {
                 ))}
               </ul>
 
-              {/* Pagination */}
               <div className="flex justify-center items-center gap-3 mt-14 mb-20">
                 <button
                   onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}

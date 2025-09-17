@@ -20,7 +20,6 @@ export default function Header() {
           />
         </h1>
 
-        {/* Desktop nav */}
         <nav className="hidden sm:flex gap-6 text-sm font-medium text-gray-700">
           <a href="#courts" className="hover:text-black">Courts</a>
           <a href="#reviews" className="hover:text-black">Reviews</a>
@@ -28,7 +27,6 @@ export default function Header() {
           <a href="#contact" className="hover:text-black">Contact</a>
         </nav>
 
-        {/* Mobile hamburger */}
         <button
           className="sm:hidden p-2 flex flex-col rounded-md"
           onClick={() => setMobileNavOpen(true)}
@@ -38,7 +36,6 @@ export default function Header() {
         </button>
       </div>
 
-      {/* Mobile nav overlay */}
       <div
         className={`fixed inset-0 z-50 bg-white flex flex-col transform transition-transform duration-300 ease-in-out ${
           mobileNavOpen ? "translate-x-0" : "translate-x-full"
