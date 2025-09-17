@@ -176,7 +176,7 @@ export default function CourtDetailClient({ id }: { id: string }) {
             <div className="flex justify-end px-4 py-8 pt-10">
               <button
                 onClick={() => router.push(`/court/${nextCourt.id}`)}
-                className="px-4 h-20 w-20 rounded-full py-3 bg-gray-200  hover:bg-gray-200 transition"
+                className="px-2 h-20 w-20 rounded-full py-3 bg-gray-200  hover:bg-gray-200 transition"
               >
                 →
               </button>
