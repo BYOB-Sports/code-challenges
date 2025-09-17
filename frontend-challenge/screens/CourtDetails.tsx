@@ -80,7 +80,7 @@ export default function CourtDetails({ route }: Props) {
       <CustomText style={styles.label}>Lighting: {court.details.lighting ? "Yes" : "No"}</CustomText>
       <CustomText style={styles.label}>Status: {court.availability.status}</CustomText>
       <CustomText style={styles.label}>Booking Required: {court.availability.booking_required ? "Yes" : "No"}</CustomText>
-      <CustomText style={styles.label}>Fee: {court.availability.fee}</CustomText>
+      <CustomText style={[styles.label, styles.fee]}>Fee: {court.availability.fee}</CustomText>
       <CustomText style={styles.updated}>
         Last Updated: {new Date(court.last_updated).toLocaleString()}
       </CustomText>
@@ -152,6 +152,7 @@ const styles = StyleSheet.create({
   title: { fontSize: 22, fontWeight: "800", marginBottom: 4 },
   subtitle: { fontSize: 16, color: "#555", marginBottom: 8 },
   label: { fontSize: 14, marginBottom: 2 },
+  fee: {  fontWeight: 700, fontSize: 16, marginTop: 10 },
   updated: { fontSize: 12, color: "#555", marginTop: 4 },
   sectionTitle: { fontSize: 18, fontWeight: "700", marginBottom: 8 },
   input: {
