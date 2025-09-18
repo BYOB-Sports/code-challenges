@@ -1,7 +1,8 @@
 import React, { useState, useMemo } from 'react';
-import { View, Text, TouchableOpacity, ScrollView, TextInput } from 'react-native';
+import { View, Text, ScrollView, TextInput } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { mockCourts, TennisCourt } from '../data/mockCourts';
+import CourtCard from '../components/CourtCard';
 
 export default function HomeScreen() {
   const navigation = useNavigation();
@@ -17,30 +18,6 @@ export default function HomeScreen() {
     });
   }, [searchQuery]);
 
-  const renderCourtCard = (court: TennisCourt) => (
-    <TouchableOpacity
-      key={court.id}
-      onPress={() => navigation.navigate('CourtDetail', { courtId: court.id } as never)}
-      className="bg-white mb-4 rounded-lg shadow-sm border border-gray-100 p-4"
-    >
-      <View className="flex-row justify-between items-start mb-2">
-        <Text className="text-lg font-bold text-gray-800 flex-1 mr-2">
-          {court.name}
-        </Text>
-        <View className="flex-row items-center">
-          <Text className="text-yellow-500 text-lg">★</Text>
-          <Text className="text-gray-600 ml-1">{court.rating}</Text>
-        </View>
-      </View>
-      
-      <Text className="text-gray-600 mb-1">{court.location}</Text>
-      <Text className="text-gray-500 mb-3">{court.city}, {court.state}</Text>
-      
-      <Text className="text-gray-700 text-sm leading-5" numberOfLines={2}>
-        {court.description}
-      </Text>
-    </TouchableOpacity>
-  );
 
   return (
     <View className="flex-1 bg-gray-50">
@@ -72,7 +49,13 @@ export default function HomeScreen() {
       {/* Courts List */}
       <ScrollView className="flex-1 px-4">
         {filteredCourts.length > 0 ? (
-          filteredCourts.map(renderCourtCard)
+          filteredCourts.map((court) => (
+            <CourtCard
+              key={court.id}
+              court={court}
+              onPress={() => navigation.navigate('CourtDetail', { courtId: court.id } as never)}
+            />
+          ))
         ) : (
           <View className="flex-1 justify-center items-center py-20">
             <Text className="text-gray-500 text-lg text-center">
