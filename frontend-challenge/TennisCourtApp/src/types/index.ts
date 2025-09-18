@@ -2,15 +2,31 @@
 export interface Court {
   id: string;
   name: string;
-  location: string;
-  surface: 'clay' | 'grass' | 'hard' | 'carpet';
+  address: string;
+  location: string; // kept for backwards compatibility
+  surface: 'clay' | 'grass' | 'hard' | 'synthetic';
   indoor: boolean;
   pricePerHour: number;
   rating: number;
   imageUrl: string;
+  images: string[];
   description?: string;
   amenities: string[];
   availability: TimeSlot[];
+  numberOfCourts: number;
+  coordinates: {
+    latitude: number;
+    longitude: number;
+  };
+  phoneNumber: string;
+  openingHours: {
+    [key: string]: {
+      open: string;
+      close: string;
+      closed?: boolean;
+    };
+  };
+  reviews: Review[];
 }
 
 export interface TimeSlot {
@@ -31,6 +47,7 @@ export interface Review {
   rating: number;
   comment: string;
   date: string;
+  helpfulVotes: number;
 }
 
 export interface ReviewFormData {
