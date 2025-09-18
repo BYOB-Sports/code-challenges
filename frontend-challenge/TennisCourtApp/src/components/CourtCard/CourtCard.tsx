@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo, useCallback, useMemo } from 'react';
 import {
   StyleSheet,
   Text,
@@ -6,7 +6,8 @@ import {
 } from 'react-native';
 
 import type { Court } from '@/types';
-import { COLORS, SPACING, TYPOGRAPHY, SHADOWS, RADIUS } from '@/constants';
+import { ACCESSIBILITY, COLORS, PERFORMANCE, RADIUS, SHADOWS, SPACING, TYPOGRAPHY } from '@/constants';
+import { generateCourtAccessibilityLabel, generateAccessibilityHint, preloadImages } from '@/utils';
 import { LazyImage } from '../LazyImage';
 import { ScaleButton } from '../animated';
 import GradientBackground from '../ui/GradientBackground';
@@ -14,16 +15,24 @@ import GradientBackground from '../ui/GradientBackground';
 export interface CourtCardProps {
   court: Court;
   onPress: (courtId: string) => void;
+  nearbyImages?: string[];
+  priority?: 'high' | 'normal' | 'low';
 }
 
-const CourtCard: React.FC<CourtCardProps> = ({ court, onPress }) => {
-  const renderStars = (rating: number) => {
-    const stars = [];
-    const fullStars = Math.floor(rating);
-    const hasHalfStar = rating % 1 >= 0.5;
+const CourtCard: React.FC<CourtCardProps> = ({ 
+  court, 
+  onPress,
+  nearbyImages = [],
+  priority = 'normal',
+}) => {
+  // Memoize star rendering for better performance
+  const stars = useMemo(() => {
+    const starElements = [];
+    const fullStars = Math.floor(court.rating);
+    const hasHalfStar = court.rating % 1 >= 0.5;
 
     for (let i = 0; i < fullStars; i++) {
-      stars.push(
+      starElements.push(
         <Text key={`star-${i}`} style={styles.star}>
           ★
         </Text>
@@ -31,28 +40,28 @@ const CourtCard: React.FC<CourtCardProps> = ({ court, onPress }) => {
     }
 
     if (hasHalfStar) {
-      stars.push(
+      starElements.push(
         <Text key='half-star' style={styles.star}>
           ☆
         </Text>
       );
     }
 
-    const emptyStars = 5 - Math.ceil(rating);
+    const emptyStars = 5 - Math.ceil(court.rating);
     for (let i = 0; i < emptyStars; i++) {
-      stars.push(
+      starElements.push(
         <Text key={`empty-${i}`} style={styles.emptyStar}>
           ☆
         </Text>
       );
     }
 
-    return stars;
-  };
+    return starElements;
+  }, [court.rating]);
 
-
-  const getSurfaceGradient = (surface: Court['surface']) => {
-    switch (surface) {
+  // Memoize surface gradient colors
+  const surfaceGradient = useMemo(() => {
+    switch (court.surface) {
       case 'clay':
         return ['#D2691E', '#CD853F'];
       case 'grass':
@@ -64,10 +73,11 @@ const CourtCard: React.FC<CourtCardProps> = ({ court, onPress }) => {
       default:
         return COLORS.gradients.primary;
     }
-  };
+  }, [court.surface]);
 
-  const getKeyAmenities = (amenities: string[]) => {
-    const keyAmenities = [
+  // Memoize key amenities
+  const keyAmenities = useMemo(() => {
+    const keyAmenityNames = [
       'Parking',
       'Lighting',
       'Pro Shop',
@@ -75,12 +85,13 @@ const CourtCard: React.FC<CourtCardProps> = ({ court, onPress }) => {
       'Restaurant',
       'Coaching Available',
     ];
-    return amenities
-      .filter(amenity => keyAmenities.includes(amenity))
+    return court.amenities
+      .filter(amenity => keyAmenityNames.includes(amenity))
       .slice(0, 3);
-  };
+  }, [court.amenities]);
 
-  const renderAmenityIcon = (amenity: string) => {
+  // Memoize amenity icons
+  const amenityIcons = useMemo(() => {
     const iconMap: { [key: string]: string } = {
       Parking: '🅿️',
       Lighting: '💡',
@@ -89,17 +100,30 @@ const CourtCard: React.FC<CourtCardProps> = ({ court, onPress }) => {
       Restaurant: '🍽️',
       'Coaching Available': '🎾',
     };
+    return iconMap;
+  }, []);
 
-    return iconMap[amenity] || '•';
-  };
+  // Memoize accessibility label
+  const accessibilityLabel = useMemo(() => 
+    generateCourtAccessibilityLabel(court), [court]
+  );
+
+  const handlePress = useCallback(() => {
+    onPress(court.id);
+  }, [onPress, court.id]);
+
+  const renderAmenityIcon = useCallback((amenity: string) => {
+    return amenityIcons[amenity] || '•';
+  }, [amenityIcons]);
 
   return (
     <ScaleButton
       style={styles.container}
-      onPress={() => onPress(court.id)}
+      onPress={handlePress}
       scaleValue={0.98}
       accessible
-      accessibilityLabel={`${court.name}, rating ${court.rating} stars, ${court.pricePerHour} dollars per hour`}
+      accessibilityLabel={accessibilityLabel}
+      accessibilityHint={generateAccessibilityHint('view court details')}
       accessibilityRole='button'
     >
       <View style={styles.imageContainer}>
@@ -107,64 +131,106 @@ const CourtCard: React.FC<CourtCardProps> = ({ court, onPress }) => {
           source={{ uri: court.imageUrl }}
           style={styles.image}
           resizeMode='cover'
+          priority={priority}
+          preloadNearby={nearbyImages}
+          enableBlurPlaceholder
         />
+        
         <GradientBackground
-          colors={[...getSurfaceGradient(court.surface)]}
+          colors={surfaceGradient}
           style={styles.surfaceBadge}
         >
           <Text style={styles.surfaceText}>{court.surface.toUpperCase()}</Text>
         </GradientBackground>
+        
         {court.indoor && (
           <View style={styles.indoorBadge}>
             <Text style={styles.indoorText}>🏢 INDOOR</Text>
           </View>
         )}
+        
         <View style={styles.imageOverlay} />
       </View>
 
       <View style={styles.content}>
         <View style={styles.header}>
-          <Text style={styles.name} numberOfLines={2}>
+          <Text 
+            style={styles.name} 
+            numberOfLines={2}
+            accessible
+            accessibilityRole='text'
+            accessibilityLabel={`Court name: ${court.name}`}
+          >
             {court.name}
           </Text>
           <View style={styles.ratingContainer}>
-            <View style={styles.starsContainer}>
-              {renderStars(court.rating)}
+            <View 
+              style={styles.starsContainer}
+              accessible
+              accessibilityRole='text'
+              accessibilityLabel={`Rating: ${court.rating} out of 5 stars`}
+            >
+              {stars}
             </View>
             <Text style={styles.ratingText}>{court.rating.toFixed(1)}</Text>
           </View>
         </View>
 
-        <Text style={styles.location} numberOfLines={2}>
+        <Text 
+          style={styles.location} 
+          numberOfLines={2}
+          accessible
+          accessibilityRole='text'
+          accessibilityLabel={`Location: ${court.address}`}
+        >
           {court.address}
         </Text>
 
         <View style={styles.details}>
           <GradientBackground
-            colors={[...COLORS.gradients.success]}
+            colors={COLORS.gradients.success}
             style={styles.priceContainer}
           >
-            <Text style={styles.price}>${court.pricePerHour}</Text>
+            <Text 
+              style={styles.price}
+              accessible
+              accessibilityRole='text'
+              accessibilityLabel={`Price: ${court.pricePerHour} dollars per hour`}
+            >
+              ${court.pricePerHour}
+            </Text>
             <Text style={styles.priceUnit}>/hr</Text>
           </GradientBackground>
 
           <View style={styles.courtsInfo}>
-            <Text style={styles.courtsCount}>
+            <Text 
+              style={styles.courtsCount}
+              accessible
+              accessibilityRole='text'
+              accessibilityLabel={`${court.numberOfCourts} ${court.numberOfCourts === 1 ? 'court' : 'courts'} available`}
+            >
               🎾 {court.numberOfCourts} court{court.numberOfCourts !== 1 ? 's' : ''}
             </Text>
           </View>
         </View>
 
-        <View style={styles.amenities}>
-          {getKeyAmenities(court.amenities).map((amenity, _index) => (
-            <View key={amenity} style={styles.amenityItem}>
-              <Text style={styles.amenityIcon}>
-                {renderAmenityIcon(amenity)}
-              </Text>
-              <Text style={styles.amenityText}>{amenity}</Text>
-            </View>
-          ))}
-        </View>
+        {keyAmenities.length > 0 && (
+          <View 
+            style={styles.amenities}
+            accessible
+            accessibilityRole='text'
+            accessibilityLabel={`Amenities: ${keyAmenities.join(', ')}`}
+          >
+            {keyAmenities.map((amenity) => (
+              <View key={amenity} style={styles.amenityItem}>
+                <Text style={styles.amenityIcon}>
+                  {renderAmenityIcon(amenity)}
+                </Text>
+                <Text style={styles.amenityText}>{amenity}</Text>
+              </View>
+            ))}
+          </View>
+        )}
       </View>
     </ScaleButton>
   );
@@ -191,6 +257,7 @@ const styles = StyleSheet.create({
     paddingVertical: SPACING.sm,
     borderWidth: 1,
     borderColor: COLORS.border.light,
+    minHeight: ACCESSIBILITY.minTouchTarget,
   },
   amenityText: {
     color: COLORS.text.secondary,
@@ -201,7 +268,7 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.surface,
     borderRadius: RADIUS.lg,
     marginBottom: SPACING.lg,
-    minHeight: 44,
+    minHeight: PERFORMANCE.flatList.getItemLayout.height,
     overflow: 'hidden',
     ...SHADOWS.medium,
   },

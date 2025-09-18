@@ -1,5 +1,5 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import type { ListRenderItem } from 'react-native';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import type { ListRenderItem, ViewabilityConfig } from 'react-native';
 import {
   ActivityIndicator,
   Alert,
@@ -13,8 +13,16 @@ import type { StackNavigationProp } from '@react-navigation/stack';
 import type { RouteProp } from '@react-navigation/native';
 
 import type { Court, CourtsFilter, RootStackParamList } from '@/types';
-import { COLORS, SPACING, TYPOGRAPHY } from '@/constants';
+import { COLORS, PERFORMANCE, SPACING, TYPOGRAPHY } from '@/constants';
 import { filterCourts, getAllCourts, searchCourts, sortCourts } from '@/data';
+import {
+  createCleanupManager,
+  debounce,
+  memoize,
+  preloadImages,
+  runAfterInteractions,
+  throttle,
+} from '@/utils';
 import {
   CourtCard,
   FilterChips,
@@ -35,6 +43,45 @@ interface Props {
   route: CourtsListScreenRouteProp;
 }
 
+// Memoized court processing function
+const processCourtsMemoized = memoize((
+  allCourts: Court[],
+  searchQuery: string,
+  filters: CourtsFilter,
+  sortOption: SortOption
+) => {
+  let result = allCourts;
+
+  // Apply search
+  if (searchQuery.trim()) {
+    result = searchCourts(searchQuery, result);
+  }
+
+  // Apply filters
+  result = filterCourts(filters, result);
+
+  // Apply sorting with distance mock
+  const sortMap: {
+    [key in SortOption]: { criteria: any; order: 'asc' | 'desc' } | 'custom';
+  } = {
+    rating: { criteria: 'rating', order: 'desc' },
+    'price-low': { criteria: 'price', order: 'asc' },
+    'price-high': { criteria: 'price', order: 'desc' },
+    name: { criteria: 'name', order: 'asc' },
+    distance: 'custom',
+  };
+
+  const sortConfig = sortMap[sortOption];
+  if (sortConfig === 'custom') {
+    // Mock distance sorting - in real app, would use user location
+    result = [...result].sort(() => Math.random() - 0.5);
+  } else {
+    result = sortCourts(result, sortConfig.criteria, sortConfig.order);
+  }
+
+  return result;
+});
+
 const CourtsListScreen: React.FC<Props> = ({ navigation }) => {
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
@@ -42,18 +89,41 @@ const CourtsListScreen: React.FC<Props> = ({ navigation }) => {
   const [filters, setFilters] = useState<CourtsFilter>({});
   const [sortOption, setSortOption] = useState<SortOption>('rating');
   const [error, setError] = useState<string | null>(null);
+  const [visibleItems, setVisibleItems] = useState<Set<string>>(new Set());
+
+  const cleanupManager = useRef(createCleanupManager());
+  const flatListRef = useRef<FlatList>(null);
+  const allCourts = useRef<Court[]>([]);
 
   useEffect(() => {
     loadCourts();
+    return () => cleanupManager.current.cleanup();
   }, []);
 
   const loadCourts = async () => {
     try {
       setLoading(true);
       setError(null);
+      
+      // Load courts data
+      allCourts.current = getAllCourts();
+      
+      // Preload high priority images for visible items
+      runAfterInteractions(() => {
+        if (allCourts.current.length > 0) {
+          const highPriorityImages = allCourts.current
+            .slice(0, PERFORMANCE.flatList.initialNumToRender)
+            .map(court => court.imageUrl);
+          
+          preloadImages(highPriorityImages, PERFORMANCE.image.preloadBatchSize)
+            .catch(() => {
+              // Silently handle preload failures
+            });
+        }
+      });
+      
       // Simulate API call with slight delay
       await new Promise(resolve => setTimeout(resolve, 800));
-      // Data is already loaded from mockCourts import
     } catch (err) {
       setError('Failed to load courts. Please try again.');
       Alert.alert('Error', 'Failed to load courts');
@@ -77,14 +147,24 @@ const CourtsListScreen: React.FC<Props> = ({ navigation }) => {
 
   const handleCourtPress = useCallback(
     (courtId: string) => {
-      navigation.navigate('CourtDetail', { courtId });
+      runAfterInteractions(() => {
+        navigation.navigate('CourtDetail', { courtId });
+      });
     },
     [navigation]
   );
 
+  // Optimized search handler with debouncing
+  const debouncedSearch = useMemo(
+    () => debounce((query: string) => {
+      setSearchQuery(query);
+    }, PERFORMANCE.interaction.searchDelay),
+    []
+  );
+
   const handleSearchChange = useCallback((query: string) => {
-    setSearchQuery(query);
-  }, []);
+    debouncedSearch(query);
+  }, [debouncedSearch]);
 
   const handleFiltersChange = useCallback((newFilters: CourtsFilter) => {
     setFilters(newFilters);
@@ -94,57 +174,91 @@ const CourtsListScreen: React.FC<Props> = ({ navigation }) => {
     setSortOption(newSort);
   }, []);
 
-  // Memoized filtered and sorted courts
+  // Memoized processed courts
   const processedCourts = useMemo(() => {
-    let result = getAllCourts();
-
-    // Apply search
-    if (searchQuery.trim()) {
-      result = searchCourts(searchQuery, result);
-    }
-
-    // Apply filters
-    result = filterCourts(filters, result);
-
-    // Apply sorting with distance mock
-    const sortMap: {
-      [key in SortOption]: { criteria: any; order: 'asc' | 'desc' } | 'custom';
-    } = {
-      rating: { criteria: 'rating', order: 'desc' },
-      'price-low': { criteria: 'price', order: 'asc' },
-      'price-high': { criteria: 'price', order: 'desc' },
-      name: { criteria: 'name', order: 'asc' },
-      distance: 'custom',
-    };
-
-    const sortConfig = sortMap[sortOption];
-    if (sortConfig === 'custom') {
-      // Mock distance sorting - in real app, would use user location
-      result = [...result].sort(() => Math.random() - 0.5);
-    } else {
-      result = sortCourts(result, sortConfig.criteria, sortConfig.order);
-    }
-
-    return result;
+    return processCourtsMemoized(getAllCourts(), searchQuery, filters, sortOption);
   }, [searchQuery, filters, sortOption]);
 
+  // Get nearby image URLs for preloading
+  const getNearbyImages = useCallback((index: number): string[] => {
+    const start = Math.max(0, index - 2);
+    const end = Math.min(processedCourts.length, index + 3);
+    return processedCourts
+      .slice(start, end)
+      .map(court => court.imageUrl)
+      .filter((_, i) => i !== index - start); // Exclude current image
+  }, [processedCourts]);
+
+  // Optimized render function with image preloading
   const renderCourtItem: ListRenderItem<Court> = useCallback(
-    ({ item }) => <CourtCard court={item} onPress={handleCourtPress} />,
-    [handleCourtPress]
+    ({ item, index }) => {
+      const isVisible = visibleItems.has(item.id);
+      const nearbyImages = isVisible ? getNearbyImages(index) : [];
+      const priority = index < PERFORMANCE.flatList.initialNumToRender ? 'high' : 'normal';
+
+      return (
+        <CourtCard
+          court={item}
+          onPress={handleCourtPress}
+          nearbyImages={nearbyImages}
+          priority={priority}
+        />
+      );
+    },
+    [handleCourtPress, visibleItems, getNearbyImages]
   );
 
   const keyExtractor = useCallback((item: Court) => item.id, []);
 
+  // Optimized getItemLayout for better scrolling performance
   const getItemLayout = useCallback(
     (_: any, index: number) => ({
-      length: 300, // Updated height for enhanced court card
-      offset: 300 * index,
+      length: PERFORMANCE.flatList.getItemLayout.height,
+      offset: PERFORMANCE.flatList.getItemLayout.height * index,
       index,
     }),
     []
   );
 
-  const renderEmptyState = () => {
+  // Viewability configuration for image preloading
+  const viewabilityConfig: ViewabilityConfig = useMemo(() => ({
+    itemVisiblePercentThreshold: 20,
+    minimumViewTime: 100,
+  }), []);
+
+  // Handle viewable items change for image preloading
+  const onViewableItemsChanged = useCallback(
+    throttle(({ viewableItems }: any) => {
+      const newVisibleItems = new Set(
+        viewableItems.map((item: any) => item.item.id)
+      );
+      setVisibleItems(newVisibleItems);
+
+      // Preload images for newly visible items
+      runAfterInteractions(() => {
+        const newlyVisibleImages = viewableItems
+          .filter((item: any) => !visibleItems.has(item.item.id))
+          .map((item: any) => item.item.imageUrl);
+
+        if (newlyVisibleImages.length > 0) {
+          preloadImages(newlyVisibleImages, PERFORMANCE.image.preloadBatchSize)
+            .catch(() => {
+              // Silently handle preload failures
+            });
+        }
+      });
+    }, PERFORMANCE.interaction.throttleDelay),
+    [visibleItems]
+  );
+
+  const viewabilityConfigCallbackPairs = useMemo(() => [
+    {
+      viewabilityConfig,
+      onViewableItemsChanged,
+    },
+  ], [viewabilityConfig, onViewableItemsChanged]);
+
+  const renderEmptyState = useCallback(() => {
     if (loading) return null;
 
     const hasActiveFilters =
@@ -163,15 +277,15 @@ const CourtsListScreen: React.FC<Props> = ({ navigation }) => {
         </Text>
       </View>
     );
-  };
+  }, [loading, searchQuery, filters]);
 
-  const renderError = () => (
+  const renderError = useCallback(() => (
     <View style={styles.errorContainer}>
       <Text style={styles.errorIcon}>⚠️</Text>
       <Text style={styles.errorTitle}>Something went wrong</Text>
       <Text style={styles.errorSubtitle}>{error}</Text>
     </View>
-  );
+  ), [error]);
 
   if (loading) {
     return (
@@ -211,6 +325,7 @@ const CourtsListScreen: React.FC<Props> = ({ navigation }) => {
       <SortOptions selectedSort={sortOption} onSortChange={handleSortChange} />
 
       <FlatList
+        ref={flatListRef}
         data={processedCourts}
         renderItem={renderCourtItem}
         keyExtractor={keyExtractor}
@@ -223,10 +338,17 @@ const CourtsListScreen: React.FC<Props> = ({ navigation }) => {
         onRefresh={handleRefresh}
         showsVerticalScrollIndicator={false}
         ListEmptyComponent={renderEmptyState}
-        removeClippedSubviews
-        maxToRenderPerBatch={10}
-        windowSize={10}
-        initialNumToRender={6}
+        // Performance optimizations
+        removeClippedSubviews={PERFORMANCE.flatList.removeClippedSubviews}
+        maxToRenderPerBatch={PERFORMANCE.flatList.maxToRenderPerBatch}
+        windowSize={PERFORMANCE.flatList.windowSize}
+        initialNumToRender={PERFORMANCE.flatList.initialNumToRender}
+        updateCellsBatchingPeriod={PERFORMANCE.flatList.updateCellsBatchingPeriod}
+        viewabilityConfigCallbackPairs={viewabilityConfigCallbackPairs}
+        // Additional optimizations
+        scrollEventThrottle={16}
+        disableVirtualization={false}
+        legacyImplementation={false}
       />
     </SafeAreaView>
   );
@@ -237,39 +359,15 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.backgroundSecondary,
     flex: 1,
   },
-  headerBackground: {
-    paddingBottom: SPACING.md,
-  },
-  searchAndFilters: {
-    backgroundColor: COLORS.background,
-    paddingBottom: SPACING.sm,
-  },
-  skeletonContainer: {
-    padding: SPACING.md,
-  },
-  skeletonCard: {
-    marginBottom: SPACING.lg,
-    backgroundColor: COLORS.surface,
-    borderRadius: RADIUS.lg,
-    ...SHADOWS.small,
-  },
   emptyContainer: {
     alignItems: 'center',
     paddingHorizontal: SPACING.xl,
     paddingVertical: SPACING.xxxl,
   },
-  emptyIconContainer: {
-    width: 100,
-    height: 100,
-    borderRadius: 50,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: SPACING.xl,
-    ...SHADOWS.medium,
-  },
   emptyIcon: {
     fontSize: 48,
-    color: COLORS.text.inverse,
+    color: COLORS.text.secondary,
+    marginBottom: SPACING.lg,
   },
   emptyListContent: {
     flexGrow: 1,
@@ -294,18 +392,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingHorizontal: SPACING.xl,
   },
-  errorIconContainer: {
-    width: 80,
-    height: 80,
-    borderRadius: 40,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: SPACING.xl,
-    ...SHADOWS.medium,
-  },
   errorIcon: {
     fontSize: 36,
-    color: COLORS.text.inverse,
+    color: COLORS.error,
+    marginBottom: SPACING.lg,
   },
   errorSubtitle: {
     color: COLORS.text.secondary,
@@ -329,23 +419,27 @@ const styles = StyleSheet.create({
     padding: SPACING.lg,
     paddingTop: SPACING.md,
   },
+  loadingContainer: {
+    alignItems: 'center',
+    flex: 1,
+    justifyContent: 'center',
+  },
+  loadingText: {
+    color: COLORS.text.secondary,
+    fontSize: TYPOGRAPHY.sizes.md,
+    marginTop: SPACING.md,
+  },
   subtitle: {
-    color: COLORS.text.inverse,
+    color: COLORS.text.secondary,
     fontSize: TYPOGRAPHY.sizes.md,
     fontWeight: TYPOGRAPHY.weights.medium,
     opacity: 0.9,
-    textShadowColor: 'rgba(0, 0, 0, 0.2)',
-    textShadowOffset: { width: 0, height: 1 },
-    textShadowRadius: 1,
   },
   title: {
-    color: COLORS.text.inverse,
-    fontSize: SCREEN.isSmall ? TYPOGRAPHY.sizes.responsive.title : TYPOGRAPHY.sizes.hero,
+    color: COLORS.text.primary,
+    fontSize: TYPOGRAPHY.sizes.hero,
     fontWeight: TYPOGRAPHY.weights.bold,
     marginBottom: SPACING.xs,
-    textShadowColor: 'rgba(0, 0, 0, 0.3)',
-    textShadowOffset: { width: 0, height: 1 },
-    textShadowRadius: 2,
   },
 });
 

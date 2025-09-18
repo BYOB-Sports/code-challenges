@@ -242,65 +242,6 @@ export const ANIMATIONS = {
   },
 } as const;
 
-// Platform-specific shadows and elevations
-export const SHADOWS = {
-  none: {
-    shadowColor: 'transparent',
-    shadowOffset: { width: 0, height: 0 },
-    shadowOpacity: 0,
-    shadowRadius: 0,
-    elevation: 0,
-  },
-
-  small: Platform.select({
-    ios: {
-      shadowColor: '#000',
-      shadowOffset: { width: 0, height: 1 },
-      shadowOpacity: 0.1,
-      shadowRadius: 2,
-    },
-    android: {
-      elevation: 2,
-    },
-  }),
-
-  medium: Platform.select({
-    ios: {
-      shadowColor: '#000',
-      shadowOffset: { width: 0, height: 2 },
-      shadowOpacity: 0.12,
-      shadowRadius: 4,
-    },
-    android: {
-      elevation: 4,
-    },
-  }),
-
-  large: Platform.select({
-    ios: {
-      shadowColor: '#000',
-      shadowOffset: { width: 0, height: 4 },
-      shadowOpacity: 0.15,
-      shadowRadius: 8,
-    },
-    android: {
-      elevation: 8,
-    },
-  }),
-
-  xlarge: Platform.select({
-    ios: {
-      shadowColor: '#000',
-      shadowOffset: { width: 0, height: 8 },
-      shadowOpacity: 0.2,
-      shadowRadius: 16,
-    },
-    android: {
-      elevation: 16,
-    },
-  }),
-} as const;
-
 // Breakpoints for responsive design
 export const BREAKPOINTS = {
   small: 375,
@@ -345,7 +286,43 @@ export const Z_INDEX = {
   max: 99,
 } as const;
 
-// API endpoints (keeping existing exports at the end)
+// Performance constants
+export const PERFORMANCE = {
+  // FlatList optimization
+  flatList: {
+    windowSize: 10,
+    maxToRenderPerBatch: 8,
+    initialNumToRender: 6,
+    updateCellsBatchingPeriod: 50,
+    removeClippedSubviews: true,
+    getItemLayout: {
+      height: 300, // Court card height
+    },
+  },
+
+  // Image optimization
+  image: {
+    cacheSize: 100,
+    preloadBatchSize: 5,
+    fadeAnimationDuration: 300,
+    progressiveRenderingEnabled: true,
+  },
+
+  // Animation optimization
+  animation: {
+    useNativeDriver: true,
+    reduceMotion: false,
+  },
+
+  // Interaction delays
+  interaction: {
+    debounceDelay: 300,
+    throttleDelay: 100,
+    searchDelay: 300,
+  },
+} as const;
+
+// API endpoints
 export const API_ENDPOINTS = {
   COURTS: '/api/courts',
   COURT_DETAIL: (id: string) => `/api/courts/${id}`,
@@ -355,4 +332,24 @@ export const API_ENDPOINTS = {
 export const PAGINATION = {
   DEFAULT_LIMIT: 20,
   MAX_LIMIT: 100,
+} as const;
+
+// Accessibility constants
+export const ACCESSIBILITY = {
+  minTouchTarget: 44, // Minimum touch target size
+  labels: {
+    courtCard: 'Tennis court',
+    rating: 'Rating',
+    price: 'Price per hour',
+    surface: 'Court surface',
+    location: 'Location',
+    amenities: 'Amenities',
+    indoor: 'Indoor court',
+    outdoor: 'Outdoor court',
+  },
+  hints: {
+    tapToView: 'Double tap to view details',
+    tapToFilter: 'Double tap to apply filter',
+    tapToSort: 'Double tap to sort',
+  },
 } as const;

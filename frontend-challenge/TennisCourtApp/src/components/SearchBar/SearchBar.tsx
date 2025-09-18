@@ -1,220 +1,169 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { memo, useCallback, useRef, useState } from 'react';
 import {
-  Animated,
-  Platform,
   StyleSheet,
-  Text,
   TextInput,
-  TouchableOpacity,
   View,
+  Pressable,
+  Text,
 } from 'react-native';
 
-import { COLORS, SPACING, TYPOGRAPHY, SHADOWS, RADIUS, ANIMATIONS } from '@/constants';
+import { ACCESSIBILITY, COLORS, PERFORMANCE, RADIUS, SHADOWS, SPACING, TYPOGRAPHY } from '@/constants';
+import { debounce, createCleanupManager } from '@/utils';
 
 export interface SearchBarProps {
   value: string;
   onChangeText: (text: string) => void;
   placeholder?: string;
-  debounceMs?: number;
   autoFocus?: boolean;
+  editable?: boolean;
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({
   value,
   onChangeText,
-  placeholder = 'Search courts, locations, amenities...',
-  debounceMs = 300,
+  placeholder = 'Search...',
   autoFocus = false,
+  editable = true,
 }) => {
-  const [localValue, setLocalValue] = useState(value);
-  const debounceRef = useRef<NodeJS.Timeout>();
-  const focusAnimValue = useRef(new Animated.Value(0)).current;
+  const [internalValue, setInternalValue] = useState(value);
+  const [isFocused, setIsFocused] = useState(false);
   const inputRef = useRef<TextInput>(null);
+  const cleanupManager = useRef(createCleanupManager());
 
-  // Debounced search effect
-  useEffect(() => {
-    if (debounceRef.current) {
-      clearTimeout(debounceRef.current);
-    }
+  // Debounced search to improve performance
+  const debouncedSearch = useRef(
+    debounce((text: string) => {
+      onChangeText(text);
+    }, PERFORMANCE.interaction.searchDelay)
+  ).current;
 
-    debounceRef.current = setTimeout(() => {
-      onChangeText(localValue);
-    }, debounceMs);
-
-    return () => {
-      if (debounceRef.current) {
-        clearTimeout(debounceRef.current);
-      }
-    };
-  }, [localValue, onChangeText, debounceMs]);
-
-  // Sync with external value changes
-  useEffect(() => {
-    setLocalValue(value);
-  }, [value]);
+  const handleChangeText = useCallback((text: string) => {
+    setInternalValue(text);
+    debouncedSearch(text);
+  }, [debouncedSearch]);
 
   const handleFocus = useCallback(() => {
-    Animated.timing(focusAnimValue, {
-      toValue: 1,
-      duration: ANIMATIONS.timing.normal,
-      useNativeDriver: false,
-    }).start();
-  }, [focusAnimValue]);
+    setIsFocused(true);
+  }, []);
 
   const handleBlur = useCallback(() => {
-    Animated.timing(focusAnimValue, {
-      toValue: 0,
-      duration: ANIMATIONS.timing.normal,
-      useNativeDriver: false,
-    }).start();
-  }, [focusAnimValue]);
+    setIsFocused(false);
+  }, []);
 
   const handleClear = useCallback(() => {
-    setLocalValue('');
+    setInternalValue('');
     onChangeText('');
     inputRef.current?.focus();
   }, [onChangeText]);
 
-  const borderColor = focusAnimValue.interpolate({
-    inputRange: [0, 1],
-    outputRange: [COLORS.border.default, COLORS.border.focus],
-  });
-
-  const shadowOpacity = focusAnimValue.interpolate({
-    inputRange: [0, 1],
-    outputRange: [0.1, 0.25],
-  });
-
-  const shadowRadius = focusAnimValue.interpolate({
-    inputRange: [0, 1],
-    outputRange: [2, 8],
-  });
-
-  const backgroundColor = focusAnimValue.interpolate({
-    inputRange: [0, 1],
-    outputRange: [COLORS.surface, COLORS.background],
-  });
+  const handleSubmit = useCallback(() => {
+    // Immediately trigger search on submit
+    onChangeText(internalValue);
+    inputRef.current?.blur();
+  }, [internalValue, onChangeText]);
 
   return (
-    <Animated.View
-      style={[
-        styles.container,
-        {
-          borderColor,
-          backgroundColor,
-          shadowOpacity: Platform.OS === 'ios' ? shadowOpacity : undefined,
-          shadowRadius: Platform.OS === 'ios' ? shadowRadius : undefined,
-          elevation: Platform.OS === 'android' ? focusAnimValue.interpolate({
-            inputRange: [0, 1],
-            outputRange: [2, 8],
-          }) : undefined,
-        },
-      ]}
-    >
-      <Animated.View style={[
-        styles.searchIcon,
-        {
-          transform: [{
-            scale: focusAnimValue.interpolate({
-              inputRange: [0, 1],
-              outputRange: [1, 1.1],
-            })
-          }]
-        }
+    <View style={styles.container}>
+      <View style={[
+        styles.searchContainer,
+        isFocused && styles.searchContainerFocused,
       ]}>
-        <Text style={[
-          styles.searchIconText,
-          {
-            color: focusAnimValue.interpolate({
-              inputRange: [0, 1],
-              outputRange: [COLORS.text.tertiary, COLORS.primary],
-            })
-          }
-        ]}>🔍</Text>
-      </Animated.View>
-
-      <TextInput
-        ref={inputRef}
-        style={styles.input}
-        value={localValue}
-        onChangeText={setLocalValue}
-        placeholder={placeholder}
-        placeholderTextColor={COLORS.text.tertiary}
-        onFocus={handleFocus}
-        onBlur={handleBlur}
-        autoFocus={autoFocus}
-        autoCapitalize='none'
-        autoCorrect={false}
-        returnKeyType='search'
-        clearButtonMode={Platform.OS === 'ios' ? 'while-editing' : 'never'}
-        accessible
-        accessibilityLabel='Search tennis courts'
-        accessibilityHint='Type to search for courts by name, location, or amenities'
-      />
-
-      {Platform.OS === 'android' && localValue.length > 0 && (
-        <TouchableOpacity
-          style={styles.clearButton}
-          onPress={handleClear}
-          hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+        <Text style={styles.searchIcon}>🔍</Text>
+        
+        <TextInput
+          ref={inputRef}
+          style={styles.textInput}
+          value={internalValue}
+          onChangeText={handleChangeText}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+          onSubmitEditing={handleSubmit}
+          placeholder={placeholder}
+          placeholderTextColor={COLORS.text.tertiary}
+          autoFocus={autoFocus}
+          editable={editable}
+          returnKeyType="search"
+          autoCorrect={false}
+          autoCapitalize="none"
+          clearButtonMode="never" // We'll handle this ourselves
+          selectTextOnFocus
+          // Performance optimizations
+          keyboardType="default"
+          textContentType="none"
+          // Accessibility
           accessible
-          accessibilityLabel='Clear search'
-          accessibilityRole='button'
-        >
-          <Text style={styles.clearButtonText}>✕</Text>
-        </TouchableOpacity>
-      )}
-    </Animated.View>
+          accessibilityRole="searchbox"
+          accessibilityLabel="Search courts"
+          accessibilityHint="Enter keywords to search for tennis courts"
+        />
+
+        {internalValue.length > 0 && (
+          <Pressable
+            style={styles.clearButton}
+            onPress={handleClear}
+            hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+            accessible
+            accessibilityRole="button"
+            accessibilityLabel="Clear search"
+            accessibilityHint="Double tap to clear search text"
+          >
+            <Text style={styles.clearIcon}>✕</Text>
+          </Pressable>
+        )}
+      </View>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  clearButton: {
-    alignItems: 'center',
-    backgroundColor: `${COLORS.text.tertiary}20`,
-    borderRadius: RADIUS.sm,
-    justifyContent: 'center',
-    marginLeft: SPACING.md,
-    minHeight: 28,
-    minWidth: 28,
-    padding: SPACING.xs,
-  },
-  clearButtonText: {
-    color: COLORS.text.secondary,
-    fontSize: TYPOGRAPHY.sizes.sm,
-    fontWeight: TYPOGRAPHY.weights.bold,
-  },
   container: {
-    alignItems: 'center',
-    borderRadius: RADIUS.lg,
-    borderWidth: 2,
-    flexDirection: 'row',
-    marginBottom: SPACING.lg,
-    marginHorizontal: SPACING.lg,
-    minHeight: 52,
     paddingHorizontal: SPACING.lg,
-    paddingVertical: Platform.OS === 'ios' ? SPACING.md : SPACING.sm,
-    shadowColor: COLORS.primary,
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
+    paddingVertical: SPACING.md,
   },
-  input: {
+  searchContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: COLORS.surface,
+    borderRadius: RADIUS.lg,
+    paddingHorizontal: SPACING.md,
+    paddingVertical: SPACING.sm,
+    borderWidth: 2,
+    borderColor: COLORS.border.light,
+    ...SHADOWS.small,
+  },
+  searchContainerFocused: {
+    borderColor: COLORS.border.focus,
+    ...SHADOWS.medium,
+  },
+  searchIcon: {
+    fontSize: TYPOGRAPHY.sizes.md,
+    marginRight: SPACING.sm,
+    color: COLORS.text.secondary,
+  },
+  textInput: {
     flex: 1,
     fontSize: TYPOGRAPHY.sizes.md,
     color: COLORS.text.primary,
-    paddingVertical: 0, // Remove default padding for consistent height
-    minHeight: 20,
+    paddingVertical: SPACING.xs,
+    // Ensure minimum touch target
+    minHeight: ACCESSIBILITY.minTouchTarget - (SPACING.sm * 2),
   },
-  searchIcon: {
-    marginRight: SPACING.md,
+  clearButton: {
+    padding: SPACING.xs,
+    marginLeft: SPACING.sm,
+    borderRadius: RADIUS.sm,
+    backgroundColor: COLORS.border.light,
+    // Ensure minimum touch target
+    minWidth: ACCESSIBILITY.minTouchTarget - SPACING.md,
+    minHeight: ACCESSIBILITY.minTouchTarget - SPACING.md,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  searchIconText: {
-    fontSize: TYPOGRAPHY.sizes.lg,
+  clearIcon: {
+    fontSize: TYPOGRAPHY.sizes.sm,
+    color: COLORS.text.secondary,
+    fontWeight: TYPOGRAPHY.weights.bold,
   },
 });
 
-export default SearchBar;
+export default memo(SearchBar);
