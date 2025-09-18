@@ -1,0 +1,198 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Tennis Courts App Design System - All colors MUST be HSL */
+
+@layer base {
+  :root {
+    /* Base colors */
+    --background: 0 0% 100%;
+    --foreground: 148 24% 10%;
+
+    /* Tennis court inspired colors */
+    --tennis-green: 148 65% 25%;
+    --tennis-green-light: 148 45% 35%;
+    --tennis-green-dark: 148 85% 15%;
+    --tennis-accent: 75 100% 50%;
+    --tennis-accent-muted: 75 60% 85%;
+
+    /* Card system */
+    --card: 0 0% 100%;
+    --card-foreground: 148 24% 10%;
+    --card-hover: 148 20% 98%;
+
+    /* Popover system */
+    --popover: 0 0% 100%;
+    --popover-foreground: 148 24% 10%;
+
+    /* Primary system - Tennis green theme */
+    --primary: 148 65% 25%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 148 65% 20%;
+
+    /* Secondary system */
+    --secondary: 148 20% 96%;
+    --secondary-foreground: 148 65% 25%;
+
+    /* Surface type colors */
+    --surface-hard: 210 50% 45%;
+    --surface-clay: 25 70% 55%;
+    --surface-grass: 120 50% 35%;
+
+    /* Muted system */
+    --muted: 148 15% 95%;
+    --muted-foreground: 148 10% 45%;
+
+    /* Accent system */
+    --accent: 148 20% 96%;
+    --accent-foreground: 148 65% 25%;
+
+    /* Status colors */
+    --success: 142 76% 36%;
+    --warning: 45 93% 47%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Interactive elements */
+    --border: 148 20% 88%;
+    --input: 148 20% 95%;
+    --ring: 148 65% 25%;
+
+    /* Design tokens */
+    --radius: 0.75rem;
+    --shadow-soft: 0 2px 8px hsl(148 65% 25% / 0.05);
+    --shadow-medium: 0 4px 16px hsl(148 65% 25% / 0.1);
+    --shadow-strong: 0 8px 32px hsl(148 65% 25% / 0.15);
+
+    /* Gradients */
+    --gradient-tennis: linear-gradient(135deg, hsl(148 65% 25%), hsl(148 45% 35%));
+    --gradient-court: linear-gradient(180deg, hsl(148 20% 98%), hsl(148 15% 95%));
+    --gradient-accent: linear-gradient(135deg, hsl(75 100% 50%), hsl(75 80% 60%));
+
+    /* Animation durations */
+    --transition-fast: 0.15s;
+    --transition-normal: 0.3s;
+    --transition-slow: 0.5s;
+
+    /* Sidebar colors (keeping original) */
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 148 24% 4%;
+    --foreground: 0 0% 98%;
+
+    --card: 148 24% 6%;
+    --card-foreground: 0 0% 98%;
+    --card-hover: 148 24% 8%;
+
+    --popover: 148 24% 6%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 148 45% 35%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 148 45% 30%;
+
+    --secondary: 148 15% 12%;
+    --secondary-foreground: 148 45% 35%;
+
+    --tennis-green: 148 45% 35%;
+    --tennis-green-light: 148 35% 45%;
+    --tennis-green-dark: 148 65% 20%;
+    --tennis-accent: 75 100% 50%;
+    --tennis-accent-muted: 75 60% 15%;
+
+    --surface-hard: 210 50% 55%;
+    --surface-clay: 25 70% 65%;
+    --surface-grass: 120 50% 45%;
+
+    --muted: 148 15% 12%;
+    --muted-foreground: 148 10% 65%;
+
+    --accent: 148 15% 12%;
+    --accent-foreground: 148 45% 35%;
+
+    --success: 142 76% 46%;
+    --warning: 45 93% 57%;
+    --destructive: 0 84% 70%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 148 20% 20%;
+    --input: 148 15% 12%;
+    --ring: 148 45% 35%;
+
+    --shadow-soft: 0 2px 8px hsl(148 65% 15% / 0.3);
+    --shadow-medium: 0 4px 16px hsl(148 65% 15% / 0.4);
+    --shadow-strong: 0 8px 32px hsl(148 65% 15% / 0.5);
+
+    --gradient-tennis: linear-gradient(135deg, hsl(148 45% 35%), hsl(148 35% 45%));
+    --gradient-court: linear-gradient(180deg, hsl(148 24% 8%), hsl(148 15% 6%));
+    --gradient-accent: linear-gradient(135deg, hsl(75 100% 50%), hsl(75 80% 60%));
+
+    /* Dark sidebar colors */
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* Scrollbar Styling */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-muted;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-tennis-green rounded-md;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-tennis-green-light;
+  }
+
+  /* Custom utility classes */
+  .line-clamp-1 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+  }
+
+  .line-clamp-2 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  /* Focus styles */
+  .focus-visible {
+    @apply outline-none ring-2 ring-tennis-green ring-offset-2 ring-offset-background;
+  }
+}
