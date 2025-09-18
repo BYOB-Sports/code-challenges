@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: 15 23% 9%;
+  --surface: 222 47% 11%;
+  --text: 210 40% 98%;
+  --primary: 245 58% 51%;
+  --muted: 215 20% 65%;
+  --radius: 16px;
+}
+
+* { -webkit-tap-highlight-color: transparent; }
+
+.card {
+  @apply rounded-2xl bg-slate-900/60 border border-slate-800 p-4;
+}
