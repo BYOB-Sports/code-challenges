@@ -90,9 +90,9 @@ export default function HomeScreen() {
         >
           {courts.length > 0 ? (
             <>
-              {courts.map((court) => (
+              {courts.map((court, index) => (
                 <CourtCard
-                  key={court.id}
+                  key={`${court.id}-${index}`}
                   court={court}
                   onPress={() => navigation.navigate('CourtDetail', { courtId: court.id } as never)}
                 />

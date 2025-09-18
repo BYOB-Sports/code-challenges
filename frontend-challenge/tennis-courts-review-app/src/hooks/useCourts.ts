@@ -56,13 +56,16 @@ export const useCourts = ({
       const filteredResults = filterCourts(allCourts, query);
       setFilteredCourts(filteredResults);
       
-      const startIndex = (page - 1) * pageSize;
-      const endIndex = startIndex + pageSize;
-      const pageCourts = filteredResults.slice(0, endIndex);
-      
       if (append) {
-        setCourts(prev => [...prev, ...pageCourts.slice(prev.length)]);
+        // For append, get the next page of results
+        const startIndex = (page - 1) * pageSize;
+        const endIndex = startIndex + pageSize;
+        const newPageCourts = filteredResults.slice(startIndex, endIndex);
+        
+        setCourts(prev => [...prev, ...newPageCourts]);
       } else {
+        // For initial load or search, get first page
+        const pageCourts = filteredResults.slice(0, pageSize);
         setCourts(pageCourts);
       }
       
