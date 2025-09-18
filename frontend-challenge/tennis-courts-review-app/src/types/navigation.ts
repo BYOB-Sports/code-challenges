@@ -1,5 +1,7 @@
 export type RootStackParamList = {
   Home: undefined;
+  CourtDetail: { courtId: string };
+  Review: { courtId: string };
   Profile: undefined;
 };
 
