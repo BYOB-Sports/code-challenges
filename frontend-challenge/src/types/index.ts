@@ -16,6 +16,7 @@ export type Court = {
   courts: number;
   rating: number;
   reviews: Review[];
+  imageUrl: string;
 };
 
 export type SortKey = "best" | "mostRecent" | "name";

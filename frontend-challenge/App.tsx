@@ -1,23 +1,25 @@
-import React, { use } from 'react';
-import {SafeAreaView, StatusBar} from 'react-native';
+import React from "react";
+import { StatusBar, View } from "react-native";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 import { AppProvider, useApp } from "./src/context/AppContext";
-import List from './src/components/List';
-import Details from './src/components/Details';
-import colors from './src/theme/theme';
+import ListScreen from "./src/screens/List";
+import DetailScreen from "./src/screens/Details";
+import { colors } from "./src/theme/theme";
 
 function Router() {
-    const {nav} = useApp();
-
-    return nav.route === 'list' ? <List /> : <Details courtId={nav.courtId}/>;
+  const { nav } = useApp();
+  return nav.route === "list" ? <ListScreen /> : <DetailScreen courtId={nav.courtId} />;
 }
 
 export default function App() {
   return (
-    <AppProvider>
-      <SafeAreaView style={{flex: 1, backgroundColor: colors.background}}>
-        <StatusBar barStyle="light-content" backgroundColor={colors.background} />
-        <Router />
-      </SafeAreaView>
-    </AppProvider>
+    <SafeAreaProvider>
+      <AppProvider>
+        <View style={{ flex: 1, backgroundColor: colors.bgRoot }}>
+          <StatusBar barStyle="light-content" />
+          <Router />
+        </View>
+      </AppProvider>
+    </SafeAreaProvider>
   );
 }
