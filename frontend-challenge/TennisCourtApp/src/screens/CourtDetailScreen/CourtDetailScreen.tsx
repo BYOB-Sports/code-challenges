@@ -791,7 +791,8 @@ const styles = StyleSheet.create({
     fontWeight: TYPOGRAPHY.weights.medium,
   },
   reviewsContainer: {
-    marginTop: SPACING.sm,
+    marginTop: SPACING.lg,
+    paddingTop: SPACING.md,
     overflow: 'hidden',
     maxHeight: 350,
   },
