@@ -10,7 +10,7 @@ import {
   UIManager,
 } from 'react-native';
 
-import { COLORS, SPACING, TYPOGRAPHY } from '@/constants';
+import { COLORS, SPACING, TYPOGRAPHY, SHADOWS, RADIUS } from '@/constants';
 
 // Enable LayoutAnimation on Android
 if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
@@ -186,17 +186,18 @@ const CollapsibleSection: React.FC<CollapsibleSectionProps> = ({
 const styles = StyleSheet.create({
   container: {
     backgroundColor: COLORS.surface,
-    borderRadius: 12,
-    marginBottom: SPACING.md,
+    borderRadius: RADIUS.lg,
+    marginBottom: SPACING.lg,
     overflow: 'hidden',
     borderWidth: 1,
-    borderColor: COLORS.border,
+    borderColor: COLORS.border.light,
+    ...SHADOWS.small,
   },
   header: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    padding: SPACING.md,
+    padding: SPACING.lg,
     backgroundColor: COLORS.surface,
     minHeight: 56,
   },

@@ -384,7 +384,7 @@ const CourtDetailScreen: React.FC<Props> = ({ route, navigation }) => {
       </FadeInView>
 
       {/* Review Statistics */}
-      <FadeInView>
+      <FadeInView style={styles.sectionContainer}>
         <ReviewStats
           reviews={reviews}
           averageRating={court.averageRating}
@@ -395,7 +395,7 @@ const CourtDetailScreen: React.FC<Props> = ({ route, navigation }) => {
       </FadeInView>
 
       {/* Review Summary with Breakdown */}
-      <FadeInView>
+      <FadeInView style={styles.sectionContainer}>
         <ReviewSummary
           averageRating={court.averageRating}
           totalReviews={court.totalReviews}
@@ -405,7 +405,7 @@ const CourtDetailScreen: React.FC<Props> = ({ route, navigation }) => {
 
       {/* Description */}
       {court.description && (
-        <FadeInView>
+        <FadeInView style={styles.sectionContainer}>
           <CollapsibleSection
             title="Description"
             icon="📝"
@@ -418,7 +418,7 @@ const CourtDetailScreen: React.FC<Props> = ({ route, navigation }) => {
 
       {/* Opening Hours */}
       {openingHours.length > 0 && (
-        <FadeInView>
+        <FadeInView style={styles.sectionContainer}>
           <CollapsibleSection
             title="Opening Hours"
             icon="⏰"
@@ -439,7 +439,7 @@ const CourtDetailScreen: React.FC<Props> = ({ route, navigation }) => {
       )}
 
       {/* Amenities */}
-      <FadeInView>
+      <FadeInView style={styles.sectionContainer}>
         <CollapsibleSection
           title="Amenities"
           icon="🏆"
@@ -460,7 +460,7 @@ const CourtDetailScreen: React.FC<Props> = ({ route, navigation }) => {
 
 
       {/* Reviews List */}
-      <FadeInView>
+      <FadeInView style={styles.sectionContainer}>
         <CollapsibleSection
           title={`Reviews (${court.totalReviews})`}
           icon="💬"
@@ -732,6 +732,10 @@ const styles = StyleSheet.create({
   },
   bottomPadding: {
     height: 100, // Extra padding for floating action button
+  },
+  sectionContainer: {
+    paddingHorizontal: SPACING.lg,
+    marginBottom: SPACING.md,
   },
 });
 

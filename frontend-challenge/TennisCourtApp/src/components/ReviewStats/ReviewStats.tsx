@@ -8,7 +8,7 @@ import {
 import { format, parseISO, isWithinInterval, subDays } from 'date-fns';
 
 import type { Review } from '@/types';
-import { COLORS, SPACING, TYPOGRAPHY } from '@/constants';
+import { COLORS, SPACING, TYPOGRAPHY, SHADOWS, RADIUS } from '@/constants';
 import { StarRating } from '../StarRating';
 import { ReviewCard } from '../ReviewCard';
 
@@ -229,11 +229,12 @@ const ReviewStats: React.FC<ReviewStatsProps> = ({
 const styles = StyleSheet.create({
   container: {
     backgroundColor: COLORS.surface,
-    borderRadius: 12,
-    padding: SPACING.md,
-    marginBottom: SPACING.md,
+    borderRadius: RADIUS.lg,
+    padding: SPACING.lg,
+    marginBottom: SPACING.lg,
     borderWidth: 1,
-    borderColor: COLORS.border,
+    borderColor: COLORS.border.light,
+    ...SHADOWS.small,
   },
   statsGrid: {
     flexDirection: 'row',
