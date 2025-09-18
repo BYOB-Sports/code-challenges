@@ -128,12 +128,12 @@ const CourtCard: React.FC<CourtCardProps> = ({
     >
       <View style={styles.imageContainer}>
         <LazyImage
-          source={{ uri: court.imageUrl }}
+          source={{ uri: court.imageUrl || `https://picsum.photos/800/600?random=${court.id}` }}
           style={styles.image}
           resizeMode='cover'
           priority={priority}
           preloadNearby={nearbyImages}
-          enableBlurPlaceholder
+          enableBlurPlaceholder={false}
         />
         
         <GradientBackground
@@ -243,8 +243,8 @@ const styles = StyleSheet.create({
     gap: SPACING.sm,
   },
   amenityIcon: {
-    fontSize: TYPOGRAPHY.sizes.sm,
-    marginRight: 4,
+    fontSize: 12,
+    marginRight: 2,
   },
   amenityItem: {
     alignItems: 'center',
@@ -252,32 +252,30 @@ const styles = StyleSheet.create({
     borderRadius: RADIUS.sm,
     flexDirection: 'row',
     marginBottom: SPACING.xs,
-    marginRight: SPACING.sm,
-    paddingHorizontal: SPACING.md,
-    paddingVertical: SPACING.sm,
+    marginRight: SPACING.xs,
+    paddingHorizontal: SPACING.sm,
+    paddingVertical: 4,
     borderWidth: 1,
     borderColor: COLORS.border.light,
-    minHeight: ACCESSIBILITY.minTouchTarget,
   },
   amenityText: {
     color: COLORS.text.secondary,
-    fontSize: TYPOGRAPHY.sizes.xs,
+    fontSize: 11,
     fontWeight: TYPOGRAPHY.weights.medium,
   },
   container: {
     backgroundColor: COLORS.surface,
     borderRadius: RADIUS.lg,
-    marginBottom: SPACING.lg,
-    minHeight: PERFORMANCE.flatList.getItemLayout.height,
+    marginBottom: SPACING.md,
     overflow: 'hidden',
     ...SHADOWS.medium,
   },
   content: {
-    padding: SPACING.lg,
+    padding: SPACING.md,
   },
   courtsCount: {
     color: COLORS.text.secondary,
-    fontSize: TYPOGRAPHY.sizes.sm,
+    fontSize: TYPOGRAPHY.sizes.xs,
     fontWeight: TYPOGRAPHY.weights.medium,
   },
   courtsInfo: {
@@ -287,7 +285,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: SPACING.md,
+    marginBottom: SPACING.sm,
   },
   emptyStar: {
     color: COLORS.border.default,
@@ -304,9 +302,10 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   imageContainer: {
-    height: 180,
+    height: 160,
     position: 'relative',
     width: '100%',
+    backgroundColor: COLORS.backgroundSecondary,
   },
   imageOverlay: {
     position: 'absolute',
@@ -333,28 +332,28 @@ const styles = StyleSheet.create({
   },
   location: {
     color: COLORS.text.secondary,
-    fontSize: TYPOGRAPHY.sizes.sm,
-    lineHeight: 20,
-    marginBottom: SPACING.md,
+    fontSize: TYPOGRAPHY.sizes.xs,
+    lineHeight: 18,
+    marginBottom: SPACING.sm,
   },
   name: {
     color: COLORS.text.primary,
     flex: 1,
-    fontSize: TYPOGRAPHY.sizes.lg,
+    fontSize: TYPOGRAPHY.sizes.md,
     fontWeight: TYPOGRAPHY.weights.bold,
     marginRight: SPACING.sm,
-    lineHeight: TYPOGRAPHY.sizes.lg * TYPOGRAPHY.lineHeights.tight,
+    lineHeight: TYPOGRAPHY.sizes.md * TYPOGRAPHY.lineHeights.tight,
   },
   price: {
     color: COLORS.text.inverse,
-    fontSize: TYPOGRAPHY.sizes.lg,
+    fontSize: TYPOGRAPHY.sizes.md,
     fontWeight: TYPOGRAPHY.weights.bold,
   },
   priceContainer: {
     alignItems: 'center',
     flexDirection: 'row',
-    paddingHorizontal: SPACING.md,
-    paddingVertical: SPACING.sm,
+    paddingHorizontal: SPACING.sm,
+    paddingVertical: 4,
     borderRadius: RADIUS.md,
     ...SHADOWS.small,
   },

@@ -407,13 +407,13 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   header: {
-    paddingHorizontal: SPACING.xl,
-    paddingTop: SPACING.xl,
-    paddingBottom: SPACING.lg,
+    paddingHorizontal: SPACING.lg,
+    paddingTop: SPACING.md,
+    paddingBottom: SPACING.sm,
   },
   listContent: {
     padding: SPACING.lg,
-    paddingTop: SPACING.md,
+    paddingTop: SPACING.sm,
   },
   loadingContainer: {
     alignItems: 'center',
@@ -427,15 +427,15 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     color: COLORS.text.secondary,
-    fontSize: TYPOGRAPHY.sizes.md,
+    fontSize: TYPOGRAPHY.sizes.sm,
     fontWeight: TYPOGRAPHY.weights.medium,
     opacity: 0.9,
   },
   title: {
     color: COLORS.text.primary,
-    fontSize: TYPOGRAPHY.sizes.hero,
+    fontSize: TYPOGRAPHY.sizes.xl,
     fontWeight: TYPOGRAPHY.weights.bold,
-    marginBottom: SPACING.xs,
+    marginBottom: 2,
   },
 });
 
