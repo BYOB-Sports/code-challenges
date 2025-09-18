@@ -1,8 +1,6 @@
 # Welcome to your Expo app 👋
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
-
-## Get started
+## To Get started
 
 1. Install dependencies
 
@@ -15,6 +13,7 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
    ```bash
    npx expo start
    ```
+
 
 In the output, you'll find options to open the app in a
 
@@ -48,3 +47,12 @@ Join our community of developers creating universal apps.
 
 - [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
 - [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+=======
+- Do not use frameworks outside of the JavaScript/Typescript ecosystem
+- Submissions using React Native are preferred but React, Next, or pure JavaScript are acceptable
+- Bonus points if you mock > 50 courts as this will let you show off your scalable design skills
+- You can use coding assistants, but include every prompt you used in your PR
+- Your job is to delight users
+
+Good luck!
+
