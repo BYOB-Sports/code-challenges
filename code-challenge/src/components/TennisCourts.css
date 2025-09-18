@@ -1,0 +1,429 @@
+/*.court-card {
+  background-color:  #FFF8DC;          
+  border-radius: 12px;                  
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  padding: 16px 20px;                   
+  margin-bottom: 16px;                 
+  cursor: pointer;                    
+  transition: box-shadow 0.3s ease, transform 0.2s ease;  
+  color:  #004D40;                      
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+}
+
+.court-card:hover {
+  box-shadow: 0 8px 24px rgba(211, 47, 47, 0.4);  
+  transform: translateY(-4px);          
+}
+
+.court-card h3 {
+  margin: 0 0 8px 0;
+  font-weight: 600;
+  color: #D32F2F;                 
+  font-size: 20px;
+}
+
+.court-card p {
+  margin: 0;
+  font-size: 14px;
+  color: #555555;                     
+  line-height: 1.4;
+}
+
+input[type="search"] {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 16px;
+  border: 2px solid #2a9d8f;          
+  border-radius: 12px;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input[type="search"]::placeholder {
+  color: #95a5a6;                    
+  font-style: italic;
+}
+
+input[type="search"]:focus {
+  border-color: #e76f51;              
+  box-shadow: 0 0 5px rgba(231, 111, 81, 0.6);
+}
+
+.pagination-wrapper {
+  text-align: center;
+  margin-top: 16px;
+}
+
+.pagination-wrapper button {
+  background-color: #2a9d8f;        
+  border: none;
+  color: white;
+  padding: 10px 18px;
+  margin: 0 6px;
+  border-radius: 12px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 2px 6px rgba(42, 157, 143, 0.4);
+}
+
+.pagination-wrapper button:hover:not(:disabled) {
+  background-color: #23877f;        
+  box-shadow: 0 4px 10px rgba(35, 135, 127, 0.6);
+}
+
+.pagination-wrapper button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+  box-shadow: none;
+  color: #666666;
+}
+
+.court-detail {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  padding: 24px 28px;
+  max-width: 375px;
+  margin: 20px auto;
+  color: #1a202c;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+}
+
+.court-detail h2 {
+  margin-top: 0;
+  margin-bottom: 12px;
+  color: #2a9d8f;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.court-detail p {
+  margin: 6px 0;
+  font-size: 16px;
+  color: #4a5568;
+}
+
+.court-detail button.back-button {
+  background-color: transparent;
+  color: #2a9d8f;
+  border: none;
+  font-size: 16px;
+  padding: 0;
+  margin-bottom: 20px;
+  cursor: pointer;
+  text-align: left;
+  transition: color 0.3s ease;
+}
+
+.court-detail button.back-button:hover {
+  color: #1f746a;
+}
+
+
+.review-section {
+  margin-top: 28px;
+}
+
+.review-section h3 {
+  margin-bottom: 14px;
+  color: #2a9d8f;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.review-list {
+  list-style-type: disc;
+  padding-left: 20px;
+  color: #333333;
+  line-height: 1.5;
+}
+
+.review-list li {
+  margin-bottom: 10px;
+}
+
+.review-form textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 14px;
+  font-size: 14px;
+  border: 1.5px solid #cbd5e0;
+  border-radius: 12px;
+  resize: vertical;
+  transition: border-color 0.3s ease;
+  display: block;
+  margin-top: 0;
+}
+
+
+.review-form textarea:focus {
+  border-color: #2a9d8f;
+  outline: none;
+}
+
+.review-form button.submit-review {
+  margin-top: 12px;
+  background-color: #2a9d8f;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.review-form button.submit-review:hover {
+  background-color: #1f746a;
+}
+
+*/
+
+/* TennisCourts.css */
+
+body {
+  background-color: #EEF2E6;
+  color: #2A3A27;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.court-card {
+  background-color: #FFFFFF;
+  border-radius: 12px;
+  box-shadow: 0 3px 8px rgba(58, 107, 53, 0.15);
+  padding: 18px 22px;
+  margin-bottom: 16px;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease, transform 0.15s ease;
+  color: #2A3A27;
+}
+
+.court-card:hover {
+  box-shadow: 0 5px 14px rgba(125, 162, 125, 0.3);
+  transform: translateY(-2px);
+}
+
+.court-card h3 {
+  color: #3A6B35;
+  font-weight: 700;
+  font-size: 20px;
+  margin-bottom: 8px;
+  letter-spacing: 0.015em;
+}
+
+.court-card p {
+  color: #6B7A63;
+  margin: 0;
+  font-size: 14px;
+}
+
+input[type="search"] {
+  width: 100%;
+  padding: 14px 18px;
+  border-radius: 14px;
+  border: 1.5px solid #7DA27D;
+  font-size: 16px;
+  box-sizing: border-box;
+  background-color: #FFFFFF;
+  color: #2A3A27;
+  letter-spacing: 0.02em;
+  font-family: inherit;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input[type="search"]::placeholder {
+  color: #7DA27D;
+  font-style: italic;
+}
+
+input[type="search"]:focus {
+  border-color: #3A6B35;
+  box-shadow: 0 0 6px rgba(58, 107, 53, 0.4);
+  outline: none;
+}
+
+.pagination-wrapper {
+  text-align: center;
+  margin-top: 20px;
+  padding: 0 10px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.pagination-wrapper button {
+  background-color: #7DA27D;
+  color: #FFFFFF;
+  border: none;
+  padding: 12px 16px;
+  margin: 0;
+  border-radius: 14px;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(125, 162, 125, 0.5);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  min-width: 44px;
+  min-height: 44px;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  flex: 1 1 auto;
+  max-width: 60px;
+  text-align: center;
+  user-select: none;
+}
+
+.pagination-wrapper button:hover:not(:disabled),
+.pagination-wrapper button:focus:not(:disabled) {
+  background-color: #3A6B35;
+  box-shadow: 0 6px 16px rgba(58, 107, 53, 0.7);
+  outline: none;
+}
+
+.pagination-wrapper button:disabled {
+  background-color: #D4DFD5;
+  cursor: not-allowed;
+  box-shadow: none;
+  color: #9BA28B;
+}
+
+@media (max-width: 480px) {
+  .pagination-wrapper {
+    gap: 6px;
+  }
+
+  .pagination-wrapper button {
+    padding: 10px 12px;
+    font-size: 14px;
+    min-width: 40px;
+    max-width: 50px;
+    min-height: 40px;
+  }
+}
+
+
+.court-detail {
+  background-color: #FFFFFF;
+  border-radius: 14px;
+  box-shadow: 0 4px 16px rgba(58, 107, 53, 0.2);
+  padding: 28px 32px;
+  max-width: 375px;
+  margin: 28px auto;
+  color: #2A3A27;
+  text-align: center;
+}
+
+.court-detail h2 {
+  color: #3A6B35;
+  font-weight: 700;
+  font-size: 26px;
+  margin-bottom: 20px;
+}
+
+.court-detail p {
+  margin: 12px 0;
+  font-size: 16px;
+  color: #7DA27D;
+  font-weight: 600;
+}
+
+.back-button {
+  background-color: transparent;
+  color: #3A6B35;
+  border: none;
+  font-size: 18px;
+  margin-bottom: 28px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+.back-button:hover {
+  color: #2A5028;
+}
+
+.review-section {
+  margin-top: 36px;
+  text-align: left;
+}
+
+.review-section h3 {
+  color: #3A6B35;
+  font-weight: 700;
+  font-size: 22px;
+  margin-bottom: 20px;
+  letter-spacing: 0.02em;
+  border-bottom: 2px solid #7DA27D;
+  padding-bottom: 6px;
+}
+
+.review-list {
+  padding-left: 24px;
+  color: #7DA27D;
+  line-height: 1.65;
+  margin-bottom: 28px;
+  font-size: 15px;
+}
+
+.review-list li {
+  margin-bottom: 16px;
+}
+
+.review-form textarea {
+  width: 100%;
+  background-color: #F3F8F5;
+  color: #2A3A27;
+  padding: 16px 22px;
+  font-size: 16px;
+  border-radius: 16px;
+  border: 1.8px solid #A9B9A6;
+  resize: vertical;
+  transition: border-color 0.3s ease;
+  box-sizing: border-box;
+  letter-spacing: 0.015em;
+  min-height: 100px;
+}
+
+.review-form textarea::placeholder {
+  color: #7DA27D;
+  font-style: italic;
+  font-weight: 600;
+}
+
+.review-form textarea:focus {
+  border-color: #3A6B35;
+  outline: none;
+  background-color: #E9F0E7;
+}
+
+.submit-review {
+  margin-top: 20px;
+  background-color: #3A6B35;
+  color: #FFFFFF;
+  border-radius: 16px;
+  padding: 16px 30px;
+  font-size: 17px;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 5px 14px rgba(58, 107, 53, 0.6);
+  letter-spacing: 0.03em;
+  font-weight: 700;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.submit-review:hover {
+  background-color: #7DA27D;
+  box-shadow: 0 7px 20px rgba(125, 162, 125, 0.8);
+}

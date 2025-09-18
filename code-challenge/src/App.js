@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import PlayersList from './components/PlayersList';
 import MatchRating from './components/MatchRating';
+import TennisCourts from './components/TennisCourts'; 
 import { fetchPlayers } from './api/playerApi';
 
 function App() {
@@ -35,14 +36,15 @@ function App() {
           >
             Match Ratings
           </button>
+          <button className={activeTab === 'courts' ? 'active' : ''} onClick={() => setActiveTab('courts')}>
+            Tennis Courts
+          </button>
         </div>
       </header>
       <main>
-        {activeTab === 'players' ? (
-          <PlayersList players={players} />
-        ) : (
-          <MatchRating players={players} setPlayers={setPlayers} />
-        )}
+        {activeTab === 'players' && <PlayersList players={players} />}
+        {activeTab === 'matches' && <MatchRating players={players} setPlayers={setPlayers} />}
+        {activeTab === 'courts' && <TennisCourts />}
       </main>
     </div>
   );
