@@ -30,9 +30,7 @@ import {
   CollapsibleSection,
   ReviewSubmissionModal,
   FadeInView,
-  ScaleButton,
   FloatingActionButton,
-  GradientBackground,
   SkeletonLoader,
   SkeletonText,
 } from '@/components';
@@ -366,21 +364,6 @@ const CourtDetailScreen: React.FC<Props> = ({ route, navigation }) => {
           )}
         </View>
 
-        {/* Write Review Button */}
-        <GradientBackground
-          colors={[...COLORS.gradients.primary]}
-          style={styles.writeReviewButton}
-        >
-          <ScaleButton
-            style={styles.writeReviewButtonInner}
-            onPress={handleOpenReviewModal}
-            accessibilityRole="button"
-            accessibilityLabel="Write a review for this court"
-          >
-            <Text style={styles.writeReviewIcon}>⭐</Text>
-            <Text style={styles.writeReviewText}>Write a Review</Text>
-          </ScaleButton>
-        </GradientBackground>
       </FadeInView>
 
       {/* Review Statistics */}
@@ -440,40 +423,82 @@ const CourtDetailScreen: React.FC<Props> = ({ route, navigation }) => {
 
       {/* Amenities */}
       <FadeInView style={styles.sectionContainer}>
-        <CollapsibleSection
-          title="Amenities"
-          icon="🏆"
-          initiallyExpanded={true}
-        >
-          <View style={styles.amenitiesGrid}>
-            {court.amenities.map((amenity, index) => (
-              <FadeInView key={index} delay={index * 50}>
-                <View style={styles.amenityItem}>
-                  <Text style={styles.amenityIcon}>✓</Text>
-                  <Text style={styles.amenityText}>{amenity}</Text>
-                </View>
-              </FadeInView>
-            ))}
+        <View style={styles.modernSection}>
+          <View style={styles.sectionHeader}>
+            <Text style={styles.sectionIcon}>🏆</Text>
+            <Text style={styles.sectionTitle}>Amenities & Features</Text>
           </View>
-        </CollapsibleSection>
+          <View style={styles.modernAmenitiesGrid}>
+            {court.amenities.map((amenity, index) => {
+              const getAmenityIcon = (amenity: string) => {
+                const iconMap: { [key: string]: string } = {
+                  'Parking': '🅿️',
+                  'Lighting': '💡',
+                  'Pro Shop': '🏪',
+                  'Locker Rooms': '🚿',
+                  'Restaurant': '🍽️',
+                  'Coaching Available': '🎾',
+                  'Restrooms': '🚻',
+                  'Water Fountains': '💧',
+                  'Equipment Rental': '🎾',
+                  'Snack Bar': '🥤',
+                  'Air Conditioning': '❄️',
+                  'Heating': '🔥',
+                  'Scoreboard': '📊',
+                  'Seating': '💺',
+                  'Ball Machine': '⚙️',
+                  'Court Booking': '📱',
+                  'WiFi': '📶',
+                  'First Aid': '🏥',
+                  'Security': '🔒',
+                  'Towel Service': '🏩'
+                };
+                return iconMap[amenity] || '✅';
+              };
+
+              return (
+                <FadeInView key={index} delay={index * 30}>
+                  <View style={styles.modernAmenityCard}>
+                    <View style={styles.amenityIconContainer}>
+                      <Text style={styles.modernAmenityIcon}>{getAmenityIcon(amenity)}</Text>
+                    </View>
+                    <Text style={styles.modernAmenityText} numberOfLines={2}>
+                      {amenity}
+                    </Text>
+                  </View>
+                </FadeInView>
+              );
+            })}
+          </View>
+        </View>
       </FadeInView>
 
 
-      {/* Reviews List */}
+      {/* Reviews Section */}
       <FadeInView style={styles.sectionContainer}>
-        <CollapsibleSection
-          title={`Reviews (${court.totalReviews})`}
-          icon="💬"
-          initiallyExpanded={true}
-        >
-          <ReviewsList
-            courtId={courtId}
-            initialReviews={reviews.slice(0, 3)}
-            maxHeight={showAllReviews ? undefined : 400}
-            onReviewsUpdate={setReviews}
-            nested={true}
-          />
-        </CollapsibleSection>
+        <View style={styles.modernSection}>
+          <View style={styles.sectionHeader}>
+            <Text style={styles.sectionIcon}>💬</Text>
+            <View style={styles.reviewsSectionHeader}>
+              <Text style={styles.sectionTitle}>Reviews & Feedback</Text>
+              <View style={styles.reviewsMetaInfo}>
+                <Text style={styles.reviewsCount}>{court.totalReviews} total reviews</Text>
+                <Text style={styles.reviewsRating}>
+                  ⭐ {court.averageRating.toFixed(1)} average
+                </Text>
+              </View>
+            </View>
+          </View>
+          <View style={styles.reviewsContainer}>
+            <ReviewsList
+              courtId={courtId}
+              initialReviews={reviews.slice(0, 3)}
+              maxHeight={showAllReviews ? undefined : 400}
+              onReviewsUpdate={setReviews}
+              nested={true}
+            />
+          </View>
+        </View>
       </FadeInView>
 
       {/* Bottom Padding */}
@@ -651,28 +676,6 @@ const styles = StyleSheet.create({
     color: COLORS.background,
     fontWeight: TYPOGRAPHY.weights.medium,
   },
-  writeReviewButton: {
-    borderRadius: RADIUS.lg,
-    marginTop: SPACING.xl,
-    minHeight: 56,
-    ...SHADOWS.medium,
-  },
-  writeReviewButtonInner: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingVertical: SPACING.lg,
-    paddingHorizontal: SPACING.xl,
-  },
-  writeReviewIcon: {
-    fontSize: 18,
-    marginRight: SPACING.sm,
-  },
-  writeReviewText: {
-    color: COLORS.background,
-    fontSize: TYPOGRAPHY.sizes.md,
-    fontWeight: TYPOGRAPHY.weights.bold,
-  },
   description: {
     fontSize: TYPOGRAPHY.sizes.md,
     color: COLORS.text.primary,
@@ -701,34 +704,95 @@ const styles = StyleSheet.create({
     color: COLORS.error,
     fontStyle: 'italic',
   },
-  amenitiesGrid: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: SPACING.sm,
-  },
-  amenityItem: {
-    flexDirection: 'row',
-    alignItems: 'center',
+  // Modern Section Styles
+  modernSection: {
     backgroundColor: COLORS.surface,
-    paddingHorizontal: SPACING.lg,
-    paddingVertical: SPACING.md,
-    borderRadius: RADIUS.md,
-    minWidth: '45%',
+    borderRadius: RADIUS.lg,
+    padding: SPACING.lg,
     marginBottom: SPACING.sm,
-    ...SHADOWS.small,
     borderWidth: 1,
     borderColor: COLORS.border.light,
+    ...SHADOWS.small,
   },
-  amenityIcon: {
-    fontSize: 16,
-    color: COLORS.success,
-    marginRight: SPACING.sm,
-    fontWeight: 'bold',
+  sectionHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: SPACING.lg,
+    paddingBottom: SPACING.md,
+    borderBottomWidth: 1,
+    borderBottomColor: COLORS.border.light,
   },
-  amenityText: {
-    fontSize: TYPOGRAPHY.sizes.sm,
+  sectionIcon: {
+    fontSize: 24,
+    marginRight: SPACING.md,
+  },
+  sectionTitle: {
+    fontSize: TYPOGRAPHY.sizes.lg,
+    fontWeight: TYPOGRAPHY.weights.bold,
+    color: COLORS.text.primary,
+    flex: 1,
+  },
+
+  // Modern Amenities Styles
+  modernAmenitiesGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: SPACING.md,
+    justifyContent: 'space-between',
+  },
+  modernAmenityCard: {
+    backgroundColor: COLORS.background,
+    borderRadius: RADIUS.md,
+    padding: SPACING.md,
+    alignItems: 'center',
+    minWidth: '30%',
+    maxWidth: '32%',
+    aspectRatio: 1.2,
+    borderWidth: 1,
+    borderColor: COLORS.border.light,
+    ...SHADOWS.small,
+  },
+  amenityIconContainer: {
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+    backgroundColor: `${COLORS.primary}15`,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: SPACING.sm,
+  },
+  modernAmenityIcon: {
+    fontSize: 24,
+  },
+  modernAmenityText: {
+    fontSize: TYPOGRAPHY.sizes.xs,
     color: COLORS.text.primary,
     fontWeight: TYPOGRAPHY.weights.medium,
+    textAlign: 'center',
+    lineHeight: 16,
+  },
+
+  // Modern Reviews Styles
+  reviewsSectionHeader: {
+    flex: 1,
+  },
+  reviewsMetaInfo: {
+    flexDirection: 'row',
+    gap: SPACING.md,
+    marginTop: SPACING.xs,
+  },
+  reviewsCount: {
+    fontSize: TYPOGRAPHY.sizes.sm,
+    color: COLORS.text.secondary,
+    fontWeight: TYPOGRAPHY.weights.medium,
+  },
+  reviewsRating: {
+    fontSize: TYPOGRAPHY.sizes.sm,
+    color: COLORS.warning,
+    fontWeight: TYPOGRAPHY.weights.medium,
+  },
+  reviewsContainer: {
+    marginTop: SPACING.sm,
   },
   bottomPadding: {
     height: 100, // Extra padding for floating action button
