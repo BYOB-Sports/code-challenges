@@ -5,12 +5,6 @@ Find your perfect court with advanced search, filtering by court type, and detai
 
 ---
 
-## 🚀 Live Demo
-*(If you have an Expo link or hosted version, add it here)*  
-🌐 [View Live Site](#)
-
----
-
 ## ✨ Key Features
 
 - **60+ Tennis Courts** – Mock dataset with realistic court info, including Hard, Clay, and Grass courts.  
