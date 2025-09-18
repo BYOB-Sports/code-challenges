@@ -5,7 +5,6 @@ import {
   ScrollView,
   StyleSheet,
   Text,
-  TextInput,
   TouchableOpacity,
   View,
   RefreshControl,
@@ -28,6 +27,7 @@ import {
   ReviewSummary,
   ReviewStats,
   CollapsibleSection,
+  ReviewSubmissionModal,
 } from '@/components';
 import { mockApiService } from '@/data/mockApiService';
 
@@ -50,13 +50,10 @@ const CourtDetailScreen: React.FC<Props> = ({ route, navigation }) => {
   const [reviews, setReviews] = useState<Review[]>([]);
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
-  const [reviewForm, setReviewForm] = useState<ReviewFormData>({
-    rating: 5,
-    comment: '',
-  });
   const [submittingReview, setSubmittingReview] = useState(false);
   const [showAllReviews, setShowAllReviews] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [showReviewModal, setShowReviewModal] = useState(false);
 
 
   useEffect(() => {
@@ -103,34 +100,53 @@ const CourtDetailScreen: React.FC<Props> = ({ route, navigation }) => {
     loadCourtDetails();
   };
 
-  const handleSubmitReview = async () => {
-    if (!reviewForm.comment.trim()) {
-      Alert.alert('Error', 'Please enter a comment');
-      return;
-    }
-
+  const handleSubmitReview = async (reviewData: ReviewFormData) => {
     try {
       setSubmittingReview(true);
 
-      const response = await mockApiService.submitReview(courtId, reviewForm);
+      const response = await mockApiService.submitReview(courtId, reviewData);
 
       // Add the new review to the local state
       setReviews(prev => [response.data, ...prev]);
 
-      // Update court rating if needed
+      // Update court rating and review count
       if (court) {
         const updatedReviews = [response.data, ...reviews];
         const newAverage = updatedReviews.reduce((sum, r) => sum + r.rating, 0) / updatedReviews.length;
-        setCourt(prev => prev ? { ...prev, averageRating: Math.round(newAverage * 10) / 10, totalReviews: updatedReviews.length } : null);
+        setCourt(prev => prev ? {
+          ...prev,
+          averageRating: Math.round(newAverage * 10) / 10,
+          totalReviews: updatedReviews.length
+        } : null);
       }
 
-      setReviewForm({ rating: 5, comment: '' });
-      Alert.alert('Success', 'Review submitted successfully!');
+      // Show success message
+      setTimeout(() => {
+        Alert.alert(
+          'Review Submitted!',
+          'Thank you for sharing your experience. Your review helps other players find great courts!'
+        );
+      }, 100);
+
     } catch (error) {
-      Alert.alert('Error', 'Failed to submit review');
+      console.error('Error submitting review:', error);
+      Alert.alert(
+        'Submission Failed',
+        'Unable to submit your review at this time. Please check your connection and try again.',
+        [{ text: 'OK' }]
+      );
+      throw error; // Re-throw to let modal handle the error state
     } finally {
       setSubmittingReview(false);
     }
+  };
+
+  const handleOpenReviewModal = () => {
+    setShowReviewModal(true);
+  };
+
+  const handleCloseReviewModal = () => {
+    setShowReviewModal(false);
   };
 
   const handlePhonePress = (phoneNumber: string) => {
@@ -141,6 +157,7 @@ const CourtDetailScreen: React.FC<Props> = ({ route, navigation }) => {
           return Linking.openURL(url);
         } else {
           Alert.alert('Error', 'Phone calls are not supported on this device');
+          return Promise.resolve();
         }
       })
       .catch(err => {
@@ -178,17 +195,6 @@ const CourtDetailScreen: React.FC<Props> = ({ route, navigation }) => {
     }).filter((item): item is NonNullable<typeof item> => Boolean(item));
   };
 
-  const renderRatingSelector = () => (
-    <View style={styles.ratingSelector}>
-      <Text style={styles.ratingLabel}>Your Rating:</Text>
-      <StarRating
-        rating={reviewForm.rating}
-        interactive
-        size={24}
-        onRatingChange={(rating) => setReviewForm(prev => ({ ...prev, rating }))}
-      />
-    </View>
-  );
 
   if (loading) {
     return (
@@ -230,6 +236,7 @@ const CourtDetailScreen: React.FC<Props> = ({ route, navigation }) => {
   const openingHours = formatOpeningHours(court.openingHours || {});
 
   return (
+    <>
     <ScrollView
       style={styles.container}
       showsVerticalScrollIndicator={false}
@@ -304,6 +311,17 @@ const CourtDetailScreen: React.FC<Props> = ({ route, navigation }) => {
             </TouchableOpacity>
           )}
         </View>
+
+        {/* Write Review Button */}
+        <TouchableOpacity
+          style={styles.writeReviewButton}
+          onPress={handleOpenReviewModal}
+          accessibilityRole="button"
+          accessibilityLabel="Write a review for this court"
+        >
+          <Text style={styles.writeReviewIcon}>⭐</Text>
+          <Text style={styles.writeReviewText}>Write a Review</Text>
+        </TouchableOpacity>
       </View>
 
       {/* Review Statistics */}
@@ -369,46 +387,6 @@ const CourtDetailScreen: React.FC<Props> = ({ route, navigation }) => {
         </View>
       </CollapsibleSection>
 
-      {/* Add Review */}
-      <CollapsibleSection
-        title="Write a Review"
-        icon="⭐"
-        initiallyExpanded={false}
-      >
-        {renderRatingSelector()}
-
-        <TextInput
-          style={styles.commentInput}
-          placeholder='Share your experience at this court...'
-          value={reviewForm.comment}
-          onChangeText={text =>
-            setReviewForm(prev => ({ ...prev, comment: text }))
-          }
-          multiline
-          numberOfLines={4}
-          textAlignVertical='top'
-          accessibilityLabel="Review comment input"
-          accessibilityHint="Enter your review comment here"
-        />
-
-        <TouchableOpacity
-          style={[
-            styles.submitButton,
-            submittingReview && styles.submitButtonDisabled,
-          ]}
-          onPress={handleSubmitReview}
-          disabled={submittingReview}
-          accessibilityRole="button"
-          accessibilityLabel="Submit review"
-          accessibilityState={{ disabled: submittingReview }}
-        >
-          {submittingReview ? (
-            <ActivityIndicator color={COLORS.background} />
-          ) : (
-            <Text style={styles.submitButtonText}>Submit Review</Text>
-          )}
-        </TouchableOpacity>
-      </CollapsibleSection>
 
       {/* Reviews List */}
       <CollapsibleSection
@@ -427,6 +405,16 @@ const CourtDetailScreen: React.FC<Props> = ({ route, navigation }) => {
       {/* Bottom Padding */}
       <View style={styles.bottomPadding} />
     </ScrollView>
+
+    {/* Review Submission Modal */}
+    <ReviewSubmissionModal
+      visible={showReviewModal}
+      onClose={handleCloseReviewModal}
+      onSubmit={handleSubmitReview}
+      loading={submittingReview}
+      courtName={court.name}
+    />
+  </>
   );
 };
 
@@ -577,6 +565,33 @@ const styles = StyleSheet.create({
     color: COLORS.background,
     fontWeight: TYPOGRAPHY.weights.medium,
   },
+  writeReviewButton: {
+    backgroundColor: COLORS.primary,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: SPACING.md,
+    borderRadius: 12,
+    marginTop: SPACING.lg,
+    minHeight: 48,
+    shadowColor: COLORS.primary,
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  writeReviewIcon: {
+    fontSize: 18,
+    marginRight: SPACING.sm,
+  },
+  writeReviewText: {
+    color: COLORS.background,
+    fontSize: TYPOGRAPHY.sizes.md,
+    fontWeight: TYPOGRAPHY.weights.bold,
+  },
   description: {
     fontSize: TYPOGRAPHY.sizes.md,
     color: COLORS.text.primary,
@@ -630,43 +645,6 @@ const styles = StyleSheet.create({
     fontSize: TYPOGRAPHY.sizes.sm,
     color: COLORS.text.primary,
     fontWeight: TYPOGRAPHY.weights.medium,
-  },
-  ratingSelector: {
-    marginBottom: SPACING.lg,
-  },
-  ratingLabel: {
-    fontSize: TYPOGRAPHY.sizes.md,
-    fontWeight: TYPOGRAPHY.weights.semibold,
-    color: COLORS.text.primary,
-    marginBottom: SPACING.md,
-  },
-  commentInput: {
-    borderWidth: 1,
-    borderColor: COLORS.border,
-    borderRadius: 12,
-    padding: SPACING.md,
-    fontSize: TYPOGRAPHY.sizes.md,
-    color: COLORS.text.primary,
-    backgroundColor: COLORS.background,
-    minHeight: 120,
-    textAlignVertical: 'top',
-    marginBottom: SPACING.lg,
-  },
-  submitButton: {
-    backgroundColor: COLORS.primary,
-    paddingVertical: SPACING.md,
-    borderRadius: 12,
-    alignItems: 'center',
-    justifyContent: 'center',
-    minHeight: 48,
-  },
-  submitButtonDisabled: {
-    opacity: 0.6,
-  },
-  submitButtonText: {
-    color: COLORS.background,
-    fontSize: TYPOGRAPHY.sizes.md,
-    fontWeight: TYPOGRAPHY.weights.bold,
   },
   bottomPadding: {
     height: SPACING.xl,
