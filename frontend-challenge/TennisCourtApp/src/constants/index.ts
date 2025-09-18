@@ -2,14 +2,14 @@ export const SURFACE_TYPES = {
   CLAY: 'clay' as const,
   GRASS: 'grass' as const,
   HARD: 'hard' as const,
-  CARPET: 'carpet' as const,
+  SYNTHETIC: 'synthetic' as const,
 } as const;
 
 export const SURFACE_LABELS = {
-  [SURFACE_TYPES.CLAY]: 'Clay',
-  [SURFACE_TYPES.GRASS]: 'Grass',
-  [SURFACE_TYPES.HARD]: 'Hard Court',
-  [SURFACE_TYPES.CARPET]: 'Carpet',
+  clay: 'Clay',
+  grass: 'Grass',
+  hard: 'Hard Court',
+  synthetic: 'Synthetic',
 } as const;
 
 export const COLORS = {
