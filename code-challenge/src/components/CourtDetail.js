@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 
-const CourtDetail = ({ court, onBack, courts, onCourtSelect }) => {
+const CourtDetail = ({ court, onBack, onBackToAllCourts, courts, onCourtSelect, hasSearched }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   
   // Helper function to get star color based on rating
@@ -877,6 +877,34 @@ const CourtDetail = ({ court, onBack, courts, onCourtSelect }) => {
         {/* Drag Handle with safe area spacing for iPhone 12 */}
         <div className="flex justify-center pt-6 pb-3 cursor-pointer" onClick={onBack}>
           <div className="w-12 h-1 bg-gray-300 rounded-full"></div>
+        </div>
+
+        {/* Navigation Header */}
+        <div className="px-4 pb-4">
+          <div className="flex items-center justify-between">
+            <motion.button
+              onClick={hasSearched ? onBackToAllCourts : onBack}
+              className="flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <span className="text-lg">←</span>
+              <span className="text-sm font-medium">
+                {hasSearched ? 'All Courts' : 'Back'}
+              </span>
+            </motion.button>
+            
+            <div className="flex items-center gap-2">
+              <img
+                src="/image.png"
+                alt="Tennis Court Finder"
+                className="w-6 h-6 rounded-full object-cover"
+              />
+              <span className="text-sm font-medium text-gray-700">Court Details</span>
+            </div>
+            
+            <div className="w-16"></div> {/* Spacer for centering */}
+          </div>
         </div>
 
         <div className="overflow-y-auto max-h-[calc(90vh-100px)] pb-16">

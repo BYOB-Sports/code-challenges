@@ -55,6 +55,14 @@ function App() {
     setSelectedCourt(null);
   };
 
+  const handleBackToAllCourts = () => {
+    setCurrentView('list');
+    setSelectedCourt(null);
+    setHasSearched(false);
+    setSearchQuery('');
+    setShowDropdown(false);
+  };
+
   const handleBackToLanding = () => {
     setCurrentView('landing');
     setSelectedCourt(null);
@@ -288,6 +296,20 @@ function App() {
                   viewMode={viewMode}
                   onViewModeChange={setViewMode}
                 />
+                
+                {/* Court Detail for landing page search results */}
+                <AnimatePresence>
+                  {selectedCourt && (
+                    <CourtDetail 
+                      court={selectedCourt} 
+                      onBack={handleBackToList}
+                      onBackToAllCourts={handleBackToAllCourts}
+                      courts={courts}
+                      onCourtSelect={handleCourtSelect}
+                      hasSearched={hasSearched}
+                    />
+                  )}
+                </AnimatePresence>
               </motion.div>
             )}
           </div>
@@ -353,8 +375,10 @@ function App() {
                 <CourtDetail 
                   court={selectedCourt} 
                   onBack={handleBackToList}
+                  onBackToAllCourts={handleBackToAllCourts}
                   courts={courts}
                   onCourtSelect={handleCourtSelect}
+                  hasSearched={hasSearched}
                 />
               )}
             </AnimatePresence>
