@@ -286,15 +286,15 @@ const CourtsList = ({ courts, onCourtSelect, hasSearched, searchQuery: initialSe
               Browse through available courts in your area
             </p>
             {/* View Toggle and Sort */}
-            <div className="flex items-center justify-between w-full max-w-md">
+            <div className="flex items-center justify-between w-full max-w-lg gap-4">
               {/* View Toggle */}
-              <div className="flex items-center gap-2 bg-gray-100 rounded-lg p-1">
+              <div className="flex items-center gap-1 bg-gray-100 rounded-lg p-1">
                 <button
                   onClick={() => {
                     setViewMode('grid');
                     if (onViewModeChange) onViewModeChange('grid');
                   }}
-                  className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                  className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
                     viewMode === 'grid' 
                       ? 'bg-white text-gray-900 shadow-sm' 
                       : 'text-gray-600 hover:text-gray-900'
@@ -307,7 +307,7 @@ const CourtsList = ({ courts, onCourtSelect, hasSearched, searchQuery: initialSe
                     setViewMode('card');
                     if (onViewModeChange) onViewModeChange('card');
                   }}
-                  className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                  className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
                     viewMode === 'card' 
                       ? 'bg-white text-gray-900 shadow-sm' 
                       : 'text-gray-600 hover:text-gray-900'
@@ -321,7 +321,7 @@ const CourtsList = ({ courts, onCourtSelect, hasSearched, searchQuery: initialSe
               <div className="relative sort-dropdown-container">
                 <button
                   onClick={() => setShowSortDropdown(!showSortDropdown)}
-                  className="flex items-center gap-2 px-3 py-2 bg-white border border-gray-200 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
+                  className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors shadow-sm min-w-[100px]"
                 >
                   <span>Sort</span>
                   <span className={`transform transition-transform ${showSortDropdown ? 'rotate-180' : ''}`}>
@@ -332,14 +332,14 @@ const CourtsList = ({ courts, onCourtSelect, hasSearched, searchQuery: initialSe
                 {/* Sort Dropdown */}
                 {showSortDropdown && (
                   <motion.div
-                    className="absolute top-full right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 z-50"
+                    className="absolute top-full right-0 mt-2 w-52 bg-white rounded-lg shadow-lg border border-gray-200 z-50"
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <div className="p-2">
-                      <div className="text-xs font-medium text-gray-500 mb-2 px-2">Sort by</div>
+                    <div className="p-3">
+                      <div className="text-xs font-semibold text-gray-600 mb-3 px-2 uppercase tracking-wide">Sort by</div>
                       {['rating', 'distance', 'reviews'].map((option) => (
                         <button
                           key={option}
@@ -347,9 +347,9 @@ const CourtsList = ({ courts, onCourtSelect, hasSearched, searchQuery: initialSe
                             setSortBy(option);
                             setShowSortDropdown(false);
                           }}
-                          className={`w-full text-left px-2 py-2 text-sm rounded-md transition-colors ${
+                          className={`w-full text-left px-3 py-2.5 text-sm rounded-lg transition-colors font-medium ${
                             sortBy === option 
-                              ? 'bg-green-50 text-green-700' 
+                              ? 'bg-green-50 text-green-700 border border-green-200' 
                               : 'text-gray-700 hover:bg-gray-50'
                           }`}
                         >
@@ -357,9 +357,9 @@ const CourtsList = ({ courts, onCourtSelect, hasSearched, searchQuery: initialSe
                         </button>
                       ))}
                       
-                      <div className="border-t border-gray-100 my-2"></div>
+                      <div className="border-t border-gray-100 my-3"></div>
                       
-                      <div className="text-xs font-medium text-gray-500 mb-2 px-2">Order</div>
+                      <div className="text-xs font-semibold text-gray-600 mb-3 px-2 uppercase tracking-wide">Order</div>
                       {['desc', 'asc'].map((order) => (
                         <button
                           key={order}
@@ -367,9 +367,9 @@ const CourtsList = ({ courts, onCourtSelect, hasSearched, searchQuery: initialSe
                             setSortOrder(order);
                             setShowSortDropdown(false);
                           }}
-                          className={`w-full text-left px-2 py-2 text-sm rounded-md transition-colors ${
+                          className={`w-full text-left px-3 py-2.5 text-sm rounded-lg transition-colors font-medium ${
                             sortOrder === order 
-                              ? 'bg-green-50 text-green-700' 
+                              ? 'bg-green-50 text-green-700 border border-green-200' 
                               : 'text-gray-700 hover:bg-gray-50'
                           }`}
                         >

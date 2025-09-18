@@ -151,7 +151,7 @@ function App() {
         ) : currentView === 'landing' ? (
           <div className="min-h-screen bg-gradient-to-b from-green-50 via-white to-gray-50">
             <motion.div 
-              className={`flex flex-col items-center p-6 text-center ${hasSearched ? 'pt-20' : 'justify-center min-h-screen'}`}
+              className={`flex flex-col items-center p-6 text-center ${hasSearched ? 'pt-16' : 'justify-start min-h-screen pt-20'}`}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6 }}
@@ -160,7 +160,7 @@ function App() {
               <motion.img
                 src="/image.png"
                 alt="Tennis Court Finder"
-                className={`logo-container rounded-full object-cover shadow-lg ${hasSearched ? 'w-20 mb-20' : 'w-20 h-20 mb-4'}`}
+                className={`logo-container rounded-full object-cover shadow-lg ${hasSearched ? 'w-16 mb-12' : 'w-20 h-20 mb-4'}`}
                 initial={{ y: -20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.3 }}
@@ -251,10 +251,10 @@ function App() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.2 }}
                   >
-                    <div className="flex items-center gap-2 bg-gray-100 rounded-lg p-1">
+                    <div className="flex items-center gap-1 bg-gray-100 rounded-lg p-1">
                       <button
                         onClick={() => setViewMode('grid')}
-                        className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                        className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
                           viewMode === 'grid' 
                             ? 'bg-white text-gray-900 shadow-sm' 
                             : 'text-gray-600 hover:text-gray-900'
@@ -264,7 +264,7 @@ function App() {
                       </button>
                       <button
                         onClick={() => setViewMode('card')}
-                        className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                        className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
                           viewMode === 'card' 
                             ? 'bg-white text-gray-900 shadow-sm' 
                             : 'text-gray-600 hover:text-gray-900'
@@ -282,7 +282,7 @@ function App() {
             {/* Show search results on the same page */}
             {hasSearched && !isAnimating && (
               <motion.div 
-                className="pt-20 px-4 pb-8"
+                className="pt-12 px-4 pb-8"
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
