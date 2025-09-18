@@ -1,22 +1,53 @@
-# UI Code Challenge!
+# Welcome to your Expo app 👋
 
-This small assignment will help evaluate your front end development capabilities.  You will be evaluated on design choices (friction, scalability, etc), efficient and effective coding, and style.
+## To Get started
 
-## Challenge
+1. Install dependencies
 
-Create a mobile first, two page app for reviewing tennis courts.  A user should be able to see a display of courts, search for a specific court, select a court detail view, and leave a review.
+   ```bash
+   npm install
+   ```
 
-## Rules
+2. Start the app
 
-1. Pull this repo locally and work on your own branch
-2. Maximum time is 4 hours
-3. You will only be evaluated on how it looks on mobile device sizes
-4. No backend, all data will be mocked
-5. You do not need to write tests for this exercise given the time limit
-6. When you are done, submit a PR to this repo.
+   ```bash
+   npx expo start
+   ```
 
-## Hints 
 
+In the output, you'll find options to open the app in a
+
+- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
+- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
+- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
+- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+
+You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+
+## Get a fresh project
+
+When you're ready, run:
+
+```bash
+npm run reset-project
+```
+
+This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+
+## Learn more
+
+To learn more about developing your project with Expo, look at the following resources:
+
+- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
+- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+
+## Join the community
+
+Join our community of developers creating universal apps.
+
+- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
+- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+=======
 - Do not use frameworks outside of the JavaScript/Typescript ecosystem
 - Submissions using React Native are preferred but React, Next, or pure JavaScript are acceptable
 - Bonus points if you mock > 50 courts as this will let you show off your scalable design skills
@@ -24,3 +55,4 @@ Create a mobile first, two page app for reviewing tennis courts.  A user should 
 - Your job is to delight users
 
 Good luck!
+
