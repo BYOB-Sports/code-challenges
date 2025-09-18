@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import {
-  ActivityIndicator,
   Alert,
   ScrollView,
   StyleSheet,
@@ -9,6 +8,8 @@ import {
   View,
   RefreshControl,
   Linking,
+  StatusBar,
+  Animated,
 } from 'react-native';
 import type { StackNavigationProp } from '@react-navigation/stack';
 import type { RouteProp } from '@react-navigation/native';
@@ -19,7 +20,7 @@ import type {
   RootStackParamList,
 } from '@/types';
 import type { EnhancedCourt } from '@/data/dataHelpers';
-import { COLORS, SPACING, SURFACE_LABELS, TYPOGRAPHY } from '@/constants';
+import { COLORS, SPACING, SURFACE_LABELS, TYPOGRAPHY, SHADOWS, RADIUS, SCREEN } from '@/constants';
 import {
   ImageCarousel,
   StarRating,
@@ -28,6 +29,12 @@ import {
   ReviewStats,
   CollapsibleSection,
   ReviewSubmissionModal,
+  FadeInView,
+  ScaleButton,
+  FloatingActionButton,
+  GradientBackground,
+  SkeletonLoader,
+  SkeletonText,
 } from '@/components';
 import { mockApiService } from '@/data/mockApiService';
 
@@ -198,10 +205,34 @@ const CourtDetailScreen: React.FC<Props> = ({ route, navigation }) => {
 
   if (loading) {
     return (
-      <View style={styles.loadingContainer}>
-        <ActivityIndicator size='large' color={COLORS.primary} />
-        <Text style={styles.loadingText}>Loading court details...</Text>
-      </View>
+      <ScrollView style={styles.container}>
+        <StatusBar backgroundColor={COLORS.primary} barStyle="light-content" />
+        {/* Hero Image Skeleton */}
+        <SkeletonLoader height={280} borderRadius={0} />
+
+        {/* Header Section Skeleton */}
+        <View style={styles.header}>
+          <SkeletonLoader height={32} width="80%" style={{ marginBottom: 12 }} />
+          <SkeletonLoader height={20} width="60%" style={{ marginBottom: 16 }} />
+          <SkeletonLoader height={18} width="90%" style={{ marginBottom: 24 }} />
+
+          {/* Quick Info Pills Skeleton */}
+          <View style={{ flexDirection: 'row', gap: 8, marginBottom: 20 }}>
+            <SkeletonLoader height={32} width={80} borderRadius={16} />
+            <SkeletonLoader height={32} width={90} borderRadius={16} />
+            <SkeletonLoader height={32} width={70} borderRadius={16} />
+          </View>
+
+          <SkeletonLoader height={48} borderRadius={12} />
+        </View>
+
+        {/* Content Skeletons */}
+        <View style={{ padding: 24 }}>
+          <SkeletonText lines={4} style={{ marginBottom: 24 }} />
+          <SkeletonText lines={3} style={{ marginBottom: 24 }} />
+          <SkeletonText lines={5} />
+        </View>
+      </ScrollView>
     );
   }
 
@@ -234,30 +265,53 @@ const CourtDetailScreen: React.FC<Props> = ({ route, navigation }) => {
   }
 
   const openingHours = formatOpeningHours(court.openingHours || {});
+  const scrollY = new Animated.Value(0);
+
+  const headerHeight = scrollY.interpolate({
+    inputRange: [0, 200],
+    outputRange: [280, 200],
+    extrapolate: 'clamp',
+  });
+
+  const headerOpacity = scrollY.interpolate({
+    inputRange: [0, 150, 200],
+    outputRange: [1, 0.8, 0.6],
+    extrapolate: 'clamp',
+  });
 
   return (
     <>
+    <StatusBar backgroundColor={COLORS.primary} barStyle="light-content" />
     <ScrollView
       style={styles.container}
       showsVerticalScrollIndicator={false}
+      onScroll={Animated.event(
+        [{ nativeEvent: { contentOffset: { y: scrollY } } }],
+        { useNativeDriver: false }
+      )}
+      scrollEventThrottle={16}
       refreshControl={
         <RefreshControl
           refreshing={refreshing}
           onRefresh={handleRefresh}
           colors={[COLORS.primary]}
           tintColor={COLORS.primary}
+          progressBackgroundColor={COLORS.background}
         />
       }
     >
-      {/* Hero Image Carousel */}
-      <ImageCarousel
-        images={court.images || [court.imageUrl].filter(Boolean)}
-        courtName={court.name}
-        height={250}
-      />
+      {/* Hero Image Carousel with Parallax */}
+      <Animated.View style={{ height: headerHeight, opacity: headerOpacity }}>
+        <ImageCarousel
+          images={court.images || [court.imageUrl].filter(Boolean)}
+          courtName={court.name}
+          height={280}
+        />
+        <View style={styles.heroOverlay} />
+      </Animated.View>
 
       {/* Court Header Info */}
-      <View style={styles.header}>
+      <FadeInView style={styles.header}>
         <View style={styles.titleSection}>
           <Text style={styles.courtName}>{court.name}</Text>
           <View style={styles.ratingContainer}>
@@ -313,98 +367,126 @@ const CourtDetailScreen: React.FC<Props> = ({ route, navigation }) => {
         </View>
 
         {/* Write Review Button */}
-        <TouchableOpacity
+        <GradientBackground
+          colors={[...COLORS.gradients.primary]}
           style={styles.writeReviewButton}
-          onPress={handleOpenReviewModal}
-          accessibilityRole="button"
-          accessibilityLabel="Write a review for this court"
         >
-          <Text style={styles.writeReviewIcon}>⭐</Text>
-          <Text style={styles.writeReviewText}>Write a Review</Text>
-        </TouchableOpacity>
-      </View>
+          <ScaleButton
+            style={styles.writeReviewButtonInner}
+            onPress={handleOpenReviewModal}
+            accessibilityRole="button"
+            accessibilityLabel="Write a review for this court"
+          >
+            <Text style={styles.writeReviewIcon}>⭐</Text>
+            <Text style={styles.writeReviewText}>Write a Review</Text>
+          </ScaleButton>
+        </GradientBackground>
+      </FadeInView>
 
       {/* Review Statistics */}
-      <ReviewStats
-        reviews={reviews}
-        averageRating={court.averageRating}
-        totalReviews={court.totalReviews}
-        onViewAllPress={() => setShowAllReviews(true)}
-        maxHighlights={2}
-      />
+      <FadeInView>
+        <ReviewStats
+          reviews={reviews}
+          averageRating={court.averageRating}
+          totalReviews={court.totalReviews}
+          onViewAllPress={() => setShowAllReviews(true)}
+          maxHighlights={2}
+        />
+      </FadeInView>
 
       {/* Review Summary with Breakdown */}
-      <ReviewSummary
-        averageRating={court.averageRating}
-        totalReviews={court.totalReviews}
-        reviewBreakdown={court.reviewSummary}
-      />
+      <FadeInView>
+        <ReviewSummary
+          averageRating={court.averageRating}
+          totalReviews={court.totalReviews}
+          reviewBreakdown={court.reviewSummary}
+        />
+      </FadeInView>
 
       {/* Description */}
       {court.description && (
-        <CollapsibleSection
-          title="Description"
-          icon="📝"
-          initiallyExpanded={true}
-        >
-          <Text style={styles.description}>{court.description}</Text>
-        </CollapsibleSection>
+        <FadeInView>
+          <CollapsibleSection
+            title="Description"
+            icon="📝"
+            initiallyExpanded={true}
+          >
+            <Text style={styles.description}>{court.description}</Text>
+          </CollapsibleSection>
+        </FadeInView>
       )}
 
       {/* Opening Hours */}
       {openingHours.length > 0 && (
-        <CollapsibleSection
-          title="Opening Hours"
-          icon="⏰"
-          initiallyExpanded={false}
-        >
-          <View style={styles.hoursContainer}>
-            {openingHours.map((item, index) => (
-              <View key={index} style={styles.hourRow}>
-                <Text style={styles.dayText}>{item.day}</Text>
-                <Text style={[styles.timeText, item.closed && styles.closedText]}>
-                  {item.hours}
-                </Text>
-              </View>
-            ))}
-          </View>
-        </CollapsibleSection>
+        <FadeInView>
+          <CollapsibleSection
+            title="Opening Hours"
+            icon="⏰"
+            initiallyExpanded={false}
+          >
+            <View style={styles.hoursContainer}>
+              {openingHours.map((item, index) => (
+                <View key={index} style={styles.hourRow}>
+                  <Text style={styles.dayText}>{item.day}</Text>
+                  <Text style={[styles.timeText, item.closed && styles.closedText]}>
+                    {item.hours}
+                  </Text>
+                </View>
+              ))}
+            </View>
+          </CollapsibleSection>
+        </FadeInView>
       )}
 
       {/* Amenities */}
-      <CollapsibleSection
-        title="Amenities"
-        icon="🏆"
-        initiallyExpanded={true}
-      >
-        <View style={styles.amenitiesGrid}>
-          {court.amenities.map((amenity, index) => (
-            <View key={index} style={styles.amenityItem}>
-              <Text style={styles.amenityIcon}>✓</Text>
-              <Text style={styles.amenityText}>{amenity}</Text>
-            </View>
-          ))}
-        </View>
-      </CollapsibleSection>
+      <FadeInView>
+        <CollapsibleSection
+          title="Amenities"
+          icon="🏆"
+          initiallyExpanded={true}
+        >
+          <View style={styles.amenitiesGrid}>
+            {court.amenities.map((amenity, index) => (
+              <FadeInView key={index} delay={index * 50}>
+                <View style={styles.amenityItem}>
+                  <Text style={styles.amenityIcon}>✓</Text>
+                  <Text style={styles.amenityText}>{amenity}</Text>
+                </View>
+              </FadeInView>
+            ))}
+          </View>
+        </CollapsibleSection>
+      </FadeInView>
 
 
       {/* Reviews List */}
-      <CollapsibleSection
-        title={`Reviews (${court.totalReviews})`}
-        icon="💬"
-        initiallyExpanded={true}
-      >
-        <ReviewsList
-          courtId={courtId}
-          initialReviews={reviews.slice(0, 3)}
-          maxHeight={showAllReviews ? undefined : 400}
-          onReviewsUpdate={setReviews}
-        />
-      </CollapsibleSection>
+      <FadeInView>
+        <CollapsibleSection
+          title={`Reviews (${court.totalReviews})`}
+          icon="💬"
+          initiallyExpanded={true}
+        >
+          <ReviewsList
+            courtId={courtId}
+            initialReviews={reviews.slice(0, 3)}
+            maxHeight={showAllReviews ? undefined : 400}
+            onReviewsUpdate={setReviews}
+          />
+        </CollapsibleSection>
+      </FadeInView>
 
       {/* Bottom Padding */}
       <View style={styles.bottomPadding} />
     </ScrollView>
+
+    {/* Floating Action Button for Write Review */}
+    <FloatingActionButton
+      onPress={handleOpenReviewModal}
+      icon="⭐"
+      text="Review"
+      backgroundColor={COLORS.accent}
+      accessibilityLabel="Write a review for this court"
+    />
 
     {/* Review Submission Modal */}
     <ReviewSubmissionModal
@@ -420,19 +502,16 @@ const CourtDetailScreen: React.FC<Props> = ({ route, navigation }) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: COLORS.background,
+    backgroundColor: COLORS.backgroundSecondary,
     flex: 1,
   },
-  loadingContainer: {
-    alignItems: 'center',
-    backgroundColor: COLORS.background,
-    flex: 1,
-    justifyContent: 'center',
-  },
-  loadingText: {
-    color: COLORS.text.secondary,
-    fontSize: TYPOGRAPHY.sizes.md,
-    marginTop: SPACING.md,
+  heroOverlay: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(0, 0, 0, 0.2)',
   },
   errorContainer: {
     alignItems: 'center',
@@ -463,19 +542,20 @@ const styles = StyleSheet.create({
   },
   header: {
     backgroundColor: COLORS.surface,
-    padding: SPACING.lg,
+    padding: SPACING.xl,
     borderBottomWidth: 1,
-    borderBottomColor: COLORS.border,
+    borderBottomColor: COLORS.border.light,
+    ...SHADOWS.small,
   },
   titleSection: {
     marginBottom: SPACING.md,
   },
   courtName: {
-    fontSize: TYPOGRAPHY.sizes.title,
-    fontWeight: TYPOGRAPHY.weights.bold,
+    fontSize: SCREEN.isSmall ? TYPOGRAPHY.sizes.responsive.title : TYPOGRAPHY.sizes.hero,
+    fontWeight: TYPOGRAPHY.weights.heavy,
     color: COLORS.text.primary,
-    marginBottom: SPACING.sm,
-    lineHeight: 32,
+    marginBottom: SPACING.md,
+    lineHeight: SCREEN.isSmall ? 32 : 38,
   },
   ratingContainer: {
     flexDirection: 'row',
@@ -490,11 +570,14 @@ const styles = StyleSheet.create({
   addressContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: SPACING.md,
-    padding: SPACING.sm,
-    backgroundColor: COLORS.background,
-    borderRadius: 8,
-    minHeight: 44,
+    marginBottom: SPACING.lg,
+    padding: SPACING.lg,
+    backgroundColor: COLORS.backgroundSecondary,
+    borderRadius: RADIUS.md,
+    minHeight: 48,
+    ...SHADOWS.small,
+    borderWidth: 1,
+    borderColor: COLORS.border.light,
   },
   locationPin: {
     fontSize: 16,
@@ -513,11 +596,12 @@ const styles = StyleSheet.create({
   },
   infoPill: {
     backgroundColor: `${COLORS.primary}15`,
-    paddingHorizontal: SPACING.md,
-    paddingVertical: SPACING.sm,
-    borderRadius: 20,
+    paddingHorizontal: SPACING.lg,
+    paddingVertical: SPACING.md,
+    borderRadius: RADIUS.xl,
     borderWidth: 1,
     borderColor: `${COLORS.primary}30`,
+    ...SHADOWS.small,
   },
   pricePill: {
     backgroundColor: COLORS.success,
@@ -550,11 +634,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: COLORS.primary,
-    paddingHorizontal: SPACING.md,
-    paddingVertical: SPACING.sm,
-    borderRadius: 8,
-    minHeight: 36,
+    paddingHorizontal: SPACING.lg,
+    paddingVertical: SPACING.md,
+    borderRadius: RADIUS.md,
+    minHeight: 44,
     minWidth: 44,
+    ...SHADOWS.small,
   },
   phoneIcon: {
     fontSize: 14,
@@ -566,22 +651,17 @@ const styles = StyleSheet.create({
     fontWeight: TYPOGRAPHY.weights.medium,
   },
   writeReviewButton: {
-    backgroundColor: COLORS.primary,
+    borderRadius: RADIUS.lg,
+    marginTop: SPACING.xl,
+    minHeight: 56,
+    ...SHADOWS.medium,
+  },
+  writeReviewButtonInner: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingVertical: SPACING.md,
-    borderRadius: 12,
-    marginTop: SPACING.lg,
-    minHeight: 48,
-    shadowColor: COLORS.primary,
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
+    paddingVertical: SPACING.lg,
+    paddingHorizontal: SPACING.xl,
   },
   writeReviewIcon: {
     fontSize: 18,
@@ -628,12 +708,15 @@ const styles = StyleSheet.create({
   amenityItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: COLORS.background,
-    paddingHorizontal: SPACING.md,
-    paddingVertical: SPACING.sm,
-    borderRadius: 8,
+    backgroundColor: COLORS.surface,
+    paddingHorizontal: SPACING.lg,
+    paddingVertical: SPACING.md,
+    borderRadius: RADIUS.md,
     minWidth: '45%',
-    marginBottom: SPACING.xs,
+    marginBottom: SPACING.sm,
+    ...SHADOWS.small,
+    borderWidth: 1,
+    borderColor: COLORS.border.light,
   },
   amenityIcon: {
     fontSize: 16,
@@ -647,7 +730,7 @@ const styles = StyleSheet.create({
     fontWeight: TYPOGRAPHY.weights.medium,
   },
   bottomPadding: {
-    height: SPACING.xl,
+    height: 100, // Extra padding for floating action button
   },
 });
 

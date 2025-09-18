@@ -2,13 +2,14 @@ import React, { memo } from 'react';
 import {
   StyleSheet,
   Text,
-  TouchableOpacity,
   View,
 } from 'react-native';
 
 import type { Court } from '@/types';
-import { COLORS, SPACING, TYPOGRAPHY } from '@/constants';
+import { COLORS, SPACING, TYPOGRAPHY, SHADOWS, RADIUS } from '@/constants';
 import { LazyImage } from '../LazyImage';
+import { ScaleButton } from '../animated';
+import GradientBackground from '../ui/GradientBackground';
 
 export interface CourtCardProps {
   court: Court;
@@ -49,18 +50,19 @@ const CourtCard: React.FC<CourtCardProps> = ({ court, onPress }) => {
     return stars;
   };
 
-  const getSurfaceColor = (surface: Court['surface']) => {
+
+  const getSurfaceGradient = (surface: Court['surface']) => {
     switch (surface) {
       case 'clay':
-        return '#D2691E';
+        return ['#D2691E', '#CD853F'];
       case 'grass':
-        return '#228B22';
+        return ['#228B22', '#32CD32'];
       case 'hard':
-        return '#4169E1';
+        return ['#4169E1', '#6495ED'];
       case 'synthetic':
-        return '#8A2BE2';
+        return ['#8A2BE2', '#9370DB'];
       default:
-        return COLORS.primary;
+        return COLORS.gradients.primary;
     }
   };
 
@@ -92,10 +94,10 @@ const CourtCard: React.FC<CourtCardProps> = ({ court, onPress }) => {
   };
 
   return (
-    <TouchableOpacity
+    <ScaleButton
       style={styles.container}
       onPress={() => onPress(court.id)}
-      activeOpacity={0.7}
+      scaleValue={0.98}
       accessible
       accessibilityLabel={`${court.name}, rating ${court.rating} stars, ${court.pricePerHour} dollars per hour`}
       accessibilityRole='button'
@@ -106,19 +108,18 @@ const CourtCard: React.FC<CourtCardProps> = ({ court, onPress }) => {
           style={styles.image}
           resizeMode='cover'
         />
-        <View
-          style={[
-            styles.surfaceBadge,
-            { backgroundColor: getSurfaceColor(court.surface) },
-          ]}
+        <GradientBackground
+          colors={[...getSurfaceGradient(court.surface)]}
+          style={styles.surfaceBadge}
         >
           <Text style={styles.surfaceText}>{court.surface.toUpperCase()}</Text>
-        </View>
+        </GradientBackground>
         {court.indoor && (
           <View style={styles.indoorBadge}>
-            <Text style={styles.indoorText}>INDOOR</Text>
+            <Text style={styles.indoorText}>🏢 INDOOR</Text>
           </View>
         )}
+        <View style={styles.imageOverlay} />
       </View>
 
       <View style={styles.content}>
@@ -139,15 +140,17 @@ const CourtCard: React.FC<CourtCardProps> = ({ court, onPress }) => {
         </Text>
 
         <View style={styles.details}>
-          <View style={styles.priceContainer}>
+          <GradientBackground
+            colors={[...COLORS.gradients.success]}
+            style={styles.priceContainer}
+          >
             <Text style={styles.price}>${court.pricePerHour}</Text>
-            <Text style={styles.priceUnit}>/hour</Text>
-          </View>
+            <Text style={styles.priceUnit}>/hr</Text>
+          </GradientBackground>
 
           <View style={styles.courtsInfo}>
             <Text style={styles.courtsCount}>
-              {court.numberOfCourts} court
-              {court.numberOfCourts !== 1 ? 's' : ''}
+              🎾 {court.numberOfCourts} court{court.numberOfCourts !== 1 ? 's' : ''}
             </Text>
           </View>
         </View>
@@ -163,7 +166,7 @@ const CourtCard: React.FC<CourtCardProps> = ({ court, onPress }) => {
           ))}
         </View>
       </View>
-    </TouchableOpacity>
+    </ScaleButton>
   );
 };
 
@@ -179,13 +182,15 @@ const styles = StyleSheet.create({
   },
   amenityItem: {
     alignItems: 'center',
-    backgroundColor: `${COLORS.primary}10`,
-    borderRadius: 8,
+    backgroundColor: `${COLORS.primary}15`,
+    borderRadius: RADIUS.sm,
     flexDirection: 'row',
     marginBottom: SPACING.xs,
     marginRight: SPACING.sm,
-    paddingHorizontal: SPACING.sm,
-    paddingVertical: SPACING.xs,
+    paddingHorizontal: SPACING.md,
+    paddingVertical: SPACING.sm,
+    borderWidth: 1,
+    borderColor: COLORS.border.light,
   },
   amenityText: {
     color: COLORS.text.secondary,
@@ -194,21 +199,14 @@ const styles = StyleSheet.create({
   },
   container: {
     backgroundColor: COLORS.surface,
-    borderRadius: 12,
-    elevation: 5,
-    marginBottom: SPACING.md,
+    borderRadius: RADIUS.lg,
+    marginBottom: SPACING.lg,
     minHeight: 44,
     overflow: 'hidden',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.1,
-    shadowRadius: 3.84, // Minimum touch target size
+    ...SHADOWS.medium,
   },
   content: {
-    padding: SPACING.md,
+    padding: SPACING.lg,
   },
   courtsCount: {
     color: COLORS.text.secondary,
@@ -225,7 +223,7 @@ const styles = StyleSheet.create({
     marginBottom: SPACING.md,
   },
   emptyStar: {
-    color: COLORS.border,
+    color: COLORS.border.default,
     fontSize: TYPOGRAPHY.sizes.sm,
   },
   header: {
@@ -239,18 +237,27 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   imageContainer: {
-    height: 160,
+    height: 180,
     position: 'relative',
     width: '100%',
   },
-  indoorBadge: {
-    backgroundColor: 'rgba(0, 0, 0, 0.7)',
-    borderRadius: 6,
-    paddingHorizontal: SPACING.sm,
-    paddingVertical: SPACING.xs,
+  imageOverlay: {
     position: 'absolute',
-    right: SPACING.sm,
-    top: SPACING.sm,
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(0, 0, 0, 0.1)',
+  },
+  indoorBadge: {
+    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+    borderRadius: RADIUS.sm,
+    paddingHorizontal: SPACING.md,
+    paddingVertical: SPACING.sm,
+    position: 'absolute',
+    right: SPACING.md,
+    top: SPACING.md,
+    ...SHADOWS.small,
   },
   indoorText: {
     color: '#FFFFFF',
@@ -267,22 +274,28 @@ const styles = StyleSheet.create({
     color: COLORS.text.primary,
     flex: 1,
     fontSize: TYPOGRAPHY.sizes.lg,
-    fontWeight: TYPOGRAPHY.weights.semibold,
+    fontWeight: TYPOGRAPHY.weights.bold,
     marginRight: SPACING.sm,
+    lineHeight: TYPOGRAPHY.sizes.lg * TYPOGRAPHY.lineHeights.tight,
   },
   price: {
-    color: COLORS.success,
-    fontSize: TYPOGRAPHY.sizes.xl,
+    color: COLORS.text.inverse,
+    fontSize: TYPOGRAPHY.sizes.lg,
     fontWeight: TYPOGRAPHY.weights.bold,
   },
   priceContainer: {
-    alignItems: 'baseline',
+    alignItems: 'center',
     flexDirection: 'row',
+    paddingHorizontal: SPACING.md,
+    paddingVertical: SPACING.sm,
+    borderRadius: RADIUS.md,
+    ...SHADOWS.small,
   },
   priceUnit: {
-    color: COLORS.text.secondary,
+    color: COLORS.text.inverse,
     fontSize: TYPOGRAPHY.sizes.sm,
-    marginLeft: 2,
+    marginLeft: 4,
+    opacity: 0.9,
   },
   ratingContainer: {
     alignItems: 'flex-end',
@@ -301,12 +314,13 @@ const styles = StyleSheet.create({
     marginBottom: 2,
   },
   surfaceBadge: {
-    borderRadius: 6,
-    left: SPACING.sm,
-    paddingHorizontal: SPACING.sm,
-    paddingVertical: SPACING.xs,
+    borderRadius: RADIUS.sm,
+    left: SPACING.md,
+    paddingHorizontal: SPACING.md,
+    paddingVertical: SPACING.sm,
     position: 'absolute',
-    top: SPACING.sm,
+    top: SPACING.md,
+    ...SHADOWS.small,
   },
   surfaceText: {
     color: '#FFFFFF',

@@ -9,7 +9,7 @@ import {
   View,
 } from 'react-native';
 
-import { COLORS, SPACING, TYPOGRAPHY } from '@/constants';
+import { COLORS, SPACING, TYPOGRAPHY, SHADOWS, RADIUS, ANIMATIONS } from '@/constants';
 
 export interface SearchBarProps {
   value: string;
@@ -56,7 +56,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
   const handleFocus = useCallback(() => {
     Animated.timing(focusAnimValue, {
       toValue: 1,
-      duration: 200,
+      duration: ANIMATIONS.timing.normal,
       useNativeDriver: false,
     }).start();
   }, [focusAnimValue]);
@@ -64,7 +64,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
   const handleBlur = useCallback(() => {
     Animated.timing(focusAnimValue, {
       toValue: 0,
-      duration: 200,
+      duration: ANIMATIONS.timing.normal,
       useNativeDriver: false,
     }).start();
   }, [focusAnimValue]);
@@ -77,12 +77,22 @@ const SearchBar: React.FC<SearchBarProps> = ({
 
   const borderColor = focusAnimValue.interpolate({
     inputRange: [0, 1],
-    outputRange: [COLORS.border, COLORS.primary],
+    outputRange: [COLORS.border.default, COLORS.border.focus],
   });
 
   const shadowOpacity = focusAnimValue.interpolate({
     inputRange: [0, 1],
-    outputRange: [0.1, 0.2],
+    outputRange: [0.1, 0.25],
+  });
+
+  const shadowRadius = focusAnimValue.interpolate({
+    inputRange: [0, 1],
+    outputRange: [2, 8],
+  });
+
+  const backgroundColor = focusAnimValue.interpolate({
+    inputRange: [0, 1],
+    outputRange: [COLORS.surface, COLORS.background],
   });
 
   return (
@@ -91,13 +101,37 @@ const SearchBar: React.FC<SearchBarProps> = ({
         styles.container,
         {
           borderColor,
-          shadowOpacity: Platform.OS === 'ios' ? shadowOpacity : 0.1,
+          backgroundColor,
+          shadowOpacity: Platform.OS === 'ios' ? shadowOpacity : undefined,
+          shadowRadius: Platform.OS === 'ios' ? shadowRadius : undefined,
+          elevation: Platform.OS === 'android' ? focusAnimValue.interpolate({
+            inputRange: [0, 1],
+            outputRange: [2, 8],
+          }) : undefined,
         },
       ]}
     >
-      <View style={styles.searchIcon}>
-        <Text style={styles.searchIconText}>🔍</Text>
-      </View>
+      <Animated.View style={[
+        styles.searchIcon,
+        {
+          transform: [{
+            scale: focusAnimValue.interpolate({
+              inputRange: [0, 1],
+              outputRange: [1, 1.1],
+            })
+          }]
+        }
+      ]}>
+        <Text style={[
+          styles.searchIconText,
+          {
+            color: focusAnimValue.interpolate({
+              inputRange: [0, 1],
+              outputRange: [COLORS.text.tertiary, COLORS.primary],
+            })
+          }
+        ]}>🔍</Text>
+      </Animated.View>
 
       <TextInput
         ref={inputRef}
@@ -105,7 +139,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
         value={localValue}
         onChangeText={setLocalValue}
         placeholder={placeholder}
-        placeholderTextColor={COLORS.text.disabled}
+        placeholderTextColor={COLORS.text.tertiary}
         onFocus={handleFocus}
         onBlur={handleBlur}
         autoFocus={autoFocus}
@@ -137,12 +171,12 @@ const SearchBar: React.FC<SearchBarProps> = ({
 const styles = StyleSheet.create({
   clearButton: {
     alignItems: 'center',
-    backgroundColor: `${COLORS.text.disabled}20`,
-    borderRadius: 12,
+    backgroundColor: `${COLORS.text.tertiary}20`,
+    borderRadius: RADIUS.sm,
     justifyContent: 'center',
-    marginLeft: SPACING.sm,
-    minHeight: 24,
-    minWidth: 24,
+    marginLeft: SPACING.md,
+    minHeight: 28,
+    minWidth: 28,
     padding: SPACING.xs,
   },
   clearButtonText: {
@@ -152,22 +186,19 @@ const styles = StyleSheet.create({
   },
   container: {
     alignItems: 'center',
-    backgroundColor: COLORS.surface,
-    borderRadius: 12,
-    borderWidth: 1,
-    elevation: 5,
+    borderRadius: RADIUS.lg,
+    borderWidth: 2,
     flexDirection: 'row',
-    marginBottom: SPACING.md,
-    marginHorizontal: SPACING.md,
-    minHeight: 44,
-    paddingHorizontal: SPACING.md,
+    marginBottom: SPACING.lg,
+    marginHorizontal: SPACING.lg,
+    minHeight: 52,
+    paddingHorizontal: SPACING.lg,
     paddingVertical: Platform.OS === 'ios' ? SPACING.md : SPACING.sm,
-    shadowColor: '#000',
+    shadowColor: COLORS.primary,
     shadowOffset: {
       width: 0,
       height: 2,
     },
-    shadowRadius: 3.84, // Minimum touch target size
   },
   input: {
     flex: 1,
@@ -177,11 +208,12 @@ const styles = StyleSheet.create({
     minHeight: 20,
   },
   searchIcon: {
-    marginRight: SPACING.sm,
+    marginRight: SPACING.md,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   searchIconText: {
-    color: COLORS.text.secondary,
-    fontSize: TYPOGRAPHY.sizes.md,
+    fontSize: TYPOGRAPHY.sizes.lg,
   },
 });
 

@@ -137,8 +137,8 @@ const CourtsListScreen: React.FC<Props> = ({ navigation }) => {
 
   const getItemLayout = useCallback(
     (_: any, index: number) => ({
-      length: 280, // Approximate height of court card
-      offset: 280 * index,
+      length: 300, // Updated height for enhanced court card
+      offset: 300 * index,
       index,
     }),
     []
@@ -234,17 +234,42 @@ const CourtsListScreen: React.FC<Props> = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: COLORS.background,
+    backgroundColor: COLORS.backgroundSecondary,
     flex: 1,
+  },
+  headerBackground: {
+    paddingBottom: SPACING.md,
+  },
+  searchAndFilters: {
+    backgroundColor: COLORS.background,
+    paddingBottom: SPACING.sm,
+  },
+  skeletonContainer: {
+    padding: SPACING.md,
+  },
+  skeletonCard: {
+    marginBottom: SPACING.lg,
+    backgroundColor: COLORS.surface,
+    borderRadius: RADIUS.lg,
+    ...SHADOWS.small,
   },
   emptyContainer: {
     alignItems: 'center',
-    paddingHorizontal: SPACING.md,
-    paddingVertical: SPACING.xxl,
+    paddingHorizontal: SPACING.xl,
+    paddingVertical: SPACING.xxxl,
+  },
+  emptyIconContainer: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: SPACING.xl,
+    ...SHADOWS.medium,
   },
   emptyIcon: {
-    fontSize: 64,
-    marginBottom: SPACING.lg,
+    fontSize: 48,
+    color: COLORS.text.inverse,
   },
   emptyListContent: {
     flexGrow: 1,
@@ -267,11 +292,20 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flex: 1,
     justifyContent: 'center',
-    paddingHorizontal: SPACING.md,
+    paddingHorizontal: SPACING.xl,
+  },
+  errorIconContainer: {
+    width: 80,
+    height: 80,
+    borderRadius: 40,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: SPACING.xl,
+    ...SHADOWS.medium,
   },
   errorIcon: {
-    fontSize: 64,
-    marginBottom: SPACING.lg,
+    fontSize: 36,
+    color: COLORS.text.inverse,
   },
   errorSubtitle: {
     color: COLORS.text.secondary,
@@ -287,36 +321,31 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   header: {
-    paddingBottom: SPACING.sm,
-    paddingHorizontal: SPACING.md,
-    paddingTop: SPACING.md,
+    paddingHorizontal: SPACING.xl,
+    paddingTop: SPACING.xl,
+    paddingBottom: SPACING.lg,
   },
   listContent: {
-    padding: SPACING.md,
-    paddingTop: 0,
-  },
-  loadingContainer: {
-    alignItems: 'center',
-    flex: 1,
-    justifyContent: 'center',
-    paddingHorizontal: SPACING.md,
-  },
-  loadingText: {
-    color: COLORS.text.secondary,
-    fontSize: TYPOGRAPHY.sizes.md,
-    marginTop: SPACING.md,
-    textAlign: 'center',
+    padding: SPACING.lg,
+    paddingTop: SPACING.md,
   },
   subtitle: {
-    color: COLORS.text.secondary,
-    fontSize: TYPOGRAPHY.sizes.sm,
+    color: COLORS.text.inverse,
+    fontSize: TYPOGRAPHY.sizes.md,
     fontWeight: TYPOGRAPHY.weights.medium,
+    opacity: 0.9,
+    textShadowColor: 'rgba(0, 0, 0, 0.2)',
+    textShadowOffset: { width: 0, height: 1 },
+    textShadowRadius: 1,
   },
   title: {
-    color: COLORS.text.primary,
-    fontSize: TYPOGRAPHY.sizes.title,
+    color: COLORS.text.inverse,
+    fontSize: SCREEN.isSmall ? TYPOGRAPHY.sizes.responsive.title : TYPOGRAPHY.sizes.hero,
     fontWeight: TYPOGRAPHY.weights.bold,
     marginBottom: SPACING.xs,
+    textShadowColor: 'rgba(0, 0, 0, 0.3)',
+    textShadowOffset: { width: 0, height: 1 },
+    textShadowRadius: 2,
   },
 });
 

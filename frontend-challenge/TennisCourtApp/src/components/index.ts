@@ -1,6 +1,9 @@
 // UI Components
 export * from './ui';
 
+// Animated Components
+export * from './animated';
+
 // Feature Components
 export * from './CourtCard';
 export * from './SearchBar';
