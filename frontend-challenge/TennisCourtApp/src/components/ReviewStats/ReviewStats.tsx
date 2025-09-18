@@ -48,7 +48,7 @@ const ReviewStats: React.FC<ReviewStatsProps> = ({
     return [...reviews]
       .filter(review => (review.helpfulVotes || 0) > 0)
       .sort((a, b) => (b.helpfulVotes || 0) - (a.helpfulVotes || 0))
-      .slice(0, maxHighlights);
+      .slice(0, 2); // Always limit to 2 most helpful reviews
   };
 
   const getHighestRatedReviews = () => {
@@ -119,7 +119,7 @@ const ReviewStats: React.FC<ReviewStatsProps> = ({
     return (
       <View style={styles.highlightSection}>
         <Text style={styles.highlightTitle}>{title}</Text>
-        {reviews.slice(0, maxHighlights).map(review => (
+        {reviews.slice(0, 2).map(review => (
           <ReviewCard
             key={review.id}
             review={review}
@@ -170,25 +170,13 @@ const ReviewStats: React.FC<ReviewStatsProps> = ({
         </View>
       </View>
 
-      {/* Review Highlights */}
-      {showRecentHighlights && (
+      {/* Most Helpful Reviews Only */}
+      {showRecentHighlights && mostHelpfulReviews.length > 0 && (
         <View style={styles.highlightsContainer}>
           {renderReviewHighlight(
             'Most Helpful Reviews',
             mostHelpfulReviews,
             'No helpful reviews yet'
-          )}
-
-          {renderReviewHighlight(
-            'Recent Reviews',
-            recentReviews.slice(0, maxHighlights),
-            'No recent reviews'
-          )}
-
-          {renderReviewHighlight(
-            'Top Rated Reviews',
-            highestRatedReviews,
-            'No highly rated reviews'
           )}
         </View>
       )}
