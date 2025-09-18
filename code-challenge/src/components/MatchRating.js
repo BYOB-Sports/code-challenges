@@ -1,75 +1,67 @@
-import React, { useState } from 'react';
-import { submitRating } from '../api/ratingApi';
+import React, { useState } from "react";
+import { calculateAverageRating, submitRating } from "../api/ratingApi";
+import { getPlayers } from "../api/playerApi";
 
-const MatchRating = ({ players, setPlayers }) => {
-  const [selectedPlayer, setSelectedPlayer] = useState('');
-  const [rating, setRating] = useState(4.0);
+const MatchRating = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [message, setMessage] = useState('');
+  const [rating, setRating] = useState(0);
+  const [player, setPlayer] = useState(null);
+  const [error, setError] = useState(null);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    
-    if (!selectedPlayer) {
-      setMessage('Please select a player');
-      return;
-    }
-    
-    setIsSubmitting(true);
-    setMessage('Submitting rating...');
-    
+  const getPlayersAsync = async () => {
     try {
-      const updatedPlayers = await submitRating(selectedPlayer, rating, players);
-      setPlayers(updatedPlayers);
-      setMessage('Rating submitted successfully!');
-    } catch (error) {
-      setMessage(`Error: ${error.message}`);
-    } finally {
-      setIsSubmitting(false);
+      const players = await getPlayers();
+      setPlayer(players[0]);
+    } catch (e) {
+      setError(e);
     }
   };
 
+  const handleSubmit = async () => {
+    try {
+      setIsSubmitting(true);
+      await submitRating(player.id, rating);
+      const newAverageRating = await calculateAverageRating(player.id, rating);
+      setPlayer({ ...player, average_rating: newAverageRating });
+      setIsSubmitting(false);
+      setRating(0);
+    } catch (e) {
+      setIsSubmitting(false);
+      setError(e);
+    }
+  };
+
+  if (error) {
+    return <p>{error.message}</p>;
+  }
+
+  if (!player) {
+    return <button onClick={getPlayersAsync}>Get players</button>;
+  }
+
   return (
-    <div className="match-rating">
-      <h2>Rate a Player</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="player-select">Select Player:</label>
-          <select 
-            id="player-select"
-            value={selectedPlayer}
-            onChange={(e) => setSelectedPlayer(e.target.value)}
-            disabled={isSubmitting}
-          >
-            <option value="">-- Select a player --</option>
-            {players.map(player => (
-              <option key={player.id} value={player.id}>{player.name}</option>
-            ))}
-          </select>
-        </div>
-        
-        <div className="form-group">
-          <label htmlFor="rating-slider">Rating: {rating.toFixed(1)}</label>
-          <input 
-            type="range" 
-            id="rating-slider"
-            min="1.0" 
-            max="7.0" 
-            step="0.1" 
+    <div>
+      {/* The UI is very basic and needs to be improved to handle the 10-second delay gracefully. */}
+      {isSubmitting ? (
+        <p>Submitting rating...</p>
+      ) : (
+        <div>
+          <p>
+            {player.name}
+            {player.average_rating ? " - " + player.average_rating : ""}
+          </p>
+          <input
+            type="number"
+            min="0"
+            max="100"
             value={rating}
-            onChange={(e) => setRating(parseFloat(e.target.value))}
-            disabled={isSubmitting}
+            onChange={(e) => setRating(e.target.value)}
           />
+          <button onClick={handleSubmit}>Submit</button>
         </div>
-        
-        <button type="submit" disabled={isSubmitting}>
-          {isSubmitting ? 'Submitting...' : 'Submit Rating'}
-        </button>
-        
-        {message && <p className="message">{message}</p>}
-      </form>
+      )}
     </div>
   );
 };
 
-export default MatchRating; 
+export default MatchRating;
