@@ -1,38 +1,48 @@
-🎾 BYOB - Bring Your Own Balls (Time Taken: ~2.5 hours)
+# 🎾 BYOB Ace Club 
 
-A modern, mobile-first React application for discovering and reviewing tennis courts.
-Find your perfect court with advanced search, filtering, and detailed reviews.
+A modern, mobile-first React Native application for discovering and reviewing tennis courts.  
+Find your perfect court with advanced search, filtering by court type, and detailed reviews.
 
-🚀 Live Demo
+---
 
-🌐 View Live Site
+## 🚀 Live Demo
+*(If you have an Expo link or hosted version, add it here)*  
+🌐 [View Live Site](#)
 
-✨ Key Features
+---
 
-50+ Tennis Courts – Mock dataset with realistic court info
-Smart Search & Filters – Search by name, location, category, or amenities
-User Reviews – Rate and review courts with persistent localStorage
-Favorites System – Bookmark and manage your preferred courts
-Responsive Design – Optimized for mobile, tablet, and desktop
-Accessibility – WCAG-compliant with keyboard navigation support
-🛠️ Tech Stack
+## ✨ Key Features
 
-React 19 – Modern React with hooks
-Vite – Fast build tool for modern web apps
-React Router – Client-side routing
-Tailwind CSS – Utility-first styling
-Lucide Icons – Clean, consistent icons
-Canva – Seamless & Custom Graphic Designing
-🏗️ Quick Start
+- **60+ Tennis Courts** – Mock dataset with realistic court info, including Hard, Clay, and Grass courts.  
+- **Smart Search & Filters** – Search courts by name and filter by court type.  
+- **User Reviews** – Leave reviews for each court and see others’ feedback.  
+- **Responsive Design** – Optimized for mobile devices.  
+- **Easy Navigation** – Seamless navigation between court list and court details.  
 
+---
+
+## 🛠️ Tech Stack
+
+- **React Native** – Modern mobile development framework  
+- **Expo** – For rapid development and testing  
+- **React Navigation** – Stack-based navigation for screens  
+- **React Native Picker** – Filter courts by type  
+- **Styled with React Native Stylesheets** – Clean and modern UI  
+
+---
+
+## 🏗️ Quick Start
+
+```bash
 # Clone the repository
-git clone https://github.com/yourusername/byob-tennis.git
+git clone https://github.com/yourusername/code-challenges.git
 
-# Navigate into the project
-cd byob-tennis
+
+# Navigate into the project folder
+cd frontend-challenge
 
 # Install dependencies
 npm install
 
-# Start the development server
-npm run dev
+# Start the Expo development server
+npm start
