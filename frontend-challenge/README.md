@@ -1,25 +1,38 @@
-# UI Code Challenge!
+🎾 BYOB - Bring Your Own Balls (Time Taken: ~4 hours)
 
-This small assignment will hep evaluate your front end development capabilities.  You will be evaluated on design choices (friction, scalability, etc), efficient and effective coding, and style.
+A modern, mobile-first React application for discovering and reviewing tennis courts.
+Find your perfect court with advanced search, filtering, and detailed reviews.
 
-## Challenge
+🚀 Live Demo
 
-Create a mobile first, two page app for reviewing tennis courts.  A user should be able to see a display of courts, search for a specific court, select a court detail view, and leave a review.
+🌐 View Live Site
 
-## Rules
+✨ Key Features
 
-1. Pull this repo locally and work on your own branch
-2. Maximum time is 4 hours
-3. You will only be evaluated on how it looks on mobile device sizes
-4. No backend, all data will be mocked
-5. You do not need to write tests for this exercise given the time limit
-6. When you are done, submit a PR to this repo.
+50+ Tennis Courts – Mock dataset with realistic court info
+Smart Search & Filters – Search by name, location, category, or amenities
+User Reviews – Rate and review courts with persistent localStorage
+Favorites System – Bookmark and manage your preferred courts
+Responsive Design – Optimized for mobile, tablet, and desktop
+Accessibility – WCAG-compliant with keyboard navigation support
+🛠️ Tech Stack
 
-## Hints 
+React 19 – Modern React with hooks
+Vite – Fast build tool for modern web apps
+React Router – Client-side routing
+Tailwind CSS – Utility-first styling
+Lucide Icons – Clean, consistent icons
+Canva – Seamless & Custom Graphic Designing
+🏗️ Quick Start
 
-- Do not use frameworks outside of the JavaScript/Typescript ecosystem
-- Bonus points if you mock > 50 courts as this will let you show off your scalable design skills
-- You can use coding assitants, but include every promopt you used in your PR
-- Your job is to delight users
+# Clone the repository
+git clone https://github.com/yourusername/byob-tennis.git
 
-Good luck!
+# Navigate into the project
+cd byob-tennis
+
+# Install dependencies
+npm install
+
+# Start the development server
+npm run dev

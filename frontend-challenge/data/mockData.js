@@ -37,8 +37,8 @@ const cityNames = [
 const courts = courtNames.map((name, i) => ({
   id: i + 1,
   name,
-  location: cityNames[i % cityNames.length], // round-robin city
-  type: courtTypes[i % courtTypes.length],   // round-robin type
+  location: cityNames[i % cityNames.length], 
+  type: courtTypes[i % courtTypes.length],   
   image: `https://media.istockphoto.com/id/1176735816/photo/blue-tennis-court-and-illuminated-indoor-arena-with-fans-upper-front-view.jpg?s=612x612&w=0&k=20&c=er_NtUH-Rv4Kj9mUPOa1C2EwM0rL3YwXwazshoXjvVA=`, // random court images
   reviews: []
 }));

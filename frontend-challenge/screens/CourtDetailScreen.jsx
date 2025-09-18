@@ -53,10 +53,10 @@ export default function CourtDetailScreen({ route }) {
 
 const styles = StyleSheet.create({
   image: { width: '100%', height: 200 },
-  info: { paddingHorizontal: 16, paddingVertical: 8, backgroundColor: '#C8E6C9' }, // reduced vertical padding
+  info: { paddingHorizontal: 16, paddingVertical: 8, backgroundColor: '#C8E6C9' }, 
   name: { fontSize: 20, fontWeight: 'bold' },
-  location: { fontSize: 16, color: '#555', marginTop: 2 }, // reduced margin
-  reviewTitle: { fontSize: 18, fontWeight: 'bold', paddingHorizontal: 16, paddingVertical: 8 }, // reduced vertical padding
+  location: { fontSize: 16, color: '#555', marginTop: 2 }, 
+  reviewTitle: { fontSize: 18, fontWeight: 'bold', paddingHorizontal: 16, paddingVertical: 8 }, 
   reviewCard: {
     marginHorizontal: 16,
     marginVertical: 4,
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     elevation: 2,
   },
-  form: { marginHorizontal: 16, marginTop: 8 }, // reduced top margin
+  form: { marginHorizontal: 16, marginTop: 8 }, 
   input: {
     backgroundColor: '#fff',
     padding: 12,
