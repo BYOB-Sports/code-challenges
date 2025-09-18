@@ -189,23 +189,17 @@ const CourtsListScreen: React.FC<Props> = ({ navigation }) => {
       .filter((_, i) => i !== index - start); // Exclude current image
   }, [processedCourts]);
 
-  // Optimized render function with image preloading
+  // Optimized render function
   const renderCourtItem: ListRenderItem<Court> = useCallback(
-    ({ item, index }) => {
-      const isVisible = visibleItems.has(item.id);
-      const nearbyImages = isVisible ? getNearbyImages(index) : [];
-      const priority = index < PERFORMANCE.flatList.initialNumToRender ? 'high' : 'normal';
-
+    ({ item }) => {
       return (
         <CourtCard
           court={item}
           onPress={handleCourtPress}
-          nearbyImages={nearbyImages}
-          priority={priority}
         />
       );
     },
-    [handleCourtPress, visibleItems, getNearbyImages]
+    [handleCourtPress]
   );
 
   const keyExtractor = useCallback((item: Court) => item.id, []);

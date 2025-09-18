@@ -1,29 +1,25 @@
 import React, { memo, useCallback, useMemo } from 'react';
 import {
+  Image,
   StyleSheet,
   Text,
   View,
 } from 'react-native';
 
 import type { Court } from '@/types';
-import { ACCESSIBILITY, COLORS, PERFORMANCE, RADIUS, SHADOWS, SPACING, TYPOGRAPHY } from '@/constants';
-import { generateCourtAccessibilityLabel, generateAccessibilityHint, preloadImages } from '@/utils';
-import { LazyImage } from '../LazyImage';
+import { COLORS, RADIUS, SHADOWS, SPACING, TYPOGRAPHY } from '@/constants';
+import { generateCourtAccessibilityLabel, generateAccessibilityHint } from '@/utils';
 import { ScaleButton } from '../animated';
 import GradientBackground from '../ui/GradientBackground';
 
 export interface CourtCardProps {
   court: Court;
   onPress: (courtId: string) => void;
-  nearbyImages?: string[];
-  priority?: 'high' | 'normal' | 'low';
 }
 
-const CourtCard: React.FC<CourtCardProps> = ({ 
-  court, 
+const CourtCard: React.FC<CourtCardProps> = ({
+  court,
   onPress,
-  nearbyImages = [],
-  priority = 'normal',
 }) => {
   // Memoize star rendering for better performance
   const stars = useMemo(() => {
@@ -127,13 +123,10 @@ const CourtCard: React.FC<CourtCardProps> = ({
       accessibilityRole='button'
     >
       <View style={styles.imageContainer}>
-        <LazyImage
+        <Image
           source={{ uri: court.imageUrl || `https://picsum.photos/800/600?random=${court.id}` }}
           style={styles.image}
           resizeMode='cover'
-          priority={priority}
-          preloadNearby={nearbyImages}
-          enableBlurPlaceholder={false}
         />
         
         <GradientBackground
