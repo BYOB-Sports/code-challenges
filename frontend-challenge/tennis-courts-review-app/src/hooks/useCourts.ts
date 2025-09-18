@@ -28,8 +28,9 @@ export const useCourts = ({
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [searchQuery, setSearchQuery] = useState<string>(initialSearchQuery);
   const [allCourts] = useState<TennisCourt[]>(mockCourts);
+  const [filteredCourts, setFilteredCourts] = useState<TennisCourt[]>([]);
 
-  const totalPages = Math.ceil(allCourts.length / pageSize);
+  const totalPages = Math.ceil(filteredCourts.length / pageSize);
 
   const filterCourts = (courts: TennisCourt[], query: string): TennisCourt[] => {
     if (!query.trim()) return courts;
@@ -52,10 +53,12 @@ export const useCourts = ({
       // Simulate API call delay
       await new Promise(resolve => setTimeout(resolve, 800));
       
-      const filteredCourts = filterCourts(allCourts, query);
+      const filteredResults = filterCourts(allCourts, query);
+      setFilteredCourts(filteredResults);
+      
       const startIndex = (page - 1) * pageSize;
       const endIndex = startIndex + pageSize;
-      const pageCourts = filteredCourts.slice(0, endIndex);
+      const pageCourts = filteredResults.slice(0, endIndex);
       
       if (append) {
         setCourts(prev => [...prev, ...pageCourts.slice(prev.length)]);

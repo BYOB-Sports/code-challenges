@@ -54,7 +54,7 @@ export default function HomeScreen() {
       {/* Results Count */}
       <View className="px-4 py-2 bg-gray-50">
         <Text className="text-gray-600 text-sm">
-          {courts.length} courts found
+          {searchQuery ? `"${searchQuery}" • ` : ''}{courts.length} courts found
           {totalPages > 1 && ` • Page ${currentPage} of ${totalPages}`}
         </Text>
       </View>
