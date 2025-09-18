@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tennis Court Reviews</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://rsms.me/inter/inter.css');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+        }
+        /* Custom message box styling */
+        .message-box {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .message-box-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 99;
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <div id="app" class="min-h-screen">
+
+        <!-- Courts List Page -->
+        <div id="courts-list-page" class="w-full flex flex-col p-4">
+            <header class="py-4">
+                <h1 class="text-3xl font-bold text-center text-gray-800">Tennis Courts</h1>
+            </header>
+            <div class="relative mb-4">
+                <input id="search-input" type="text" placeholder="Search courts..."
+                       class="w-full p-3 pl-10 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all">
+                <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+                    </svg>
+                </span>
+            </div>
+            <div id="courts-list" class="space-y-3 pb-4">
+                <!-- Court cards will be rendered here by JS -->
+            </div>
+        </div>
+
+        <!-- Court Detail Page -->
+        <div id="court-detail-page" class="w-full flex-col p-4 bg-white hidden">
+            <header class="flex items-center justify-between py-4">
+                <button id="back-button" class="flex items-center text-blue-600 font-semibold focus:outline-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                    </svg>
+                    Back
+                </button>
+                <h2 id="court-detail-name" class="text-xl font-bold text-gray-800 text-center flex-1"></h2>
+            </header>
+            
+            <div id="detail-content" class="pb-4">
+                <div class="bg-gray-100 p-4 rounded-lg shadow-inner mb-4">
+                    <p id="court-detail-location" class="text-gray-600 text-sm mb-2"></p>
+                    <div class="flex items-center space-x-2">
+                        <div id="court-detail-stars" class="flex text-yellow-400"></div>
+                        <span id="court-detail-rating" class="font-bold text-gray-800"></span>
+                    </div>
+                </div>
+
+                <h3 class="text-xl font-bold text-gray-800 mb-3">Reviews</h3>
+                <div id="reviews-list" class="space-y-4">
+                    <!-- Reviews will be rendered here by JS -->
+                </div>
+
+                <div class="mt-8 bg-gray-100 p-4 rounded-lg shadow-inner">
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Leave a Review</h3>
+                    <form id="review-form" class="space-y-4">
+                        <div class="flex items-center mb-2">
+                            <label for="rating-input" class="text-gray-700 mr-2">Your Rating:</label>
+                            <div id="rating-input" class="flex space-x-1">
+                                <!-- Star icons will be rendered here by JS -->
+                            </div>
+                        </div>
+                        <textarea id="review-text" rows="4" placeholder="Share your experience..."
+                                  class="w-full p-3 rounded-lg border-2 border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"></textarea>
+                        <button type="submit"
+                                class="w-full bg-blue-600 text-white font-semibold py-3 rounded-lg shadow-md hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            Submit Review
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Custom Message Box -->
+    <div id="message-box-overlay" class="message-box-overlay"></div>
+    <div id="message-box" class="message-box">
+        <p id="message-text" class="text-gray-800 mb-4"></p>
+        <button id="close-message" class="bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-700">OK</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Mock Data Generation (> 50 courts)
+            const courts = [];
+            const courtNames = ["Central Park Courts", "Sunset Courts", "Riverside Tennis Center", "Maplewood Park Courts", "Lakeview Community Courts", "Fairfield Tennis Club"];
+            const locations = ["New York, NY", "Los Angeles, CA", "Chicago, IL", "Houston, TX", "Miami, FL", "Seattle, WA"];
+            const reviews = [
+                "Great courts, clean and well-maintained.",
+                "Busy on weekends, but good quality. The nets could be tighter.",
+                "Solid courts, nice community. Lighting at night is a plus.",
+                "Could use some resurfacing, but overall a decent public court.",
+                "Fantastic hidden gem! Always able to get a court.",
+                "The facilities are a bit dated, but the courts are playable.",
+                "Love playing here. The surface is fast and true.",
+                "Good courts, but no benches to sit on.",
+                "Easy to find and usually not too crowded.",
+                "A little dusty, but they're free so can't complain."
+            ];
+
+            for (let i = 1; i <= 60; i++) {
+                const name = courtNames[Math.floor(Math.random() * courtNames.length)] + ` #${i}`;
+                const location = locations[Math.floor(Math.random() * locations.length)];
+                const initialRating = (Math.random() * 2) + 3; // Initial rating between 3.0 and 5.0
+                const initialReviewsCount = Math.floor(Math.random() * 5) + 1;
+
+                const courtReviews = [];
+                for (let j = 0; j < initialReviewsCount; j++) {
+                    courtReviews.push({
+                        text: reviews[Math.floor(Math.random() * reviews.length)],
+                        rating: (Math.random() * 2) + 3
+                    });
+                }
+                
+                courts.push({
+                    id: i,
+                    name: name,
+                    location: location,
+                    reviews: courtReviews
+                });
+            }
+
+            let appState = {
+                currentPage: 'courts-list',
+                selectedCourtId: null,
+                currentSearch: '',
+                mockData: courts
+            };
+
+            // DOM elements
+            const courtsListPage = document.getElementById('courts-list-page');
+            const courtDetailPage = document.getElementById('court-detail-page');
+            const courtsList = document.getElementById('courts-list');
+            const searchInput = document.getElementById('search-input');
+            const backButton = document.getElementById('back-button');
+            const courtDetailName = document.getElementById('court-detail-name');
+            const courtDetailLocation = document.getElementById('court-detail-location');
+            const courtDetailRating = document.getElementById('court-detail-rating');
+            const courtDetailStars = document.getElementById('court-detail-stars');
+            const reviewsList = document.getElementById('reviews-list');
+            const reviewForm = document.getElementById('review-form');
+            const ratingInput = document.getElementById('rating-input');
+            const reviewText = document.getElementById('review-text');
+            const messageBox = document.getElementById('message-box');
+            const messageBoxOverlay = document.getElementById('message-box-overlay');
+            const messageText = document.getElementById('message-text');
+            const closeMessageButton = document.getElementById('close-message');
+
+            // Custom message box functions
+            const showMessage = (text) => {
+                messageText.textContent = text;
+                messageBox.style.display = 'flex';
+                messageBoxOverlay.style.display = 'block';
+            };
+
+            const hideMessage = () => {
+                messageBox.style.display = 'none';
+                messageBoxOverlay.style.display = 'none';
+            };
+
+            // Render Stars Function
+            const renderStars = (container, rating) => {
+                container.innerHTML = '';
+                const fullStars = Math.floor(rating);
+                const halfStar = rating % 1 >= 0.5;
+
+                for (let i = 0; i < 5; i++) {
+                    const starSpan = document.createElement('span');
+                    starSpan.classList.add('text-yellow-400');
+                    if (i < fullStars) {
+                        starSpan.textContent = '★'; // Full star
+                    } else if (i === fullStars && halfStar) {
+                        starSpan.textContent = '½'; // Half star
+                        starSpan.classList.add('text-yellow-400');
+                    } else {
+                        starSpan.textContent = '☆'; // Empty star
+                        starSpan.classList.remove('text-yellow-400');
+                        starSpan.classList.add('text-gray-300');
+                    }
+                    container.appendChild(starSpan);
+                }
+            };
+
+            // Function to calculate average rating
+            const calculateAverageRating = (reviews) => {
+                if (reviews.length === 0) return 0;
+                const total = reviews.reduce((sum, review) => sum + review.rating, 0);
+                return (total / reviews.length).toFixed(1);
+            };
+            
+            // Render Courts List Page
+            const renderCourtList = (filter = '') => {
+                courtsList.innerHTML = '';
+                const filteredCourts = appState.mockData.filter(court =>
+                    court.name.toLowerCase().includes(filter.toLowerCase())
+                );
+                
+                if (filteredCourts.length === 0) {
+                    courtsList.innerHTML = '<p class="text-center text-gray-500 mt-8">No courts found.</p>';
+                    return;
+                }
+
+                filteredCourts.forEach(court => {
+                    const avgRating = calculateAverageRating(court.reviews);
+                    
+                    const card = document.createElement('div');
+                    card.className = 'bg-white p-4 rounded-xl shadow-md cursor-pointer transition-transform transform hover:scale-105 active:scale-95';
+                    card.dataset.id = court.id;
+                    card.innerHTML = `
+                        <h3 class="font-bold text-lg text-gray-800">${court.name}</h3>
+                        <p class="text-sm text-gray-500 mb-2">${court.location}</p>
+                        <div class="flex items-center justify-between mt-2">
+                            <div class="flex text-yellow-400" id="stars-${court.id}"></div>
+                            <span class="text-sm font-semibold text-gray-700">${avgRating} / 5</span>
+                        </div>
+                        <span class="text-sm text-gray-500">${court.reviews.length} reviews</span>
+                    `;
+                    
+                    courtsList.appendChild(card);
+
+                    // Render stars for each card
+                    const starsContainer = document.getElementById(`stars-${court.id}`);
+                    renderStars(starsContainer, avgRating);
+                });
+            };
+
+            // Render Court Detail Page
+            const renderCourtDetail = () => {
+                const court = appState.mockData.find(c => c.id === appState.selectedCourtId);
+                if (!court) {
+                    // Should not happen, but for safety
+                    switchPage('courts-list');
+                    return;
+                }
+                
+                const avgRating = calculateAverageRating(court.reviews);
+
+                courtDetailName.textContent = court.name;
+                courtDetailLocation.textContent = court.location;
+                courtDetailRating.textContent = `${avgRating} / 5`;
+                renderStars(courtDetailStars, avgRating);
+                
+                // Render reviews
+                reviewsList.innerHTML = '';
+                if (court.reviews.length === 0) {
+                    reviewsList.innerHTML = '<p class="text-center text-gray-500 mt-4">Be the first to leave a review!</p>';
+                } else {
+                    // Prepend new reviews to the list
+                    const sortedReviews = court.reviews.slice().reverse();
+                    sortedReviews.forEach(review => {
+                        const reviewCard = document.createElement('div');
+                        reviewCard.className = 'bg-white p-4 rounded-lg shadow-sm';
+                        reviewCard.innerHTML = `
+                            <div class="flex items-center space-x-2 mb-2">
+                                <span class="font-bold text-gray-800">User</span>
+                                <div class="flex text-yellow-400">
+                                    ${'★'.repeat(Math.floor(review.rating))}
+                                    ${review.rating % 1 >= 0.5 ? '½' : ''}
+                                    ${'☆'.repeat(5 - Math.ceil(review.rating))}
+                                </div>
+                            </div>
+                            <p class="text-gray-700">${review.text}</p>
+                        `;
+                        reviewsList.appendChild(reviewCard);
+                    });
+                }
+
+                // Render rating stars for the form
+                ratingInput.innerHTML = '';
+                for (let i = 1; i <= 5; i++) {
+                    const star = document.createElement('span');
+                    star.textContent = '★';
+                    star.className = 'text-2xl cursor-pointer text-gray-300 transition-colors hover:text-yellow-400';
+                    star.dataset.rating = i;
+                    ratingInput.appendChild(star);
+
+                    star.addEventListener('click', () => {
+                        let selectedRating = parseInt(star.dataset.rating);
+                        document.querySelectorAll('#rating-input span').forEach(s => {
+                            if (parseInt(s.dataset.rating) <= selectedRating) {
+                                s.classList.add('text-yellow-400');
+                                s.classList.remove('text-gray-300');
+                            } else {
+                                s.classList.add('text-gray-300');
+                                s.classList.remove('text-yellow-400');
+                            }
+                        });
+                    });
+                }
+            };
+
+            // Page switching logic
+            const switchPage = (page) => {
+                if (page === 'courts-list') {
+                    courtsListPage.classList.remove('hidden');
+                    courtDetailPage.classList.add('hidden');
+                } else {
+                    courtsListPage.classList.add('hidden');
+                    courtDetailPage.classList.remove('hidden');
+                }
+                appState.currentPage = page;
+            };
+
+            // Event Listeners
+            searchInput.addEventListener('input', (e) => {
+                appState.currentSearch = e.target.value;
+                renderCourtList(appState.currentSearch);
+            });
+
+            // Using event delegation for selecting a court
+            courtsList.addEventListener('click', (e) => {
+                const card = e.target.closest('.rounded-xl');
+                if (card && card.dataset.id) {
+                    appState.selectedCourtId = parseInt(card.dataset.id, 10);
+                    renderCourtDetail();
+                    switchPage('court-detail');
+                }
+            });
+
+            backButton.addEventListener('click', () => {
+                switchPage('courts-list');
+                // Optional: clear search on back
+                // searchInput.value = '';
+                // renderCourtList();
+            });
+
+            reviewForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                const selectedRating = Array.from(ratingInput.children).filter(s => s.classList.contains('text-yellow-400')).length;
+                const reviewTextValue = reviewText.value.trim();
+
+                if (selectedRating === 0 || reviewTextValue === '') {
+                    showMessage('Please provide a rating and a review message.');
+                    return;
+                }
+                
+                const court = appState.mockData.find(c => c.id === appState.selectedCourtId);
+                if (court) {
+                    const newReview = {
+                        text: reviewTextValue,
+                        rating: selectedRating
+                    };
+                    court.reviews.push(newReview);
+                    
+                    // Reset form and re-render detail page
+                    reviewText.value = '';
+                    document.querySelectorAll('#rating-input span').forEach(s => s.classList.remove('text-yellow-400'));
+                    renderCourtDetail();
+                }
+            });
+
+            closeMessageButton.addEventListener('click', hideMessage);
+            messageBoxOverlay.addEventListener('click', hideMessage);
+
+            // Initial render
+            renderCourtList();
+        });
+    </script>
+</body>
+</html>
