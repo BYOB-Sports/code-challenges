@@ -1,0 +1,32 @@
+.card {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  padding: 12px;
+  border-radius: 14px;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.25), 0 6px 24px rgba(0, 0, 0, 0.14);
+}
+.card-title {
+  font-size: 16px;
+  margin: 0 0 4px 0;
+}
+.card-sub {
+  color: var(--muted);
+  font-size: 12px;
+  margin: 0;
+}
+.card-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 8px;
+}
+
+.card:active {
+  transform: translateY(1px);
+  transition: transform 0.05s ease-out;
+}
+
+.stars {
+  font-size: 14px;
+  letter-spacing: 0.5px;
+}
