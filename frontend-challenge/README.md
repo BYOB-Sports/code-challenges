@@ -1,4 +1,4 @@
-🎾 BYOB - Bring Your Own Balls (Time Taken: ~4 hours)
+🎾 BYOB - Bring Your Own Balls (Time Taken: ~2.5 hours)
 
 A modern, mobile-first React application for discovering and reviewing tennis courts.
 Find your perfect court with advanced search, filtering, and detailed reviews.
