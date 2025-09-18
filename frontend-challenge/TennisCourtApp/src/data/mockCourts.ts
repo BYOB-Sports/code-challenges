@@ -17,10 +17,18 @@ export const mockCourts: Court[] = [
       'https://picsum.photos/800/600?random=1',
       'https://picsum.photos/800/600?random=101',
       'https://picsum.photos/800/600?random=201',
-      'https://picsum.photos/800/600?random=301'
+      'https://picsum.photos/800/600?random=301',
     ],
-    description: 'Experience the prestigious grass courts that host the world\'s most famous tennis championship. Perfectly manicured lawns and traditional British tennis atmosphere.',
-    amenities: ['Pro Shop', 'Locker Rooms', 'Restaurant', 'Parking', 'Equipment Rental', 'Coaching Available'],
+    description:
+      "Experience the prestigious grass courts that host the world's most famous tennis championship. Perfectly manicured lawns and traditional British tennis atmosphere.",
+    amenities: [
+      'Pro Shop',
+      'Locker Rooms',
+      'Restaurant',
+      'Parking',
+      'Equipment Rental',
+      'Coaching Available',
+    ],
     numberOfCourts: 18,
     coordinates: { latitude: 51.4351, longitude: -0.2144 },
     phoneNumber: '+44 20 8946 2244',
@@ -31,10 +39,10 @@ export const mockCourts: Court[] = [
       Thursday: { open: '07:00', close: '22:00' },
       Friday: { open: '07:00', close: '22:00' },
       Saturday: { open: '08:00', close: '20:00' },
-      Sunday: { open: '08:00', close: '20:00' }
+      Sunday: { open: '08:00', close: '20:00' },
     },
     availability: [],
-    reviews: []
+    reviews: [],
   },
   {
     id: '2',
@@ -49,10 +57,19 @@ export const mockCourts: Court[] = [
     images: [
       'https://picsum.photos/800/600?random=2',
       'https://picsum.photos/800/600?random=102',
-      'https://picsum.photos/800/600?random=202'
+      'https://picsum.photos/800/600?random=202',
     ],
-    description: 'Train on the same clay courts where French Open champions have honed their skills. Authentic red clay surface with professional coaching staff.',
-    amenities: ['Pro Shop', 'Locker Rooms', 'Café', 'Parking', 'Equipment Rental', 'Professional Coaching', 'Fitness Center'],
+    description:
+      'Train on the same clay courts where French Open champions have honed their skills. Authentic red clay surface with professional coaching staff.',
+    amenities: [
+      'Pro Shop',
+      'Locker Rooms',
+      'Café',
+      'Parking',
+      'Equipment Rental',
+      'Professional Coaching',
+      'Fitness Center',
+    ],
     numberOfCourts: 12,
     coordinates: { latitude: 48.8467, longitude: 2.2506 },
     phoneNumber: '+33 1 47 43 48 00',
@@ -63,10 +80,10 @@ export const mockCourts: Court[] = [
       Thursday: { open: '08:00', close: '21:00' },
       Friday: { open: '08:00', close: '21:00' },
       Saturday: { open: '09:00', close: '19:00' },
-      Sunday: { open: '09:00', close: '19:00' }
+      Sunday: { open: '09:00', close: '19:00' },
     },
     availability: [],
-    reviews: []
+    reviews: [],
   },
   {
     id: '3',
@@ -81,10 +98,20 @@ export const mockCourts: Court[] = [
     images: [
       'https://picsum.photos/800/600?random=3',
       'https://picsum.photos/800/600?random=103',
-      'https://picsum.photos/800/600?random=203'
+      'https://picsum.photos/800/600?random=203',
     ],
-    description: 'Luxury tennis resort with breathtaking mountain views. High-altitude courts perfect for improving your game.',
-    amenities: ['Spa', 'Restaurant', 'Hotel', 'Pro Shop', 'Locker Rooms', 'Parking', 'Equipment Rental', 'Professional Coaching'],
+    description:
+      'Luxury tennis resort with breathtaking mountain views. High-altitude courts perfect for improving your game.',
+    amenities: [
+      'Spa',
+      'Restaurant',
+      'Hotel',
+      'Pro Shop',
+      'Locker Rooms',
+      'Parking',
+      'Equipment Rental',
+      'Professional Coaching',
+    ],
     numberOfCourts: 5,
     coordinates: { latitude: 39.1911, longitude: -106.8175 },
     phoneNumber: '+1 970-925-6200',
@@ -95,10 +122,10 @@ export const mockCourts: Court[] = [
       Thursday: { open: '08:00', close: '20:00' },
       Friday: { open: '08:00', close: '20:00' },
       Saturday: { open: '09:00', close: '18:00' },
-      Sunday: { open: '09:00', close: '18:00' }
+      Sunday: { open: '09:00', close: '18:00' },
     },
     availability: [],
-    reviews: []
+    reviews: [],
   },
   {
     id: '4',
@@ -112,12 +139,20 @@ export const mockCourts: Court[] = [
     imageUrl: 'https://picsum.photos/800/600?random=4',
     images: [
       'https://picsum.photos/800/600?random=4',
-      'https://picsum.photos/800/600?random=104'
+      'https://picsum.photos/800/600?random=104',
     ],
-    description: 'Oceanfront tennis facility with year-round perfect weather. Modern hard courts with Art Deco architecture backdrop.',
-    amenities: ['Lighting', 'Pool', 'Beach Access', 'Restaurant', 'Parking', 'Equipment Rental'],
+    description:
+      'Oceanfront tennis facility with year-round perfect weather. Modern hard courts with Art Deco architecture backdrop.',
+    amenities: [
+      'Lighting',
+      'Pool',
+      'Beach Access',
+      'Restaurant',
+      'Parking',
+      'Equipment Rental',
+    ],
     numberOfCourts: 8,
-    coordinates: { latitude: 25.7907, longitude: -80.1300 },
+    coordinates: { latitude: 25.7907, longitude: -80.13 },
     phoneNumber: '+1 305-673-7300',
     openingHours: {
       Monday: { open: '06:00', close: '22:00' },
@@ -126,10 +161,10 @@ export const mockCourts: Court[] = [
       Thursday: { open: '06:00', close: '22:00' },
       Friday: { open: '06:00', close: '22:00' },
       Saturday: { open: '07:00', close: '20:00' },
-      Sunday: { open: '07:00', close: '20:00' }
+      Sunday: { open: '07:00', close: '20:00' },
     },
     availability: [],
-    reviews: []
+    reviews: [],
   },
   {
     id: '5',
@@ -144,10 +179,19 @@ export const mockCourts: Court[] = [
     images: [
       'https://picsum.photos/800/600?random=5',
       'https://picsum.photos/800/600?random=105',
-      'https://picsum.photos/800/600?random=205'
+      'https://picsum.photos/800/600?random=205',
     ],
-    description: 'Climate-controlled indoor facility with professional-grade courts. Perfect for year-round play regardless of Chicago weather.',
-    amenities: ['Climate Control', 'Pro Shop', 'Locker Rooms', 'Café', 'Parking', 'Equipment Rental', 'Coaching Available'],
+    description:
+      'Climate-controlled indoor facility with professional-grade courts. Perfect for year-round play regardless of Chicago weather.',
+    amenities: [
+      'Climate Control',
+      'Pro Shop',
+      'Locker Rooms',
+      'Café',
+      'Parking',
+      'Equipment Rental',
+      'Coaching Available',
+    ],
     numberOfCourts: 10,
     coordinates: { latitude: 41.9286, longitude: -87.6386 },
     phoneNumber: '+1 312-587-9600',
@@ -158,10 +202,10 @@ export const mockCourts: Court[] = [
       Thursday: { open: '05:00', close: '24:00' },
       Friday: { open: '05:00', close: '24:00' },
       Saturday: { open: '06:00', close: '22:00' },
-      Sunday: { open: '06:00', close: '22:00' }
+      Sunday: { open: '06:00', close: '22:00' },
     },
     availability: [],
-    reviews: []
+    reviews: [],
   },
 
   // Mid-range Courts (3.5-4.4 rating, $30-60 per hour)
@@ -177,10 +221,17 @@ export const mockCourts: Court[] = [
     imageUrl: 'https://picsum.photos/800/600?random=6',
     images: [
       'https://picsum.photos/800/600?random=6',
-      'https://picsum.photos/800/600?random=106'
+      'https://picsum.photos/800/600?random=106',
     ],
-    description: 'Play tennis in the heart of Manhattan with stunning views of Central Park. Professional-grade hard courts with excellent facilities.',
-    amenities: ['Lighting', 'Parking', 'Water Fountain', 'Restrooms', 'Equipment Rental'],
+    description:
+      'Play tennis in the heart of Manhattan with stunning views of Central Park. Professional-grade hard courts with excellent facilities.',
+    amenities: [
+      'Lighting',
+      'Parking',
+      'Water Fountain',
+      'Restrooms',
+      'Equipment Rental',
+    ],
     numberOfCourts: 26,
     coordinates: { latitude: 40.7829, longitude: -73.9654 },
     phoneNumber: '+1 212-280-0205',
@@ -191,10 +242,10 @@ export const mockCourts: Court[] = [
       Thursday: { open: '06:00', close: '23:00' },
       Friday: { open: '06:00', close: '23:00' },
       Saturday: { open: '07:00', close: '21:00' },
-      Sunday: { open: '07:00', close: '21:00' }
+      Sunday: { open: '07:00', close: '21:00' },
     },
     availability: [],
-    reviews: []
+    reviews: [],
   },
   {
     id: '7',
@@ -207,8 +258,15 @@ export const mockCourts: Court[] = [
     rating: 4.2,
     imageUrl: 'https://picsum.photos/800/600?random=7',
     images: ['https://picsum.photos/800/600?random=7'],
-    description: 'Beautiful clay courts with panoramic city views. Perfect for watching the sunset while playing tennis.',
-    amenities: ['Lighting', 'Parking', 'Water Fountain', 'Restrooms', 'Equipment Rental'],
+    description:
+      'Beautiful clay courts with panoramic city views. Perfect for watching the sunset while playing tennis.',
+    amenities: [
+      'Lighting',
+      'Parking',
+      'Water Fountain',
+      'Restrooms',
+      'Equipment Rental',
+    ],
     numberOfCourts: 6,
     coordinates: { latitude: 32.7485, longitude: -117.1356 },
     phoneNumber: '+1 619-298-4400',
@@ -219,11 +277,11 @@ export const mockCourts: Court[] = [
       Thursday: { open: '07:00', close: '21:00' },
       Friday: { open: '07:00', close: '21:00' },
       Saturday: { open: '08:00', close: '19:00' },
-      Sunday: { open: '08:00', close: '19:00' }
+      Sunday: { open: '08:00', close: '19:00' },
     },
     availability: [],
-    reviews: []
-  }
+    reviews: [],
+  },
   // Note: This represents 7 courts shown for brevity. The full implementation
   // would contain all 65 courts as specified in the requirements.
 ];

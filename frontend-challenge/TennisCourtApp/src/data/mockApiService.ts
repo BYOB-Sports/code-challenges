@@ -6,16 +6,16 @@ import type {
   ReviewFormData,
 } from '@/types';
 import {
-  getAllCourts,
-  getCourtById,
-  filterCourts,
-  searchCourts,
-  sortCourts,
-  getCourtReviews,
-  generateTimeSlots,
   type EnhancedCourt,
   type SortCriteria,
-  type SortOrder
+  type SortOrder,
+  filterCourts,
+  generateTimeSlots,
+  getAllCourts,
+  getCourtById,
+  getCourtReviews,
+  searchCourts,
+  sortCourts,
 } from './dataHelpers';
 
 /**
@@ -23,7 +23,8 @@ import {
  * This replaces the need for actual API calls during development and testing
  */
 class MockApiService {
-  private delay = (ms: number = 300) => new Promise(resolve => setTimeout(resolve, ms));
+  private delay = (ms: number = 300) =>
+    new Promise(resolve => setTimeout(resolve, ms));
 
   /**
    * Get courts with pagination, filtering, and search
@@ -67,7 +68,7 @@ class MockApiService {
       total: courts.length,
       page,
       limit,
-      hasMore: endIndex < courts.length
+      hasMore: endIndex < courts.length,
     };
   }
 
@@ -98,13 +99,13 @@ class MockApiService {
 
     const courtWithAvailability = {
       ...court,
-      availability
+      availability,
     };
 
     return {
       data: courtWithAvailability,
       success: true,
-      message: 'Court retrieved successfully'
+      message: 'Court retrieved successfully',
     };
   }
 
@@ -121,7 +122,7 @@ class MockApiService {
   ): Promise<PaginatedResponse<Review>> {
     await this.delay();
 
-    let reviews = getCourtReviews(courtId, params?.sortBy || 'date');
+    const reviews = getCourtReviews(courtId, params?.sortBy || 'date');
 
     // Apply pagination
     const page = params?.page || 1;
@@ -135,7 +136,7 @@ class MockApiService {
       total: reviews.length,
       page,
       limit,
-      hasMore: endIndex < reviews.length
+      hasMore: endIndex < reviews.length,
     };
   }
 
@@ -157,13 +158,13 @@ class MockApiService {
       rating: reviewData.rating,
       comment: reviewData.comment,
       date: new Date().toISOString().split('T')[0] || '',
-      helpfulVotes: 0
+      helpfulVotes: 0,
     };
 
     return {
       data: newReview,
       success: true,
-      message: 'Review submitted successfully'
+      message: 'Review submitted successfully',
     };
   }
 
@@ -186,26 +187,29 @@ class MockApiService {
       rating: reviewData.rating,
       comment: reviewData.comment,
       date: new Date().toISOString().split('T')[0] || '',
-      helpfulVotes: 0 // Reset helpful votes on update
+      helpfulVotes: 0, // Reset helpful votes on update
     };
 
     return {
       data: updatedReview,
       success: true,
-      message: 'Review updated successfully'
+      message: 'Review updated successfully',
     };
   }
 
   /**
    * Delete a review (mock implementation)
    */
-  async deleteReview(_courtId: string, _reviewId: string): Promise<ApiResponse<void>> {
+  async deleteReview(
+    _courtId: string,
+    _reviewId: string
+  ): Promise<ApiResponse<void>> {
     await this.delay();
 
     return {
       data: undefined as any,
       success: true,
-      message: 'Review deleted successfully'
+      message: 'Review deleted successfully',
     };
   }
 
@@ -224,14 +228,16 @@ class MockApiService {
     return {
       data: featuredCourts,
       success: true,
-      message: 'Featured courts retrieved successfully'
+      message: 'Featured courts retrieved successfully',
     };
   }
 
   /**
    * Get courts by location/city
    */
-  async getCourtsByLocation(location: string): Promise<ApiResponse<EnhancedCourt[]>> {
+  async getCourtsByLocation(
+    location: string
+  ): Promise<ApiResponse<EnhancedCourt[]>> {
     await this.delay();
 
     const courts = searchCourts(location);
@@ -239,14 +245,17 @@ class MockApiService {
     return {
       data: courts,
       success: true,
-      message: `Courts in ${location} retrieved successfully`
+      message: `Courts in ${location} retrieved successfully`,
     };
   }
 
   /**
    * Book a time slot (mock implementation)
    */
-  async bookTimeSlot(_courtId: string, _slotId: string): Promise<ApiResponse<{ bookingId: string }>> {
+  async bookTimeSlot(
+    _courtId: string,
+    _slotId: string
+  ): Promise<ApiResponse<{ bookingId: string }>> {
     await this.delay();
 
     // Simulate booking
@@ -255,7 +264,7 @@ class MockApiService {
     return {
       data: { bookingId },
       success: true,
-      message: 'Time slot booked successfully'
+      message: 'Time slot booked successfully',
     };
   }
 
@@ -269,14 +278,16 @@ class MockApiService {
     return {
       data: [],
       success: true,
-      message: 'Bookings retrieved successfully'
+      message: 'Bookings retrieved successfully',
     };
   }
 
   /**
    * Mark review as helpful (mock implementation)
    */
-  async markReviewHelpful(_reviewId: string): Promise<ApiResponse<{ helpfulVotes: number }>> {
+  async markReviewHelpful(
+    _reviewId: string
+  ): Promise<ApiResponse<{ helpfulVotes: number }>> {
     await this.delay();
 
     // Simulate incrementing helpful votes
@@ -285,7 +296,7 @@ class MockApiService {
     return {
       data: { helpfulVotes: newHelpfulVotes },
       success: true,
-      message: 'Review marked as helpful'
+      message: 'Review marked as helpful',
     };
   }
 }
@@ -327,7 +338,7 @@ export const MOCK_API_USAGE = {
     'Review management',
     'Booking simulation',
     'Realistic delay simulation',
-    'Error handling'
+    'Error handling',
   ],
   examples: {
     getAllCourts: `
@@ -347,6 +358,6 @@ export const MOCK_API_USAGE = {
         rating: 5,
         comment: 'Amazing courts!'
       });
-    `
-  }
+    `,
+  },
 };

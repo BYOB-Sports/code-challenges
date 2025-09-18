@@ -1,4 +1,4 @@
-import type { Court, Review, CourtsFilter } from '@/types';
+import type { Court, CourtsFilter, Review } from '@/types';
 import { fullMockCourts } from './generateFullDataset';
 import { allReviews } from './reviews';
 
@@ -10,10 +10,10 @@ export interface EnhancedCourt extends Court {
   totalReviews: number;
   reviewSummary: {
     excellent: number; // 5 stars
-    good: number;      // 4 stars
-    average: number;   // 3 stars
-    poor: number;      // 2 stars
-    terrible: number;  // 1 star
+    good: number; // 4 stars
+    average: number; // 3 stars
+    poor: number; // 2 stars
+    terrible: number; // 1 star
   };
 }
 
@@ -32,20 +32,21 @@ export const getCourtById = (courtId: string): EnhancedCourt | null => {
     good: courtReviews.filter(r => r.rating === 4).length,
     average: courtReviews.filter(r => r.rating === 3).length,
     poor: courtReviews.filter(r => r.rating === 2).length,
-    terrible: courtReviews.filter(r => r.rating === 1).length
+    terrible: courtReviews.filter(r => r.rating === 1).length,
   };
 
   const totalReviews = courtReviews.length;
-  const averageRating = totalReviews > 0
-    ? courtReviews.reduce((sum, r) => sum + r.rating, 0) / totalReviews
-    : court.rating;
+  const averageRating =
+    totalReviews > 0
+      ? courtReviews.reduce((sum, r) => sum + r.rating, 0) / totalReviews
+      : court.rating;
 
   return {
     ...court,
     reviews: courtReviews,
     averageRating: Math.round(averageRating * 10) / 10,
     totalReviews,
-    reviewSummary
+    reviewSummary,
   };
 };
 
@@ -96,7 +97,10 @@ export const filterCourts = (
       const courtLocation = court.location.toLowerCase();
       const courtAddress = court.address.toLowerCase();
 
-      if (!courtLocation.includes(searchLocation) && !courtAddress.includes(searchLocation)) {
+      if (
+        !courtLocation.includes(searchLocation) &&
+        !courtAddress.includes(searchLocation)
+      ) {
         return false;
       }
     }
@@ -108,7 +112,12 @@ export const filterCourts = (
 /**
  * Sort courts by various criteria
  */
-export type SortCriteria = 'rating' | 'price' | 'name' | 'reviewCount' | 'distance';
+export type SortCriteria =
+  | 'rating'
+  | 'price'
+  | 'name'
+  | 'reviewCount'
+  | 'distance';
 export type SortOrder = 'asc' | 'desc';
 
 export const sortCourts = (
@@ -160,11 +169,14 @@ export const searchCourts = (
 
   const searchTerm = query.toLowerCase().trim();
 
-  return courts.filter(court =>
-    court.name.toLowerCase().includes(searchTerm) ||
-    court.location.toLowerCase().includes(searchTerm) ||
-    court.address.toLowerCase().includes(searchTerm) ||
-    court.amenities.some(amenity => amenity.toLowerCase().includes(searchTerm))
+  return courts.filter(
+    court =>
+      court.name.toLowerCase().includes(searchTerm) ||
+      court.location.toLowerCase().includes(searchTerm) ||
+      court.address.toLowerCase().includes(searchTerm) ||
+      court.amenities.some(amenity =>
+        amenity.toLowerCase().includes(searchTerm)
+      )
   );
 };
 
@@ -188,7 +200,9 @@ export const getCourtsByRating = (minRating: number): EnhancedCourt[] => {
 /**
  * Get courts by surface type
  */
-export const getCourtsBySurface = (surface: Court['surface']): EnhancedCourt[] => {
+export const getCourtsBySurface = (
+  surface: Court['surface']
+): EnhancedCourt[] => {
   return filterCourts({ surface });
 };
 
@@ -208,7 +222,8 @@ export const getPopularCourts = (limit: number = 10): EnhancedCourt[] => {
   // Score based on rating and review count
   const scoredCourts = courts.map(court => ({
     ...court,
-    popularityScore: court.averageRating * (1 + Math.log(court.totalReviews + 1))
+    popularityScore:
+      court.averageRating * (1 + Math.log(court.totalReviews + 1)),
   }));
 
   return scoredCourts
@@ -228,10 +243,12 @@ export const getNearbyCourtsMock = (
   const courts = getAllCourts();
 
   // For demo purposes, return courts with a mock distance calculation
-  return courts.map(court => ({
-    ...court,
-    distance: Math.random() * radiusKm
-  })).filter(court => (court as any).distance <= radiusKm)
+  return courts
+    .map(court => ({
+      ...court,
+      distance: Math.random() * radiusKm,
+    }))
+    .filter(court => (court as any).distance <= radiusKm)
     .sort((a, b) => (a as any).distance - (b as any).distance);
 };
 
@@ -246,7 +263,9 @@ export const getCourtReviews = (
 
   switch (sortBy) {
     case 'date':
-      reviews = reviews.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+      reviews = reviews.sort(
+        (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+      );
       break;
     case 'rating':
       reviews = reviews.sort((a, b) => b.rating - a.rating);
@@ -265,18 +284,24 @@ export const getCourtReviews = (
 export const getCourtStatistics = () => {
   const courts = getAllCourts();
 
-  const surfaces = courts.reduce((acc, court) => {
-    acc[court.surface] = (acc[court.surface] || 0) + 1;
-    return acc;
-  }, {} as Record<string, number>);
+  const surfaces = courts.reduce(
+    (acc, court) => {
+      acc[court.surface] = (acc[court.surface] || 0) + 1;
+      return acc;
+    },
+    {} as Record<string, number>
+  );
 
-  const avgPrice = courts.reduce((sum, court) => sum + court.pricePerHour, 0) / courts.length;
-  const avgRating = courts.reduce((sum, court) => sum + court.averageRating, 0) / courts.length;
+  const avgPrice =
+    courts.reduce((sum, court) => sum + court.pricePerHour, 0) / courts.length;
+  const avgRating =
+    courts.reduce((sum, court) => sum + court.averageRating, 0) / courts.length;
 
   const priceRanges = {
     budget: courts.filter(c => c.pricePerHour < 30).length,
-    midRange: courts.filter(c => c.pricePerHour >= 30 && c.pricePerHour < 60).length,
-    premium: courts.filter(c => c.pricePerHour >= 60).length
+    midRange: courts.filter(c => c.pricePerHour >= 30 && c.pricePerHour < 60)
+      .length,
+    premium: courts.filter(c => c.pricePerHour >= 60).length,
   };
 
   return {
@@ -286,7 +311,7 @@ export const getCourtStatistics = () => {
     averageRating: Math.round(avgRating * 10) / 10,
     priceRanges,
     indoorCourts: courts.filter(c => c.indoor).length,
-    outdoorCourts: courts.filter(c => !c.indoor).length
+    outdoorCourts: courts.filter(c => !c.indoor).length,
   };
 };
 
@@ -303,7 +328,7 @@ export const generateTimeSlots = (courtId: string, date: string) => {
     const basePrice = court?.pricePerHour || 40;
 
     // Peak hour pricing (6-8 PM gets 25% markup)
-    const price = (hour >= 18 && hour <= 20) ? basePrice * 1.25 : basePrice;
+    const price = hour >= 18 && hour <= 20 ? basePrice * 1.25 : basePrice;
 
     slots.push({
       id: `${courtId}-${date}-${hour}`,
@@ -311,7 +336,7 @@ export const generateTimeSlots = (courtId: string, date: string) => {
       startTime: `${hour.toString().padStart(2, '0')}:00`,
       endTime: `${(hour + 1).toString().padStart(2, '0')}:00`,
       available,
-      price: Math.round(price)
+      price: Math.round(price),
     });
   }
 

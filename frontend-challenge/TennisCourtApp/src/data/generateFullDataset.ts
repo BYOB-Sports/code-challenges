@@ -16,16 +16,56 @@ const getRandomElement = <T>(array: T[]): T => {
 // Data pools for realistic generation
 const surfaces: Court['surface'][] = ['hard', 'clay', 'grass', 'synthetic'];
 const cities = [
-  'New York, NY', 'Los Angeles, CA', 'Chicago, IL', 'Houston, TX', 'Phoenix, AZ',
-  'Philadelphia, PA', 'San Antonio, TX', 'San Diego, CA', 'Dallas, TX', 'San Jose, CA',
-  'Austin, TX', 'Jacksonville, FL', 'Fort Worth, TX', 'Columbus, OH', 'Charlotte, NC',
-  'San Francisco, CA', 'Indianapolis, IN', 'Seattle, WA', 'Denver, CO', 'Washington, DC',
-  'Boston, MA', 'Nashville, TN', 'El Paso, TX', 'Detroit, MI', 'Portland, OR',
-  'Las Vegas, NV', 'Memphis, TN', 'Louisville, KY', 'Baltimore, MD', 'Milwaukee, WI',
-  'Albuquerque, NM', 'Tucson, AZ', 'Fresno, CA', 'Mesa, AZ', 'Sacramento, CA',
-  'Atlanta, GA', 'Kansas City, MO', 'Colorado Springs, CO', 'Omaha, NE', 'Raleigh, NC',
-  'Miami, FL', 'Long Beach, CA', 'Virginia Beach, VA', 'Oakland, CA', 'Minneapolis, MN',
-  'Tampa, FL', 'Tulsa, OK', 'Arlington, TX', 'Wichita, KS', 'Bakersfield, CA'
+  'New York, NY',
+  'Los Angeles, CA',
+  'Chicago, IL',
+  'Houston, TX',
+  'Phoenix, AZ',
+  'Philadelphia, PA',
+  'San Antonio, TX',
+  'San Diego, CA',
+  'Dallas, TX',
+  'San Jose, CA',
+  'Austin, TX',
+  'Jacksonville, FL',
+  'Fort Worth, TX',
+  'Columbus, OH',
+  'Charlotte, NC',
+  'San Francisco, CA',
+  'Indianapolis, IN',
+  'Seattle, WA',
+  'Denver, CO',
+  'Washington, DC',
+  'Boston, MA',
+  'Nashville, TN',
+  'El Paso, TX',
+  'Detroit, MI',
+  'Portland, OR',
+  'Las Vegas, NV',
+  'Memphis, TN',
+  'Louisville, KY',
+  'Baltimore, MD',
+  'Milwaukee, WI',
+  'Albuquerque, NM',
+  'Tucson, AZ',
+  'Fresno, CA',
+  'Mesa, AZ',
+  'Sacramento, CA',
+  'Atlanta, GA',
+  'Kansas City, MO',
+  'Colorado Springs, CO',
+  'Omaha, NE',
+  'Raleigh, NC',
+  'Miami, FL',
+  'Long Beach, CA',
+  'Virginia Beach, VA',
+  'Oakland, CA',
+  'Minneapolis, MN',
+  'Tampa, FL',
+  'Tulsa, OK',
+  'Arlington, TX',
+  'Wichita, KS',
+  'Bakersfield, CA',
 ];
 
 const courtNameTemplates = [
@@ -38,29 +78,86 @@ const courtNameTemplates = [
   '{adjective} Tennis Academy',
   '{city} Sports Complex',
   '{landmark} Tennis Club',
-  '{adjective} Tennis Courts'
+  '{adjective} Tennis Courts',
 ];
 
 const adjectives = [
-  'Elite', 'Premium', 'Grand', 'Royal', 'Champion', 'Victory', 'Ace', 'Summit',
-  'Metropolitan', 'Heritage', 'Classic', 'Modern', 'Professional', 'Executive',
-  'Platinum', 'Diamond', 'Golden', 'Silver', 'Prime', 'Superior'
+  'Elite',
+  'Premium',
+  'Grand',
+  'Royal',
+  'Champion',
+  'Victory',
+  'Ace',
+  'Summit',
+  'Metropolitan',
+  'Heritage',
+  'Classic',
+  'Modern',
+  'Professional',
+  'Executive',
+  'Platinum',
+  'Diamond',
+  'Golden',
+  'Silver',
+  'Prime',
+  'Superior',
 ];
 
 const landmarks = [
-  'Riverside', 'Hillside', 'Parkside', 'Lakeside', 'Oceanview', 'Mountain View',
-  'Valley View', 'Garden', 'Sunset', 'Sunrise', 'Downtown', 'Uptown',
-  'Midtown', 'Westside', 'Eastside', 'Northside', 'Southside', 'Central'
+  'Riverside',
+  'Hillside',
+  'Parkside',
+  'Lakeside',
+  'Oceanview',
+  'Mountain View',
+  'Valley View',
+  'Garden',
+  'Sunset',
+  'Sunrise',
+  'Downtown',
+  'Uptown',
+  'Midtown',
+  'Westside',
+  'Eastside',
+  'Northside',
+  'Southside',
+  'Central',
 ];
 
 const amenitiesPool = [
-  'Lighting', 'Parking', 'Pro Shop', 'Locker Rooms', 'Restrooms', 'Water Fountain',
-  'Equipment Rental', 'Coaching Available', 'Professional Coaching', 'Café',
-  'Restaurant', 'Fitness Center', 'Spa', 'Pool', 'Sauna', 'Steam Room',
-  'Tennis Lessons', 'Youth Programs', 'Adult Leagues', 'Tournament Hosting',
-  'Court Reservations', 'Online Booking', 'Member Discounts', 'Group Rates',
-  'Climate Control', 'Sound System', 'Spectator Seating', 'Ball Machine Rental',
-  'Stringing Service', 'First Aid Station', 'Security', 'Valet Parking'
+  'Lighting',
+  'Parking',
+  'Pro Shop',
+  'Locker Rooms',
+  'Restrooms',
+  'Water Fountain',
+  'Equipment Rental',
+  'Coaching Available',
+  'Professional Coaching',
+  'Café',
+  'Restaurant',
+  'Fitness Center',
+  'Spa',
+  'Pool',
+  'Sauna',
+  'Steam Room',
+  'Tennis Lessons',
+  'Youth Programs',
+  'Adult Leagues',
+  'Tournament Hosting',
+  'Court Reservations',
+  'Online Booking',
+  'Member Discounts',
+  'Group Rates',
+  'Climate Control',
+  'Sound System',
+  'Spectator Seating',
+  'Ball Machine Rental',
+  'Stringing Service',
+  'First Aid Station',
+  'Security',
+  'Valet Parking',
 ];
 
 // Generate a realistic court name
@@ -104,7 +201,11 @@ const generateAmenities = (rating: number, pricePerHour: number): string[] => {
 
   // Premium amenities
   if (rating >= 4.5 || pricePerHour >= 70) {
-    additionalAmenities.push('Professional Coaching', 'Café', 'Tournament Hosting');
+    additionalAmenities.push(
+      'Professional Coaching',
+      'Café',
+      'Tournament Hosting'
+    );
   }
 
   // Luxury amenities
@@ -114,7 +215,11 @@ const generateAmenities = (rating: number, pricePerHour: number): string[] => {
 
   // Add some random amenities based on court type
   const randomAmenities = amenitiesPool
-    .filter(amenity => !baseAmenities.includes(amenity) && !additionalAmenities.includes(amenity))
+    .filter(
+      amenity =>
+        !baseAmenities.includes(amenity) &&
+        !additionalAmenities.includes(amenity)
+    )
     .sort(() => 0.5 - Math.random())
     .slice(0, Math.floor(Math.random() * 3));
 
@@ -125,20 +230,23 @@ const generateAmenities = (rating: number, pricePerHour: number): string[] => {
 const generateCoordinates = (city: string) => {
   // This is a simplified approach - in reality you'd use a geocoding service
   const cityCoords: { [key: string]: { lat: number; lng: number } } = {
-    'New York, NY': { lat: 40.7128, lng: -74.0060 },
+    'New York, NY': { lat: 40.7128, lng: -74.006 },
     'Los Angeles, CA': { lat: 34.0522, lng: -118.2437 },
     'Chicago, IL': { lat: 41.8781, lng: -87.6298 },
     'Houston, TX': { lat: 29.7604, lng: -95.3698 },
-    'Phoenix, AZ': { lat: 33.4484, lng: -112.0740 },
+    'Phoenix, AZ': { lat: 33.4484, lng: -112.074 },
     // Add more as needed...
   };
 
-  const coords = cityCoords[city] || { lat: 40 + Math.random() * 10, lng: -120 + Math.random() * 40 };
+  const coords = cityCoords[city] || {
+    lat: 40 + Math.random() * 10,
+    lng: -120 + Math.random() * 40,
+  };
 
   // Add small random offset for variety
   return {
     latitude: coords.lat + (Math.random() - 0.5) * 0.1,
-    longitude: coords.lng + (Math.random() - 0.5) * 0.1
+    longitude: coords.lng + (Math.random() - 0.5) * 0.1,
   };
 };
 
@@ -156,7 +264,7 @@ const generateOpeningHours = (indoor: boolean) => {
     Thursday: { open: weekdayOpen, close: weekdayClose },
     Friday: { open: weekdayOpen, close: weekdayClose },
     Saturday: { open: weekendOpen, close: weekendClose },
-    Sunday: { open: weekendOpen, close: weekendClose }
+    Sunday: { open: weekendOpen, close: weekendClose },
   };
 };
 
@@ -206,7 +314,9 @@ export const generateFullCourtDataset = (): Court[] => {
       images: [
         `https://picsum.photos/800/600?random=${i}`,
         `https://picsum.photos/800/600?random=${i + 100}`,
-        ...(Math.random() > 0.5 ? [`https://picsum.photos/800/600?random=${i + 200}`] : [])
+        ...(Math.random() > 0.5
+          ? [`https://picsum.photos/800/600?random=${i + 200}`]
+          : []),
       ],
       description: `${indoor ? 'Indoor' : 'Outdoor'} ${surface} court facility in ${city}. ${rating >= 4.5 ? 'Premium' : rating >= 4.0 ? 'Quality' : rating >= 3.5 ? 'Good' : 'Basic'} tennis facility with ${numberOfCourts} courts available.`,
       amenities,
@@ -215,7 +325,7 @@ export const generateFullCourtDataset = (): Court[] => {
       phoneNumber: `+1 ${Math.floor(Math.random() * 900) + 100}-${Math.floor(Math.random() * 900) + 100}-${Math.floor(Math.random() * 9000) + 1000}`,
       openingHours,
       availability: [],
-      reviews: []
+      reviews: [],
     };
 
     courts.push(court);

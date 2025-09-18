@@ -1,4 +1,7 @@
 // Main data exports for the Tennis Court Review App
+// Statistics and utilities
+import { getCourtStatistics } from './dataHelpers';
+
 export { fullMockCourts as mockCourts } from './generateFullDataset';
 export { allReviews as mockReviews } from './reviews';
 export * from './dataHelpers';
@@ -6,9 +9,6 @@ export { mockApiService } from './mockApiService';
 
 // Re-export types for convenience
 export type { Court, Review, CourtsFilter } from '@/types';
-
-// Statistics and utilities
-import { getCourtStatistics } from './dataHelpers';
 
 export const APP_DATA_SUMMARY = {
   totalCourts: 65,
@@ -25,8 +25,8 @@ export const APP_DATA_SUMMARY = {
     'Professional coaching and amenities',
     'Time slot availability simulation',
     'Advanced filtering and sorting capabilities',
-    'Location-based search functionality'
-  ]
+    'Location-based search functionality',
+  ],
 };
 
 // Usage examples
@@ -55,7 +55,7 @@ export const USAGE_EXAMPLES = {
     import { getAllCourts, sortCourts } from '@/data';
     const courts = getAllCourts();
     const sortedByRating = sortCourts(courts, 'rating', 'desc');
-  `
+  `,
 };
 
 // Export data statistics
