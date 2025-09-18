@@ -1,0 +1,244 @@
+
+body {
+  background-color: #EEF2E6;
+  color: #2A3A27;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.court-card {
+  background-color: #FFFFFF;
+  border-radius: 12px;
+  box-shadow: 0 3px 8px rgba(58, 107, 53, 0.15);
+  padding: 18px 22px;
+  margin-bottom: 16px;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease, transform 0.15s ease;
+  color: #2A3A27;
+}
+
+.court-card:hover {
+  box-shadow: 0 5px 14px rgba(125, 162, 125, 0.3);
+  transform: translateY(-2px);
+}
+
+.court-card h3 {
+  color: #3A6B35;
+  font-weight: 700;
+  font-size: 20px;
+  margin-bottom: 8px;
+  letter-spacing: 0.015em;
+}
+
+.court-card p {
+  color: #6B7A63;
+  margin: 0;
+  font-size: 14px;
+}
+
+input[type="search"] {
+  width: 100%;
+  padding: 14px 18px;
+  border-radius: 14px;
+  border: 1.5px solid #7DA27D;
+  font-size: 16px;
+  box-sizing: border-box;
+  background-color: #FFFFFF;
+  color: #2A3A27;
+  letter-spacing: 0.02em;
+  font-family: inherit;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input[type="search"]::placeholder {
+  color: #7DA27D;
+  font-style: italic;
+}
+
+input[type="search"]:focus {
+  border-color: #3A6B35;
+  box-shadow: 0 0 6px rgba(58, 107, 53, 0.4);
+  outline: none;
+}
+
+.pagination-wrapper {
+  text-align: center;
+  margin-top: 20px;
+  padding: 0 10px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.pagination-wrapper button {
+  background-color: #7DA27D;
+  color: #FFFFFF;
+  border: none;
+  padding: 12px 16px;
+  margin: 0;
+  border-radius: 14px;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(125, 162, 125, 0.5);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  min-width: 44px;
+  min-height: 44px;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  flex: 1 1 auto;
+  max-width: 60px;
+  text-align: center;
+  user-select: none;
+}
+
+.pagination-wrapper button:hover:not(:disabled),
+.pagination-wrapper button:focus:not(:disabled) {
+  background-color: #3A6B35;
+  box-shadow: 0 6px 16px rgba(58, 107, 53, 0.7);
+  outline: none;
+}
+
+.pagination-wrapper button:disabled {
+  background-color: #D4DFD5;
+  cursor: not-allowed;
+  box-shadow: none;
+  color: #9BA28B;
+}
+
+@media (max-width: 480px) {
+  .pagination-wrapper {
+    gap: 6px;
+  }
+
+  .pagination-wrapper button {
+    padding: 10px 12px;
+    font-size: 14px;
+    min-width: 40px;
+    max-width: 50px;
+    min-height: 40px;
+  }
+}
+
+
+.court-detail {
+  background-color: #FFFFFF;
+  border-radius: 14px;
+  box-shadow: 0 4px 16px rgba(58, 107, 53, 0.2);
+  padding: 28px 32px;
+  max-width: 375px;
+  margin: 28px auto;
+  color: #2A3A27;
+  text-align: center;
+}
+
+.court-detail h2 {
+  color: #3A6B35;
+  font-weight: 700;
+  font-size: 26px;
+  margin-bottom: 20px;
+}
+
+.court-detail p {
+  margin: 12px 0;
+  font-size: 16px;
+  color: #7DA27D;
+  font-weight: 600;
+}
+
+.back-button {
+  background-color: transparent;
+  color: #3A6B35;
+  border: none;
+  font-size: 18px;
+  margin-bottom: 28px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+.back-button:hover {
+  color: #2A5028;
+}
+
+.review-section {
+  margin-top: 36px;
+  text-align: left;
+}
+
+.review-section h3 {
+  color: #3A6B35;
+  font-weight: 700;
+  font-size: 22px;
+  margin-bottom: 20px;
+  letter-spacing: 0.02em;
+  border-bottom: 2px solid #7DA27D;
+  padding-bottom: 6px;
+}
+
+.review-list {
+  padding-left: 24px;
+  color: #7DA27D;
+  line-height: 1.65;
+  margin-bottom: 28px;
+  font-size: 15px;
+}
+
+.review-list li {
+  margin-bottom: 16px;
+}
+
+.review-form textarea {
+  width: 100%;
+  background-color: #F3F8F5;
+  color: #2A3A27;
+  padding: 16px 22px;
+  font-size: 16px;
+  border-radius: 16px;
+  border: 1.8px solid #A9B9A6;
+  resize: vertical;
+  transition: border-color 0.3s ease;
+  box-sizing: border-box;
+  letter-spacing: 0.015em;
+  min-height: 100px;
+}
+
+.review-form textarea::placeholder {
+  color: #7DA27D;
+  font-style: italic;
+  font-weight: 600;
+}
+
+.review-form textarea:focus {
+  border-color: #3A6B35;
+  outline: none;
+  background-color: #E9F0E7;
+}
+
+.submit-review {
+  margin-top: 20px;
+  background-color: #3A6B35;
+  color: #FFFFFF;
+  border-radius: 16px;
+  padding: 16px 30px;
+  font-size: 17px;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 5px 14px rgba(58, 107, 53, 0.6);
+  letter-spacing: 0.03em;
+  font-weight: 700;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.submit-review:hover {
+  background-color: #7DA27D;
+  box-shadow: 0 7px 20px rgba(125, 162, 125, 0.8);
+}
