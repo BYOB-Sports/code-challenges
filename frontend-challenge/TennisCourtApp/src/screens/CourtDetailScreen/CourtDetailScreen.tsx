@@ -425,48 +425,46 @@ const CourtDetailScreen: React.FC<Props> = ({ route, navigation }) => {
       <FadeInView style={styles.sectionContainer}>
         <View style={styles.modernSection}>
           <View style={styles.sectionHeader}>
-            <Text style={styles.sectionIcon}>🏆</Text>
+            <Text style={styles.sectionIcon}>●</Text>
             <Text style={styles.sectionTitle}>Amenities & Features</Text>
           </View>
           <View style={styles.modernAmenitiesGrid}>
             {court.amenities.map((amenity, index) => {
-              const getAmenityIcon = (amenity: string) => {
-                const iconMap: { [key: string]: string } = {
-                  'Parking': '🅿️',
-                  'Lighting': '💡',
-                  'Pro Shop': '🏪',
-                  'Locker Rooms': '🚿',
-                  'Restaurant': '🍽️',
-                  'Coaching Available': '🎾',
-                  'Restrooms': '🚻',
-                  'Water Fountains': '💧',
-                  'Equipment Rental': '🎾',
-                  'Snack Bar': '🥤',
-                  'Air Conditioning': '❄️',
-                  'Heating': '🔥',
-                  'Scoreboard': '📊',
-                  'Seating': '💺',
-                  'Ball Machine': '⚙️',
-                  'Court Booking': '📱',
-                  'WiFi': '📶',
-                  'First Aid': '🏥',
-                  'Security': '🔒',
-                  'Towel Service': '🏩'
+              const getAmenitySymbol = (amenity: string) => {
+                const symbolMap: { [key: string]: string } = {
+                  'Parking': 'P',
+                  'Lighting': '◐',
+                  'Pro Shop': '♦',
+                  'Locker Rooms': '■',
+                  'Restaurant': '◆',
+                  'Coaching Available': '►',
+                  'Restrooms': '▣',
+                  'Water Fountains': '○',
+                  'Equipment Rental': '◈',
+                  'Snack Bar': '◇',
+                  'Air Conditioning': '❅',
+                  'Heating': '◉',
+                  'Scoreboard': '▤',
+                  'Seating': '▢',
+                  'Ball Machine': '⚫',
+                  'Court Booking': '◑',
+                  'WiFi': '◎',
+                  'First Aid': '+',
+                  'Security': '◈',
+                  'Towel Service': '◐'
                 };
-                return iconMap[amenity] || '✅';
+                return symbolMap[amenity] || '●';
               };
 
               return (
-                <FadeInView key={index} delay={index * 30}>
-                  <View style={styles.modernAmenityCard}>
-                    <View style={styles.amenityIconContainer}>
-                      <Text style={styles.modernAmenityIcon}>{getAmenityIcon(amenity)}</Text>
-                    </View>
-                    <Text style={styles.modernAmenityText} numberOfLines={2}>
-                      {amenity}
-                    </Text>
+                <View key={index} style={styles.modernAmenityCard}>
+                  <View style={styles.amenityIconContainer}>
+                    <Text style={styles.modernAmenityIcon}>{getAmenitySymbol(amenity)}</Text>
                   </View>
-                </FadeInView>
+                  <Text style={styles.modernAmenityText} numberOfLines={2}>
+                    {amenity}
+                  </Text>
+                </View>
               );
             })}
           </View>
@@ -478,13 +476,13 @@ const CourtDetailScreen: React.FC<Props> = ({ route, navigation }) => {
       <FadeInView style={styles.sectionContainer}>
         <View style={styles.modernSection}>
           <View style={styles.sectionHeader}>
-            <Text style={styles.sectionIcon}>💬</Text>
+            <Text style={styles.sectionIcon}>◉</Text>
             <View style={styles.reviewsSectionHeader}>
               <Text style={styles.sectionTitle}>Reviews & Feedback</Text>
               <View style={styles.reviewsMetaInfo}>
                 <Text style={styles.reviewsCount}>{court.totalReviews} total reviews</Text>
                 <Text style={styles.reviewsRating}>
-                  ⭐ {court.averageRating.toFixed(1)} average
+                  ★ {court.averageRating.toFixed(1)} average
                 </Text>
               </View>
             </View>
@@ -493,7 +491,7 @@ const CourtDetailScreen: React.FC<Props> = ({ route, navigation }) => {
             <ReviewsList
               courtId={courtId}
               initialReviews={reviews.slice(0, 3)}
-              maxHeight={showAllReviews ? undefined : 400}
+              maxHeight={showAllReviews ? undefined : 350}
               onReviewsUpdate={setReviews}
               nested={true}
             />
@@ -737,17 +735,18 @@ const styles = StyleSheet.create({
   modernAmenitiesGrid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: SPACING.md,
     justifyContent: 'space-between',
+    gap: SPACING.sm,
   },
   modernAmenityCard: {
     backgroundColor: COLORS.background,
     borderRadius: RADIUS.md,
-    padding: SPACING.md,
+    padding: SPACING.sm,
     alignItems: 'center',
-    minWidth: '30%',
-    maxWidth: '32%',
-    aspectRatio: 1.2,
+    justifyContent: 'center',
+    width: '48%',
+    minHeight: 80,
+    marginBottom: SPACING.sm,
     borderWidth: 1,
     borderColor: COLORS.border.light,
     ...SHADOWS.small,
@@ -793,6 +792,8 @@ const styles = StyleSheet.create({
   },
   reviewsContainer: {
     marginTop: SPACING.sm,
+    overflow: 'hidden',
+    maxHeight: 350,
   },
   bottomPadding: {
     height: 100, // Extra padding for floating action button

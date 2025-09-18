@@ -135,7 +135,7 @@ const SortOptions: React.FC<SortOptionsProps> = ({
         accessibilityLabel={`Sort by ${getSortLabel(selectedSort)}`}
         accessibilityHint='Opens sort options menu'
       >
-        <Text style={styles.sortButtonText}>
+        <Text style={styles.sortButtonText} numberOfLines={1} ellipsizeMode="tail">
           Sort: {getSortLabel(selectedSort)}
         </Text>
         <Text style={styles.sortArrow}>▼</Text>
@@ -167,6 +167,8 @@ const styles = StyleSheet.create({
     color: COLORS.text.primary,
     fontSize: TYPOGRAPHY.sizes.sm,
     fontWeight: TYPOGRAPHY.weights.medium,
+    flex: 1,
+    marginRight: SPACING.sm,
   },
   sortArrow: {
     color: COLORS.text.secondary,
