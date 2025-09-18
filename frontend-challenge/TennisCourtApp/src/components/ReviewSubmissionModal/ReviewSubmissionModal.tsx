@@ -11,8 +11,8 @@ import {
   Platform,
   BackHandler,
   StatusBar,
-  SafeAreaView,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { COLORS, SPACING } from '@/constants';
 import ReviewSubmissionForm from '../ReviewSubmissionForm/ReviewSubmissionForm';

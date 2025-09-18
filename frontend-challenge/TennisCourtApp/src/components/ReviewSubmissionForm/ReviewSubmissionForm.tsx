@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 
 import { COLORS, SPACING, TYPOGRAPHY } from '@/constants';
-import { StarRating } from '@/components';
+import StarRating from '../StarRating/StarRating';
 import type { ReviewFormData } from '@/types';
 
 interface ReviewSubmissionFormProps {

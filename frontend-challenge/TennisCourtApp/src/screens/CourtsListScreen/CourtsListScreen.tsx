@@ -4,11 +4,11 @@ import {
   ActivityIndicator,
   Alert,
   FlatList,
-  SafeAreaView,
   StyleSheet,
   Text,
   View,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import type { StackNavigationProp } from '@react-navigation/stack';
 import type { RouteProp } from '@react-navigation/native';
 
@@ -226,7 +226,10 @@ const CourtsListScreen: React.FC<Props> = ({ navigation }) => {
     minimumViewTime: 100,
   }), []);
 
-  // Handle viewable items change for image preloading
+  // Handle viewable items change for image preloading - use ref to avoid recreating
+  const visibleItemsRef = useRef(visibleItems);
+  visibleItemsRef.current = visibleItems;
+
   const onViewableItemsChanged = useCallback(
     throttle(({ viewableItems }: any) => {
       const newVisibleItems = new Set(
@@ -237,7 +240,7 @@ const CourtsListScreen: React.FC<Props> = ({ navigation }) => {
       // Preload images for newly visible items
       runAfterInteractions(() => {
         const newlyVisibleImages = viewableItems
-          .filter((item: any) => !visibleItems.has(item.item.id))
+          .filter((item: any) => !visibleItemsRef.current.has(item.item.id))
           .map((item: any) => item.item.imageUrl);
 
         if (newlyVisibleImages.length > 0) {
@@ -248,7 +251,7 @@ const CourtsListScreen: React.FC<Props> = ({ navigation }) => {
         }
       });
     }, PERFORMANCE.interaction.throttleDelay),
-    [visibleItems]
+    [] // Remove visibleItems dependency to make this stable
   );
 
   const viewabilityConfigCallbackPairs = useMemo(() => [
