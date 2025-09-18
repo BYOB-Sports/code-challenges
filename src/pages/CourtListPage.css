@@ -1,0 +1,97 @@
+/* === Page Container === */
+.court-list-container {
+  padding: 16px;
+  padding-left: 20px;
+  padding-right: 20px;
+  max-width: 480px;
+  margin: 0 auto;
+  background-color: #fafafa;
+}
+
+/* === Page Title === */
+.court-list-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+/* === Search Input === */
+.search-input {
+  padding: 10px;
+  width: 100%;
+  margin-bottom: 20px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+  box-sizing: border-box;
+}
+
+/* === Court List === */
+.court-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* === Court Card === */
+.court-card {
+  padding: 16px;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  cursor: pointer;
+  transition: transform 0.15s ease-in-out, box-shadow 0.15s;
+}
+
+.court-card:hover {
+  transform: scale(1.015);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+}
+
+/* === Court Info === */
+.court-name {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.court-info {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 6px;
+}
+
+.court-rating {
+  font-size: 14px;
+  color: #f5a623;
+}
+
+/* === Pagination === */
+.pagination-controls {
+  margin-top: 24px;
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+.pagination-controls button {
+  background: #111;
+  color: white;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.pagination-controls button:disabled {
+  background: #999;
+  cursor: not-allowed;
+}
+
+.pagination-controls .active-page {
+  background-color: #f5a623;
+  color: black;
+}
