@@ -24,3 +24,13 @@ Create a mobile first, two page app for reviewing tennis courts.  A user should 
 - Your job is to delight users
 
 Good luck!
+
+## Getting Started
+
+1. Install dependencies
+   ```
+   npm install
+   ```
+2. Run the app
+  - For React, use `npm start`
+
