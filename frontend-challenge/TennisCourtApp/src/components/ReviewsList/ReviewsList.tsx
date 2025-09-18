@@ -21,6 +21,7 @@ interface ReviewsListProps {
   compact?: boolean;
   maxHeight?: number | undefined;
   onReviewsUpdate?: (reviews: Review[]) => void;
+  nested?: boolean; // Add prop to indicate if this is nested inside a ScrollView
 }
 
 type SortOption = 'date' | 'rating' | 'helpful';
@@ -33,6 +34,7 @@ const ReviewsList: React.FC<ReviewsListProps> = ({
   compact = false,
   maxHeight,
   onReviewsUpdate,
+  nested = false,
 }) => {
   const [reviews, setReviews] = useState<Review[]>(initialReviews);
   const [loading, setLoading] = useState(false);
@@ -239,6 +241,28 @@ const ReviewsList: React.FC<ReviewsListProps> = ({
         >
           <Text style={styles.retryButtonText}>Try Again</Text>
         </TouchableOpacity>
+      </View>
+    );
+  }
+
+  // When nested inside a ScrollView, use a simple mapped array instead of FlatList
+  if (nested) {
+    return (
+      <View style={[styles.container, maxHeight ? { maxHeight } : undefined]}>
+        {renderSortOptions()}
+
+        <View style={styles.listContent}>
+          {reviews.length === 0 ? (
+            renderEmptyState()
+          ) : (
+            reviews.map((item) => (
+              <View key={item.id}>
+                {renderItem({ item })}
+              </View>
+            ))
+          )}
+          {renderFooter()}
+        </View>
       </View>
     );
   }

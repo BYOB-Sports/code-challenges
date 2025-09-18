@@ -220,46 +220,39 @@ const CourtsListScreen: React.FC<Props> = ({ navigation }) => {
     []
   );
 
-  // Viewability configuration for image preloading
-  const viewabilityConfig: ViewabilityConfig = useMemo(() => ({
-    itemVisiblePercentThreshold: 20,
-    minimumViewTime: 100,
-  }), []);
-
   // Handle viewable items change for image preloading - use ref to avoid recreating
   const visibleItemsRef = useRef(visibleItems);
   visibleItemsRef.current = visibleItems;
 
-  const onViewableItemsChanged = useCallback(
-    throttle(({ viewableItems }: any) => {
-      const newVisibleItems = new Set(
-        viewableItems.map((item: any) => item.item.id)
-      );
-      setVisibleItems(newVisibleItems);
-
-      // Preload images for newly visible items
-      runAfterInteractions(() => {
-        const newlyVisibleImages = viewableItems
-          .filter((item: any) => !visibleItemsRef.current.has(item.item.id))
-          .map((item: any) => item.item.imageUrl);
-
-        if (newlyVisibleImages.length > 0) {
-          preloadImages(newlyVisibleImages, PERFORMANCE.image.preloadBatchSize)
-            .catch(() => {
-              // Silently handle preload failures
-            });
-        }
-      });
-    }, PERFORMANCE.interaction.throttleDelay),
-    [] // Remove visibleItems dependency to make this stable
-  );
-
-  const viewabilityConfigCallbackPairs = useMemo(() => [
+  // Create stable viewability configuration and callback pairs using useRef
+  const viewabilityConfigCallbackPairs = useRef([
     {
-      viewabilityConfig,
-      onViewableItemsChanged,
+      viewabilityConfig: {
+        itemVisiblePercentThreshold: 20,
+        minimumViewTime: 100,
+      },
+      onViewableItemsChanged: throttle(({ viewableItems }: any) => {
+        const newVisibleItems = new Set(
+          viewableItems.map((item: any) => item.item.id)
+        );
+        setVisibleItems(newVisibleItems);
+
+        // Preload images for newly visible items
+        runAfterInteractions(() => {
+          const newlyVisibleImages = viewableItems
+            .filter((item: any) => !visibleItemsRef.current.has(item.item.id))
+            .map((item: any) => item.item.imageUrl);
+
+          if (newlyVisibleImages.length > 0) {
+            preloadImages(newlyVisibleImages, PERFORMANCE.image.preloadBatchSize)
+              .catch(() => {
+                // Silently handle preload failures
+              });
+          }
+        });
+      }, PERFORMANCE.interaction.throttleDelay),
     },
-  ], [viewabilityConfig, onViewableItemsChanged]);
+  ]).current;
 
   const renderEmptyState = useCallback(() => {
     if (loading) return null;

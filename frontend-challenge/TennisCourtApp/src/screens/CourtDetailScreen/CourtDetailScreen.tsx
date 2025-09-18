@@ -471,6 +471,7 @@ const CourtDetailScreen: React.FC<Props> = ({ route, navigation }) => {
             initialReviews={reviews.slice(0, 3)}
             maxHeight={showAllReviews ? undefined : 400}
             onReviewsUpdate={setReviews}
+            nested={true}
           />
         </CollapsibleSection>
       </FadeInView>
