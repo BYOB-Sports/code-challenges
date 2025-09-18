@@ -1,18 +1,3 @@
-/*const tennisCourts = [];
-
-for (let i = 1; i <= 50; i++) {
-  tennisCourts.push({
-    id: i,
-    name: `Court ${i}`,
-    location: `City ${((i - 1) % 10) + 1}`,
-    surface: ['Clay', 'Grass', 'Hard'][i % 3],
-    rating: (Math.random() * 5).toFixed(1),
-    reviews: []
-  });
-}
-
-export default tennisCourts; */
-
 import { faker } from '@faker-js/faker';
 
 const tennisCourts = [];
