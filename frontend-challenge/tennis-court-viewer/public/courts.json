@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "name": "Court 1",
+    "address": "123 Main St, Anytown, USA",
+    "image": "./images/pexels-athena-2961964.jpg",
+    "reviews": [
+      { "username": "John Doe", "rating": 3, "comment": "It's okay." }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Court 2",
+    "address": "123 Main St, Anytown, USA",
+    "image": "./images/pexels-athena-2961964.jpg",
+    "reviews": [
+      { "username": "John Doe", "rating": 3, "comment": "It's okay." }
+    ]
+  }
+]
