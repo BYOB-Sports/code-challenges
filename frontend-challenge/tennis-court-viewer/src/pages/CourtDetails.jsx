@@ -47,9 +47,10 @@ const CourtDetails = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="bg-gray-200 p-4 sticky top-0 flex justify-center items-center">
+      {/* Prompt: Help me make the nav bar look "tennis court green" */}
+      <div className="bg-green-600 p-4 sticky top-0 flex justify-center items-center">
         <div className="max-w-md mx-auto">
-        <Link to="/" className="text-xl font-bold">← Back to Courts</Link>
+        <Link to="/" className="text-xl font-bold text-white">← Back to Courts</Link>
         </div>
       </div>
 

@@ -57,7 +57,8 @@ const AddReview = ({ addReview }) => {
         onChange={(e) => setComment(e.target.value)}
       />
 
-      <button type="submit" className="bg-blue-500 text-white p-2 rounded">Submit Review</button>
+      {/* Prompt: Help me make the submit button look "tennis court green" */}
+      <button type="submit" className="bg-green-600 hover:bg-green-700 text-white p-2 rounded transition-colors">Submit Review</button>
     </form>
   )
   
