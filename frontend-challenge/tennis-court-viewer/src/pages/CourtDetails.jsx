@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import AddReview from '../components/AddReview';
+import StarDisplay from '../components/StarDisplay';
 
 const CourtDetails = () => {
   const { id } = useParams();
@@ -33,6 +34,10 @@ const CourtDetails = () => {
       </div>;
   }
 
+  const averageRating = court.reviews.length > 0 
+    ? (court.reviews.reduce((sum, review) => sum + review.rating, 0) / court.reviews.length)
+    : 0;
+
   const addReview = (newReview) => {
     setCourt((prev) => ({
       ...prev, 
@@ -54,8 +59,12 @@ const CourtDetails = () => {
           <div className="p-4">
             <h1 className="text-2xl font-bold mb-2">{court.name}</h1>
             <p className="text-gray-600 mb-3">{court.address}</p>
-            <p className="text-sm text-gray-500">Average Rating: {court.reviews.length > 0 ? (court.reviews.reduce((sum, review) => sum + review.rating, 0) / court.reviews.length).toFixed(1) : 0.0}</p>
-
+            <div className="flex items-center justify-between">
+              <StarDisplay rating={averageRating} />
+              <span className="text-sm text-gray-500">
+              {court.reviews.length} review{court.reviews.length === 1 ? '' : 's'}
+            </span>
+            </div>
           </div>
         </div>
         
@@ -68,7 +77,18 @@ const CourtDetails = () => {
                 <div key={index} className="border-b border-gray-200 pb-3 last:border-b-0">
                   <div className="flex items-center justify-between mb-1">
                     <p className="font-semibold text-sm">{review.username}</p>
-                    <p className="text-sm">{review.rating}/5</p>
+                    <div className="flex">
+                      {[...Array(5)].map((_, star) => (
+                        <span
+                          key={star}
+                          className={`test-sm ${
+                            star < review.rating ? "text-yellow-400" : "text-gray-300"
+                          }`}
+                        >
+                          ★
+                        </span>
+                      ))}
+                    </div>
                   </div>
                   <p className="text-sm text-gray-700">{review.comment}</p>
                 </div>

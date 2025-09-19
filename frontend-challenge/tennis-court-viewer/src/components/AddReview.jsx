@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import StarRating from './StarRating';
 
 const AddReview = ({ addReview }) => {
   const [username, setUsername] = useState('');
@@ -47,18 +48,7 @@ const AddReview = ({ addReview }) => {
         onChange={(e) => setUsername(e.target.value)}
       />
 
-      <select 
-        value={rating}
-        onChange={(e) => setRating(e.target.value)}
-        className="w-full border p-2 rounded"
-      >
-        <option value={0}>Select a rating</option>
-        <option value={1}>1</option>
-        <option value={2}>2</option>
-        <option value={3}>3</option>
-        <option value={4}>4</option>
-        <option value={5}>5</option>
-      </select>
+      <StarRating rating={rating} setRating={setRating} />
 
       <textarea
         placeholder="Write your review"

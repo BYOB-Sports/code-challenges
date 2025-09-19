@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Navigation from '../components/Navigation';
-
+import StarDisplay from '../components/StarDisplay';
 
 const CourtList = () => {
   const [courts, setCourts] = useState([]);
@@ -39,7 +39,7 @@ const CourtList = () => {
         <div className="grid grid-cols-2 gap-3">
           {filteredCourts.map((court) => {
             const averageRating = court.reviews.length > 0
-              ? (court.reviews.reduce((sum, review) => sum + review.rating, 0) / court.reviews.length).toFixed(1)
+              ? (court.reviews.reduce((sum, review) => sum + review.rating, 0) / court.reviews.length)
               : 0.0;
 
               return (
@@ -59,7 +59,9 @@ const CourtList = () => {
                       <h2 className="font-semibold text-xs leading-tight mb-1 line-clamp-1">{court.name}</h2>
                       <p className="text-xs text-gray-600 mb-1 line-clamp-2">{court.address}</p>
                     </div>
-                    <p className="flex-shrink-0">Average Rating: {averageRating}</p>
+                    <div className="flex-shrink-0">
+                      <StarDisplay rating={(averageRating)} />
+                    </div>
                   </div>
                 </Link>
               )
