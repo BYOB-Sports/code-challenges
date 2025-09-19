@@ -33,7 +33,7 @@ const CourtDetails = () => {
   }
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-gray-50">
       <div className="bg-gray-200 p-4 sticky top-0 flex justify-center items-center">
         <div className="max-w-md mx-auto">
         <Link to="/" className="text-xl font-bold">← Back to Courts</Link>
@@ -41,18 +41,37 @@ const CourtDetails = () => {
       </div>
 
       <div className="p-4 max-w-md mx-auto">
-        <img src={court.image} alt={court.name} />
-        <h2>{court.name}</h2>
-        <p>{court.address}</p>
-        <p>Average Rating: {court.reviews.length > 0 ? (court.reviews.reduce((sum, review) => sum + review.rating, 0) / court.reviews.length).toFixed(1) : 0.0}</p>
-        <h3>Reviews</h3>
-        {court.reviews.map((review, index) => (
-          <div key={index}>
-            <p>{review.username}</p>
-            <p>{review.rating}</p>
-            <p>{review.comment}</p>
+        <div className="bg-white rounded-lg shadow-md overflow-hidden mb-4">
+          <img src={court.image} alt={court.name} className="w-full h-48 object-cover" />
+          <div className="p-4">
+            <h1 className="text-2xl font-bold mb-2">{court.name}</h1>
+            <p className="text-gray-600 mb-3">{court.address}</p>
+            <p className="text-sm text-gray-500">Average Rating: {court.reviews.length > 0 ? (court.reviews.reduce((sum, review) => sum + review.rating, 0) / court.reviews.length).toFixed(1) : 0.0}</p>
+
           </div>
-        ))}
+        </div>
+        
+
+        <div className="bg-white rounded-lg shadow-md overflow-hidden p-4 mb-4">
+          <h2 className="text-xl font-semibold mb-4">Reviews</h2>
+          {court.reviews.length > 0? (
+            <div className="space-y-3">
+              {court.reviews.map((review, index) => (
+                <div key={index} className="border-b border-gray-200 pb-3 last:border-b-0">
+                  <div className="flex items-center justify-between mb-1">
+                    <p className="font-semibold text-sm">{review.username}</p>
+                    <p className="text-sm">{review.rating}/5</p>
+                  </div>
+                  <p className="text-sm text-gray-700">{review.comment}</p>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p className="text-gray-500 text-center py-4">No reviews yet. Be the first to review!</p>
+          )}
+          
+        </div>
+        
       </div>
       
     </div>
