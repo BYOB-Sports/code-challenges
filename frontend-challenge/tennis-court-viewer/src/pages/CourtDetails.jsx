@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import AddReview from '../components/AddReview';
 
 const CourtDetails = () => {
   const { id } = useParams();
@@ -30,6 +31,13 @@ const CourtDetails = () => {
     return <div>
         <p>Court not Found</p>
       </div>;
+  }
+
+  const addReview = (newReview) => {
+    setCourt((prev) => ({
+      ...prev, 
+      reviews: [...prev.reviews, newReview],
+    }));
   }
 
   return (
@@ -69,11 +77,13 @@ const CourtDetails = () => {
           ) : (
             <p className="text-gray-500 text-center py-4">No reviews yet. Be the first to review!</p>
           )}
-          
         </div>
-        
+
+        <div className="bg-white rounded-lg shadow-md p-4">
+          <h3 className="text-lg font-semibold mb-3">Add a Review</h3>
+          <AddReview addReview={addReview} />
+        </div>
       </div>
-      
     </div>
   );
 };
