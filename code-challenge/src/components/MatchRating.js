@@ -49,17 +49,26 @@ const MatchRating = ({ players, setPlayers }) => {
         </div>
         
         <div className="form-group">
-          <label htmlFor="rating-slider">Rating: {rating.toFixed(1)}</label>
-          <input 
-            type="range" 
-            id="rating-slider"
-            min="1.0" 
-            max="7.0" 
-            step="0.1" 
-            value={rating}
-            onChange={(e) => setRating(parseFloat(e.target.value))}
-            disabled={isSubmitting}
-          />
+          <label htmlFor="rating-slider">
+            Rating: <span className="rating-value">{rating.toFixed(1)}</span>
+          </label>
+          <div className="rating-slider-container">
+            <input 
+              type="range" 
+              id="rating-slider"
+              min="1.0" 
+              max="7.0" 
+              step="0.1" 
+              value={rating}
+              onChange={(e) => setRating(parseFloat(e.target.value))}
+              disabled={isSubmitting}
+            />
+            <div className="rating-scale">
+              <span>1.0</span>
+              <span>4.0</span>
+              <span>7.0</span>
+            </div>
+          </div>
         </div>
         
         <button type="submit" disabled={isSubmitting}>
