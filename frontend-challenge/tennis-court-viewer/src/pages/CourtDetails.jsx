@@ -36,7 +36,7 @@ const CourtDetails = () => {
     <div className="min-h-screen">
       <div className="bg-gray-200 p-4 sticky top-0 flex justify-center items-center">
         <div className="max-w-md mx-auto">
-        <Link to="/" className="text-xl font-bold">Back to Courts</Link>
+        <Link to="/" className="text-xl font-bold">← Back to Courts</Link>
         </div>
       </div>
 

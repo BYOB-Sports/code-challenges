@@ -53,9 +53,14 @@ const CourtList = () => {
                     alt={court.name} 
                     className="w-full h-16 object-cover flex-shrink-0" 
                   />
-                  <h2>{court.name}</h2>
-                  <p>{court.address}</p>
-                  <p>Average Rating: {averageRating}</p>
+                  {/* Prompt: Help make my cards look good. I want the name to be bold and the address to be smaller. */}
+                  <div className="p-1.5 flex-1 flex flex-col justify-between min-h-0"> 
+                    <div className="flex-1 min-h-0">
+                      <h2 className="font-semibold text-xs leading-tight mb-1 line-clamp-1">{court.name}</h2>
+                      <p className="text-xs text-gray-600 mb-1 line-clamp-2">{court.address}</p>
+                    </div>
+                    <p className="flex-shrink-0">Average Rating: {averageRating}</p>
+                  </div>
                 </Link>
               )
           })}

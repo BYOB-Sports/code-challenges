@@ -171,10 +171,6 @@
     "address": "567 Factory Row, Cleveland, OH 44115",
     "image": "/images/pexels-athena-2961964.jpg",
     "reviews": [
-      { "username": "Carlos Rodriguez", "rating": 1, "comment": "Terrible location and poor facilities. Not worth visiting." },
-      { "username": "Maria Santos", "rating": 2, "comment": "Run down courts in industrial area. Very disappointing." },
-      { "username": "Jose Garcia", "rating": 1, "comment": "Worst tennis courts I've ever seen. Avoid at all costs." },
-      { "username": "Ana Lopez", "rating": 2, "comment": "Poor condition and bad location. Not recommended." }
     ]
   },
   {
@@ -293,12 +289,6 @@
     "address": "456 Forest Road, Asheville, NC 28801",
     "image": "/images/pexels-athena-2961964.jpg",
     "reviews": [
-      { "username": "Rachel Green", "rating": 4, "comment": "Beautiful mountain setting with well-maintained courts." },
-      { "username": "Mark Johnson", "rating": 3, "comment": "Nice location but courts could use some updates." },
-      { "username": "Sophie Miller", "rating": 4, "comment": "Great mountain tennis experience with good facilities." },
-      { "username": "Alex Thompson", "rating": 5, "comment": "Perfect courts in stunning forest setting!" },
-      { "username": "Maria Garcia", "rating": 4, "comment": "Beautiful mountain courts with great atmosphere." },
-      { "username": "James Brown", "rating": 3, "comment": "Decent courts in nice mountain location." }
     ]
   },
   {
