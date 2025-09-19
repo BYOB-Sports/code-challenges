@@ -1,20 +1,55 @@
 [
   {
     "id": 1,
-    "name": "Court 1",
-    "address": "123 Main St, Anytown, USA",
-    "image": "./images/pexels-athena-2961964.jpg",
+    "name": "Riverside Tennis Club",
+    "address": "245 River Road, Portland, OR 97201",
+    "image": "/images/pexels-athena-2961964.jpg",
     "reviews": [
-      { "username": "John Doe", "rating": 3, "comment": "It's okay." }
+      { "username": "Sarah M.", "rating": 5, "comment": "Beautiful courts with excellent lighting. Staff is very friendly and helpful." },
+      { "username": "Mike Chen", "rating": 4, "comment": "Great facilities, but can get crowded on weekends. Courts are well-maintained." },
+      { "username": "Emma Wilson", "rating": 5, "comment": "Love playing here! The surface is perfect and the location is convenient." },
+      { "username": "David Rodriguez", "rating": 3, "comment": "Decent courts but the parking situation could be better." },
+      { "username": "Lisa Park", "rating": 4, "comment": "Good value for money. Courts are clean and well-kept." },
+      { "username": "Tom Anderson", "rating": 2, "comment": "Courts are okay but the nets need replacing. Staff wasn't very responsive." }
     ]
   },
   {
     "id": 2,
-    "name": "Court 2",
-    "address": "123 Main St, Anytown, USA",
-    "image": "./images/pexels-athena-2961964.jpg",
+    "name": "Sunset Courts",
+    "address": "789 Sunset Boulevard, Los Angeles, CA 90210",
+    "image": "/images/pexels-athena-2961964.jpg",
     "reviews": [
-      { "username": "John Doe", "rating": 3, "comment": "It's okay." }
+      { "username": "Jennifer Lee", "rating": 4, "comment": "Nice outdoor courts with great views. Perfect for evening games." },
+      { "username": "Robert Kim", "rating": 3, "comment": "Courts are decent but the lighting could be improved for night play." }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Central Park Tennis Center",
+    "address": "1234 Central Park West, New York, NY 10024",
+    "image": "/images/pexels-athena-2961964.jpg",
+    "reviews": [
+      { "username": "Alex Thompson", "rating": 5, "comment": "Amazing location right in Central Park! Courts are pristine and the atmosphere is unbeatable." },
+      { "username": "Maria Garcia", "rating": 4, "comment": "Great courts but expensive. Worth it for the location though." },
+      { "username": "James Brown", "rating": 3, "comment": "Good courts but very busy. Hard to get a reservation during peak hours." },
+      { "username": "Anna Davis", "rating": 4, "comment": "Well-maintained courts with professional staff. Love the park setting." },
+      { "username": "Chris Taylor", "rating": 2, "comment": "Overpriced for what you get. Courts are fine but nothing special." },
+      { "username": "Rachel Green", "rating": 5, "comment": "Perfect courts in the heart of the city. Can't beat this location!" },
+      { "username": "Mark Johnson", "rating": 3, "comment": "Decent facilities but the booking system is confusing." },
+      { "username": "Sophie Miller", "rating": 4, "comment": "Beautiful courts with great views of the park. Highly recommend!" }
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Oakwood Tennis Academy",
+    "address": "456 Oak Street, Austin, TX 78701",
+    "image": "/images/pexels-athena-2961964.jpg",
+    "reviews": [
+      { "username": "Kevin White", "rating": 5, "comment": "Excellent coaching staff and top-notch facilities. Best tennis experience in Austin!" },
+      { "username": "Amanda Clark", "rating": 4, "comment": "Great courts and lessons. My game has improved significantly since joining." },
+      { "username": "Daniel Martinez", "rating": 3, "comment": "Good facilities but the membership fees are quite high." },
+      { "username": "Jessica Adams", "rating": 5, "comment": "Outstanding courts and professional atmosphere. Love the tournaments they host." },
+      { "username": "Ryan Foster", "rating": 2, "comment": "Courts are okay but the customer service needs improvement." }
     ]
   }
 ]
