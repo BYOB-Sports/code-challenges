@@ -12,21 +12,17 @@ code {
     monospace;
 }
 
-/* Additional styles for the rating challenge */
-.players-list, .match-rating {
-  background-color: white;
-  border-radius: 8px;
-  padding: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-input[type="range"] {
+body, html {
+  margin: 0;
+  padding: 0;
   width: 100%;
-  height: 25px;
+  min-height: 100%;
+  overflow-x: hidden;
 }
 
-.message {
-  font-weight: bold;
+#root {
+  width: 100%;
+  min-height: 100vh;
 }
 
 .message.error {

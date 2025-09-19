@@ -32,14 +32,15 @@ const MatchRating = ({ players, setPlayers }) => {
   return (
     <div className="match-rating">
       <h2>Rate a Player</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} autoComplete="off">
         <div className="form-group">
-          <label htmlFor="player-select">Select Player:</label>
-          <select 
+          <label htmlFor="player-select">Select Player</label>
+          <select
             id="player-select"
             value={selectedPlayer}
             onChange={(e) => setSelectedPlayer(e.target.value)}
             disabled={isSubmitting}
+            aria-label="Select player to rate"
           >
             <option value="">-- Select a player --</option>
             {players.map(player => (
@@ -47,26 +48,40 @@ const MatchRating = ({ players, setPlayers }) => {
             ))}
           </select>
         </div>
-        
+
         <div className="form-group">
-          <label htmlFor="rating-slider">Rating: {rating.toFixed(1)}</label>
-          <input 
-            type="range" 
-            id="rating-slider"
-            min="1.0" 
-            max="7.0" 
-            step="0.1" 
-            value={rating}
-            onChange={(e) => setRating(parseFloat(e.target.value))}
-            disabled={isSubmitting}
-          />
+          <label htmlFor="rating-slider">
+            Rating <span className="rating-value">{rating.toFixed(1)}</span>
+          </label>
+          <div className="rating-slider-container">
+            <input
+              type="range"
+              id="rating-slider"
+              min="1.0"
+              max="7.0"
+              step="0.1"
+              value={rating}
+              onChange={(e) => setRating(parseFloat(e.target.value))}
+              disabled={isSubmitting}
+              aria-valuenow={rating}
+              aria-valuemin={1.0}
+              aria-valuemax={7.0}
+            />
+            <div className="rating-scale">
+              <span>1.0</span>
+              <span>4.0</span>
+              <span>7.0</span>
+            </div>
+          </div>
         </div>
-        
+
         <button type="submit" disabled={isSubmitting}>
           {isSubmitting ? 'Submitting...' : 'Submit Rating'}
         </button>
-        
-        {message && <p className="message">{message}</p>}
+
+        {message && (
+          <p className="message" style={{animation: 'fadeIn 0.5s'}}> {message} </p>
+        )}
       </form>
     </div>
   );
