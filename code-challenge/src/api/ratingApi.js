@@ -1,49 +1,39 @@
-import { updatePlayers } from './playerApi';
+import { fetchPlayers, updatePlayers } from './playerApi';
 
-// Store a new rating
-export const storeRating = async (playerId, rating) => {
-  const ratingsStr = localStorage.getItem('ratings') || '{}';
-  const ratings = JSON.parse(ratingsStr);
-  
-  if (!ratings[playerId]) {
-    ratings[playerId] = [];
-  }
-  
-  ratings[playerId].push(rating);
-  localStorage.setItem('ratings', JSON.stringify(ratings));
-  
-  return ratings[playerId];
+// Internal helpers
+const readReviews = () => JSON.parse(localStorage.getItem('reviews') || '{}');
+const writeReviews = (obj) => localStorage.setItem('reviews', JSON.stringify(obj));
+
+export const getReviewsForCourt = async (courtId) => {
+  const all = readReviews();
+  return all[courtId] || [];
 };
 
-// Calculate average rating
-export const calculateAverageRating = async (playerId) => {
-  const ratingsStr = localStorage.getItem('ratings') || '{}';
-  const ratings = JSON.parse(ratingsStr);
-  const playerRatings = ratings[playerId] || [];
-  
-  await new Promise(resolve => setTimeout(resolve, 10000));
-  
-  if (playerRatings.length === 0) return 0;
-  
-  const sum = playerRatings.reduce((acc, rating) => acc + rating, 0);
-  return sum / playerRatings.length;
-};
+// Add a review and recalc average; returns { updatedCourts, newReviews }
+export const addReviewAndRecalculate = async (courtId, rating, comment) => {
+  const allReviews = readReviews();
+  const current = allReviews[courtId] || [];
+  const newEntry = {
+    rating: Number(rating),
+    comment: String(comment),
+    date: new Date().toISOString(),
+  };
+  const newReviews = [newEntry, ...current]; // newest first
+  allReviews[courtId] = newReviews;
+  writeReviews(allReviews);
 
-// Submit a rating and update player's average
-export const submitRating = async (playerId, rating, allPlayers) => {
-  // Store the new rating
-  await storeRating(playerId, rating);
-  
-  // Calculate new average
-  const newAverage = await calculateAverageRating(playerId);
-  
-  // Update player's average rating
-  const updatedPlayers = allPlayers.map(player => 
-    player.id === playerId 
-      ? { ...player, averageRating: newAverage }
-      : player
+  // Recompute average for this court
+  const sum = newReviews.reduce((acc, r) => acc + (Number(r.rating) || 0), 0);
+  const avg = newReviews.length ? sum / newReviews.length : 0;
+
+  // Update courts list
+  const courts = await fetchPlayers();
+  const updated = courts.map((c) =>
+    String(c.id) === String(courtId)
+      ? { ...c, averageRating: avg }
+      : c
   );
-  
-  // Save updated players
-  return await updatePlayers(updatedPlayers);
-}; 
+  await updatePlayers(updated);
+
+  return { updatedCourts: updated, newReviews };
+};
