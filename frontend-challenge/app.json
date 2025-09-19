@@ -1,0 +1,23 @@
+{
+  "expo": {
+    "name": "Tennis Court Reviewer",
+    "slug": "tennis-court-reviewer",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "sdkVersion": "54.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.tenniscourtreviewer.app"
+    },
+    "android": {
+      "package": "com.tenniscourtreviewer.app"
+    },
+    "web": {
+      "bundler": "metro"
+    }
+  }
+}
