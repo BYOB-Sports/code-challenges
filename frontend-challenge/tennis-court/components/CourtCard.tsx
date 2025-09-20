@@ -20,7 +20,7 @@ export const CourtCard = ({ court, onPress }: Props) => {
             {court.name}
           </Text>
           <View style={styles.ratingContainer}>
-            <AntDesign name="star" size={12} color="#FF385C" />
+            <AntDesign name="star" size={11} color="#FF385C" />
             <Text style={styles.rating}>{court.average_rating.toFixed(1)}</Text>
           </View>
         </View>
@@ -42,64 +42,64 @@ export const CourtCard = ({ court, onPress }: Props) => {
 const styles = StyleSheet.create({
   card: {
     backgroundColor: "#FFFFFF",
-    borderRadius: 12,
-    marginHorizontal: 24,
-    marginBottom: 32,
+    borderRadius: 10,
+    marginHorizontal: 16,
+    marginBottom: 20,
     shadowColor: "#000000",
     shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.12,
-    shadowRadius: 6,
-    elevation: 3,
+    shadowOpacity: 0.08,
+    shadowRadius: 4,
+    elevation: 2,
   },
   imageContainer: {
-    borderTopLeftRadius: 12,
-    borderTopRightRadius: 12,
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
     overflow: "hidden",
   },
   image: {
     width: "100%",
-    height: 240,
+    height: 140,
     backgroundColor: "#F7F7F7",
   },
   info: {
-    padding: 16,
+    padding: 12,
   },
   headerRow: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "flex-start",
-    marginBottom: 4,
+    marginBottom: 2,
   },
   name: {
-    fontSize: 16,
+    fontSize: 15,
     fontWeight: "600",
     color: "#222222",
     flex: 1,
-    marginRight: 8,
-    lineHeight: 20,
+    marginRight: 6,
+    lineHeight: 18,
   },
   ratingContainer: {
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: "#F7F7F7",
-    paddingHorizontal: 8,
-    paddingVertical: 4,
-    borderRadius: 8,
+    paddingHorizontal: 6,
+    paddingVertical: 2,
+    borderRadius: 6,
   },
   rating: {
-    marginLeft: 4,
+    marginLeft: 3,
     fontSize: 12,
     fontWeight: "600",
     color: "#222222",
   },
   address: {
-    fontSize: 14,
+    fontSize: 13,
     color: "#717171",
-    lineHeight: 18,
-    marginBottom: 4,
+    lineHeight: 17,
+    marginBottom: 2,
   },
   reviewCount: {
-    fontSize: 14,
+    fontSize: 13,
     color: "#717171",
     fontWeight: "400",
   },

@@ -12,7 +12,7 @@ export const SearchBar = ({ value, onChangeText }: Props) => {
       <View style={styles.searchContainer}>
         <Feather
           name="search"
-          size={18}
+          size={20}
           color="#717171"
           style={styles.searchIcon}
         />
@@ -30,34 +30,35 @@ export const SearchBar = ({ value, onChangeText }: Props) => {
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 24,
-    paddingTop: 16,
-    paddingBottom: 8,
-    backgroundColor: "#FFFFFF",
+    paddingHorizontal: 16,
+    paddingTop: 12,
+    paddingBottom: 12,
+    backgroundColor: "#ffffffff",
   },
   searchContainer: {
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: "#FFFFFF",
-    paddingHorizontal: 16,
-    paddingVertical: 14,
-    borderRadius: 32,
+    paddingHorizontal: 14,
+    paddingVertical: 10,
+    borderRadius: 30,
     borderWidth: 1,
-    borderColor: "#DDDDDD",
+    borderColor: "#E5E5E5",
     shadowColor: "#000000",
     shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.08,
-    shadowRadius: 8,
-    elevation: 4,
+    shadowOpacity: 0.07,
+    shadowRadius: 6,
+    elevation: 3,
   },
   searchIcon: {
-    marginRight: 12,
+    marginRight: 10,
   },
   input: {
     flex: 1,
-    fontSize: 16,
+    fontSize: 15,
     fontWeight: "400",
     color: "#222222",
     lineHeight: 20,
+    paddingVertical: 0,
   },
 });

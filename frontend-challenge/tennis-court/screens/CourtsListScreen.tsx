@@ -29,7 +29,7 @@ export default function CourtsListScreen() {
           .includes(searchQuery.toLowerCase())
     );
     setFilteredCourts(filtered);
-    setCurrentPage(1); // Reset to first page when searching
+    setCurrentPage(1);
   }, [searchQuery, allCourts]);
 
   const totalPages = Math.ceil(filteredCourts.length / ITEMS_PER_PAGE);
@@ -38,7 +38,6 @@ export default function CourtsListScreen() {
   const currentCourts = filteredCourts.slice(startIndex, endIndex);
 
   const handleCourtPress = (court: Court) => {
-    // Navigation to court details would go here
     console.log("Court pressed:", court.name);
   };
 
@@ -50,12 +49,12 @@ export default function CourtsListScreen() {
     <View style={styles.container}>
       <View style={styles.header}>
         <SearchBar value={searchQuery} onChangeText={setSearchQuery} />
-        <View style={styles.resultsInfo}>
+        {/* <View style={styles.resultsInfo}>
           <Text style={styles.resultsText}>
             {filteredCourts.length} court
             {filteredCourts.length !== 1 ? "s" : ""} found
           </Text>
-        </View>
+        </View> */}
       </View>
 
       <FlatList
