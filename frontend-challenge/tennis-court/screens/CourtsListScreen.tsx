@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { View, FlatList, StyleSheet } from "react-native";
+import { View, FlatList, StyleSheet, ActivityIndicator } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { CourtCard } from "../components/CourtCard";
 import { SearchBar } from "../components/SearchBar";
 import { Pagination } from "../components/Pagination";
@@ -8,18 +9,23 @@ import courtsData from "../assets/tennis_courts_mock.json";
 import { useRouter } from "expo-router";
 
 const ITEMS_PER_PAGE = 8;
+const AIRBNB_RED = "#FF5A5F";
 
 export default function CourtsListScreen() {
   const [allCourts, setAllCourts] = useState<Court[]>([]);
   const [filteredCourts, setFilteredCourts] = useState<Court[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  const [loading, setLoading] = useState(true);
   const router = useRouter();
 
   useEffect(() => {
-    const courts = courtsData.courts as Court[];
-    setAllCourts(courts);
-    setFilteredCourts(courts);
+    setTimeout(() => {
+      const courts = courtsData.courts as Court[];
+      setAllCourts(courts);
+      setFilteredCourts(courts);
+      setLoading(false);
+    }, 800);
   }, []);
 
   useEffect(() => {
@@ -50,59 +56,65 @@ export default function CourtsListScreen() {
     setCurrentPage(page);
   };
 
+  if (loading) {
+    return (
+      <SafeAreaView style={styles.safeArea}>
+        <View style={styles.loaderContainer}>
+          <ActivityIndicator size="large" color={AIRBNB_RED} />
+        </View>
+      </SafeAreaView>
+    );
+  }
+
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <SearchBar value={searchQuery} onChangeText={setSearchQuery} />
-        {/* <View style={styles.resultsInfo}>
-          <Text style={styles.resultsText}>
-            {filteredCourts.length} court
-            {filteredCourts.length !== 1 ? "s" : ""} found
-          </Text>
-        </View> */}
-      </View>
+    <SafeAreaView style={styles.safeArea}>
+      <View style={styles.container}>
+        <View style={styles.header}>
+          <SearchBar value={searchQuery} onChangeText={setSearchQuery} />
+        </View>
 
-      <FlatList
-        data={currentCourts}
-        renderItem={({ item }) => (
-          <CourtCard court={item} onPress={handleCourtPress} />
-        )}
-        keyExtractor={(item) => item.id.toString()}
-        style={styles.list}
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={styles.listContent}
-      />
-
-      {totalPages > 1 && (
-        <Pagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onPageChange={handlePageChange}
+        <FlatList
+          data={currentCourts}
+          renderItem={({ item }) => (
+            <CourtCard court={item} onPress={handleCourtPress} />
+          )}
+          keyExtractor={(item) => item.id.toString()}
+          style={styles.list}
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={styles.listContent}
         />
-      )}
-    </View>
+
+        {totalPages > 1 && (
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={handlePageChange}
+          />
+        )}
+      </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: "#FFF",
+  },
   container: {
     flex: 1,
     backgroundColor: "#FFFFFF",
-    marginTop: 64,
+  },
+  loaderContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#FFF",
   },
   header: {
     backgroundColor: "#FFFFFF",
     borderBottomWidth: 1,
     borderBottomColor: "#EBEBEB",
-  },
-  resultsInfo: {
-    paddingHorizontal: 24,
-    paddingBottom: 16,
-  },
-  resultsText: {
-    fontSize: 14,
-    color: "#717171",
-    fontWeight: "400",
   },
   list: {
     flex: 1,
