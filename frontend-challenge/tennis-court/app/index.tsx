@@ -1,3 +1,5 @@
-export default function Index() {
-  return <></>;
+import CourtsListScreen from "../screens/CourtsListScreen";
+
+export default function App() {
+  return <CourtsListScreen />;
 }
