@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
-import { View, FlatList, StyleSheet, Text } from "react-native";
+import { View, FlatList, StyleSheet } from "react-native";
 import { CourtCard } from "../components/CourtCard";
 import { SearchBar } from "../components/SearchBar";
 import { Pagination } from "../components/Pagination";
 import type { Court } from "../types/court";
 import courtsData from "../assets/tennis_courts_mock.json";
+import { useRouter } from "expo-router";
 
 const ITEMS_PER_PAGE = 8;
 
@@ -13,6 +14,7 @@ export default function CourtsListScreen() {
   const [filteredCourts, setFilteredCourts] = useState<Court[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  const router = useRouter();
 
   useEffect(() => {
     const courts = courtsData.courts as Court[];
@@ -38,7 +40,10 @@ export default function CourtsListScreen() {
   const currentCourts = filteredCourts.slice(startIndex, endIndex);
 
   const handleCourtPress = (court: Court) => {
-    console.log("Court pressed:", court.name);
+    router.push({
+      pathname: `/courts/[id]`,
+      params: { id: court.id.toString() },
+    });
   };
 
   const handlePageChange = (page: number) => {
@@ -83,6 +88,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#FFFFFF",
+    marginTop: 64,
   },
   header: {
     backgroundColor: "#FFFFFF",
