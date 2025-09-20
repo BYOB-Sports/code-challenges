@@ -1,0 +1,48 @@
+{
+  "expo": {
+    "name": "tennis-court",
+    "slug": "tennis-court",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/tennis.png",
+    "scheme": "tenniscourt",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#E6F4FE",
+        "foregroundImage": "./assets/images/tennis.png",
+        "backgroundImage": "./assets/images/tennis.png",
+        "monochromeImage": "./assets/images/tennis.png"
+      },
+      "edgeToEdgeEnabled": true,
+      "predictiveBackGestureEnabled": false
+    },
+    "web": {
+      "output": "static",
+      "favicon": "./assets/images/tennis.png"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/images/tennis.png",
+          "imageWidth": 200,
+          "resizeMode": "contain",
+          "backgroundColor": "#ffffff",
+          "dark": {
+            "backgroundColor": "#000000"
+          }
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true,
+      "reactCompiler": true
+    }
+  }
+}
