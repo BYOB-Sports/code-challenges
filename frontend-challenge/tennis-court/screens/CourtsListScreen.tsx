@@ -1,5 +1,3 @@
-"use client";
-
 import { useState, useEffect } from "react";
 import { View, FlatList, StyleSheet, Text } from "react-native";
 import { CourtCard } from "../components/CourtCard";
