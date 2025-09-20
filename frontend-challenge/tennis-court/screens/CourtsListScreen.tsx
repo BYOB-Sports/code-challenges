@@ -1,5 +1,11 @@
 import { useState, useEffect } from "react";
-import { View, FlatList, StyleSheet, ActivityIndicator } from "react-native";
+import {
+  View,
+  FlatList,
+  StyleSheet,
+  ActivityIndicator,
+  Text,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { CourtCard } from "../components/CourtCard";
 import { SearchBar } from "../components/SearchBar";
@@ -73,23 +79,31 @@ export default function CourtsListScreen() {
           <SearchBar value={searchQuery} onChangeText={setSearchQuery} />
         </View>
 
-        <FlatList
-          data={currentCourts}
-          renderItem={({ item }) => (
-            <CourtCard court={item} onPress={handleCourtPress} />
-          )}
-          keyExtractor={(item) => item.id.toString()}
-          style={styles.list}
-          showsVerticalScrollIndicator={false}
-          contentContainerStyle={styles.listContent}
-        />
+        {filteredCourts.length === 0 ? (
+          <View style={styles.noResultsContainer}>
+            <Text style={styles.noResultsText}>{`No courts found!`}</Text>
+          </View>
+        ) : (
+          <>
+            <FlatList
+              data={currentCourts}
+              renderItem={({ item }) => (
+                <CourtCard court={item} onPress={handleCourtPress} />
+              )}
+              keyExtractor={(item) => item.id.toString()}
+              style={styles.list}
+              showsVerticalScrollIndicator={false}
+              contentContainerStyle={styles.listContent}
+            />
 
-        {totalPages > 1 && (
-          <Pagination
-            currentPage={currentPage}
-            totalPages={totalPages}
-            onPageChange={handlePageChange}
-          />
+            {totalPages > 1 && (
+              <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={handlePageChange}
+              />
+            )}
+          </>
         )}
       </View>
     </SafeAreaView>
@@ -123,5 +137,15 @@ const styles = StyleSheet.create({
   listContent: {
     paddingTop: 24,
     paddingBottom: 16,
+  },
+  noResultsContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    paddingTop: 50,
+  },
+  noResultsText: {
+    fontSize: 16,
+    color: "#757575",
   },
 });
