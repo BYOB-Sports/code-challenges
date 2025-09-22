@@ -41,7 +41,7 @@ function App() {
         {activeTab === 'players' ? (
           <PlayersList players={players} />
         ) : (
-          <MatchRating players={players} setPlayers={setPlayers} />
+          <MatchRating players={players} setPlayers={setPlayers} changeTab={setActiveTab}/>
         )}
       </main>
     </div>
