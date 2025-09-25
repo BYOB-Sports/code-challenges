@@ -1,26 +1,89 @@
-# UI Code Challenge!
+# Tennis Court Review App
 
-This small assignment will help evaluate your front end development capabilities.  You will be evaluated on design choices (friction, scalability, etc), efficient and effective coding, and style.
+A mobile-first web application for browsing and reviewing tennis courts.
 
-## Challenge
+## Features
 
-Create a mobile first, two page app for reviewing tennis courts.  A user should be able to see a display of courts, search for a specific court, select a court detail view, and leave a review.
+- **Browse Tennis Courts**: View a list of 60+ tennis courts with details
+- **Search Functionality**: Find courts by name, location, or surface type
+- **Detailed Court Information**: View comprehensive information about each court including:
+  - Location
+  - Surface type
+  - Number of courts
+  - Price range
+  - Operating hours
+  - Amenities
+  - Contact information
+- **Reviews System**: Read and submit reviews for tennis courts
+- **Mobile-First Design**: Optimized user experience on mobile devices
 
-## Rules
+## Technologies Used
 
-1. Pull this repo locally and work on your own branch
-2. Maximum time is 4 hours
-3. You will only be evaluated on how it looks on mobile device sizes
-4. No backend, all data will be mocked
-5. You do not need to write tests for this exercise given the time limit
-6. When you are done, submit a PR to this repo.
+- React 19
+- React Router v6
+- Tailwind CSS v4
+- Vite v7
 
-## Hints 
+## Getting Started
 
-- Do not use frameworks outside of the JavaScript/Typescript ecosystem
-- Submissions using React Native are preferred but React, Next, or pure JavaScript are acceptable
-- Bonus points if you mock > 50 courts as this will let you show off your scalable design skills
-- You can use coding assistants, but include every prompt you used in your PR
-- Your job is to delight users
+### Prerequisites
 
-Good luck!
+- Node.js (v18+ recommended)
+- npm or yarn
+
+### Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/your-username/tennis-court-reviews.git
+cd tennis-court-reviews
+```
+
+2. Install dependencies:
+```bash
+npm install
+# or
+yarn
+```
+
+3. Run the development server:
+```bash
+npm run dev
+# or
+yarn dev
+```
+
+4. Open your browser and navigate to http://localhost:5173
+
+## Project Structure
+
+- `/src`
+  - `/components` - Reusable UI components
+  - `/pages` - Main application pages
+  - `/data` - Mock data for tennis courts
+  - `/assets` - Images and other static files
+
+## Mobile Design Considerations
+
+The app was designed with mobile-first principles:
+
+- **Touch-friendly UI**: Large tap targets for better mobile interaction
+- **Responsive layouts**: Adapts seamlessly to different screen sizes
+- **Performance optimizations**: Lazy loading images and minimal dependencies
+- **Mobile gestures**: Smooth scrolling and transitions
+
+## Future Improvements
+
+- User authentication system
+- Court filtering by amenities
+- Court booking functionality
+- Photo uploads for reviews
+- Map integration for court locations
+
+## Development Process
+
+This application was developed as a coding challenge within a 4-hour timeframe, focusing on creating a mobile-first experience for tennis enthusiasts to discover and review tennis courts.
+
+## License
+
+MIT
